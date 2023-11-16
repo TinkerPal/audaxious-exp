@@ -16,8 +16,6 @@ import { feedback } from '../../constants/globalConstant';
 
 import arrowLeft from '../../assets/svg/arrow-left.svg';
 import arrowRight from '../../assets/svg/arrow-right.svg';
-import member from '../../assets/svg/member.svg';
-import project from '../../assets/svg/project.svg';
 import gift from '../../assets/svg/gift.svg';
 import medal from '../../assets/svg/medal.svg';
 import globe from '../../assets/svg/globe.svg';
@@ -33,6 +31,9 @@ import { ReactComponent as App } from '../../assets/svg/app.svg';
 import { ReactComponent as Line } from '../../assets/svg/saying.svg';
 import { ReactComponent as Line2 } from '../../assets/svg/question.svg';
 import { ReactComponent as Line3 } from '../../assets/svg/trending-line.svg';
+import { ReactComponent as Member } from '../../assets/svg/member.svg';
+import { ReactComponent as Project } from '../../assets/svg/project.svg';
+
 import Testimonial from '../../components/Testimonial';
 import TestimonialTwo from '../../components/TestimonialTwo';
 
@@ -144,25 +145,22 @@ const Home = () => {
       <section id='About' className='container pt-10 md:pt-0'>
         <div className='flex justify-center'>
           {[
-            { label: 'Member Benefits', icon: member },
-            { label: 'Project Benefits', icon: project },
-          ].map(({ label, icon }, index) => {
+            { label: 'Member Benefits', SvgIcon: Member },
+            { label: 'Project Benefits', SvgIcon: Project },
+          ].map(({ label, SvgIcon }, index) => {
             return (
               <div key={index} className='relative'>
                 <button
                   className={clsx(
-                    'flex items-center gap-3 lg:px-28 md:px-16 text-[13.5px] px-2 py-3 relative rounded-[4px] font-Bricolage_Grotesque md:text-[20px] font-normal leading-[38px]',
+                    'flex items-center md:gap-3 gap-1 lg:px-28 md:px-16 text-[13.5px] px-3 py-3 relative rounded-[4px] font-Bricolage_Grotesque md:text-[20px] font-normal leading-[38px]',
                     tab === index
                       ? 'bg-[#95CAE8] bg-opacity-10 text-[#79C4EC]'
                       : 'bg-[#13161E] text-[#cbcdcd]'
                   )}
                   onClick={() => setTab(index)}
                 >
-                  <img
-                    src={icon}
-                    className={`'w-20 md:w-40' ${
-                      tab === index ? 'active-icon' : 'inactive-icon'
-                    }`}
+                  <SvgIcon
+                    style={{ fill: tab === index ? '#79c4ec' : '#909292' }}
                   />
                   {label}
                 </button>

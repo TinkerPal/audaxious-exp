@@ -34,12 +34,12 @@ function Footer(props) {
           ))}
         </div>
 
-        <div className='border-t-[1px] border-[#71757D] hidden md:block'>
-          <div className='flex flex-wrap items-center justify-center gap-2 pt-7'>
-            <p className='text-[#4F5259] font-medium font-Raleway text-[14px] md:text-[14px]'>
+        <div className='border-t-[1px] border-[#71757D]'>
+          <div className='flex flex-wrap items-center justify-center gap-2 pt-5 md:pt-7'>
+            <p className='text-[#4F5259] md:flex-1 text-center font-medium font-Raleway text-[14px]'>
               © 2023 HackCity, Inc. | All rights reserved
             </p>
-            <div className='flex items-center gap-8'>
+            <div className='flex items-center gap-8 md:ml-auto'>
               <Facebook />
               <Instagram />
               <X />
@@ -48,7 +48,7 @@ function Footer(props) {
         </div>
 
         {/* Mobile Version  */}
-        <div className='md:hidden block'>
+        {/* <div className='md:hidden block'>
           <div className='flex flex-wrap items-center justify-center gap-2 pt-7'>
             <div className='flex items-center gap-8'>
               <Facebook />
@@ -56,12 +56,12 @@ function Footer(props) {
               <X />
             </div>
             <div className='border-t-[1px] border-[#71757D]  mt-4'>
-              <p className='text-[#4F5259] font-medium font-Raleway text-[14px] md:text-[14px] mt-4'>
+              <p className='text-[#4F5259] font-medium font-Raleway text-[14px] mt-4'>
                 © 2023 HackCity, Inc. | All rights reserved
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

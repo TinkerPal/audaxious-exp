@@ -45,14 +45,6 @@ body {
   }
 }
 
-.active-icon {
-  fill: #79c4ec; /* Change the color to match your active state styling */
-}
-
-.inactive-icon {
-  fill: #909292; /* Change the color to match your inactive state styling */
-}
-
 button:disabled {
   opacity: 0.7;
 }
