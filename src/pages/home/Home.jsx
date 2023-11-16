@@ -273,8 +273,8 @@ const Home = () => {
 
       {/* FAQ's Section  */}
       <div className='container pb-8 pt-28'>
-        <div className='grid max-w-[1190px] text-center md:text-left items-start justify-center grid-cols-1 mx-auto md:grid-cols-2'>
-          <div>
+        <div className='grid max-w-[1190px] items-start justify-center grid-cols-1 mx-auto md:grid-cols-2'>
+          <div className='text-center md:text-left'>
             <h3 className='font-Bricolage_Grotesque text-[25px] md:text-[32px] font-medium text-[#fff] mb-4'>
               Frequently Asked Questions
             </h3>
