@@ -378,11 +378,11 @@ const memberBenefitTab = (
             <img src={gift} className="w-10 mt-2" />
             <div>
               <h3 className="text-[22px] font-medium font-Bricolage_Grotesque">
-                Eangage & earn rewards
+                Engage & earn rewards
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
                 Earn exciting rewards when you
-                <br /> like, comment or share a posts
+                <br /> like, comment or share posts
                 <br /> on our portal
               </p>
             </div>
@@ -395,12 +395,12 @@ const memberBenefitTab = (
             <img src={medal} className="w-10 mt-2" />
             <div>
               <h3 className="text-[22px] font-medium font-Bricolage_Grotesque">
-                Eangage & earn rewards
+                Free to Play Contests
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Earn exciting rewards when you
-                <br /> like, comment or share a posts
-                <br /> on our portal
+                Rank top on our engagement
+                <br /> leaderboard and qualify for periodic
+                <br /> Win-Big free-to-play contest.
               </p>
             </div>
           </div>
@@ -412,12 +412,12 @@ const memberBenefitTab = (
             <img src={globe} className="w-10 mt-2" />
             <div>
               <h3 className="text-[22px] font-medium font-Bricolage_Grotesque">
-                Eangage & earn rewards
+                Web 3 Seamless Access
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Earn exciting rewards when you
-                <br /> like, comment or share a posts
-                <br /> on our portal
+                Create simple social media-based
+                <br /> wallet with seamless access to web3
+                <br /> tools and features.
               </p>
             </div>
           </div>
@@ -429,12 +429,12 @@ const memberBenefitTab = (
             <img src={money} className="w-10 mt-2" />
             <div>
               <h3 className="text-[22px] font-medium font-Bricolage_Grotesque">
-                Eangage & earn rewards
+                Content creation revenue
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Earn exciting rewards when you
-                <br /> like, comment or share a posts
-                <br /> on our portal
+                Generate revenue by creating conten
+                <br /> and offering other marketing services
+                <br /> for products and projects
               </p>
             </div>
           </div>
@@ -457,8 +457,9 @@ const projectBenefitTab = (
                 Build Communities Using AI{" "}
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Leverage AI tools in optimal way to <br />
-                build strong and engaging community
+                Leverage AI tools to optimally build
+                <br />
+                strong and engaging community
                 <br /> support for your project
               </p>
             </div>
@@ -474,7 +475,7 @@ const projectBenefitTab = (
                 10X Reach & Adoption{" "}
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Harness the potential of community-
+                Harness the power of community-
                 <br className="hidden lg:block" />
                 driven marketing to expand your
                 <br className="hidden lg:block" /> product's reach and adoption
@@ -497,7 +498,7 @@ const projectBenefitTab = (
                 Access to token multi-sender feature
                 <br className="hidden lg:block" /> and airdrop tools which
                 supports
-                <br className="hidden lg:block" /> payments of wallets and
+                <br className="hidden lg:block" /> transfer to wallets and
                 social <br className="hidden lg:block" />
                 media accounts
               </p>
@@ -511,15 +512,14 @@ const projectBenefitTab = (
             <img src={air} className="mt-2 w-14" />
             <div>
               <h3 className="text-[22px] font-medium font-Bricolage_Grotesque">
-                Multisender & Airdrop Tools{" "}
+                Automate Your Community{" "}
               </h3>
               <p className="text-[16px] font-Poppins font-normal mt-2">
-                Access to token multi-sender feature
-                <br className="hidden lg:block" /> and airdrop tools which
-                supports
-                <br className="hidden lg:block" /> payments of wallets and
-                social <br className="hidden lg:block" />
-                media accounts
+                Automate your community activities,
+                <br className="hidden lg:block" /> generate content using AI,
+                and establish
+                <br className="hidden lg:block" /> an engagement-reward
+                structure
               </p>
             </div>
           </div>
