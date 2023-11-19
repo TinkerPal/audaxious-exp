@@ -79,7 +79,7 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Home | Audaxious </title>
+        <title>A DeSo platform where active members are rewarded </title>
         <meta name="description" content="" />
         <link rel="canonical" href={pathConstant.HOME} />
       </Helmet>
@@ -290,7 +290,7 @@ const Home = () => {
             </div>
             <p className="text-[#968F8F] font-Poppins text-[18px] font-light md:text-start mt-3">
               Find answers to questions others
-              <br /> must have asked
+              <br /> have asked
             </p>
           </div>
 
