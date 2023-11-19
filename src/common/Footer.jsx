@@ -18,7 +18,7 @@ function Footer(props) {
         <div className="flex flex-wrap mb-16 gap-x-24 md:gap-x-24 gap-y-8">
           <div className="md:mr-32" style={{ maxWidth: 400 }}>
             <Audaxios />
-            <p className="md:text-[14px] text-[7.5px] md:leading-[15.63px] font-light md:mt-3 mt-2">
+            <p className="md:text-[14px] text-[14px] md:leading-[15.63px] font-light md:mt-3 mt-2">
               leveraging web3 and AI to grow strong communities and incentivize
               active members
             </p>
