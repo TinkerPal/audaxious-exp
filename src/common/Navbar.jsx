@@ -3,6 +3,8 @@ import { Transition } from '@headlessui/react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link } from 'react-router-dom';
 
+import pathConstant from '../routes/pathConstant';
+
 import { ReactComponent as Logo } from '../assets/svg/logo.svg';
 import { ReactComponent as Menu } from '../assets/svg/menu.svg';
 
@@ -96,13 +98,11 @@ function Navbar() {
                 isScrolled ? 'opacity-0' : 'opacity-100 ease-out'
               }`}
             >
-              <a
-                href='#'
-                target='_blank'
-                className='hidden lg:inline-block px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70'
-              >
-                <button>Log In</button>
-              </a>
+              <Link to={pathConstant.CREATEACCOUNT}>
+                <button className='hidden lg:inline-block px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70'>
+                  Log In
+                </button>
+              </Link>
             </div>
 
             <button
@@ -170,13 +170,11 @@ function Navbar() {
                 </div>
 
                 <div className='p-2 mt-6 font-medium'>
-                  <a
-                    href='#'
-                    target='_blank'
-                    className='md:hidden inline-block w-full text-center px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70'
-                  >
-                    <button>Log In</button>
-                  </a>
+                  <Link to={pathConstant.CREATEACCOUNT}>
+                    <button className='md:hidden inline-block w-full text-center px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70'>
+                      Log In
+                    </button>
+                  </Link>
                 </div>
               </div>
 

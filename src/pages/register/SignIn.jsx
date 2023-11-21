@@ -12,7 +12,7 @@ import pathConstant from '../../routes/pathConstant';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { ReactComponent as Star } from '../../assets/svg/star.svg';
 
-const Login = () => {
+const SignIn = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -37,12 +37,12 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Audaxious</title>
+        <title>Create Account | Audaxious</title>
         <meta
           name='description'
           content='Create account so you can start trading tokens'
         />
-        <link rel='canonical' href={pathConstant.LOGIN} />
+        <link rel='canonical' href={pathConstant.REGISTER} />
       </Helmet>
 
       <div className='grid grid-cols-1 lg:grid-cols-2 min-h-screen'>
@@ -58,16 +58,16 @@ const Login = () => {
             </div>
 
             <h3 className='text-[22px] leading-[28px] mb-2 font-light font-Bricolage_Grotesque'>
-              LogIn
+              Sign In
             </h3>
             <p className='text-center md:text-left text-[14px] font-normal leading-[22px]'>
-              Provide your registered email and password to login{' '}
+              Provide your registered email and password to sign in{' '}
             </p>
           </div>
           <form
             // onSubmit={handleSubmit}
             autoComplete='off'
-            className='pt-4 xl:px-20 2xl:px-72 md:mx-32 lg:mx-0'
+            className='xl:px-20 2xl:px-72 md:mx-32 lg:mx-0 pt-4'
           >
             <Input
               value={values.email}
@@ -106,18 +106,14 @@ const Login = () => {
             </Button>
           </form>
 
-          <div className='text-center font-Poppins pt-6 text-[14px] font-light'>
-            <Link to={pathConstant.FORGETPASSWORD} className='text-[#79C4EC]'>
+          {/* <div className='text-center pt-6'>
+            <Link
+              to={pathConstant.FORGETPASSWORD}
+              className='text-[#79C4EC] font-Poppins text-[15px] font-light'
+            >
               Forgot Password?
             </Link>
-
-            <p className='text-[#E8E8E8] mt-4'>
-              Don’t have an account?{' '}
-              <Link to={pathConstant.CREATEACCOUNT} className='text-[#79C4EC]'>
-                Sign Up
-              </Link>
-            </p>
-          </div>
+          </div> */}
         </div>
         <div className='bg-[#13161E] bg-split_screen bg-no-repeat bg-center hidden lg:block'></div>
       </div>
@@ -125,4 +121,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

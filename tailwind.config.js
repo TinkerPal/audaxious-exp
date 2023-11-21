@@ -22,6 +22,7 @@ export default {
       },
       backgroundImage: {
         custom: 'url("/src/assets/svg/hero.svg")',
+        split_screen: 'url("/src/assets/svg/split-screen-img.svg")',
       },
     },
   },

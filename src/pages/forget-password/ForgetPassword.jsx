@@ -12,7 +12,7 @@ import pathConstant from '../../routes/pathConstant';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { ReactComponent as Star } from '../../assets/svg/star.svg';
 
-const Login = () => {
+const ForgetPassword = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -37,12 +37,12 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Audaxious</title>
+        <title>Forget Password | Audaxious</title>
         <meta
           name='description'
           content='Create account so you can start trading tokens'
         />
-        <link rel='canonical' href={pathConstant.LOGIN} />
+        <link rel='canonical' href={pathConstant.FORGETPASSWORD} />
       </Helmet>
 
       <div className='grid grid-cols-1 lg:grid-cols-2 min-h-screen'>
@@ -58,10 +58,10 @@ const Login = () => {
             </div>
 
             <h3 className='text-[22px] leading-[28px] mb-2 font-light font-Bricolage_Grotesque'>
-              LogIn
+              Forget Password
             </h3>
             <p className='text-center md:text-left text-[14px] font-normal leading-[22px]'>
-              Provide your registered email and password to login{' '}
+              Provide your registered email and password to set new password
             </p>
           </div>
           <form
@@ -102,19 +102,15 @@ const Login = () => {
             )}
 
             <Button primary round className='mt-8 mx-auto w-full'>
-              Login
+              Continue
             </Button>
           </form>
 
-          <div className='text-center font-Poppins pt-6 text-[14px] font-light'>
-            <Link to={pathConstant.FORGETPASSWORD} className='text-[#79C4EC]'>
-              Forgot Password?
-            </Link>
-
-            <p className='text-[#E8E8E8] mt-4'>
-              Don’t have an account?{' '}
-              <Link to={pathConstant.CREATEACCOUNT} className='text-[#79C4EC]'>
-                Sign Up
+          <div className='text-center font-Poppins pt-10 text-[14px] font-light'>
+            <p className='text-[#E8E8E8]'>
+              Remember Password?{' '}
+              <Link to={pathConstant.LOGIN} className='text-[#79C4EC]'>
+                Login
               </Link>
             </p>
           </div>
@@ -125,4 +121,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgetPassword;
