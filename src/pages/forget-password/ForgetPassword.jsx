@@ -17,13 +17,13 @@ const ForgetPassword = () => {
     useFormik({
       initialValues: {
         email: '',
-        password: '',
+        // password: '',
       },
       validationSchema: Yup.object().shape({
         email: Yup.string()
           .email('Invalid email')
           .required('Email is required'),
-        password: Yup.string().min(8).required('Password is required'),
+        // password: Yup.string().min(8).required('Password is required'),
       }),
 
       onSubmit: async (values) => {
@@ -86,7 +86,7 @@ const ForgetPassword = () => {
               </div>
             )}
 
-            <PasswordInput
+            {/* <PasswordInput
               value={values.password}
               onChange={handleChange}
               name='password'
@@ -99,7 +99,7 @@ const ForgetPassword = () => {
               <div className='pt-1 text-[#EB5757] text-[12px] font-Albert'>
                 {errors.password}
               </div>
-            )}
+            )} */}
 
             <Button primary round className='mt-8 mx-auto w-full'>
               Continue
