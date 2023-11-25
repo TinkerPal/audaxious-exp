@@ -48,3 +48,28 @@ body {
 button:disabled {
   opacity: 0.7;
 }
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scroll-track-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scroll-track-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.border-gradient {
+  background-clip: padding-box;
+  border-image: linear-gradient(to bottom right, #8cf10c, #28ed77);
+  border-image-slice: 1;
+  border-radius: 20px;
+}
+
+.border-gradients {
+  background-clip: padding-box;
+  border-image: linear-gradient(to bottom right, #0c74f1, #28eddb);
+  border-image-slice: 1;
+  border-radius: 20px;
+}

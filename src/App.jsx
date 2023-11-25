@@ -1,19 +1,10 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-import Layout from './layout/Layout';
-import ErrorPage from './pages/error/ErrorPage';
-import routes from './routes';
-
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: routes,
-  },
-]);
+import AppProtected from './AppProtected';
+import AppPublic from './AppPublic';
 
 function App() {
-  return <RouterProvider router={router} />;
+  let isLoggedIn = false;
+
+  return isLoggedIn ? <AppProtected /> : <AppPublic />;
 }
 
 export default App;

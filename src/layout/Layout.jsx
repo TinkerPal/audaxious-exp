@@ -3,13 +3,11 @@ import { Outlet } from 'react-router-dom';
 
 import Spinner from '../common/Spinner';
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
       <main>
-        <Suspense fallback={<Spinner />}>
-          <Outlet />
-        </Suspense>
+        <Suspense fallback={<Spinner />}>{children}</Suspense>
       </main>
     </>
   );

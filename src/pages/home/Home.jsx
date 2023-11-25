@@ -37,6 +37,7 @@ import { ReactComponent as Project } from '../../assets/svg/project.svg';
 import Testimonial from '../../components/Testimonial';
 import TestimonialTwo from '../../components/TestimonialTwo';
 import Container from '../../components/Container';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [tab, setTab] = useState(0);
@@ -111,12 +112,17 @@ const Home = () => {
             blockchain benefits with social network users
           </p> */}
             <div className='flex items-center gap-6 pt-8'>
-              <button className='bg-[#555656] py-2 md:px-10 px-8 rounded-[4px] border-[2px] border-[#818282] text-[#FDFDFD] md:text-[18px] text-[10.95px] font-normal font-Poppins'>
-                Create account
-              </button>
-              <button className='bg-[#79C4EC] py-2 md:px-10 px-8 rounded-[4px] border-[2px] border-[#15151A] text-[#151519] md:text-[18px] text-[10.95px] font-normal font-Poppins'>
-                Engage Portal
-              </button>
+              <Link to={pathConstant.CREATEACCOUNT} target='_blank'>
+                <button className='bg-[#555656] py-2 md:px-10 px-8 rounded-[4px] border-[2px] border-[#818282] text-[#FDFDFD] md:text-[18px] text-[10.95px] font-normal font-Poppins'>
+                  Create account
+                </button>
+              </Link>
+
+              <Link to={pathConstant.ENGAGEPORTAL}>
+                <button className='bg-[#79C4EC] py-2 md:px-10 px-8 rounded-[4px] border-[2px] border-[#15151A] text-[#151519] md:text-[18px] text-[10.95px] font-normal font-Poppins'>
+                  Engage Portal
+                </button>
+              </Link>
             </div>
           </div>
         </section>
