@@ -1,5 +1,5 @@
-import AppProtected from './AppProtected';
-import AppPublic from './AppPublic';
+import AppProtected from "./AppProtected";
+import AppPublic from "./AppPublic";
 
 function App() {
   let isLoggedIn = false;
