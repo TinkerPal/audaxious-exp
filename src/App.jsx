@@ -2,7 +2,7 @@ import AppProtected from "./AppProtected";
 import AppPublic from "./AppPublic";
 
 function App() {
-  let isLoggedIn = true;
+  let isLoggedIn = false;
 
   return isLoggedIn ? <AppProtected /> : <AppPublic />;
 }
