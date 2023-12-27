@@ -250,9 +250,15 @@ const AUDAXIOUS_LINKS = [
     to: PathConstant.COMMUNITY,
     SvgIcon: CommunitySvg,
   },
+  
   {
     label: 'Rewards',
     to: PathConstant.REWARDS,
+    SvgIcon: RewardsSvg,
+  },
+  {
+    label: "Post Management",
+    to: PathConstant.POSTMANAGEMENT,
     SvgIcon: RewardsSvg,
     marginBottom: true,
     underlineImage: LineSvg,

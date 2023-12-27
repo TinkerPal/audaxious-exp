@@ -10,6 +10,10 @@ import Multisender from './pages/auth-user/Multisender';
 import Events from './pages/auth-user/Events';
 import EngagePortal from './pages/auth-user/EngagePortal';
 import Community from './pages/auth-user/Community';
+import PostManagementLayout from "./components/PostManagementLayout";
+import PostManagement from "./pages/auth-user/PostManagement";
+import AI from "./pages/auth-user/AI";
+import Manual from "./pages/auth-user/Manual";
 import Rewards from './pages/auth-user/Rewards';
 import Settings from './pages/auth-user/Settings';
 import Help from './pages/auth-user/Help';
@@ -72,6 +76,17 @@ const AppProtected = () => {
               element={<EngagePortal />}
             />
             <Route path={PathConstant.COMMUNITY} element={<Community />} />
+            <Route
+  path={PathConstant.POSTMANAGEMENT}
+  element={<PostManagementLayout />}
+>
+  <Route index element={<PostManagement />} />
+  <Route path={PathConstant.POSTMANAGEMENTAI} element={<AI />} />
+  <Route
+    path={PathConstant.POSTMANAGEMENTMANUAL}
+    element={<Manual />}
+  />
+</Route>
             <Route path={PathConstant.REWARDS} element={<Rewards />} />
             <Route path={PathConstant.SETTINGS} element={<Settings />} />
             <Route path={PathConstant.HELP} element={<Help />} />

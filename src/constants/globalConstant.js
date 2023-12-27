@@ -256,3 +256,20 @@ export const Communities = [
     text: 'Floxy Pay Wallet is a decentralized Self/Non-Custodian cryptocurrency, and $FXY is our native token. Your One-Stop CRYPTO HUB! 🚀 Perfect for newcomers and experts. Buy, Sell, Trade, and Smart swap... Read more',
   },
 ];
+
+
+export const options = [
+  { label: "Shedule", value: "Shedule" },
+  { label: "Shedule", value: "Shedule" },
+];
+
+export const aiOptions = [
+  { label: "Generate 2", value: "Generate 2" },
+  { label: "Generate 3", value: "Generate 3" },
+  { label: "Generate 4", value: "Generate 4" },
+];
+
+export const TweetType = [
+  { label: "Create post manually", value: "Create post manually" },
+  { label: "Create post with AI", value: "Create post with AI" },
+];
