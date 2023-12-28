@@ -46,19 +46,19 @@ const SelectCreateTweetType = ({ value, onChange }) => {
 
   return (
     <>
-      <div ref={divEl} className="w-64 relative">
+      <div ref={divEl} className="w-64 z-30 relative bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
         <div
-          className="flex justify-between items-center cursor-pointer border border-[#79C4EC] rounded p-1 shadow bg-[#79C4EC] w-full"
+          className="flex justify-between items-center cursor-pointer border border-[#79C4EC] rounded p-2 shadow w-full"
           onClick={handleClick}
         >
           {value?.label || "Select how to create Post"}{" "}
           {isOpen ? <GoChevronUp /> : <GoChevronDown />}
         </div>
         {isOpen && (
-          <div className="absolute top-full border border-[#79C4EC] p-3 shadow bg-[#79C4EC] w-full">
+          <div className="absolute top-full border border-[#79C4EC] p-3 shadow w-full">
             {TweetType.map((option) => (
               <div
-                className="hover:bg-sky-100 rounded cursor-pointer p-1"
+                className="hover:bg-sky-100 rounded cursor-pointer p-2 bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent"
                 onClick={() => handleOptionClick(option)}
                 key={option.value}
               >

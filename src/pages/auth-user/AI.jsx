@@ -13,7 +13,11 @@ import SelectCreateTweetType from "../../components/SelectCreateTweetType";
 import PathConstant from "../../routes/pathConstant";
 import { aiOptions } from "../../constants/globalConstant";
 
+import {ReactComponent as Pro} from '../../assets/svg/start.svg'
+import user from '../../assets/svg/avatar3.svg'
+
 import "react-calendar/dist/Calendar.css";
+
 const AI = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
@@ -78,8 +82,9 @@ const AI = () => {
           <SelectCreateTweetType value={typeSelected} onChange={handleType} />
         </div>
 
-        <div className="border-[0.5px] border-[#436C82] rounded-[4px] px-10 py-4 mx-16">
-          <form className="">
+        {/* <img src={user} alt="" /> */}
+        <div className="border-[0.5px] z-10 border-[#436C82] rounded-[4px] py-4 px-6 mx-20">
+          <form className="w-full">
             <div className="w-full rounded-sm relative">
               <textarea
                 value={text}
@@ -125,7 +130,7 @@ const AI = () => {
           <div className="bg-[#EBEDED] bg-opacity-10 px-10 p-2 rounded-sm flex items-center gap-4">
             <p className="text-[#E8E8E8] text-xs">Sentiment</p>
             <p className="text-[#E8E8E8] text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
-              Pro
+             <Pro/> Pro
             </p>
           </div>
           <div>
