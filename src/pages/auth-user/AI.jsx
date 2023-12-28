@@ -13,7 +13,7 @@ import SelectCreateTweetType from "../../components/SelectCreateTweetType";
 import PathConstant from "../../routes/pathConstant";
 import { aiOptions } from "../../constants/globalConstant";
 
-import {ReactComponent as Pro} from '../../assets/svg/start.svg'
+import pro from '../../assets/svg/start.svg'
 import user from '../../assets/svg/avatar3.svg'
 
 import "react-calendar/dist/Calendar.css";
@@ -129,8 +129,8 @@ const AI = () => {
         <div className="flex items-center gap-4 pt-6 justify-center">
           <div className="bg-[#EBEDED] bg-opacity-10 px-10 p-2 rounded-sm flex items-center gap-4">
             <p className="text-[#E8E8E8] text-xs">Sentiment</p>
-            <p className="text-[#E8E8E8] text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
-             <Pro/> Pro
+            <p className="text-[#E8E8E8] flex items-center gap-1 text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
+             <img src={pro} alt=""/> Pro
             </p>
           </div>
           <div>

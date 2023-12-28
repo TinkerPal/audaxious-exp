@@ -46,7 +46,7 @@ const SelectCreateTweetType = ({ value, onChange }) => {
 
   return (
     <>
-      <div ref={divEl} className="w-64 z-30 relative bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
+      <div ref={divEl} className="w-64 relative bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
         <div
           className="flex justify-between items-center cursor-pointer border border-[#79C4EC] rounded p-2 shadow w-full"
           onClick={handleClick}
