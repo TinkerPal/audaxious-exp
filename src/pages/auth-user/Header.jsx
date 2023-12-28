@@ -21,7 +21,7 @@ const Header = ({
   return (
     <div
       className={clsx(
-        'sticky container top-0 z-10 bg-[#000] max-w-screen-2xl mx-auto'
+        'sticky container top-0 z-30 bg-[#000] max-w-screen-2xl mx-auto'
       )}
     >
       {ismd ? (
