@@ -3,6 +3,9 @@ import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 import PathConstant from "../routes/pathConstant";
 
+import {ReactComponent as Robot} from '../assets/svg/robot.svg'
+import article from '../assets/svg/article.svg'
+
 const HowToCreateTweetModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -28,7 +31,7 @@ const HowToCreateTweetModal = ({ isOpen, onClose }) => {
         onClose={onClose}
         heading="How do you intend to create your post?"
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center justify-center px-10 p-5 gap-5">
           <div
             onClick={() => handleOptionClick("ai")}
             className={`flex flex-col items-center cursor-pointer justify-center gap-6 p-6 ${
@@ -37,8 +40,8 @@ const HowToCreateTweetModal = ({ isOpen, onClose }) => {
                 : "border-[1px] border-[#2A3C46]"
             } rounded-[10px]`}
           >
-            <p className="text-white">Logo</p>
-            <p className="text-white font-Poppins text-[14px] font-light">
+            <Robot/>
+            <p className="text-white font-Poppins text-[12px] font-light text-center">
               Use AudaXious AI
             </p>
           </div>
@@ -51,8 +54,8 @@ const HowToCreateTweetModal = ({ isOpen, onClose }) => {
                 : "border-[1px] border-[#2A3C46]"
             } rounded-[10px]`}
           >
-            <p className="text-white">Logo</p>
-            <p className="text-white font-Poppins text-[14px] font-light">
+            <img src={article} alt="" />
+            <p className="text-white font-Poppins text-[12px] font-light text-center">
               Write manually
             </p>
           </div>

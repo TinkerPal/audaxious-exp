@@ -16,9 +16,11 @@ import pathConstant from "../../routes/pathConstant";
 import HowToCreateTweetModal from "../../components/HowToCreateTweetModal";
 import SelectComponent from "../../components/Select";
 import Emoji from "../../components/Emoji";
+import Select from "../../components/Select";
+
+import {ReactComponent as Connect} from '../../assets/svg/connect.svg'
 
 import "react-datepicker/dist/react-datepicker.css";
-import Select from "../../components/Select";
 
 const PostManagement = () => {
   const [tab, setTab] = useState(0);
@@ -412,8 +414,8 @@ const PostManagement = () => {
           <div>{[<>{memberBenefitTab}</>, <>{projectBenefitTab}</>][tab]}</div>
         </div>
       </div> */}
-      <div className="flex flex-col justify-center items-center mt-44">
-        <p className="text-white">Logo</p>
+      <div className="flex flex-col justify-center items-center mt-14 mb-8">
+        <Connect/>
         <p className="font-Poppins text-[16px] text-center font-light text-[#585C60] my-4">
           You are yet to connect your twitter <br /> account to audaxious
         </p>

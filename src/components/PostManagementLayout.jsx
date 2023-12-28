@@ -20,6 +20,11 @@ import Emoji from "../components/Emoji";
 import Select from "../components/Select";
 
 import {ReactComponent as Robot} from '../assets/svg/robot.svg'
+import {ReactComponent as PX} from '../assets/svg/p-x.svg'
+import {ReactComponent as PIG} from '../assets/svg/p-ig.svg'
+import {ReactComponent as PTelegram} from '../assets/svg/p-telegram.svg'
+import {ReactComponent as PDiscord} from '../assets/svg/p-discord.svg'
+import {ReactComponent as PFB} from '../assets/svg/p-fb.svg'
 import avatar from '../assets/svg/avatar.svg'
 import avatar1 from '../assets/svg/avatar1.svg'
 import avatar2 from '../assets/svg/avatar2.svg'
@@ -372,11 +377,11 @@ const PostManagementLayout = () => {
               <div>
                 <div className="flex justify-center gap-4">
                   {[
-                    { label: "twitter (X)", SvgIcon: "Icons" },
-                    { label: "Instagram", SvgIcon: "Icons" },
-                    { label: "Telegram", SvgIcon: "Icons" },
-                    { label: "Discord", SvgIcon: "Icons" },
-                    { label: "Facebook", SvgIcon: "Icons" },
+                    { label: "twitter (X)", SvgIcon: PX },
+                    { label: "Instagram", SvgIcon: PIG },
+                    { label: "Telegram", SvgIcon: PTelegram },
+                    { label: "Discord", SvgIcon: PDiscord },
+                    { label: "Facebook", SvgIcon: PFB },
                   ].map(({ label, SvgIcon }, index) => {
                     return (
                       <div key={index} className="relative">
@@ -387,8 +392,9 @@ const PostManagementLayout = () => {
                           )}
                           onClick={() => setTab(index)}
                         >
-                          {/* <SvgIcon /> */}
-                          <p>Icon</p>
+                          <SvgIcon   
+                          style={{ fill: tab === index ? "#79c4ec" : "#909292" }}
+                        />
                           {label}
                         </button>
                         {tab === index && (
