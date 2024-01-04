@@ -60,8 +60,9 @@ button:disabled {
 }
 
 .bg-dark-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 18 23 / var(--tw-bg-opacity));
+  /* --tw-bg-opacity: 1; */
+  /* background-color: rgb(20 18 23 / var(--tw-bg-opacity)); */
+  background-color: #060b12;
 }
 
 .text-dark-100 {

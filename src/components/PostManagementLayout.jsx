@@ -364,7 +364,7 @@ const PostManagementLayout = () => {
             </div>
           </div>
 
-          <div className="border-[0.5px] border-[#24343D] rounded-[8px] m-2 mt-4 p-4">
+          <div className="border-[0.5px] border-[#24343D] rounded-[8px] m-5 mt-4 p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white">Recent Post</p>
