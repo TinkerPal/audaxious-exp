@@ -9,6 +9,16 @@
   }
 }
 
+@layer utilities {
+  .bg-rgba-blue-alpha-04 {
+    background-color: rgba(116, 195, 240, 0.04);
+  }
+
+  .backdrop-blur-9 {
+    backdrop-filter: blur(9.22330093383789px);
+  }
+}
+
 body {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;

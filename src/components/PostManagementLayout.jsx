@@ -19,17 +19,20 @@ import SelectComponent from "../components/Select";
 import Emoji from "../components/Emoji";
 import Select from "../components/Select";
 
-import {ReactComponent as Robot} from '../assets/svg/robot.svg'
-import {ReactComponent as PX} from '../assets/svg/p-x.svg'
-import {ReactComponent as PIG} from '../assets/svg/p-ig.svg'
-import {ReactComponent as PTelegram} from '../assets/svg/p-telegram.svg'
-import {ReactComponent as PDiscord} from '../assets/svg/p-discord.svg'
-import {ReactComponent as PFB} from '../assets/svg/p-fb.svg'
-import avatar from '../assets/svg/avatar.svg'
-import avatar1 from '../assets/svg/avatar1.svg'
-import avatar2 from '../assets/svg/avatar2.svg'
+import { ReactComponent as Robot } from "../assets/svg/robot.svg";
+import { ReactComponent as PX } from "../assets/svg/p-x.svg";
+import { ReactComponent as PIG } from "../assets/svg/p-ig.svg";
+import { ReactComponent as PTelegram } from "../assets/svg/p-telegram.svg";
+import { ReactComponent as PDiscord } from "../assets/svg/p-discord.svg";
+import { ReactComponent as PFB } from "../assets/svg/p-fb.svg";
+import { ReactComponent as Brick1 } from "../assets/svg/brick-line.svg";
+import { ReactComponent as Brick2 } from "../assets/svg/brickline2.svg";
+import avatar from "../assets/svg/avatar.svg";
+import avatar1 from "../assets/svg/avatar1.svg";
+import avatar2 from "../assets/svg/avatar2.svg";
 
 import "react-datepicker/dist/react-datepicker.css";
+import DecorativeElement from "./DecorativeElement";
 
 const PostManagementLayout = () => {
   const [tab, setTab] = useState(0);
@@ -315,19 +318,22 @@ const PostManagementLayout = () => {
       </Helmet> */}
 
       <div className="container">
-        <div className="border-[0.5px] border-[#24343D] rounded-[8px] min-h-screen">
-          <div className="border-[0.5px] border-[#24343D] rounded-[8px] bg-[#74C3F0] bg-opacity-[4%] m-2">
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-4">
-                <Robot/>
+        <div className="border-[0.5px] border-[#24343D] rounded-[8px] min-h-screen relative">
+          <div className="border-[0.5px] border-solid border-[#314048] rounded-[8px] bg-rgba-blue-alpha-04 backdrop-blur-9 m-5 relative z-10">
+            <div className="flex items-center justify-between p-4 relative">
+              <div className="flex items-center gap-5 relative">
+                <div className="absolute -left-4 -top-4">
+                  <Brick1 />
+                </div>
+                <Robot />
                 <div>
-                  <h3 className="text-[#EBEDED] font-Bricolage_Grotesque font-normal text-[20px] leading-[32px]">
+                  <h3 className="text-[#EBEDED] font-Bricolage_Grotesque font-normal text-[24px] leading-[32px]">
                     Create & Schedule post using{" "}
                     <span className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
                       AudaXious AI
                     </span>
                   </h3>
-                  <p className="font-Poppins text-[#A5A5A5] text-[14px] font-light">
+                  <p className="font-Poppins text-[#A5A5A5] text-[15px] leading-[24px] font-light mt-2">
                     Utilize the power of our AI to schedule and automate your
                     <br />
                     posts OR simply post manually
@@ -335,12 +341,12 @@ const PostManagementLayout = () => {
                 </div>
               </div>
 
-              <div className="border border-[#314048] z-20 relative rounded-[14px] p-4 mx-4 bg-[#18242B] bg-opacity-10">
+              <div className="border border-[#314048] z-20 relative rounded-[13px] p-4 mx-4 bg-[#18242B] shadow-customShadow">
                 <div className="text-white absolute -left-7 z-10 -top-3">
                   <img src={avatar1} alt="" />
                 </div>
                 <div className="flex items-center gap-4">
-                <img src={avatar2} alt="" />
+                  <img src={avatar2} alt="" />
                   <div>
                     <p className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
                       Janet C
@@ -349,8 +355,11 @@ const PostManagementLayout = () => {
                   </div>
                 </div>
                 <div className="text-white absolute -right-7 -bottom-3">
-                <img src={avatar} alt="" />
+                  <img src={avatar} alt="" />
                 </div>{" "}
+              </div>
+              <div className="absolute right-0 -bottom-0 z-10">
+                <Brick2 />
               </div>
             </div>
           </div>
@@ -366,7 +375,7 @@ const PostManagementLayout = () => {
                   {people.map((person, index) => (
                     <img
                       key={index}
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                      className="inline-block h-10 w-10 rounded-full ring-2 ring-[#060B12]"
                       src={person.avatarUrl}
                       alt=""
                     />
@@ -392,9 +401,11 @@ const PostManagementLayout = () => {
                           )}
                           onClick={() => setTab(index)}
                         >
-                          <SvgIcon   
-                          style={{ fill: tab === index ? "#79c4ec" : "#909292" }}
-                        />
+                          <SvgIcon
+                            style={{
+                              fill: tab === index ? "#79c4ec" : "#909292",
+                            }}
+                          />
                           {label}
                         </button>
                         {tab === index && (

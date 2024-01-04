@@ -1,32 +1,32 @@
-import { useEffect } from 'react';
-import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
+import { useEffect } from "react";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import clsx from "clsx";
 
-import Header from './pages/auth-user/Header';
-import Sidebar from './pages/auth-user/Sidebar';
-import Dashboard from './pages/auth-user/Dashboard';
-import Multisender from './pages/auth-user/Multisender';
-import Events from './pages/auth-user/Events';
-import EngagePortal from './pages/auth-user/EngagePortal';
-import Community from './pages/auth-user/Community';
+import Header from "./pages/auth-user/Header";
+import Sidebar from "./pages/auth-user/Sidebar";
+import Dashboard from "./pages/auth-user/Dashboard";
+import Multisender from "./pages/auth-user/Multisender";
+import Events from "./pages/auth-user/Events";
+import EngagePortal from "./pages/auth-user/EngagePortal";
+import Community from "./pages/auth-user/Community";
 import PostManagementLayout from "./components/PostManagementLayout";
 import PostManagement from "./pages/auth-user/PostManagement";
 import AI from "./pages/auth-user/AI";
 import Manual from "./pages/auth-user/Manual";
-import Rewards from './pages/auth-user/Rewards';
-import Settings from './pages/auth-user/Settings';
-import Help from './pages/auth-user/Help';
+import Rewards from "./pages/auth-user/Rewards";
+import Settings from "./pages/auth-user/Settings";
+import Help from "./pages/auth-user/Help";
 // import ErrorPage from './pages/error/ErrorPage';
 
-import useToggle from './hooks/useToggle';
-import useMediaQuery from './hooks/useMediaQuery';
+import useToggle from "./hooks/useToggle";
+import useMediaQuery from "./hooks/useMediaQuery";
 import {
   APP_SIDEBAR_MOBILE_WIDTH,
   APP_SIDEBAR_WIDTH,
   MediaQueryBreakpointEnum,
-} from './constants/globalConstant';
-import PathConstant from './routes/pathConstant';
+} from "./constants/globalConstant";
+import PathConstant from "./routes/pathConstant";
 
 const AppProtected = () => {
   const islg = useMediaQuery(MediaQueryBreakpointEnum.xl);
@@ -58,15 +58,15 @@ const AppProtected = () => {
   return (
     <>
       <div
-        className={clsx('')}
+        className={clsx("")}
         style={{ paddingLeft: ismd ? sidebarWidth : 0 }}
       >
         <Header {...contentProps} />
         <AnimatePresence>
           <Routes location={location} key={location.pathname}>
             <Route
-              path='/'
-              element={<Navigate to={PathConstant.DASHBOARD} replace='true' />}
+              path="/"
+              element={<Navigate to={PathConstant.DASHBOARD} replace="true" />}
             />
             <Route path={PathConstant.DASHBOARD} element={<Dashboard />} />
             <Route path={PathConstant.MULTISENDER} element={<Multisender />} />
@@ -77,23 +77,23 @@ const AppProtected = () => {
             />
             <Route path={PathConstant.COMMUNITY} element={<Community />} />
             <Route
-  path={PathConstant.POSTMANAGEMENT}
-  element={<PostManagementLayout />}
->
-  <Route index element={<PostManagement />} />
-  <Route path={PathConstant.POSTMANAGEMENTAI} element={<AI />} />
-  <Route
-    path={PathConstant.POSTMANAGEMENTMANUAL}
-    element={<Manual />}
-  />
-</Route>
+              path={PathConstant.POSTMANAGEMENT}
+              element={<PostManagementLayout />}
+            >
+              <Route index element={<PostManagement />} />
+              <Route path={PathConstant.POSTMANAGEMENTAI} element={<AI />} />
+              <Route
+                path={PathConstant.POSTMANAGEMENTMANUAL}
+                element={<Manual />}
+              />
+            </Route>
             <Route path={PathConstant.REWARDS} element={<Rewards />} />
             <Route path={PathConstant.SETTINGS} element={<Settings />} />
             <Route path={PathConstant.HELP} element={<Help />} />
           </Routes>
         </AnimatePresence>
       </div>
-      <Sidebar {...contentProps} />{' '}
+      <Sidebar {...contentProps} />{" "}
     </>
   );
 };
