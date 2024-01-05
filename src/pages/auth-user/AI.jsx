@@ -77,13 +77,13 @@ const AI = () => {
 
   return (
     <>
-      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] p-8 md:mx-36 mt-4">
-        <div className="flex justify-center items-center pb-6">
+      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 md:mx-36 mt-4">
+        <div className="flex justify-center items-center md:pb-6 py-6">
           <SelectCreateTweetType value={typeSelected} onChange={handleType} />
         </div>
 
         {/* <img src={user} alt="" /> */}
-        <div className="border-[0.5px] z-10 border-[#436C82] rounded-[4px] py-4 px-6 mx-20">
+        <div className="border-[0.5px] z-10 border-[#436C82] rounded-[4px] py-4 px-6 md:mx-20">
           <form className="w-full">
             <div className="w-full rounded-sm relative">
               <textarea
@@ -126,8 +126,8 @@ const AI = () => {
           </form>
         </div>
 
-        <div className="flex items-center gap-4 pt-6 justify-end mr-20">
-          <div className="bg-[#EBEDED] bg-opacity-10 px-10 p-2 rounded-sm flex items-center gap-4">
+        <div className="flex items-center gap-4 pt-6 md:justify-end justify-center md:mr-20">
+          <div className="bg-[#EBEDED] bg-opacity-10 md:px-10 p-2 rounded-sm flex items-center gap-4">
             <p className="text-[#E8E8E8] text-xs">Sentiment</p>
             <p className="text-[#E8E8E8] flex items-center gap-1 text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
               <img src={pro} alt="" /> Pro
@@ -142,9 +142,9 @@ const AI = () => {
           </div>
         </div>
       </div>{" "}
-      <div className="grid md:grid-cols-2 gap-8 container mt-10">
+      <div className="grid md:grid-cols-2 gap-8 md:container mt-10">
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="p-4">
+          <div className="md:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
@@ -182,9 +182,9 @@ const AI = () => {
               </div>
             </div>
           </div>
-          <div className="border-[0.5px] border-[#2A3C46]" />
 
-          <div className="p-4">
+          <div className="border-[0.5px] border-[#2A3C46]" />
+          <div className="md:p-4 p-2">
             <div className="flex items-center gap-4">
               <p className="text-white">Logo</p>
               <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
@@ -207,7 +207,7 @@ const AI = () => {
         </div>
 
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="p-4">
+          <div className="md:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
@@ -245,9 +245,9 @@ const AI = () => {
               </div>
             </div>
           </div>
-          <div className="border-[0.5px] border-[#2A3C46]" />
 
-          <div className="p-4">
+          <div className="border-[0.5px] border-[#2A3C46]" />
+          <div className="md:p-4 p-2">
             <div className="flex items-center gap-4">
               <p className="text-white">Logo</p>
               <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">

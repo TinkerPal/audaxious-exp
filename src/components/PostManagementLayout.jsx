@@ -319,29 +319,29 @@ const PostManagementLayout = () => {
 
       <div className="container">
         <div className="border-[0.5px] border-[#24343D] rounded-[8px] min-h-screen relative">
-          <div className="border-[0.5px] border-solid border-[#314048] rounded-[8px] bg-rgba-blue-alpha-04 backdrop-blur-9 m-5 relative z-10">
-            <div className="flex items-center justify-between p-4 relative">
-              <div className="flex items-center gap-5 relative">
+          <div className="border-[0.5px] border-solid border-[#314048] rounded-[8px] bg-rgba-blue-alpha-04 backdrop-blur-9 md:m-5 relative z-10">
+            <div className="flex items-center justify-between md:p-4 p-2 py-4 relative">
+              <div className="flex items-start md:gap-5 gap-2 relative">
                 <div className="absolute -left-4 -top-4">
                   <Brick1 />
                 </div>
                 <Robot />
                 <div>
-                  <h3 className="text-[#EBEDED] font-Bricolage_Grotesque font-normal text-[24px] leading-[32px]">
+                  <h3 className="text-[#EBEDED] font-Bricolage_Grotesque font-normal text-[14px] md:text-[24px] md:leading-[32px]">
                     Create & Schedule post using{" "}
                     <span className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
                       AudaXious AI
                     </span>
                   </h3>
-                  <p className="font-Poppins text-[#A5A5A5] text-[15px] leading-[24px] font-light mt-2">
+                  <p className="font-Poppins text-[#A5A5A5] text-[12px] md:text-[15px] md:leading-[24px] font-light mt-2">
                     Utilize the power of our AI to schedule and automate your
-                    <br />
+                    <br className="hidden md:block" />
                     posts OR simply post manually
                   </p>
                 </div>
               </div>
 
-              <div className="border border-[#314048] z-20 relative rounded-[13px] p-4 mx-4 bg-[#18242B] shadow-customShadow">
+              <div className="border border-[#314048] hidden md:block z-20 relative rounded-[13px] p-4 mx-4 bg-[#18242B] shadow-customShadow">
                 <div className="text-white absolute -left-7 z-10 -top-3">
                   <img src={avatar1} alt="" />
                 </div>
@@ -358,33 +358,42 @@ const PostManagementLayout = () => {
                   <img src={avatar} alt="" />
                 </div>{" "}
               </div>
-              <div className="absolute right-0 -bottom-0 z-10">
+              <div className="absolute right-0 -bottom-0 z-10 hidden md:block">
                 <Brick2 />
               </div>
             </div>
           </div>
 
-          <div className="border-[0.5px] border-[#24343D] rounded-[8px] m-5 mt-4 p-4">
+          <div className="md:hidden block">
+            <div className="flex justify-between items-center p-3 mt-3">
+              <div className="">
+                <p className="text-white">Recent Post</p>
+              </div>
+
+              <div className="">
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+                >
+                  Create Post
+                </button>
+                <HowToCreateTweetModal
+                  isOpen={isOpen}
+                  onClose={() => setIsOpen(false)}
+                  setIsOpen={setIsOpen}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="border-[0.5px] border-[#24343D] rounded-[8px] md:m-5 mt-4 p-4">
             <div className="flex items-center justify-between">
-              <div>
+              <div className="hidden md:block">
                 <p className="text-white">Recent Post</p>
               </div>
 
               <div>
-                <div className="mt-3 flex -space-x-2 overflow-hidden">
-                  {people.map((person, index) => (
-                    <img
-                      key={index}
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-[#060B12]"
-                      src={person.avatarUrl}
-                      alt=""
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 flex-wrap">
                   {[
                     { label: "twitter (X)", SvgIcon: PX },
                     { label: "Instagram", SvgIcon: PIG },
@@ -396,7 +405,7 @@ const PostManagementLayout = () => {
                       <div key={index} className="relative">
                         <button
                           className={clsx(
-                            "flex items-center flex-col gap-2 font-Poppins text-[12px] leading-[16px]",
+                            "flex items-center flex-col gap-2 font-Poppins text-[10px] md:text-[12px] leading-[16px]",
                             tab === index ? "text-[#E8E8E8]" : "text-[#A5A5A5]"
                           )}
                           onClick={() => setTab(index)}
@@ -417,12 +426,25 @@ const PostManagementLayout = () => {
                 </div>
               </div>
 
-              <div>
+              <div className="hidden md:block">
+                <div className="mt-3 flex -space-x-2 overflow-hidden">
+                  {people.map((person, index) => (
+                    <img
+                      key={index}
+                      className="inline-block h-10 w-10 rounded-full ring-2 ring-[#060B12]"
+                      src={person.avatarUrl}
+                      alt=""
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="hidden md:block">
                 <button
                   onClick={() => setIsOpen(true)}
                   className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
                 >
-                  Compose Post
+                  Create Post
                 </button>
                 <HowToCreateTweetModal
                   isOpen={isOpen}

@@ -1,7 +1,8 @@
+import React from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { GoChevronUp, GoChevronDown } from "react-icons/go";
 
-const Select = ({ value, onChange, options }) => {
+const RecentPost = ({ value, onChange, options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
 
@@ -35,12 +36,12 @@ const Select = ({ value, onChange, options }) => {
 
   return (
     <>
-      <div ref={divEl} className="md:w-40 w-32 relative">
+      <div ref={divEl} className="w-40 relative">
         <div
           className="flex justify-between items-center cursor-pointer border border-[#79C4EC] rounded p-1 shadow bg-[#79C4EC] w-full"
           onClick={handleClick}
         >
-          {value?.label || "Select..."}{" "}
+          {value?.label || "Recent Post"}{" "}
           {isOpen ? <GoChevronUp /> : <GoChevronDown />}
         </div>
         {isOpen && (
@@ -63,4 +64,4 @@ const Select = ({ value, onChange, options }) => {
   );
 };
 
-export default Select;
+export default RecentPost;

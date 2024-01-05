@@ -30,7 +30,7 @@ const HowToCreateTweetModal = ({ isOpen, onClose }) => {
       onClose={onClose}
       heading="How do you intend to create your post?"
     >
-      <div className="flex items-center justify-center px-10 p-5 gap-5">
+      <div className="flex items-center justify-center md:px-10 md:p-5 gap-5">
         <div
           onClick={() => handleOptionClick("ai")}
           className={`flex flex-col items-center cursor-pointer justify-center gap-6 p-6 w-[160px] h-[180px] ${
@@ -62,7 +62,7 @@ const HowToCreateTweetModal = ({ isOpen, onClose }) => {
       <div className="flex justify-center items-center mt-10">
         <button
           onClick={handleNextClick}
-          className="bg-[#79C4EC] py-3 px-10 text-[14px] font-Poppins text-[£000] rounded-[4px]"
+          className="bg-[#79C4EC] py-3 px-10 text-[14px] font-Poppins text-[#000] rounded-[4px]"
         >
           Next
         </button>
