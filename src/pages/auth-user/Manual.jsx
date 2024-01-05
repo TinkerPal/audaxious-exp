@@ -14,9 +14,9 @@ import PathConstant from "../../routes/pathConstant";
 import Calender from "../../components/Calender";
 import { options } from "../../constants/globalConstant";
 
-import pro from '../../assets/svg/start.svg'
-import clock from '../../assets/svg/clock.svg'
-import down from '../../assets/svg/down-time.svg'
+import pro from "../../assets/svg/start.svg";
+import clock from "../../assets/svg/clock.svg";
+import down from "../../assets/svg/down-time.svg";
 
 import "react-calendar/dist/Calendar.css";
 
@@ -129,19 +129,19 @@ const Manual = () => {
           </form>
         </div>
 
-        <div className="flex items-center gap-4 pt-6 justify-center relative">
+        <div className="flex items-center gap-4 pt-6 justify-between mx-16 relative">
           <div
             onClick={() => setShowDate(!showDate)}
             className="flex justify-center gap-2 cursor-pointer"
           >
-            <img src={clock} alt=""/>
+            <img src={clock} alt="" />
             <p className="text-[#707171] text-[14px] font-Poppins font-light">
               {" "}
               {selectedDate
                 ? `Selected date: ${selectedDate.toLocaleDateString()}`
                 : "Select date & time"}{" "}
             </p>
-            <img src={down} alt=""/>
+            <img src={down} alt="" />
           </div>
           {showDate && (
             <div className="absolute top-[100%] left-0">
@@ -149,12 +149,6 @@ const Manual = () => {
             </div>
           )}
 
-          <div className="bg-[#EBEDED] bg-opacity-10 px-10 p-2 rounded-sm flex items-center gap-4">
-            <p className="text-[#E8E8E8] text-xs">Sentiment</p>
-            <p className="text-[#E8E8E8] flex items-center gap-1 text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
-            <img src={pro} alt=""/> Pro
-            </p>
-          </div>
           <div>
             <Select
               value={selected}
@@ -169,13 +163,13 @@ const Manual = () => {
           <div className="p-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Play to earn
                 </button>
               </div>
@@ -232,13 +226,13 @@ const Manual = () => {
           <div className="p-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Play to earn
                 </button>
               </div>
