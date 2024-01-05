@@ -81,7 +81,7 @@ const Manual = () => {
 
   return (
     <>
-      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 md:mx-36 mt-4">
+      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 mt-4">
         <div className="flex justify-center items-center md:pb-6 py-6">
           <SelectCreateTweetType value={typeSelected} onChange={handleType} />
         </div>
@@ -158,18 +158,18 @@ const Manual = () => {
           </div>
         </div>
       </div>{" "}
-      <div className="grid md:grid-cols-2 gap-8 md:container mt-10">
+      <div className="grid md:grid-cols-2 lg:gap-8 md:gap-4 gap-8 lg:container mt-10">
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="md:p-4 p-2">
+          <div className="lg:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   Play to earn
                 </button>
               </div>
@@ -223,16 +223,16 @@ const Manual = () => {
         </div>
 
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="md:p-4 p-2">
+          <div className="lg:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3 md:px-1 lg:px-3">
                   Play to earn
                 </button>
               </div>
