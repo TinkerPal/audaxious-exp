@@ -17,6 +17,12 @@
   .backdrop-blur-9 {
     backdrop-filter: blur(9.22330093383789px);
   }
+  .text-area-bg {
+    background-color: rgba(13, 32, 39, 0.25);
+  }
+  .text-area-shadow {
+    box-shadow: 0px 0px 4.516px 0px rgba(23, 25, 28, 0.05);
+  }
 }
 
 body {
@@ -60,8 +66,9 @@ button:disabled {
 }
 
 .bg-dark-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 18 23 / var(--tw-bg-opacity));
+  /* --tw-bg-opacity: 1; */
+  /* background-color: rgb(20 18 23 / var(--tw-bg-opacity)); */
+  background-color: #060b12;
 }
 
 .text-dark-100 {

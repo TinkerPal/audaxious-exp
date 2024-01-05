@@ -13,8 +13,8 @@ import SelectCreateTweetType from "../../components/SelectCreateTweetType";
 import PathConstant from "../../routes/pathConstant";
 import { aiOptions } from "../../constants/globalConstant";
 
-import pro from '../../assets/svg/start.svg'
-import user from '../../assets/svg/avatar3.svg'
+import pro from "../../assets/svg/start.svg";
+import user from "../../assets/svg/avatar3.svg";
 
 import "react-calendar/dist/Calendar.css";
 
@@ -90,7 +90,7 @@ const AI = () => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Type Something"
-                className="w-full outline-none bg-transparent resize-none text-sm text-white"
+                className="w-full outline-none text-white text-sm bg-transparent resize-none"
                 cols="30"
                 rows="6"
               ></textarea>
@@ -126,11 +126,11 @@ const AI = () => {
           </form>
         </div>
 
-        <div className="flex items-center gap-4 pt-6 justify-center">
+        <div className="flex items-center gap-4 pt-6 justify-end mr-20">
           <div className="bg-[#EBEDED] bg-opacity-10 px-10 p-2 rounded-sm flex items-center gap-4">
             <p className="text-[#E8E8E8] text-xs">Sentiment</p>
             <p className="text-[#E8E8E8] flex items-center gap-1 text-sm rounded-[2px] border px-2 border-[#E2AB8B] bg-[#ECC6B1] bg-opacity-20">
-             <img src={pro} alt=""/> Pro
+              <img src={pro} alt="" /> Pro
             </p>
           </div>
           <div>
@@ -147,13 +147,13 @@ const AI = () => {
           <div className="p-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Play to earn
                 </button>
               </div>
@@ -210,13 +210,13 @@ const AI = () => {
           <div className="p-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   engage to earn
                 </button>
-                <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#B525D9] bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Airdrops
                 </button>
-                <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                <button className="border-[1px] border-[#25D9D9] bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
                   Play to earn
                 </button>
               </div>
