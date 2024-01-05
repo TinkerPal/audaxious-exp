@@ -81,12 +81,12 @@ const Manual = () => {
 
   return (
     <>
-      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] p-8 md:mx-36 mt-4">
-        <div className="flex justify-center items-center pb-6">
+      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 md:mx-36 mt-4">
+        <div className="flex justify-center items-center md:pb-6 py-6">
           <SelectCreateTweetType value={typeSelected} onChange={handleType} />
         </div>
 
-        <div className="border-[0.5px] border-[#436C82] rounded-[4px] px-10 py-4 mx-16">
+        <div className="border-[0.5px] border-[#436C82] rounded-[4px] md:px-10 px-5 py-4 md:mx-16">
           <form className="">
             <div className="w-full rounded-sm relative">
               <textarea
@@ -129,7 +129,7 @@ const Manual = () => {
           </form>
         </div>
 
-        <div className="flex items-center gap-4 pt-6 justify-between mx-16 relative">
+        <div className="flex items-center md:gap-4 pt-6 justify-between md:mx-16 relative p-2">
           <div
             onClick={() => setShowDate(!showDate)}
             className="flex justify-center gap-2 cursor-pointer"
@@ -158,9 +158,9 @@ const Manual = () => {
           </div>
         </div>
       </div>{" "}
-      <div className="grid md:grid-cols-2 gap-8 container mt-10">
+      <div className="grid md:grid-cols-2 gap-8 md:container mt-10">
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="p-4">
+          <div className="md:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
@@ -198,9 +198,9 @@ const Manual = () => {
               </div>
             </div>
           </div>
-          <div className="border-[0.5px] border-[#2A3C46]" />
 
-          <div className="p-4">
+          <div className="border-[0.5px] border-[#2A3C46]" />
+          <div className="md:p-4 p-2">
             <div className="flex items-center gap-4">
               <p className="text-white">Logo</p>
               <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
@@ -223,7 +223,7 @@ const Manual = () => {
         </div>
 
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px]">
-          <div className="p-4">
+          <div className="md:p-4 p-2">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <button className="border-[1px] border-[#25D986] bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
@@ -261,9 +261,9 @@ const Manual = () => {
               </div>
             </div>
           </div>
-          <div className="border-[0.5px] border-[#2A3C46]" />
 
-          <div className="p-4">
+          <div className="border-[0.5px] border-[#2A3C46]" />
+          <div className="md:p-4 p-2">
             <div className="flex items-center gap-4">
               <p className="text-white">Logo</p>
               <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">

@@ -33,7 +33,7 @@ const Modal = ({ open, onClose, heading, children }) => {
               <Dialog.Panel className="relative w-full px-4 pt-5 pb-4 overflow-hidden text-left transition-all transform rounded-lg shadow-xl bg-dark-400 sm:my-8 sm:w-full sm:max-w-2xl sm:p-6 text-dark-50">
                 {heading && (
                   <div className="pb-5 text-center">
-                    <h3 className="text-lg font-medium text-[#ffffffdf]">
+                    <h3 className="text-lg mt-16 md:mt-0 font-medium text-[#ffffffdf]">
                       {heading}
                     </h3>
                   </div>
