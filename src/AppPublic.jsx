@@ -1,28 +1,27 @@
-import React, { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import PathConstant from './routes/pathConstant';
+import PathConstant from "./routes/pathConstant";
 
-import Layout from './layout/Layout';
+import Layout from "./layout/Layout";
 // import ErrorPage from './pages/error/ErrorPage';
 
-const Home = lazy(() => import('./pages/home/Home'));
-const CreateAccount = lazy(() => import('./pages/register/CreateAccount'));
+const Home = lazy(() => import("./pages/home/Home"));
+const CreateAccount = lazy(() => import("./pages/register/CreateAccount"));
 const CreateAccountLink = lazy(() =>
-  import('./pages/register/CreateAccountLink')
+  import("./pages/register/CreateAccountLink")
 );
-const Register = lazy(() => import('./pages/register/SignIn'));
-const Login = lazy(() => import('./pages/login/Login'));
+const Login = lazy(() => import("./pages/login/Login"));
 const ForgetPassword = lazy(() =>
-  import('./pages/forget-password/ForgetPassword')
+  import("./pages/forget-password/ForgetPassword")
 );
 const ForgetPasswordLink = lazy(() =>
-  import('./pages/forget-password/ForgetPasswordLink')
+  import("./pages/forget-password/ForgetPasswordLink")
 );
 const ResetPassword = lazy(() =>
-  import('./pages/forget-password/ResetPassword')
+  import("./pages/forget-password/ResetPassword")
 );
-const EngagePortal = lazy(() => import('./pages/engage-portal/EngagePortal'));
+const EngagePortal = lazy(() => import("./pages/engage-portal/EngagePortal"));
 
 const AppPublic = () => {
   return (
@@ -38,7 +37,6 @@ const AppPublic = () => {
             path={PathConstant.CREATEACCOUNTLINK}
             element={<CreateAccountLink />}
           />
-          <Route path={PathConstant.REGISTER} element={<Register />} />
           <Route path={PathConstant.LOGIN} element={<Login />} />
           <Route
             path={PathConstant.FORGETPASSWORD}

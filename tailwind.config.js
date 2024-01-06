@@ -22,10 +22,11 @@ export default {
       },
       backgroundImage: {
         custom: 'url("/src/assets/svg/hero.svg")',
-        split_screen: 'url("/src/assets/svg/split-screen-img.svg")',
+        split_screen: 'url("/src/assets/svg/new-split-img.svg")',
       },
       backgroundColor: {
         backdrop: "rgba(5, 22, 31, 0.75)",
+        wallet: "rgba(86, 139, 168, 0.20)",
       },
       boxShadow: {
         customShadow: "0px 1.334px 6.672px 0px rgba(25, 92, 121, 0.08)",
