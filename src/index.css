@@ -34,6 +34,10 @@ body {
   height: 100%;
 }
 
+.custom-border {
+  border-color: rgba(42, 60, 70, 0.5);
+}
+
 .loader {
   display: inline-block;
   width: 40px;
