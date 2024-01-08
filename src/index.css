@@ -25,6 +25,38 @@
   }
 }
 
+@layer components {
+  .btn {
+    @apply font-bold text-sm leading-6 bg-[#060B12] text-[#060B12] px-7 py-2.5 inline-flex justify-center items-center gap-2.5 rounded-[4px] text-center disabled:cursor-not-allowed;
+  }
+
+  .btn.btn--outline {
+    @apply text-[#101115] bg-white hover:bg-gray-100 transition-colors border border-[#060B12];
+  }
+
+  .btn.btn--transparent-light {
+    @apply text-black transition-colors bg-white hover:bg-gray-100;
+  }
+
+  .btn.btn--transparent {
+    @apply text-white transition-colors hover:text-gray-200 bg-white/30;
+  }
+
+  .btn.btn--primary {
+    @apply bg-primary disabled:bg-gray-200 disabled:text-white;
+  }
+
+  .btn--contacts {
+    @apply disabled:bg-gray-200 disabled:text-white;
+  }
+
+  .btn-gradient {
+    @apply px-6 py-4 text-sm font-bold text-white transition-colors hover:text-gray-200 bg-white/30 rounded-xl;
+    background: linear-gradient(316.8deg, #fb167c 7.09%, #fd7b03 100%);
+    box-shadow: 0px 8px 24px -8px rgba(253, 116, 11, 0.2);
+  }
+}
+
 body {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
