@@ -18,9 +18,6 @@ const timelines = [
 const Role = ({ state, handleChange, nextHandler }) => {
   return (
     <>
-      <h2 className="heading-secondary text-white text-center">
-        What is your role?
-      </h2>
       <div className="mt-14">
         <RadioGroup
           onChange={handleChange("requirementTimeline")}

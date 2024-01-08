@@ -121,6 +121,12 @@ const Questionaire = () => {
     setStep(step - 1);
   }
 
+  const stepTexts = [
+    "What is your role?",
+    "What do you intend to use AudaXious for?",
+    "What do you intend to use AudaXious for?",
+  ];
+
   return (
     <>
       <Helmet>
@@ -153,6 +159,12 @@ const Questionaire = () => {
           </div>
 
           <div className="mt-16">
+            <div>
+              <h2 className="heading-secondary text-white text-center mb-6 text-[18px] font-light font-Poppins">
+                {stepTexts[step]}
+              </h2>
+            </div>
+
             <div>
               <ProgressBar step={step} totalSteps={stepComponents.length} />
             </div>

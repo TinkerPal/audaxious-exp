@@ -33,18 +33,21 @@ const CompanyName = ({
 
   return (
     <>
-      <h2 className="heading-secondary">Contact Info and additional info</h2>
-
-      <div className="space-y-8 mt-14">
-        <Input
-          type="text"
-          name="full-name"
-          //   label="Full Name"
-          placeHolder="Enter Company / Personal Username"
-          value={state.fullName}
-          //   required
-          onChange={handleInputChange("fullName")}
-        />
+      <div className="mt-14 container">
+        <form
+          autoComplete="off"
+          className="xl:px-20 2xl:px-72 md:mx-32 lg:mx-0"
+        >
+          <Input
+            type="text"
+            name="full-name"
+            //   label="Full Name"
+            placeHolder="Enter Company / Personal Username"
+            value={state.fullName}
+            //   required
+            onChange={handleInputChange("fullName")}
+          />
+        </form>
       </div>
 
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20">

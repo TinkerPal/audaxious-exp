@@ -36,9 +36,6 @@ const Intension = ({
 }) => {
   return (
     <>
-      <h2 className="heading-secondary text-white text-center">
-        What do you intend to use AudaXious for?
-      </h2>
       <div className="flex flex-wrap gap-3 mt-14">
         {services.map((service, i) => (
           <FormCheckboxCard
@@ -64,11 +61,10 @@ const Intension = ({
           className="pr-5 btn btn--primary md:order-2"
           type="button"
           onClick={nextHandler}
-          disabled={
-            state.service.length === 0
-            //   &&
-            //   state.selectedOtherServices.length === 0
-          }
+          //   disabled={
+          //     state.service.length === 0
+
+          //   }
         >
           Next
           <svg
