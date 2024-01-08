@@ -25,6 +25,7 @@ export default {
       },
       screens: {
         "2xl": "1440px",
+        "3xl": "1740px",
       },
       backgroundImage: {
         custom: 'url("/src/assets/svg/hero.svg")',

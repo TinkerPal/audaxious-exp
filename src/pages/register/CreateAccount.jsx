@@ -67,47 +67,49 @@ const CreateAccount = () => {
               Create your account
             </h3>
           </div>
-          <form
-            // onSubmit={handleSubmit}
-            autoComplete="off"
-            className="xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
-          >
-            <Input
-              value={values.email}
-              onChange={handleChange}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter email"
+          <div className="2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72">
+            <form
+              // onSubmit={handleSubmit}
+              autoComplete="off"
               className=""
-              onBlur={handleBlur}
-              required
-            />
-            {errors.email && touched.email && (
-              <div className="pt-1 text-[#EB5757] text-[12px] font-Albert">
-                {errors.email}
-              </div>
-            )}
+            >
+              <Input
+                value={values.email}
+                onChange={handleChange}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                className=""
+                onBlur={handleBlur}
+                required
+              />
+              {errors.email && touched.email && (
+                <div className="pt-1 text-[#EB5757] text-[12px] font-Albert">
+                  {errors.email}
+                </div>
+              )}
 
-            <PasswordInput
-              value={values.password}
-              onChange={handleChange}
-              name="password"
-              id="password"
-              placeholder="Create a password"
-              className=""
-              onBlur={handleBlur}
-            />
-            {errors.password && touched.password && (
-              <div className="pt-1 text-[#EB5757] text-[12px] font-Albert">
-                {errors.password}
-              </div>
-            )}
+              <PasswordInput
+                value={values.password}
+                onChange={handleChange}
+                name="password"
+                id="password"
+                placeholder="Create a password"
+                className=""
+                onBlur={handleBlur}
+              />
+              {errors.password && touched.password && (
+                <div className="pt-1 text-[#EB5757] text-[12px] font-Albert">
+                  {errors.password}
+                </div>
+              )}
 
-            <Button primary round className="mt-8 mx-auto w-full">
-              Next
-            </Button>
-          </form>
+              <Button primary round className="mt-8 mx-auto w-full">
+                Next
+              </Button>
+            </form>
+          </div>
 
           <p className="text-[#E8E8E8] text-center font-Poppins text-[13px] font-light pt-4">
             Already have an account?{" "}

@@ -41,10 +41,10 @@ const CompanyName = ({
 
   return (
     <>
-      <div className="mt-14 container">
+      <div className="mt-14">
         <form
           autoComplete="off"
-          className="xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
+          className="2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72"
         >
           <Input
             type="text"
@@ -63,7 +63,7 @@ const CompanyName = ({
         </form>
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20 pb-20">
+      <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20 pb-20 2xl:mx-28 md:mx-36 lg:mx-4 3xl:mx-72">
         {/* <div className="flex items-center gap-4 md:order-2"> */}
         <button
           className="btn btn--outline"

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 
 const Input = ({
   type,
@@ -10,13 +10,13 @@ const Input = ({
   ...rest
 }) => {
   const baseClassNames = classNames(
-    'appearance-none font-Poppins border bg-[#04080D] border-[#424A57] text-[#A6A6A8] rounded-[9px] border-solid w-full h-[49px] px-3 leading-tight focus:outline-none focus:shadow-outline',
+    "appearance-none font-Poppins border bg-[#04080D] border-[#424A57] text-[#A6A6A8] rounded-[9px] border-solid w-full h-[49px] px-3 leading-tight focus:outline-none focus:shadow-outline",
     className
   );
 
   return (
     <div>
-      <label className='block mt-8 mb-1 text-white' htmlFor={name}>
+      <label className="block mt-8 mb-1 text-white" htmlFor={name}>
         {label}
       </label>
       <input
