@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import Input from "../Input";
+import HearAboutUsSelect from "../HearAboutUsSelect";
+
+import { hearAboutUs } from "../../../constants/globalConstant";
 
 const CompanyName = ({
   state,
@@ -13,6 +16,11 @@ const CompanyName = ({
   fileInputRef,
 }) => {
   const [disabled, setDisabled] = useState(true);
+  const [selected, setSelected] = useState(null);
+
+  const handleSelect = (option) => {
+    setSelected(option);
+  };
 
   useEffect(() => {
     if (
@@ -36,7 +44,7 @@ const CompanyName = ({
       <div className="mt-14 container">
         <form
           autoComplete="off"
-          className="xl:px-20 2xl:px-72 md:mx-32 lg:mx-0"
+          className="xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
         >
           <Input
             type="text"
@@ -47,10 +55,15 @@ const CompanyName = ({
             //   required
             onChange={handleInputChange("fullName")}
           />
+          <HearAboutUsSelect
+            value={selected}
+            onChange={handleSelect}
+            options={hearAboutUs}
+          />
         </form>
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20">
+      <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20 pb-20">
         {/* <div className="flex items-center gap-4 md:order-2"> */}
         <button
           className="btn btn--outline"

@@ -63,7 +63,7 @@ const ResetPassword = () => {
           <form
             // onSubmit={handleSubmit}
             autoComplete="off"
-            className="pt-4 xl:px-20 2xl:px-72 md:mx-32 lg:mx-0"
+            className="pt-4 xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
           >
             <PasswordInput
               value={values.password}

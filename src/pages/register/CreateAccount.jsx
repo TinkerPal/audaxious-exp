@@ -70,7 +70,7 @@ const CreateAccount = () => {
           <form
             // onSubmit={handleSubmit}
             autoComplete="off"
-            className="xl:px-20 2xl:px-72 md:mx-32 lg:mx-0"
+            className="xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
           >
             <Input
               value={values.email}
