@@ -18,12 +18,12 @@ const timelines = [
 const Role = ({ state, handleChange, nextHandler }) => {
   return (
     <>
-      <div className="mt-14">
+      <div className="mt-14 flex flex-col mx-auto justify-center items-center">
         <RadioGroup
           onChange={handleChange("requirementTimeline")}
           className="mt-2"
         >
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
             {timelines.map((timeline, i) => (
               <RadioGroup.Option key={i} value={timeline.title}>
                 {({ checked }) => (
@@ -39,7 +39,7 @@ const Role = ({ state, handleChange, nextHandler }) => {
         </RadioGroup>
       </div>
 
-      <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20">
+      <div className="flex flex-col items-center justify-start gap-6 md:flex-row mt-14 md:mt-20 3xl:mx-32">
         <div className="flex items-center justify-center gap-4 md:order-2">
           <button
             className="pr-5 btn btn--primary"

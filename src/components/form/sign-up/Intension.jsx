@@ -36,7 +36,7 @@ const Intension = ({
 }) => {
   return (
     <>
-      <div className="flex flex-wrap gap-3 mt-14">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3 mt-14">
         {services.map((service, i) => (
           <FormCheckboxCard
             key={i}

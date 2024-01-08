@@ -73,7 +73,7 @@ const Login = () => {
           <form
             // onSubmit={handleSubmit}
             autoComplete="off"
-            className="pt-4 xl:px-20 2xl:px-20 md:mx-32 lg:mx-0"
+            className="pt-4 2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72"
           >
             <Input
               value={values.email}

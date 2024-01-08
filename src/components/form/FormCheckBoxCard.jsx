@@ -13,7 +13,7 @@ function FormCheckboxCard({ title, img, onClick }) {
     <>
       <label
         className={classNames(
-          "cursor-pointer px-5 py-4 my-2 shadow-sm rounded-[40px] transition-colors text-[#707171]",
+          "cursor-pointer px-2 md:px-5 py-4 my-2 shadow-sm rounded-[40px] transition-colors text-[#707171]",
           checked
             ? "border-[2px] border-activeBorder text-[#EBEDED]"
             : "border-[1px] border-[#424A57]"
@@ -51,7 +51,9 @@ function FormCheckboxCard({ title, img, onClick }) {
             </svg>
           </div>
 
-          <h4 className="font-light text-[14px] font-Poppins">{title}</h4>
+          <h4 className="font-light text-[12px] md:text-[14px] font-Poppins">
+            {title}
+          </h4>
           <input
             type="checkbox"
             className="hidden opacity-0"
