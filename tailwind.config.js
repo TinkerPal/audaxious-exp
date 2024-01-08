@@ -10,6 +10,12 @@ export default {
         Raleway: ["Raleway", "sans-serif"],
         Bricolage_Grotesque: ["Bricolage Grotesque", "sans-serif"],
       },
+      colors: {
+        primary: {
+          DEFAULT: "#EBEDED",
+        },
+        activeBorder: "rgba(165, 215, 242, 0.45)",
+      },
       container: {
         center: true,
         padding: {

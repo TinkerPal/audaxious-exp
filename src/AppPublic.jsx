@@ -11,6 +11,7 @@ const CreateAccount = lazy(() => import("./pages/register/CreateAccount"));
 const CreateAccountLink = lazy(() =>
   import("./pages/register/CreateAccountLink")
 );
+const Questionaire = lazy(() => import("./pages/register/Questionaire"));
 const Login = lazy(() => import("./pages/login/Login"));
 const ForgetPassword = lazy(() =>
   import("./pages/forget-password/ForgetPassword")
@@ -37,6 +38,7 @@ const AppPublic = () => {
             path={PathConstant.CREATEACCOUNTLINK}
             element={<CreateAccountLink />}
           />
+          <Route path={PathConstant.QUESTIONAIRE} element={<Questionaire />} />
           <Route path={PathConstant.LOGIN} element={<Login />} />
           <Route
             path={PathConstant.FORGETPASSWORD}

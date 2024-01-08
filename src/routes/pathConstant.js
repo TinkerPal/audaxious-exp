@@ -2,6 +2,7 @@ const pathConstant = {
   HOME: "/",
   CREATEACCOUNT: "/create-account",
   CREATEACCOUNTLINK: "/create-account-link",
+  QUESTIONAIRE: "/create-account/questionaire",
   LOGIN: "/login",
   FORGETPASSWORD: "/forget-password",
   FORGETPASSWORDLINK: "/forget-password-link",
