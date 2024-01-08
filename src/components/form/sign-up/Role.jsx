@@ -18,17 +18,7 @@ const timelines = [
 const Role = ({ state, handleChange, nextHandler }) => {
   return (
     <>
-      <h2 className="heading-secondary text-white text-center">
-        What is your role?
-      </h2>
       <div className="mt-14">
-        {/* <div className="flex items-center mb-3">
-          <p className="text-sm font-bold font-albert text-white">
-            Which best describes your requirement/engagement timeline?
-          </p>
-          <span className="text-[#EB5757] ml-1">*</span>
-        </div> */}
-
         <RadioGroup
           onChange={handleChange("requirementTimeline")}
           className="mt-2"
@@ -49,40 +39,8 @@ const Role = ({ state, handleChange, nextHandler }) => {
         </RadioGroup>
       </div>
 
-      {/* <div className="mt-14">
-        <div className="flex items-center mb-3">
-          <p className="text-sm font-bold font-albert text-white">
-            When are you likely to start this project ?
-          </p>
-          <span className="text-[#EB5757] ml-1">*</span>
-        </div>
-
-        <RadioGroup onChange={handleChange("startingPeriod")} className="mt-2">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ">
-            {startTimes.map((time, i) => (
-              <RadioGroup.Option key={i} value={time.title}>
-                {({ checked }) => (
-                  <FormRadioCard
-                    title={time.title}
-                    img={time.img}
-                    checked={checked}
-                  />
-                )}
-              </RadioGroup.Option>
-            ))}
-          </div>
-        </RadioGroup>
-      </div> */}
-
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row mt-14 md:mt-20">
         <div className="flex items-center justify-center gap-4 md:order-2">
-          {/* <button
-          className='btn btn--outline'
-          type='button'
-          onClick={prevHandler}
-        >
-          Previous
-        </button> */}
           <button
             className="pr-5 btn btn--primary"
             type="button"
@@ -109,27 +67,6 @@ const Role = ({ state, handleChange, nextHandler }) => {
             </svg>
           </button>
         </div>
-
-        {/* <Link
-          href="/contacts"
-          className="pl-4 pr-6 btn btn--outline md:order-1"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M6 2C5.73478 2 5.48043 2.10536 5.29289 2.29289C5.10536 2.48043 5 2.73478 5 3V4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V16C2 16.5304 2.21071 17.0391 2.58579 17.4142C2.96086 17.7893 3.46957 18 4 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16V6C18 5.46957 17.7893 4.96086 17.4142 4.58579C17.0391 4.21071 16.5304 4 16 4H15V3C15 2.73478 14.8946 2.48043 14.7071 2.29289C14.5196 2.10536 14.2652 2 14 2C13.7348 2 13.4804 2.10536 13.2929 2.29289C13.1054 2.48043 13 2.73478 13 3V4H7V3C7 2.73478 6.89464 2.48043 6.70711 2.29289C6.51957 2.10536 6.26522 2 6 2ZM6 7C5.73478 7 5.48043 7.10536 5.29289 7.29289C5.10536 7.48043 5 7.73478 5 8C5 8.26522 5.10536 8.51957 5.29289 8.70711C5.48043 8.89464 5.73478 9 6 9H14C14.2652 9 14.5196 8.89464 14.7071 8.70711C14.8946 8.51957 15 8.26522 15 8C15 7.73478 14.8946 7.48043 14.7071 7.29289C14.5196 7.10536 14.2652 7 14 7H6Z"
-              fill="black"
-            />
-          </svg>
-          Skip and Schedule consult
-        </Link> */}
       </div>
     </>
   );

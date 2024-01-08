@@ -22,24 +22,11 @@ const Questionaire = () => {
 
   const [state, setState] = useState({
     service: [],
-    //   selectedOtherServices: [],
-    //   inputValue: '',
-
-    //   skills: [],
-    //   selectedOtherSkills: [],
-    //   otherSkillsValue: '',
 
     requirementTimeline: "",
     startingPeriod: "",
 
-    //   paymentType: '',
-    //   priceEstimate: '',
-
     fullName: "",
-    //   position: '',
-    //   workEmail: '',
-    //   companyName: '',
-    //   otherInformation: '',
   });
 
   // For Services Component
@@ -56,77 +43,6 @@ const Questionaire = () => {
       }));
     }
   };
-
-  // For Services Component
-  //   const handleInput = (event) => {
-  //     if (event.key === 'Enter') {
-  //       if (!state.selectedOtherServices.includes(event.target.value)) {
-  //         setState((prevState) => ({
-  //           ...prevState,
-  //           selectedOtherServices: [
-  //             ...prevState.selectedOtherServices,
-  //             event.target.value,
-  //           ],
-  //           inputValue: '',
-  //         }));
-  //       }
-  //     }
-  //   };
-
-  // For Services Component
-  //   const handleRemoveService = (i) => {
-  //     setState((prevState) => {
-  //       const newServices = [...prevState.selectedOtherServices];
-  //       newServices.splice(i, 1);
-  //       return {
-  //         ...prevState,
-  //         selectedOtherServices: newServices,
-  //       };
-  //     });
-  //   };
-
-  // For Skills Component
-  //   const handleCheckboxChangeSkills = (title) => {
-  //     if (!state.skills.includes(title)) {
-  //       setState((prevState) => ({
-  //         ...prevState,
-  //         skills: [...prevState.skills, title],
-  //       }));
-  //     } else {
-  //       setState((prevState) => ({
-  //         ...prevState,
-  //         skills: prevState.skills.filter((item) => item !== title),
-  //       }));
-  //     }
-  //   };
-
-  // For Skills Component
-  //   const handleInputSkills = (event) => {
-  //     if (event.key === 'Enter') {
-  //       if (!state.selectedOtherSkills.includes(event.target.value)) {
-  //         setState((prevState) => ({
-  //           ...prevState,
-  //           selectedOtherSkills: [
-  //             ...prevState.selectedOtherSkills,
-  //             event.target.value,
-  //           ],
-  //           otherSkillsValue: '',
-  //         }));
-  //       }
-  //     }
-  //   };
-
-  // For Skills Component
-  //   const handleRemoveServiceSkills = (i) => {
-  //     setState((prevState) => {
-  //       const newSkills = [...prevState.selectedOtherSkills];
-  //       newSkills.splice(i, 1);
-  //       return {
-  //         ...prevState,
-  //         selectedOtherSkills: newSkills,
-  //       };
-  //     });
-  //   };
 
   function handleInputChange(key) {
     return (e) => handleChange(key)(e.target.value);
@@ -178,12 +94,7 @@ const Questionaire = () => {
     selectedFileName,
     fileInputRef,
     handleCheckboxChange,
-    // handleInput,
-    // handleRemoveService,
     handleInputChange,
-    // handleCheckboxChangeSkills,
-    // handleInputSkills,
-    // handleRemoveServiceSkills,
     handleChange,
     nextHandler,
     prevHandler,
@@ -194,9 +105,6 @@ const Questionaire = () => {
     <Role {...contentProps} />,
     <Intension {...contentProps} />,
     <CompanyName {...contentProps} />,
-    // <PaymentType {...contentProps} />,
-    // <Form {...contentProps} />,
-    // <ThankYou />,
   ];
 
   function nextHandler() {
@@ -212,6 +120,12 @@ const Questionaire = () => {
     });
     setStep(step - 1);
   }
+
+  const stepTexts = [
+    "What is your role?",
+    "What do you intend to use AudaXious for?",
+    "What do you intend to use AudaXious for?",
+  ];
 
   return (
     <>
@@ -246,10 +160,13 @@ const Questionaire = () => {
 
           <div className="mt-16">
             <div>
+              <h2 className="heading-secondary text-white text-center mb-6 text-[18px] font-light font-Poppins">
+                {stepTexts[step]}
+              </h2>
+            </div>
+
+            <div>
               <ProgressBar step={step} totalSteps={stepComponents.length} />
-              <p className="text-[#9BA6B7] font-albert mt-4">
-                Question {step + 1}/{stepComponents.length}
-              </p>
             </div>
 
             <div className="mt-2">
