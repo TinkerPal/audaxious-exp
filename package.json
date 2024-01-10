@@ -27,10 +27,7 @@
     "emoji-mart": "^5.5.2",
     "formik": "^2.2.9",
     "framer-motion": "^10.10.0",
-<<<<<<< HEAD
     "iron-session": "^8.0.1",
-=======
->>>>>>> cb9ec42ba0f37353a630764e9f68ced04160ce41
     "react": "^18.2.0",
     "react-calendar": "^4.7.0",
     "react-date-picker": "^10.6.0",
@@ -45,18 +42,12 @@
     "react-scroll": "^1.8.9",
     "react-toastify": "^9.1.1",
     "react18-input-otp": "^1.1.4",
-<<<<<<< HEAD
     "siwe": "^2.1.4",
     "swiper": "^9.2.4",
     "uuid": "^9.0.0",
     "viem": "^1.20.0",
     "vite-plugin-svgr": "^2.4.0",
     "wagmi": "^1.4.12",
-=======
-    "swiper": "^9.2.4",
-    "uuid": "^9.0.0",
-    "vite-plugin-svgr": "^2.4.0",
->>>>>>> cb9ec42ba0f37353a630764e9f68ced04160ce41
     "yup": "^1.0.2"
   },
   "devDependencies": {
