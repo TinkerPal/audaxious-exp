@@ -1,10 +1,13 @@
+import useAuthUser from "./hooks/useAuthUser";
+
 import AppProtected from "./AppProtected";
 import AppPublic from "./AppPublic";
 
 function App() {
-  let isLoggedIn = false;
+  let authUser = useAuthUser();
+  authUser = false;
 
-  return isLoggedIn ? <AppProtected /> : <AppPublic />;
+  return authUser ? <AppProtected /> : <AppPublic />;
 }
 
 export default App;
