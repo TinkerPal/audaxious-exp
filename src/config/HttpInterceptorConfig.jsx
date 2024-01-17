@@ -1,5 +1,5 @@
 import store from "./StoreConfig";
-import { logoutAction } from "./storeActionConfig";
+import { logoutAction } from "./StoreActionConfig";
 import { AppHttp } from "./HttpConfig";
 
 AppHttp.interceptors.request.use((config) => {

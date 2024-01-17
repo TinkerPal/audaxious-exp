@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logoutAction } from "./storeActionConfig";
+import { logoutAction } from "./StoreActionConfig";
 import { AppApi } from "./StoreQueryConfig";
 
 export const globalInitialState = {

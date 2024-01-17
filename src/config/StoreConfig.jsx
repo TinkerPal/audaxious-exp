@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { throttle } from "../utils/FunctionUtils";
 import { isObjectEmpty, deepMerge } from "../utils/ObjectUtils";
-import { logoutAction } from "./storeActionConfig";
+import { logoutAction } from "./StoreActionConfig";
 import { AppApi } from "./StoreQueryConfig";
 import globalSlice, {
   getGlobalSliceStorageState,
