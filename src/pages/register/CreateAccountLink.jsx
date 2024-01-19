@@ -1,15 +1,57 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import OtpInput from "react18-input-otp";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import pathConstant from "../../routes/pathConstant";
+import Button from "../../components/Button";
+import { AppApi } from "../../config/StoreQueryConfig";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
-import { ReactComponent as Send } from "../../assets/svg/email-message.svg";
 import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
 
 const CreateAccountLink = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const [verifyOneTimePasswordMutation, verifyOneTimePasswordMutationResult] =
+    AppApi.useVerifyOneTimePasswordMutation();
+
+  const { values, setFieldValue, handleSubmit } = useFormik({
+    initialValues: {
+      email: searchParams.get("email"),
+      otp: "",
+    },
+    onSubmit: async (values) => {
+      try {
+        const data = await verifyOneTimePasswordMutation({
+          data: values,
+        }).unwrap();
+        console.log(data);
+
+        if (data.error) {
+          console.log(data.error);
+          return toast.error(data.message);
+        }
+
+        // const email = searchParams.get("email");
+
+        if (data) {
+          console.log(data);
+          // TODO
+          // remove the email here
+          // navigate("/create-account/questionaire");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error(error);
+      }
+    },
+  });
+
   return (
     <>
       <Helmet>
@@ -18,7 +60,7 @@ const CreateAccountLink = () => {
           name="description"
           content="Create account so you can start trading tokens"
         />
-        <link rel="canonical" href={pathConstant.CREATEACCOUNTLINK} />
+        <link rel="canonical" href={pathConstant.CREATEACCOUNTOTP} />
       </Helmet>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
@@ -34,22 +76,59 @@ const CreateAccountLink = () => {
             </div>
 
             <h3 className="text-[22px] leading-[28px] mb-1 font-light font-Bricolage_Grotesque">
-              Confirm Email{" "}
+              Verify Email{" "}
             </h3>
             <p className="text-[#A5A5A5] text-center md:text-left text-[15px] font-normal leading-[22px] mt-2">
-              We sent an email to{" "}
+              Enter the verification code we sent to{" "}
               <span className="text-[20px] text-[#E8E8E8]">
-                eddyeequere@gmail.com
+                {searchParams.get("email") || "your email address"}{" "}
               </span>
             </p>
           </div>
-          <div className="flex justify-center my-12">
-            <Send />
-          </div>
 
-          <p className="text-white text-center font-Poppins text-[15px] font-light">
-            Click the Link in the email to login
-            <br /> into your account <br />
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="flex items-center justify-center pt-8 space-x-2">
+              <OtpInput
+                value={values.otp}
+                onChange={(otp) => {
+                  setFieldValue("otp", otp);
+                }}
+                numInputs={6}
+                isInputNum
+                inputStyle={{
+                  width: "45px",
+                  height: "45px",
+                  margin: "0 5px",
+                  border: "2px solid rgba(42, 60, 70, 0.75)",
+                  borderRadius: "8px",
+                  textAlign: "center",
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  letterSpacing: "5px",
+                  color: "#fff",
+                  backgroundColor: "#060B12",
+                }}
+                separator={<span></span>}
+              />
+            </div>
+            <div className="flex justify-center pt-6">
+              <Button
+                type="submit"
+                disabled={verifyOneTimePasswordMutationResult.isLoading}
+                primary
+                round
+                className="mt-6 mx-auto w-1/2"
+              >
+                Next
+              </Button>
+            </div>
+          </form>
+
+          <p className="text-[#E8E8E8] text-center font-Poppins text-[13px] font-light pt-40">
+            Already have an account?{" "}
+            <Link to={pathConstant.LOGIN} className="text-[#79C4EC]">
+              Sign In
+            </Link>
           </p>
         </div>
         <div className="bg-[#13161E] bg-split_screen bg-no-repeat bg-center hidden lg:block relative">

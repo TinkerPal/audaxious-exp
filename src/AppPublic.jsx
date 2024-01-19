@@ -35,7 +35,7 @@ const AppPublic = () => {
             element={<CreateAccount />}
           />
           <Route
-            path={PathConstant.CREATEACCOUNTLINK}
+            path={PathConstant.CREATEACCOUNTOTP}
             element={<CreateAccountLink />}
           />
           <Route path={PathConstant.QUESTIONAIRE} element={<Questionaire />} />
@@ -45,7 +45,7 @@ const AppPublic = () => {
             element={<ForgetPassword />}
           />
           <Route
-            path={PathConstant.FORGETPASSWORDLINK}
+            path={PathConstant.FORGETPASSWORDOTP}
             element={<ForgetPasswordLink />}
           />
           <Route

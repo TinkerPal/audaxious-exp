@@ -1,11 +1,11 @@
 const pathConstant = {
   HOME: "/",
   CREATEACCOUNT: "/create-account",
-  CREATEACCOUNTLINK: "/create-account-link",
+  CREATEACCOUNTOTP: "/create-account-otp",
   QUESTIONAIRE: "/create-account/questionaire",
   LOGIN: "/login",
   FORGETPASSWORD: "/forget-password",
-  FORGETPASSWORDLINK: "/forget-password-link",
+  FORGETPASSWORDOTP: "/forget-password-otp",
   RESETPASSWORD: "/reset-password",
   ENGAGEPORTAL: "/engage-portal",
   DASHBOARD: "/dashboard",

@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Input from "../../components/Input";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import CreateAccountWithCryptoModal from "../../components/CreateAccountWithCryptoModal";
 import pathConstant from "../../routes/pathConstant";
+import { AppApi } from "../../config/StoreQueryConfig";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Google } from "../../assets/svg/goog.svg";
 import { ReactComponent as Bitcoin } from "../../assets/svg/bitcoin.svg";
 import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
+import useAuthUser from "../../hooks/useAuthUser";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
+  // const navigate = useNavigate();
+  // const authUser = useAuthUser();
+  // console.log(authUser);
+
+  const [loginUserMutation, loginUserMutationResult] =
+    AppApi.useLoginUserMutation();
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -34,6 +43,26 @@ const Login = () => {
 
       onSubmit: async (values) => {
         try {
+          const data = await loginUserMutation({
+            data: values,
+          }).unwrap();
+          console.log(data);
+
+          if (data.error) {
+            if (
+              data.message === "Please Check Your Credentials and Try Again."
+            ) {
+              return toast.error("Invalid email or password");
+            } else {
+              return toast.error(data.message);
+            }
+          }
+
+          if (data) {
+            toast.success("login successful");
+
+            navigate("/dashboard");
+          }
         } catch (error) {
           toast.error(error);
         }
@@ -71,7 +100,7 @@ const Login = () => {
             </p>
           </div>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             autoComplete="off"
             className="pt-4 2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72"
           >
@@ -107,7 +136,13 @@ const Login = () => {
               </div>
             )}
 
-            <Button primary round className="mt-8 mx-auto w-full">
+            <Button
+              disabled={loginUserMutationResult.isLoading}
+              type="submit"
+              primary
+              round
+              className="mt-8 mx-auto w-full"
+            >
               Sign In
             </Button>
           </form>
