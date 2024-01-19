@@ -8,7 +8,7 @@ function App() {
   let authUser = useAuthUser();
   authUser = false;
 
-  return isLoggedIn ? <AppProtected /> : <AppPublic />;
+  return <Wagmi>{authUser ? <AppProtected /> : <AppPublic />}</Wagmi>;
 }
 
 export default App;
