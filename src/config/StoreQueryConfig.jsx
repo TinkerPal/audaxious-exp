@@ -6,47 +6,40 @@ import { StoreQueryTagEnum } from "../constants/storeConstants";
 export const AppApi = createApi({
   reducerPath: "app",
   baseQuery: axiosBaseQuery({}, AppHttp),
-  tagTypes: ["FUNDWALLET"],
+  // tagTypes: ["FUNDWALLET"],
   endpoints: (builder) => ({
     verifyNewUserIdentity: builder.mutation({
       query: (config) => ({
-        url: "",
+        url: "/user/create",
         method: "post",
         ...config,
       }),
     }),
     verifyOneTimePassword: builder.mutation({
       query: (config) => ({
-        url: "",
-        method: "post",
-        ...config,
-      }),
-    }),
-    registerUser: builder.mutation({
-      query: (config) => ({
-        url: "",
+        url: "/user/verify",
         method: "post",
         ...config,
       }),
     }),
     loginUser: builder.mutation({
       query: (config) => ({
-        url: "",
+        url: "/user/login",
         method: "post",
         ...config,
       }),
     }),
     verifyOldUserIdentity: builder.mutation({
       query: (config) => ({
-        url: "",
+        url: "/user/forgot-password",
         method: "post",
         ...config,
       }),
     }),
     resetPassword: builder.mutation({
       query: (config) => ({
-        url: "",
-        method: "post",
+        url: "/user/change-password",
+        method: "patch",
         ...config,
       }),
     }),

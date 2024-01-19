@@ -6,9 +6,9 @@ import Wagmi from "./config/wagmi/Wagmi";
 
 function App() {
   let authUser = useAuthUser();
-  authUser = false;
+  // authUser = false;
 
-  return <Wagmi>{authUser ? <AppProtected /> : <AppPublic />}</Wagmi>;
+  return <Wagmi>{authUser?.token ? <AppProtected /> : <AppPublic />}</Wagmi>;
 }
 
 export default App;

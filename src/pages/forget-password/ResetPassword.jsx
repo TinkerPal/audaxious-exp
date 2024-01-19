@@ -1,22 +1,48 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import pathConstant from "../../routes/pathConstant";
+import { AppApi } from "../../config/StoreQueryConfig";
+import useAuthUser from "../../hooks/useAuthUser";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as MoneyBag } from "../../assets/svg/money-bag.svg";
 
 const ResetPassword = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  // const authUser = useAuthUser();
+  // const userId = authUser?.userId;
+  // console.log(authUser, userId);
+  const location = useLocation();
+  const userId = location?.state?.data?.userId;
+  // const userId = state;
+  // console.log(state);
+
+  const [resetPasswordMutation, resetPasswordMutationResult] =
+    AppApi.useResetPasswordMutation();
+
+  // const passwordRules =
+  //   '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$';
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
         password: "",
+        otp: searchParams.get("otp"),
+        userId: userId,
       },
       validationSchema: Yup.object().shape({
         password: Yup.string().min(8).required("Password is required"),
@@ -24,6 +50,18 @@ const ResetPassword = () => {
 
       onSubmit: async (values) => {
         try {
+          const data = await resetPasswordMutation({
+            data: values,
+          }).unwrap();
+          console.log(data);
+          if (data.error) {
+            return toast.error(data.Message);
+          }
+          if (data) {
+            toast.success("password reset successful");
+
+            navigate(pathConstant.LOGIN);
+          }
         } catch (error) {
           toast.error(error);
         }
@@ -61,7 +99,7 @@ const ResetPassword = () => {
             </p>
           </div>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             autoComplete="off"
             className="pt-4 2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72"
           >
@@ -80,7 +118,13 @@ const ResetPassword = () => {
               </div>
             )}
 
-            <Button primary round className="mt-8 mx-auto w-full">
+            <Button
+              disabled={resetPasswordMutationResult.isLoading}
+              type="submit"
+              primary
+              round
+              className="mt-8 mx-auto w-full"
+            >
               Reset
             </Button>
           </form>

@@ -2,35 +2,54 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 import Input from "../../components/Input";
-import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import pathConstant from "../../routes/pathConstant";
+import { AppApi } from "../../config/StoreQueryConfig";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Communities } from "../../assets/svg/communities.svg";
 
 const ForgetPassword = () => {
+  const navigate = useNavigate();
+
+  const [verifyOldUserIdentityMutation, verifyOldUserIdentityMutationResult] =
+    AppApi.useVerifyOldUserIdentityMutation();
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
         email: "",
-        // password: '',
       },
       validationSchema: Yup.object().shape({
         email: Yup.string()
           .email("Invalid email")
           .required("Email is required"),
-        // password: Yup.string().min(8).required('Password is required'),
       }),
 
       onSubmit: async (values) => {
         try {
+          const data = await verifyOldUserIdentityMutation({
+            data: values,
+          }).unwrap();
+          console.log(data);
+          if (data.error) {
+            return toast.error(data.message);
+          }
+
+          if (data) {
+            toast.success("OTP sent to your email");
+
+            navigate(
+              pathConstant.FORGETPASSWORDOTP.concat("?email=", values.email)
+            );
+          }
         } catch (error) {
-          toast.error(error);
+          console.log(error);
         }
       },
     });
@@ -66,7 +85,7 @@ const ForgetPassword = () => {
             </p>
           </div>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             autoComplete="off"
             className="pt-4 2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72"
           >
@@ -87,22 +106,13 @@ const ForgetPassword = () => {
               </div>
             )}
 
-            {/* <PasswordInput
-              value={values.password}
-              onChange={handleChange}
-              name='password'
-              id='password'
-              placeholder='Enter password'
-              className=''
-              onBlur={handleBlur}
-            />
-            {errors.password && touched.password && (
-              <div className='pt-1 text-[#EB5757] text-[12px] font-Albert'>
-                {errors.password}
-              </div>
-            )} */}
-
-            <Button primary round className="mt-8 mx-auto w-full">
+            <Button
+              disabled={verifyOldUserIdentityMutationResult.isLoading}
+              type="submit"
+              primary
+              round
+              className="mt-8 mx-auto w-full"
+            >
               Recover Password
             </Button>
           </form>

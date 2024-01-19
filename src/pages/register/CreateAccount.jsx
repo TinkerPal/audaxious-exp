@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Input from "../../components/Input";
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import CreateAccountWithCryptoModal from "../../components/CreateAccountWithCryptoModal";
 import pathConstant from "../../routes/pathConstant";
+import { AppApi } from "../../config/StoreQueryConfig";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
@@ -18,6 +20,10 @@ import { ReactComponent as Communities } from "../../assets/svg/communities.svg"
 
 const CreateAccount = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const [verifyNewUserIdentityMutation, verifyNewUserIdentityMutationResult] =
+    AppApi.useVerifyNewUserIdentityMutation();
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -34,6 +40,19 @@ const CreateAccount = () => {
 
       onSubmit: async (values) => {
         try {
+          const data = await verifyNewUserIdentityMutation({
+            data: values,
+          }).unwrap();
+          console.log(data);
+          if (data.error) {
+            return toast.error(data.message);
+          }
+
+          if (data) {
+            toast.success("OTP sent to your email");
+
+            navigate("/create-account-otp".concat("?email=", values.email));
+          }
         } catch (error) {
           toast.error(error);
         }
@@ -68,11 +87,7 @@ const CreateAccount = () => {
             </h3>
           </div>
           <div className="2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72">
-            <form
-              // onSubmit={handleSubmit}
-              autoComplete="off"
-              className=""
-            >
+            <form onSubmit={handleSubmit} autoComplete="off" className="">
               <Input
                 value={values.email}
                 onChange={handleChange}
@@ -105,7 +120,13 @@ const CreateAccount = () => {
                 </div>
               )}
 
-              <Button primary round className="mt-8 mx-auto w-full">
+              <Button
+                type="submit"
+                disabled={verifyNewUserIdentityMutationResult.isLoading}
+                primary
+                round
+                className="mt-8 mx-auto w-full"
+              >
                 Next
               </Button>
             </form>
