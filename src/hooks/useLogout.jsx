@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { logoutAction } from "../configs/StoreActionConfig";
+import { logoutAction } from "../config/StoreActionConfig";
 
 function useLogout(props) {
   const dispatch = useDispatch();

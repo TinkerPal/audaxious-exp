@@ -43,7 +43,7 @@ const CreateAccountLink = () => {
           console.log(data);
           // TODO
           // remove the email here
-          // navigate("/create-account/questionaire");
+          navigate(pathConstant.LOGIN);
         }
       } catch (error) {
         console.log(error);

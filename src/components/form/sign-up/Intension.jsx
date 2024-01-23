@@ -28,9 +28,6 @@ const services = [
 const Intension = ({
   state,
   handleCheckboxChange,
-  handleInput,
-  handleRemoveService,
-  handleInputChange,
   prevHandler,
   nextHandler,
 }) => {
