@@ -17,7 +17,7 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Google } from "../../assets/svg/goog.svg";
 import { ReactComponent as Bitcoin } from "../../assets/svg/bitcoin.svg";
 import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
-import useAuthUser from "../../hooks/useAuthUser";
+// import useAuthUser from "../../hooks/useAuthUser";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +61,7 @@ const Login = () => {
           if (data) {
             toast.success("login successful");
 
-            navigate("/dashboard");
+            navigate(pathConstant.DASHBOARD);
           }
         } catch (error) {
           toast.error(error);

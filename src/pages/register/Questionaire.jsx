@@ -14,8 +14,13 @@ import pathConstant from "../../routes/pathConstant";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 
+import useAuthUser from "../../hooks/useAuthUser";
+
 const Questionaire = () => {
   const [step, setStep] = useState(0);
+
+  const authUser = useAuthUser();
+  console.log(authUser);
 
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -28,6 +33,8 @@ const Questionaire = () => {
 
     fullName: "",
   });
+
+  console.log(state);
 
   // For Services Component
   const handleCheckboxChange = (title) => {
@@ -44,45 +51,71 @@ const Questionaire = () => {
     }
   };
 
-  function handleInputChange(key) {
-    return (e) => handleChange(key)(e.target.value);
-  }
+  // function handleChange(key) {
+  //   return (value) => {
+  //     if (key === "resume") {
+  //       const file = value.target.files[0];
+  //       setSelectedFileName(file ? file.name : "");
+  //     } else if (key === "selectedFixedType" && state.paymentType === "fixed") {
+  //       setState((prevState) => ({
+  //         ...prevState,
+  //         priceEstimate: value,
+  //       }));
+  //     } else if (
+  //       key === "selectedHourlyType" &&
+  //       state.paymentType === "hourly"
+  //     ) {
+  //       setState((prevState) => ({
+  //         ...prevState,
+  //         priceEstimate: value,
+  //       }));
+  //     } else {
+  //       setState((prevState) => ({ ...prevState, [key]: value }));
+  //     }
+  //   };
+  // }
 
   function handleChange(key) {
-    //   return (value) => {
-    //     if (key === 'resume') {
-    //       const file = value.target.files[0];
-    //       setSelectedFileName(file ? file.name : '');
-    //     } else if (key === 'selectedFixedType' && state.paymentType === 'fixed') {
-    //       setState((prevState) => ({
-    //         ...prevState,
-    //         priceEstimate: value,
-    //       }));
-    //     } else if (
-    //       key === 'selectedHourlyType' &&
-    //       state.paymentType === 'hourly'
-    //     ) {
-    //       setState((prevState) => ({
-    //         ...prevState,
-    //         priceEstimate: value,
-    //       }));
-    //     } else {
-    //       setState((prevState) => ({ ...prevState, [key]: value }));
-    //     }
-    //   };
+    return (value) => {
+      setState((prevState) => ({ ...prevState, [key]: value }));
+    };
+  }
+
+  const handleSelect = (category) => {
+    setState((prevState) => ({ ...prevState, category }));
+  };
+
+  function handleInputChange(key) {
+    return (e) => handleChange(key)(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      await axios.post("", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const formData = new FormData();
 
-      nextHandler();
+      const userId = "9820d79f-584a-469e-a389-132f524eece1"; // Replace with the actual user ID
+      formData.append("userId", userId);
+
+      formData.append("service", JSON.stringify(state.service));
+      formData.append("requirementTimeline", state.requirementTimeline);
+      formData.append("startingPeriod", state.startingPeriod);
+      formData.append("fullName", state.fullName);
+
+      const response = await axios.post(
+        "https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response);
+
+      navigate(pathConstant.DASHBOARD);
     } catch (error) {
       console.error(error);
     }
