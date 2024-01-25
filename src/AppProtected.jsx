@@ -91,7 +91,7 @@ const AppProtected = () => {
             <Route path={PathConstant.SETTINGS} element={<Settings />} />
             <Route path={PathConstant.HELP} element={<Help />} />
 
-            <Route path="*" element={<Dashboard />} />
+            {/* <Route path="*" element={<Dashboard />} /> */}
           </Routes>
         </AnimatePresence>
       </div>

@@ -44,6 +44,7 @@ const CreateAccountLink = () => {
           // TODO
           // remove the email here
           navigate(pathConstant.LOGIN);
+          // navigate(pathConstant.QUESTIONAIRE.concat("?token=", data?.token));
         }
       } catch (error) {
         console.log(error);

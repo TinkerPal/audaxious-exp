@@ -161,9 +161,12 @@ const Login = () => {
           </div>
 
           <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] mx-auto p-3.5 mt-8 md:w-1/2">
-            <button className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins">
+            <a
+              href="https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/auth/google"
+              className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins"
+            >
               <Google /> Sign up with Google
-            </button>
+            </a>
           </div>
 
           <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] mx-auto p-3.5 mt-8 md:w-1/2">
