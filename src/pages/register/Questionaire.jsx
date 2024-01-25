@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { classNames } from "../../utils/Helper";
 import ProgressBar from "../../components/form/ProgressBar";
@@ -19,8 +19,11 @@ import useAuthUser from "../../hooks/useAuthUser";
 const Questionaire = () => {
   const [step, setStep] = useState(0);
 
-  const authUser = useAuthUser();
-  console.log(authUser);
+  // const authUser = useAuthUser();
+  // console.log(authUser);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  console.log(token);
 
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -32,6 +35,7 @@ const Questionaire = () => {
     startingPeriod: "",
 
     fullName: "",
+    category: "",
   });
 
   console.log(state);
@@ -104,7 +108,7 @@ const Questionaire = () => {
       formData.append("fullName", state.fullName);
 
       const response = await axios.post(
-        "https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update",
+        `https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update`,
         formData,
         {
           headers: {

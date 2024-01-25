@@ -16,11 +16,6 @@ const CompanyName = ({
   fileInputRef,
 }) => {
   const [disabled, setDisabled] = useState(true);
-  const [selected, setSelected] = useState(null);
-
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
 
   useEffect(() => {
     if (
@@ -55,11 +50,11 @@ const CompanyName = ({
             //   required
             onChange={handleInputChange("fullName")}
           />
-          <HearAboutUsSelect
-            value={selected}
-            onChange={handleSelect}
+          {/* <HearAboutUsSelect
+            // value={selected}
+            // onChange={handleSelect}
             options={hearAboutUs}
-          />
+          /> */}
         </form>
       </div>
 

@@ -54,7 +54,7 @@ const AppPublic = () => {
           />
           <Route path={PathConstant.ENGAGEPORTAL} element={<EngagePortal />} />
 
-          <Route path="*" element={<Login />} />
+          {/* <Route path="*" element={<Login />} /> */}
         </Routes>
       </Layout>
     </>
