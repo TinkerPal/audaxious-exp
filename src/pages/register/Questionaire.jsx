@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 import { classNames } from "../../utils/Helper";
 import ProgressBar from "../../components/form/ProgressBar";
@@ -15,42 +15,41 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 
 import useAuthUser from "../../hooks/useAuthUser";
+import { toast } from "react-toastify";
 
 const Questionaire = () => {
   const [step, setStep] = useState(0);
+  const navigate = useNavigate();
 
-  // const authUser = useAuthUser();
+  const authUser = useAuthUser();
   // console.log(authUser);
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const token = searchParams.get("authToken");
   console.log(token);
 
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState("");
 
   const [state, setState] = useState({
-    service: [],
-
-    requirementTimeline: "",
-    startingPeriod: "",
-
-    fullName: "",
-    category: "",
+    role: "",
+    usage: [],
+    companyName: "",
+    mediaNetwork: [],
   });
 
   console.log(state);
 
   // For Services Component
   const handleCheckboxChange = (title) => {
-    if (!state.service.includes(title)) {
+    if (!state.usage.includes(title)) {
       setState((prevState) => ({
         ...prevState,
-        service: [...prevState.service, title],
+        usage: [...prevState.usage, title],
       }));
     } else {
       setState((prevState) => ({
         ...prevState,
-        service: prevState.service.filter((item) => item !== title),
+        usage: prevState.usage.filter((item) => item !== title),
       }));
     }
   };
@@ -85,9 +84,12 @@ const Questionaire = () => {
     };
   }
 
-  const handleSelect = (category) => {
-    setState((prevState) => ({ ...prevState, category }));
-  };
+  function handleMediaNetworkChange(selectedOption) {
+    setState((prevState) => ({
+      ...prevState,
+      mediaNetwork: [selectedOption],
+    }));
+  }
 
   function handleInputChange(key) {
     return (e) => handleChange(key)(e.target.value);
@@ -97,29 +99,26 @@ const Questionaire = () => {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
-
-      const userId = "9820d79f-584a-469e-a389-132f524eece1"; // Replace with the actual user ID
-      formData.append("userId", userId);
-
-      formData.append("service", JSON.stringify(state.service));
-      formData.append("requirementTimeline", state.requirementTimeline);
-      formData.append("startingPeriod", state.startingPeriod);
-      formData.append("fullName", state.fullName);
-
-      const response = await axios.post(
+      const response = await axios.patch(
         `https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update`,
-        formData,
+        state,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       console.log(response);
 
-      navigate(pathConstant.DASHBOARD);
+      if (token) {
+        toast.success("login successful");
+
+        navigate(pathConstant.DASHBOARD);
+      }
+
+      // navigate(pathConstant.DASHBOARD);
     } catch (error) {
       console.error(error);
     }
@@ -132,6 +131,7 @@ const Questionaire = () => {
     fileInputRef,
     handleCheckboxChange,
     handleInputChange,
+    handleMediaNetworkChange,
     handleChange,
     nextHandler,
     prevHandler,

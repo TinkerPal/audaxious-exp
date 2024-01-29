@@ -19,19 +19,12 @@ const Role = ({ state, handleChange, nextHandler }) => {
   return (
     <>
       <div className="mt-14 flex flex-col mx-auto justify-center items-center">
-        <RadioGroup
-          onChange={handleChange("requirementTimeline")}
-          className="mt-2"
-        >
+        <RadioGroup onChange={handleChange("role")} className="mt-2">
           <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3">
             {timelines.map((timeline, i) => (
               <RadioGroup.Option key={i} value={timeline.title}>
                 {({ checked }) => (
-                  <FormRadioCard
-                    title={timeline.title}
-                    // img={timeline.img}
-                    checked={checked}
-                  />
+                  <FormRadioCard title={timeline.title} checked={checked} />
                 )}
               </RadioGroup.Option>
             ))}
