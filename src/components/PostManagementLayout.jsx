@@ -364,7 +364,7 @@ const PostManagementLayout = () => {
             </div>
           </div>
 
-          <div className="md:hidden block">
+          {/* <div className="md:hidden block">
             <div className="flex justify-between items-center p-3 mt-3">
               <div className="">
                 <p className="text-white">Recent Post</p>
@@ -384,7 +384,7 @@ const PostManagementLayout = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="border-[0.5px] border-[#24343D] rounded-[8px] md:m-5 mt-4 p-4">
             <div className="flex items-center justify-between">
@@ -426,7 +426,7 @@ const PostManagementLayout = () => {
                 </div>
               </div>
 
-              <div className="hidden lg:block">
+              <div className="">
                 <div className="mt-3 flex -space-x-2 overflow-hidden">
                   {people.map((person, index) => (
                     <img
@@ -439,7 +439,7 @@ const PostManagementLayout = () => {
                 </div>
               </div>
 
-              <div className="hidden md:block">
+              <div className="">
                 <button
                   onClick={() => setIsOpen(true)}
                   className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
