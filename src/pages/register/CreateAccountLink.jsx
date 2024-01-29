@@ -17,6 +17,9 @@ const CreateAccountLink = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
+  const authToken = sessionStorage.getItem("authToken");
+  console.log(authToken);
+
   const [verifyOneTimePasswordMutation, verifyOneTimePasswordMutationResult] =
     AppApi.useVerifyOneTimePasswordMutation();
 
@@ -37,14 +40,14 @@ const CreateAccountLink = () => {
           return toast.error(data.message);
         }
 
-        // const email = searchParams.get("email");
+        // if (data) {
+        //   console.log(data);
+        //   navigate(pathConstant.QUESTIONAIRE.concat("?authToken=", authToken));
+        // }
 
         if (data) {
-          console.log(data);
-          // TODO
-          // remove the email here
+          // console.log(data);
           navigate(pathConstant.LOGIN);
-          // navigate(pathConstant.QUESTIONAIRE.concat("?token=", data?.token));
         }
       } catch (error) {
         console.log(error);

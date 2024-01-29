@@ -26,6 +26,7 @@ const HearAboutUsSelect = ({ value, onChange, options }) => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+    // onChange(option);
   };
 
   const handleOptionClick = (option) => {

@@ -11,6 +11,7 @@ const CompanyName = ({
   prevHandler,
   handleChange,
   handleInputChange,
+  handleMediaNetworkChange,
   handleSubmit,
   selectedFileName,
   fileInputRef,
@@ -19,7 +20,7 @@ const CompanyName = ({
 
   useEffect(() => {
     if (
-      state.fullName.length
+      state.companyName.length
       // &&
       // state.position.length &&
       // state.workEmail.length &&
@@ -30,7 +31,7 @@ const CompanyName = ({
       setDisabled(true);
     }
   }, [
-    state.fullName,
+    state.companyName,
     // state.position, state.workEmail, state.companyName
   ]);
 
@@ -46,13 +47,13 @@ const CompanyName = ({
             name="full-name"
             //   label="Full Name"
             placeHolder="Enter Company / Personal Username"
-            value={state.fullName}
+            value={state.companyName}
             //   required
-            onChange={handleInputChange("fullName")}
+            onChange={handleInputChange("companyName")}
           />
           {/* <HearAboutUsSelect
-            // value={selected}
-            // onChange={handleSelect}
+            value={state.mediaNetwork}
+            onChange={handleMediaNetworkChange}
             options={hearAboutUs}
           /> */}
         </form>

@@ -39,14 +39,14 @@ function FormCheckboxCard({ title, img, onClick }) {
                 d="M17.3327 9.04655C17.3327 4.44418 13.6017 0.713217 8.99935 0.713217C4.39698 0.713217 0.666016 4.44418 0.666016 9.04655C0.666016 13.6489 4.39698 17.3799 8.99935 17.3799C13.6017 17.3799 17.3327 13.6489 17.3327 9.04655Z"
                 fill="#EBEDED"
                 stroke="#2A3C46"
-                stroke-width="1.25"
+                strokeWidth="1.25"
               />
               <path
                 d="M5.66602 9.67122C5.66602 9.67122 6.99935 10.4317 7.66602 11.5462C7.66602 11.5462 9.66602 7.17122 12.3327 5.71289"
                 stroke="#060B12"
-                stroke-width="1.25"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.25"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

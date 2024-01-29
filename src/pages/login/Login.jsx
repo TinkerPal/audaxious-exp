@@ -21,7 +21,7 @@ import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const authUser = useAuthUser();
   // console.log(authUser);
 
