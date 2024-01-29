@@ -14,6 +14,9 @@ const slice = createSlice({
       state.isLoadingModal =
         payload !== undefined ? !!payload : !state.isLoadingModal;
     },
+    setAuthUserAction: (state, { payload }) => {
+      state.authUser = payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -24,13 +27,19 @@ const slice = createSlice({
           state.authUser = {
             ...state.authUser,
             token: payload?.token,
+            email: payload?.findUser?.email,
+            password: payload?.findUser?.password,
             ...payload?.data,
           };
         }
       ),
 });
 
-export const { toggleLoadingModalAction, toggleSideMenuAction } = slice.actions;
+export const {
+  toggleLoadingModalAction,
+  toggleSideMenuAction,
+  setAuthUserAction,
+} = slice.actions;
 
 export default slice;
 

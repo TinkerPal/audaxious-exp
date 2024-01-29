@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import clsx from "clsx";
 // import IconButton, { IconButtonProps } from "@mui/material/IconButton";
@@ -18,9 +18,13 @@ import SelectComponent from "../../components/Select";
 import Emoji from "../../components/Emoji";
 import Select from "../../components/Select";
 
-import {ReactComponent as Connect} from '../../assets/svg/connect.svg'
+import { ReactComponent as Connect } from "../../assets/svg/connect.svg";
 
 import "react-datepicker/dist/react-datepicker.css";
+
+import useAuthUser from "../../hooks/useAuthUser";
+import { setAuthUserAction } from "../../config/StoreSliceConfig";
+import axios from "axios";
 
 const PostManagement = () => {
   const [tab, setTab] = useState(0);
@@ -28,6 +32,13 @@ const PostManagement = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
   const [selected, setSelected] = useState(null);
+  const [authUser, setAuthUser] = useState();
+  // const [tweets, setTweets] = useState({});
+
+  // const authUser = useAuthUser();
+  // console.log(authUser);
+  // const authUserAction = setAuthUserAction();
+  // console.log(authUserAction);
 
   const handleSelect = (option) => {
     setSelected(option);
@@ -36,11 +47,11 @@ const PostManagement = () => {
   const [value, onChange] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleDateChange = (selectedDate) => {
-    onChange(selectedDate);
-    setIsDateSelected(true);
-    setSelectedDate(selectedDate);
-  };
+  // const handleDateChange = (selectedDate) => {
+  //   onChange(selectedDate);
+  //   setIsDateSelected(true);
+  //   setSelectedDate(selectedDate);
+  // };
 
   // add emoji
   const addEmoji = (e) => {
@@ -69,6 +80,40 @@ const PostManagement = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  function handleLogin() {
+    if (authUser) {
+      handleLogout();
+    } else {
+      window.open("https://twitter-auth.audaxious.com/auth/twitter", "_self");
+    }
+  }
+
+  // http://localhost:8080/post-management
+
+  function handleLogout() {
+    window.open("https://twitter-auth.audaxious.com/auth/logout", "_self");
+    setAuthUser(null);
+  }
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const response = await axios.get(
+          "https://twitter-auth.audaxious.com/auth/login/success",
+          {
+            withCredentials: true,
+          }
+        );
+
+        console.log(response);
+        // setAuthUser(response.data.user);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    }
+    getUser();
+  }, []);
 
   let people = [
     {
@@ -415,12 +460,16 @@ const PostManagement = () => {
         </div>
       </div> */}
       <div className="flex flex-col justify-center items-center mt-14 mb-8">
-        <Connect/>
+        <Connect />
         <p className="font-Poppins text-[16px] text-center font-light text-[#585C60] my-4">
-          You are yet to connect your twitter <br /> account to audaxious
+          You are {authUser ? "connected" : "yet to connect"} your Twitter{" "}
+          <br /> account to audaxious
         </p>
-        <button className="border-[1px] border-[#2A3C46] rounded-[4px] py-3 px-6 text-[#E8E8E8] text-[15px] font-Poppins font-normal">
-          Connect twitter (X)
+        <button
+          onClick={handleLogin}
+          className="border-[1px] border-[#2A3C46] rounded-[4px] py-3 px-6 text-[#E8E8E8] text-[15px] font-Poppins font-normal"
+        >
+          {authUser ? "Disconnect Twitter" : "Connect Twitter (X)"}
         </button>
       </div>
     </>
