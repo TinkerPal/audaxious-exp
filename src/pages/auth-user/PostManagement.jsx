@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 // import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -24,6 +25,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import useAuthUser from "../../hooks/useAuthUser";
 import axios from "axios";
+import {
+  setAuthUserAction,
+  setAuthUserTwitterAction,
+} from "../../config/StoreSliceConfig";
 
 const PostManagement = () => {
   const [tab, setTab] = useState(0);
@@ -33,9 +38,12 @@ const PostManagement = () => {
   const [selected, setSelected] = useState(null);
   // const [authUser, setAuthUser] = useState();
   // const [tweets, setTweets] = useState({});
+  const dispatch = useDispatch();
 
   const authUser = useAuthUser();
   console.log(authUser);
+  // const setAuthUserActions = setAuthUserAction();
+  // console.log(setAuthUserActions);
   // const authUserAction = setAuthUserAction();
   // console.log(authUserAction);
 
@@ -89,17 +97,13 @@ const PostManagement = () => {
   // }
 
   function handleLogin() {
-    if (authUser) {
-      handleLogout();
-    } else {
-      window.open("https://twitter-auth.audaxious.com/auth/twitter", "_self");
-    }
+    window.open("http://localhost:4000/auth/twitter", "_self");
   }
 
   // http://localhost:8080/post-management
 
   function handleLogout() {
-    window.open("https://twitter-auth.audaxious.com/auth/logout", "_self");
+    window.open("http://localhost:4000/auth/logout", "_self");
     setAuthUser(null);
   }
 
@@ -107,14 +111,20 @@ const PostManagement = () => {
     async function getUser() {
       try {
         const response = await axios.get(
-          "https://twitter-auth.audaxious.com/auth/login/success",
+          "http://localhost:4000/auth/login/success",
           {
             withCredentials: true,
           }
         );
 
         console.log(response);
-        // setAuthUser(response.data.user);
+
+        const userData = {
+          name: response.data.user.name,
+          screenName: response.data.user.screenName,
+          twitterAccess: response.data.user.twitterAccess,
+        };
+        dispatch(setAuthUserTwitterAction(userData));
       } catch (error) {
         console.error("Error fetching user:", error);
       }
@@ -163,13 +173,13 @@ const PostManagement = () => {
       const response = await axios.post(
         "https://audaxious-130e2398fbd3.herokuapp.com/generate_tweet/",
         {
-          number_of_texts: "4",
+          number_of_texts: "2",
           keywords: "politics, football",
           sentiment: "Neutral",
         },
         {
           headers: {
-            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2NjAzNzA1LCJpYXQiOjE3MDY1MTczMDUsImp0aSI6IjI0NTVmNmRiY2I1MDRmMGViZjljMDFhODgzMzZkZThhIiwidXNlcl9pZCI6MTl9.g1FlhquYDNi9ZAKYXz8qhbd0VymfTE17eCsLiirvt7w"}`,
+            Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2NjkwNzg5LCJpYXQiOjE3MDY2MDQzODksImp0aSI6ImYzN2I5YzJhZjYzMzQ4ZjZhM2VhZDBiOWMwOTIzNTc0IiwidXNlcl9pZCI6MTl9.PCjVyI3P6nBwx7a4a-Sa1rsm4tWSP331w-jeTeeP_6A"}`,
             "Content-Type": "application/json",
           },
         }
@@ -559,7 +569,8 @@ const PostManagement = () => {
           onClick={handleLogin}
           className="border-[1px] border-[#2A3C46] rounded-[4px] py-3 px-6 text-[#E8E8E8] text-[15px] font-Poppins font-normal"
         >
-          {authUser ? "Disconnect Twitter" : "Connect Twitter (X)"}
+          {authUser?.twitter ? "Disconnect Twitter" : "Connect Twitter (X)"}
+          {/* connect */}
         </button>
 
         <button

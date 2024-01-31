@@ -13,8 +13,6 @@ const CompanyName = ({
   handleInputChange,
   handleMediaNetworkChange,
   handleSubmit,
-  selectedFileName,
-  fileInputRef,
 }) => {
   const [disabled, setDisabled] = useState(true);
 
@@ -51,11 +49,11 @@ const CompanyName = ({
             //   required
             onChange={handleInputChange("companyName")}
           />
-          {/* <HearAboutUsSelect
+          <HearAboutUsSelect
             value={state.mediaNetwork}
             onChange={handleMediaNetworkChange}
             options={hearAboutUs}
-          /> */}
+          />
         </form>
       </div>
 

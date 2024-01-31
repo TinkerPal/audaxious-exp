@@ -69,6 +69,8 @@ const Login = () => {
       },
     });
 
+  // localhost:5000/api/v1/login/success
+
   return (
     <>
       <Helmet>

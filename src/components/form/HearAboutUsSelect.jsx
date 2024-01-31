@@ -26,13 +26,14 @@ const HearAboutUsSelect = ({ value, onChange, options }) => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    // onChange(option);
   };
 
   const handleOptionClick = (option) => {
     setIsOpen(false);
     onChange(option);
   };
+
+  // const selectedOption = options.find((option) => option.value === value);
 
   return (
     <>
@@ -42,6 +43,7 @@ const HearAboutUsSelect = ({ value, onChange, options }) => {
           onClick={handleClick}
         >
           {value?.label || "Please select"}{" "}
+          {/* {selectedOption ? selectedOption.label : "Please select"}{" "} */}
           {isOpen ? <GoChevronUp /> : <GoChevronDown />}
         </div>
         {isOpen && (

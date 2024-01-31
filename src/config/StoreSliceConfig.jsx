@@ -14,9 +14,12 @@ const slice = createSlice({
       state.isLoadingModal =
         payload !== undefined ? !!payload : !state.isLoadingModal;
     },
-    // setAuthUserAction: (state, { payload }) => {
-    //   state.authUser = payload;
-    // },
+    setAuthUserAction: (state, { payload }) => {
+      state.authUser = payload;
+    },
+    setAuthUserTwitterAction: (state, { payload }) => {
+      state.authUser.twitter = payload;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -35,7 +38,12 @@ const slice = createSlice({
       ),
 });
 
-export const { toggleLoadingModalAction, toggleSideMenuAction } = slice.actions;
+export const {
+  toggleLoadingModalAction,
+  toggleSideMenuAction,
+  setAuthUserAction,
+  setAuthUserTwitterAction,
+} = slice.actions;
 
 export default slice;
 
