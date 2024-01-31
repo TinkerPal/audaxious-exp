@@ -48,17 +48,17 @@ const CreateAccount = () => {
             return toast.error(data.message);
           }
 
-          if (data && data.token) {
+          if (data) {
             toast.success("OTP sent to your email");
 
-            sessionStorage.setItem("authToken", data.token);
+            const user = data.user;
 
             navigate(
               "/create-account-otp".concat(
                 "?email=",
                 values.email,
-                "&tokenRef=",
-                "authToken"
+                "&userId=",
+                user
               )
             );
           }

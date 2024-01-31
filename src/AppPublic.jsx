@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import PathConstant from "./routes/pathConstant";
 
 import Layout from "./layout/Layout";
+import Ssoverify from "./pages/dashboard/Ssoverify";
 // import ErrorPage from './pages/error/ErrorPage';
 
 const Home = lazy(() => import("./pages/home/Home"));
@@ -53,6 +54,7 @@ const AppPublic = () => {
             element={<ResetPassword />}
           />
           <Route path={PathConstant.ENGAGEPORTAL} element={<EngagePortal />} />
+          <Route path={PathConstant.DASHBOARD} element={<Ssoverify />} />
 
           {/* <Route path="*" element={<Login />} /> */}
         </Routes>

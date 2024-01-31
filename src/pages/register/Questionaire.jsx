@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
-import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { classNames } from "../../utils/Helper";
 import ProgressBar from "../../components/form/ProgressBar";
@@ -13,33 +13,25 @@ import pathConstant from "../../routes/pathConstant";
 
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
-
-import useAuthUser from "../../hooks/useAuthUser";
 import { toast } from "react-toastify";
 
 const Questionaire = () => {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  const authUser = useAuthUser();
-  // console.log(authUser);
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("authToken");
-  console.log(token);
-
-  const fileInputRef = useRef(null);
-  const [selectedFileName, setSelectedFileName] = useState("");
+  const user = searchParams.get("user");
 
   const [state, setState] = useState({
     role: "",
     usage: [],
     companyName: "",
-    mediaNetwork: [],
+    mediaNetwork: null,
   });
 
   console.log(state);
 
-  // For Services Component
+  // For Usage Component
   const handleCheckboxChange = (title) => {
     if (!state.usage.includes(title)) {
       setState((prevState) => ({
@@ -54,42 +46,28 @@ const Questionaire = () => {
     }
   };
 
-  // function handleChange(key) {
-  //   return (value) => {
-  //     if (key === "resume") {
-  //       const file = value.target.files[0];
-  //       setSelectedFileName(file ? file.name : "");
-  //     } else if (key === "selectedFixedType" && state.paymentType === "fixed") {
-  //       setState((prevState) => ({
-  //         ...prevState,
-  //         priceEstimate: value,
-  //       }));
-  //     } else if (
-  //       key === "selectedHourlyType" &&
-  //       state.paymentType === "hourly"
-  //     ) {
-  //       setState((prevState) => ({
-  //         ...prevState,
-  //         priceEstimate: value,
-  //       }));
-  //     } else {
-  //       setState((prevState) => ({ ...prevState, [key]: value }));
-  //     }
-  //   };
-  // }
-
   function handleChange(key) {
     return (value) => {
       setState((prevState) => ({ ...prevState, [key]: value }));
     };
   }
 
-  function handleMediaNetworkChange(selectedOption) {
-    setState((prevState) => ({
-      ...prevState,
-      mediaNetwork: [selectedOption],
-    }));
+  function handleMediaNetworkChange(mediaNetwork) {
+    // setState((prevState) => ({
+    //   ...prevState,
+    //   mediaNetwork: [selectedOption.value],
+    // }));
+    setState((prevState) => ({ ...prevState, mediaNetwork }));
   }
+
+  const handleSelect = (category) => {
+    // setState((prevState) => ({
+    //   ...prevState,
+    //   mediaNetwork: [selectedOption.value],
+    // }));
+    // console.log(selectedOption);
+    setState((prevState) => ({ ...prevState, category }));
+  };
 
   function handleInputChange(key) {
     return (e) => handleChange(key)(e.target.value);
@@ -100,25 +78,17 @@ const Questionaire = () => {
 
     try {
       const response = await axios.patch(
-        `https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update`,
-        state,
+        `https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/walkthrough/update/${user}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+          ...state,
+          mediaNetwork: state.mediaNetwork ? [state.mediaNetwork.value] : null,
         }
       );
-
       console.log(response);
 
-      if (token) {
-        toast.success("login successful");
+      toast.success("Thank you for completing the questionnaire!");
 
-        navigate(pathConstant.DASHBOARD);
-      }
-
-      // navigate(pathConstant.DASHBOARD);
+      navigate(pathConstant.LOGIN);
     } catch (error) {
       console.error(error);
     }
@@ -127,8 +97,6 @@ const Questionaire = () => {
   const contentProps = {
     state,
     setState,
-    selectedFileName,
-    fileInputRef,
     handleCheckboxChange,
     handleInputChange,
     handleMediaNetworkChange,
