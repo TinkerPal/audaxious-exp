@@ -8,10 +8,10 @@ const Ssoverify = () => {
     async function run() {
       try {
         const response = await axios.get(
-          "https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/login/success",
-          {
-            withCredentials: true,
-          }
+          "https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/login/success"
+          //   {
+          //     withCredentials: true,
+          //   }
         );
 
         console.log(response);
