@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { AppHttp } from "./HttpConfig";
+import { AppHttp, TweetHttp } from "./HttpConfig";
 import { StoreQueryTagEnum } from "../constants/storeConstants";
 
 export const AppApi = createApi({
@@ -43,10 +43,79 @@ export const AppApi = createApi({
         ...config,
       }),
     }),
+    getAllPlansRequest: builder.query({
+      query: (config) => ({
+        url: "http://localhost:4000/auth/login/success",
+        method: "get",
+        ...config,
+      }),
+      // providesTags: ['GETALLPLAN'],
+    }),
+  }),
+});
+
+export const TweetApi = createApi({
+  reducerPath: "tweet",
+  baseQuery: axiosBaseQuery({}, TweetHttp),
+  // tagTypes: ["GENERATETWEET"],
+  endpoints: (builder) => ({
+    generateTweet: builder.mutation({
+      query: (config) => ({
+        url: "/generate_tweet/",
+        method: "post",
+        ...config,
+      }),
+      // invalidatesTags: ["GENERATETWEET"],
+    }),
+
+    scheduleTweet: builder.mutation({
+      query: (config) => ({
+        url: "/schedule_tweet/",
+        method: "post",
+        ...config,
+      }),
+      // providesTags: ["GENERATETWEET"],
+    }),
+    getTweetRequest: builder.query({
+      query: (config) => ({
+        url: "/tweets/",
+        method: "get",
+        ...config,
+      }),
+      // providesTags: ["GENERATETWEET"],
+    }),
+    getSingleTweetRequest: builder.query({
+      query: ({ id, ...config }) => ({
+        url: `/tweets/${id}`,
+        method: "get",
+        ...config,
+      }),
+      // providesTags: ["GENERATETWEET"],
+    }),
+    editTweet: builder.query({
+      query: ({ id, ...config }) => ({
+        url: `/tweets/${id}/`,
+        method: "patch",
+        ...config,
+      }),
+      // providesTags: ["GENERATETWEET"],
+    }),
+    editTweet: builder.query({
+      query: ({ id, ...config }) => ({
+        url: `/tweets/${id}/`,
+        method: "delete",
+        ...config,
+      }),
+      // providesTags: ["GENERATETWEET"],
+    }),
   }),
 });
 
 [AppApi].forEach((api) => {
+  api.enhanceEndpoints({ addTagTypes: Object.values(StoreQueryTagEnum) });
+});
+
+[TweetApi].forEach((api) => {
   api.enhanceEndpoints({ addTagTypes: Object.values(StoreQueryTagEnum) });
 });
 
