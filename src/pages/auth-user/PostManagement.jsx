@@ -57,7 +57,7 @@ const PostManagement = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const authUser = useAuthUser();
-  const accessToken = authUser.twitter.twitterAccess;
+  const accessToken = authUser.twitter?.twitterAccess;
   console.log(accessToken);
 
   const headers = {
@@ -105,18 +105,20 @@ const PostManagement = () => {
     setAnchorEl(null);
   };
 
+  const TWITTER_URL="https://twitter-auth.audaxious.com";
+
   function handleLogin() {
     // if (authUser) {
     //   handleLogout();
     // } else {
-    window.open("http://localhost:4000/auth/twitter", "_self");
+    window.open(`${TWITTER_URL}/auth/twitter`, "_self");
     // }
   }
 
-  // http://localhost:8080/post-management
+
 
   function handleLogout() {
-    window.open("http://localhost:4000/auth/logout", "_self");
+    window.open(`${TWITTER_URL}/auth/logout`, "_self");
     // authUser.twitter(null);
     dispatch(clearAuthUserTwitterAction());
   }
@@ -125,7 +127,7 @@ const PostManagement = () => {
     async function getUser() {
       try {
         const response = await axios.get(
-          "http://localhost:4000/auth/login/success",
+          `${TWITTER_URL}/auth/login/success`,
           {
             withCredentials: true,
           }
@@ -136,7 +138,7 @@ const PostManagement = () => {
         const userData = {
           name: response.data.user.name,
           screenName: response.data.user.screenName,
-          twitterAccess: response.data.user.twitterAccess,
+          twitterAccess: response.data.user?.twitterAccess,
         };
         dispatch(setAuthUserTwitterAction(userData));
       } catch (error) {
