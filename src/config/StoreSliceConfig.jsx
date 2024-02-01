@@ -20,6 +20,9 @@ const slice = createSlice({
     setAuthUserTwitterAction: (state, { payload }) => {
       state.authUser.twitter = payload;
     },
+    clearAuthUserTwitterAction: (state) => {
+      state.authUser.twitter = null;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -43,6 +46,7 @@ export const {
   toggleSideMenuAction,
   setAuthUserAction,
   setAuthUserTwitterAction,
+  clearAuthUserTwitterAction,
 } = slice.actions;
 
 export default slice;

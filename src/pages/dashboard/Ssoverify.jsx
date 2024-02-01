@@ -23,7 +23,19 @@ const Ssoverify = () => {
     }
     run();
   }, []);
-  return <div>{loading ? <div>Loading...</div> : <div>Ssoverify</div>}</div>;
+  return (
+    <div>
+      {loading ? (
+        <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
+          Loading...
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
+          Ssoverify
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Ssoverify;

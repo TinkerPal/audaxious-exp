@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { classNames } from "../../utils/Helper";
@@ -13,7 +14,6 @@ import pathConstant from "../../routes/pathConstant";
 
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
-import { toast } from "react-toastify";
 
 const Questionaire = () => {
   const [step, setStep] = useState(0);
@@ -28,8 +28,6 @@ const Questionaire = () => {
     companyName: "",
     mediaNetwork: null,
   });
-
-  console.log(state);
 
   // For Usage Component
   const handleCheckboxChange = (title) => {
@@ -53,21 +51,8 @@ const Questionaire = () => {
   }
 
   function handleMediaNetworkChange(mediaNetwork) {
-    // setState((prevState) => ({
-    //   ...prevState,
-    //   mediaNetwork: [selectedOption.value],
-    // }));
     setState((prevState) => ({ ...prevState, mediaNetwork }));
   }
-
-  const handleSelect = (category) => {
-    // setState((prevState) => ({
-    //   ...prevState,
-    //   mediaNetwork: [selectedOption.value],
-    // }));
-    // console.log(selectedOption);
-    setState((prevState) => ({ ...prevState, category }));
-  };
 
   function handleInputChange(key) {
     return (e) => handleChange(key)(e.target.value);
@@ -84,7 +69,6 @@ const Questionaire = () => {
           mediaNetwork: state.mediaNetwork ? [state.mediaNetwork.value] : null,
         }
       );
-      console.log(response);
 
       toast.success("Thank you for completing the questionnaire!");
 

@@ -3,7 +3,7 @@ import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { throttle } from "../utils/FunctionUtils";
 import { isObjectEmpty, deepMerge } from "../utils/ObjectUtils";
 import { logoutAction } from "./StoreActionConfig";
-import { AppApi } from "./StoreQueryConfig";
+import { AppApi, TweetApi } from "./StoreQueryConfig";
 import globalSlice, {
   getGlobalSliceStorageState,
   globalInitialState,
@@ -12,6 +12,7 @@ import globalSlice, {
 const store = configureStore({
   reducer: {
     [AppApi.reducerPath]: AppApi.reducer,
+    [TweetApi.reducerPath]: TweetApi.reducer,
     [globalSlice.name]: globalSlice.reducer,
   },
   preloadedState: loadState({
@@ -20,7 +21,8 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       AppApi.middleware,
-      rtkqOnResetMiddleware(AppApi)
+      TweetApi.middleware,
+      rtkqOnResetMiddleware(AppApi, TweetApi)
     ),
 });
 
