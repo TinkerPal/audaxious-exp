@@ -305,7 +305,7 @@ const AI = () => {
             </div>
           </div>
 
-          <div className="w-full flex justify-between items-center pb-4 container px-20 pt-4 gap-4">
+          <div className="flex justify-end items-end pb-4 container pt-4 gap-4 max-w-xl">
             <select
               value={values.number_of_texts}
               onChange={handleChange}

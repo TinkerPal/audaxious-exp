@@ -57,19 +57,19 @@ const PostManagement = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const authUser = useAuthUser();
-  const accessToken = authUser.twitter.twitterAccess;
-  console.log(accessToken);
+  // const accessToken = authUser.twitter.twitterAccess;
+  // console.log(accessToken);
 
-  const headers = {
-    Authorization: `Bearer ${accessToken}`,
-    "Content-Type": "application/json",
-  };
+  // const headers = {
+  //   Authorization: `Bearer ${accessToken}`,
+  //   "Content-Type": "application/json",
+  // };
 
-  const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
-    headers,
-  });
+  // const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
+  //   headers,
+  // });
 
-  console.log("Data:", data);
+  // console.log("Data:", data);
 
   // const handleDateChange = (selectedDate) => {
   //   onChange(selectedDate);
