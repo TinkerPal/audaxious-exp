@@ -25,6 +25,7 @@
     "clsx": "^1.2.1",
     "dayjs": "^1.11.10",
     "emoji-mart": "^5.5.2",
+    "emoji-picker-react": "^4.7.12",
     "formik": "^2.2.9",
     "framer-motion": "^10.10.0",
     "iron-session": "^8.0.1",
