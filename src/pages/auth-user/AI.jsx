@@ -15,6 +15,9 @@ import { aiOptions } from "../../constants/globalConstant";
 
 import pro from "../../assets/svg/start.svg";
 import user from "../../assets/svg/avatar3.svg";
+import down from "../../assets/svg/down-time.svg";
+import clock from "../../assets/svg/clock.svg";
+import addimg from "../../assets/svg/add-img.svg";
 
 import "react-calendar/dist/Calendar.css";
 import { TweetApi } from "../../config/StoreQueryConfig";
@@ -25,60 +28,81 @@ import Calender from "../../components/Calender";
 import DateTimePicker from "react-datetime-picker";
 import pathConstant from "../../routes/pathConstant";
 
+import { ReactComponent as Stars } from "../../assets/svg/startsss.svg";
+import { ReactComponent as Divide } from "../../assets/svg/divide.svg";
+
 const AI = () => {
   const navigate = useNavigate();
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
-  const [selected, setSelected] = useState(null);
-  const [typeSelected, setTypeSelected] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [generatedTweets, setGeneratedTweets] = useState({});
-  const [images, setImages] = useState([]);
-  const [scheduledTimes, setScheduledTimes] = useState([]);
   const [selectedTweets, setSelectedTweets] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [tweetScheduledTimes, setTweetScheduledTimes] = useState({});
 
+  // const [selectedTweets, setSelectedTweets] = useState([]);
+  // const [selectAll, setSelectAll] = useState(false);
+
+  // const handleTweetSelect = (index) => {
+  //   const selectedIndex = selectedTweets.indexOf(index);
+  //   let newSelected = [];
+
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selectedTweets, index);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selectedTweets.slice(1));
+  //   } else if (selectedIndex === selectedTweets.length - 1) {
+  //     newSelected = newSelected.concat(selectedTweets.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(
+  //       selectedTweets.slice(0, selectedIndex),
+  //       selectedTweets.slice(selectedIndex + 1)
+  //     );
+  //   }
+
+  //   setSelectedTweets(newSelected);
+  // };
+
+  // const handleSelectAll = (event) => {
+  //   if (event.target.checked) {
+  //     const newSelected = Object.keys(generatedTweets).map((index) =>
+  //       parseInt(index)
+  //     );
+  //     setSelectedTweets(newSelected);
+  //     setSelectAll(true);
+  //   } else {
+  //     setSelectedTweets([]);
+  //     setSelectAll(false);
+  //   }
+  // };
+
   const handleDateChange = (tweetId, date) => {
-    setTweetScheduledTimes({ ...tweetScheduledTimes, [tweetId]: date });
-  };
+    const formattedDate = date
+      .toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+      .replace(/\//g, "-");
 
-  // Function to handle individual tweet selection
-  const handleTweetSelection = (tweet) => {
-    if (selectedTweets.includes(tweet)) {
-      setSelectedTweets(selectedTweets.filter((t) => t !== tweet));
-    } else {
-      setSelectedTweets([...selectedTweets, tweet]);
-    }
-  };
+    setTweetScheduledTimes({
+      ...tweetScheduledTimes,
+      [tweetId]: formattedDate,
+    });
 
-  // Function to handle "Select All" checkbox
-  const handleSelectAll = () => {
-    if (selectAll) {
-      setSelectedTweets([]);
-    } else {
-      setSelectedTweets(Object.values(generatedTweets));
-    }
-    setSelectAll(!selectAll);
-  };
-
-  console.log(generatedTweets);
-
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
-
-  const handleDateSelect = (date) => {
-    setShowDate(false);
-    setSelectedDate(date);
+    console.log("Tweet Scheduled Times:", tweetScheduledTimes);
   };
 
   const handleType = (option) => {
     setTypeSelected(option);
 
-    // Handle navigation based on the selected option
     if (option) {
       if (option.value === "Create post manually") {
         navigate(PathConstant.POSTMANAGEMENTMANUAL);
@@ -114,16 +138,15 @@ const AI = () => {
   };
 
   const handleImageChange = (event, index) => {
-    setSelectedFile(event.target.files[0]);
-
-    // const newImages = [...images];
-    // newImages[index] = event.target.files[0];
-    // setImages(newImages);
+    // setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    setFileName(file ? file.name : "");
   };
 
   const authUser = useAuthUser();
   const accessToken = authUser.twitter.twitterAccess;
-  console.log(accessToken);
+  // console.log(accessToken);
 
   const headers = {
     Authorization: `Bearer ${accessToken}`,
@@ -136,22 +159,6 @@ const AI = () => {
   const [scheduleTweetMutation, scheduleTweetMutationResult] =
     TweetApi.useScheduleTweetMutation();
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="container">
-  //       <h2 className="text-white">Loading...</h2>
-  //     </div>
-  //   );
-  // }
-
-  // if (!data || data.length === 0) {
-  //   return (
-  //     <div className="container">
-  //       <h2 className="text-white">No tweets available</h2>
-  //     </div>
-  //   );
-  // }
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -160,12 +167,7 @@ const AI = () => {
         sentiment: "",
       },
       // validationSchema: Yup.object().shape({
-      //   amount: Yup.number()
-      //     .min(
-      //       150,
-      //       'Please ensure your deposit amount is at least $150 or more'
-      //     )
-      //     .required('Amount is required'),
+      //
       // }),
       onSubmit: async (values) => {
         try {
@@ -191,70 +193,38 @@ const AI = () => {
       },
     });
 
-  // const handleTimeChange = (event, index) => {
-  //   const newTimes = [...scheduledTimes];
-  //   newTimes[index] = event.target.value;
-  //   setScheduledTimes(newTimes);
-  // };
-
   const handleTweetSubmit = async () => {
-    if (!selectedFile) {
-      console.error("Please select a file.");
-      return;
-    }
+    // if (!selectedFile) {
+    //   console.error("Please select a file.");
+    //   return;
+    // }
 
     try {
       const formData = new FormData();
-      // formData.append('media', selectedFile);
-
-      // const formData = new FormData();
-      // formData.append('proof', selectedFile);
 
       Object.values(generatedTweets).forEach((content, index) => {
         formData.append("tweet", content);
         formData.append("media", selectedFile);
         formData.append(
           "tweet_at",
-          tweetScheduledTimes[index] || new Date().toISOString()
+          (tweetScheduledTimes[index] instanceof Date
+            ? tweetScheduledTimes[index]
+            : new Date()
+          ).toISOString()
         );
       });
-      // const tweetData = Object.values(generatedTweets).map((content, index) => {
-      //   return {
-      //     tweet: content,
-      //     media: images[index], // Assuming images is an array of uploaded files
-      //     tweet_at: tweetScheduledTimes[index] || new Date(),
-      //   };
-      // });
 
-      // Object.values(generatedTweets).forEach((content, index) => {
-      //   formData.append(`tweet[${index}][tweet]`, content);
-      //   formData.append(
-      //     `tweet[${index}][tweet_at]`,
-      //     tweetScheduledTimes[index] || new Date()
-      //   );
-
-      //   // Check if an image is present and append it to FormData
-      //   if (images[index]) {
-      //     formData.append(`tweet[${index}][media]`, images[index]);
-      //   }
-      // });
-
-      // for (const tweet of tweetData) {
-      //   await TweetApi.useScheduleTweetMutation(tweet, {
-      //     headers: headers,
-      //   });
-      // }
-
-      const headers = {
+      const scheduleHeader = {
         Authorization: `Bearer ${accessToken}`,
-        // "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       };
 
-      const responseData = await scheduleTweetMutation(formData, {
-        headers,
-      });
+      const responseData = await scheduleTweetMutation({
+        headers: scheduleHeader,
+        data: formData,
+      }).unwrap();
 
-      // console.log(responseData);
+      console.log(responseData);
 
       // navigate(pathConstant.POSTMANAGEMENT);
 
@@ -264,14 +234,6 @@ const AI = () => {
       console.log(error);
     }
   };
-
-  // const {
-  //   data: generatedTweets,
-  //   isLoading,
-  //   isError,
-  // } = generateTweetMutationResult;
-
-  // console.log(data);
 
   return (
     <>
@@ -294,26 +256,19 @@ const AI = () => {
                 cols="30"
                 rows="6"
               ></textarea>
-              {/* <textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="Type Something"
-                className="w-full outline-none text-white text-sm bg-transparent resize-none"
-                cols="30"
-                rows="6"
-              ></textarea> */}
             </div>
           </div>
 
-          <div className="w-full flex justify-between items-center pb-4 container px-20 pt-4 gap-4">
+          <div className="flex justify-end items-end pb-4 container pt-4 gap-4 px-20">
             <select
               value={values.number_of_texts}
               onChange={handleChange}
               onBlur={handleBlur}
               name="number_of_texts"
-              className="w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none "
+              className="px-3 py-2 border rounded-md shadow-sm focus:outline-none w-40"
             >
-              <option value="">Select Number of Texts</option>
+              <option value="">Number of Texts</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -324,9 +279,9 @@ const AI = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               name="sentiment"
-              className="w-1/2 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none "
+              className="w-40 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none"
             >
-              <option value="">Select Sentiment</option>
+              <option value="">Sentiment</option>
               <option value="Neutral">Neutral</option>
               <option value="Positive">Positive</option>
               <option value="Negative">Negative</option>
@@ -336,7 +291,7 @@ const AI = () => {
               <button
                 type="submit"
                 disabled={generateTweetMutationResult.isLoading}
-                className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+                className="bg-[#79C4EC] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
               >
                 Generate
               </button>
@@ -344,95 +299,135 @@ const AI = () => {
           </div>
         </form>
       </div>{" "}
-      {/* Checkbox to select all tweets */}
-      {/* className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36
-      mt-4" */}
-      <div className="container grid grid-cols-1 justify-center items-center max-w-xl gap-8 pt-4">
+      <div className="flex flex-col justify-center items-center py-10">
+        <Divide />
+
+        <div className="flex justify-center gap-3 mt-4 items-center">
+          <Stars />
+          <p className="font-Poppins text-[16px] font-normal leading-[15px] bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
+            3 posts generated, view results below
+          </p>
+        </div>
+      </div>
+      <div className="container grid grid-cols-1 justify-center items-center max-w-3xl gap-8 pt-4">
         {generatedTweets && (
           <>
-            <div className="container flex pt-6 items-center">
-              <input
-                type="checkbox"
-                checked={selectAll}
-                onChange={handleSelectAll}
-                className="mr-2"
-              />
-              <label className="text-white">Select all post</label>
-            </div>
             {Object.values(generatedTweets).map((content, index) => (
               <>
                 <div
                   key={index}
-                  className="flex items-start border-[0.5px] border-[#2A3C46] rounded-[4px] p-10"
+                  className="border-[0.5px] border-[#2A3C46] rounded-[4px] p-10"
                 >
-                  <input
-                    type="checkbox"
-                    checked={selectedTweets.includes(content)}
-                    onChange={() => handleTweetSelection(content)}
-                    className="mr-2"
-                  />
-                  <div>
-                    <div className="text-white">{content}</div>
-                    <div className="flex items-center gap-4">
-                      <div className="text-white my-4">
+                  <div className="border-dashed border-[0.5px] border-[#2A3C46] rounded-[4px] p-10 flex items-start gap-4 justify-start">
+                    <div className="flex items-start">
+                      <div className="flex gap-2">
                         <input
-                          type="file"
-                          onChange={(e) => handleImageChange(e, index)}
-                          className="mr-2"
+                          type="checkbox"
+                          id="some_id"
+                          className="
+    relative peer shrink-0
+    appearance-none w-4 h-4 border-[1px] border-[#94D0F0] rounded-sm
+    mt-1"
                         />
-                      </div>
-                      {/* <div className="text-white">
-                        <span
-                          onClick={() => setShowEmoji(!showEmoji)}
-                          className="cursor-pointer hover:text-slate-300 text-[#6EB2D7]"
+                        <label htmlFor="some_id">label</label>
+                        <svg
+                          className="
+    absolute 
+    w-4 h-4 mt-1
+    hidden peer-checked:block
+    pointer-events-none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#94D0F0"
+                          strokeWidth="4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <BsEmojiSmile />
-                        </span>
-                        {showEmoji && (
-                          <div className="absolute top-[100%] left-0">
-                            <Picker
-                              data={data}
-                              emojiSize={20}
-                              emojiButtonSize={28}
-                              onEmojiSelect={addEmoji}
-                              maxFrequentRows={0}
-                            />
-                          </div>
-                        )}
-                      </div> */}
-                    </div>
-                    <div className="text-white flex items-center justify-between">
-                      <div>
-                        <DateTimePicker
-                          onChange={(date) => handleDateChange(index, date)}
-                          value={tweetScheduledTimes[index] || new Date()}
-                        />
-                        {/* <DateTimePicker onChange={onChange} value={value} /> */}
-
-                        {/* {" "}
-                      {showDate && (
-                        <div className="absolute top-[100%] left-0">
-                          <Calender />
-                        </div>
-                      )} */}
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
                       </div>
-                      {/* <button>Edit Button</button> */}
+
+                      <div>
+                        <div className="text-white">{content}</div>
+
+                        <div className="flex items-center gap-4">
+                          <div className="text-white my-4">
+                            {/* <input
+                            type="file"
+                            onChange={(e) => handleImageChange(e, index)}
+                            className="mr-2"
+                          /> */}
+
+                            <label htmlFor="file-upload">
+                              <img
+                                src={addimg}
+                                alt="file icon"
+                                className="cursor-pointer"
+                              />
+                            </label>
+                            <input
+                              id="file-upload"
+                              type="file"
+                              name="media"
+                              onChange={(e) => handleImageChange(e, index)}
+                              style={{ display: "none" }}
+                            />
+                            {fileName && (
+                              <span className="text-white">{fileName}</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  <div className="text-white flex items-center justify-between mt-6">
+                    <div className="flex justify-center gap-1">
+                      <img src={clock} alt="clock" />
+                      <DateTimePicker
+                        onChange={(date) => handleDateChange(index, date)}
+                        value={
+                          tweetScheduledTimes[index]
+                            ? new Date(tweetScheduledTimes[index])
+                            : new Date()
+                        }
+                        className="text-[#707171] font-Poppins2 react-datetime-picker__wrapper"
+                        calendarClassName="backgrounds"
+                        calendarIcon={<img src={down} alt="" />}
+                        clearIcon={null}
+                        disableClock
+                        minDate={new Date()}
+                        required
+                        style={{ outline: "none", boxShadow: "none" }}
+                      />
+                    </div>
+
+                    <button className="text-white">Edit</button>
+                  </div>
                 </div>
+                {/* <div className="container py-6">
+                  <button
+                    type="submit"
+                    onClick={handleTweetSubmit}
+                    className="bg-[#636464] text-[#15151A] w-full rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+                  >
+                    Shedule
+                  </button>
+                </div> */}
               </>
             ))}
-            <div className="container py-6">
-              <button
-                type="submit"
-                onClick={handleTweetSubmit}
-                className="bg-[#636464] text-[#15151A] w-full rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
-              >
-                Shedule
-              </button>
-            </div>
           </>
         )}
+      </div>
+      <div className="container py-6">
+        <button
+          type="submit"
+          onClick={handleTweetSubmit}
+          className="bg-[#636464] text-[#15151A] w-full rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+        >
+          Shedule
+        </button>
       </div>
       {/* <h2 className="text-white container">jfjjfjf</h2>
       <div className="text-white">

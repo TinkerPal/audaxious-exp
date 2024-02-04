@@ -180,3 +180,38 @@ button:disabled {
   flex-grow: 100;
   align-items: stretch;
 }
+
+.custom-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 15px;
+  border: 1px solid #79c4ec;
+  border-radius: 4px;
+  background-color: #060b12;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  background-color: #2a3c46;
+}
+
+.backgrounds {
+  background-color: #060b12;
+  border: 1px solid #2a3c46;
+  border-radius: 6px;
+}
+
+.borderss {
+  border: none;
+}
+
+.removeBorder {
+  border: none !important;
+}
+
+.react-datetime-picker__wrapper {
+  border: none !important; /* Override the default border */
+  /* Additional styles if needed */
+}

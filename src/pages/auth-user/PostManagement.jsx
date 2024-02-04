@@ -56,20 +56,26 @@ const PostManagement = () => {
   const [value, onChange] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const authUser = useAuthUser();
-  const accessToken = authUser.twitter?.twitterAccess;
-  console.log(accessToken);
-
-  const headers = {
-    Authorization: `Bearer ${accessToken}`,
-    "Content-Type": "application/json",
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString(); // Adjust formatting as needed
   };
 
-  const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
-    headers,
-  });
+  const authUser = useAuthUser();
+  // const accessToken = authUser.twitter.twitterAccess;
 
-  console.log("Data:", data);
+  // const headers = {
+  //   Authorization: `Bearer ${accessToken}`,
+  //   "Content-Type": "application/json",
+  // };
+
+  // const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
+  //   headers,
+  // });
+
+  // console.log("Data:", data);
+
+  // console.log(accessToken);
 
   // const handleDateChange = (selectedDate) => {
   //   onChange(selectedDate);
@@ -105,7 +111,7 @@ const PostManagement = () => {
     setAnchorEl(null);
   };
 
-  const TWITTER_URL="https://twitter-auth.audaxious.com";
+  const TWITTER_URL = "http://localhost:4000";
 
   function handleLogin() {
     // if (authUser) {
@@ -114,8 +120,6 @@ const PostManagement = () => {
     window.open(`${TWITTER_URL}/auth/twitter`, "_self");
     // }
   }
-
-
 
   function handleLogout() {
     window.open(`${TWITTER_URL}/auth/logout`, "_self");
@@ -126,12 +130,9 @@ const PostManagement = () => {
   useEffect(() => {
     async function getUser() {
       try {
-        const response = await axios.get(
-          `${TWITTER_URL}/auth/login/success`,
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get(`${TWITTER_URL}/auth/login/success`, {
+          withCredentials: true,
+        });
 
         console.log(response);
 
@@ -147,29 +148,6 @@ const PostManagement = () => {
     }
     getUser();
   }, []);
-
-  // async function handleGenerate() {
-  //   try {
-  //     const response = await axios.post(
-  //       "https://audaxious-130e2398fbd3.herokuapp.com/generate_tweet/",
-  //       {
-  //         number_of_texts: "2",
-  //         keywords: "politics, football",
-  //         sentiment: "Neutral",
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2NjkwNzg5LCJpYXQiOjE3MDY2MDQzODksImp0aSI6ImYzN2I5YzJhZjYzMzQ4ZjZhM2VhZDBiOWMwOTIzNTc0IiwidXNlcl9pZCI6MTl9.PCjVyI3P6nBwx7a4a-Sa1rsm4tWSP331w-jeTeeP_6A"}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       }
-  //     );
-  //     console.log(response.data);
-  //     // setTweets(response.data);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
 
   let people = [
     {
@@ -531,6 +509,80 @@ const PostManagement = () => {
 
         {/* <img src={user} alt="" /> */}
       </div>
+
+      {/* <div className="grid md:grid-cols-2 gap-8 container mt-10">
+        {data &&
+          data.map((tweet) => (
+            <div
+              key={tweet.id}
+              className="border-[0.5px] border-[#2A3C46] rounded-[4px]"
+            >
+              <div className="p-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                      engage to earn
+                    </button>
+                    <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                      Airdrops
+                    </button>
+                    <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                      Play to earn
+                    </button>
+                  </div>
+
+                  <div>
+                    <IconButton
+                      aria-label="more"
+                      onClick={handleClick}
+                      aria-haspopup="true"
+                      aria-controls="long-menu"
+                    >
+                      <MoreVertIcon className="text-white" />
+                    </IconButton>
+                    <Menu
+                      anchorEl={anchorEl}
+                      keepMounted
+                      onClose={handleClose}
+                      open={open}
+                    >
+                      {MyOptions.map((option) => (
+                        <MenuItem key={option} onClick={handleClose}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                  </div>
+                </div>
+              </div>
+              <div className="border-[0.5px] border-[#2A3C46]" />
+              <div className="p-4">
+                <div className="flex items-center gap-4">
+                  <p className="text-white">Logo</p>
+                  <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
+                    {tweet.user}
+                  </h3>
+                  <p className="text-[#929192] text-[14px] font-light">
+                    {formatDate(tweet.created_at)}
+                  </p>
+                </div>
+                <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
+                  {tweet.tweet}
+                </p>
+                <p className="text-white">Logo</p>
+              </div>
+
+              {tweet.media && (
+                <>
+                  <div className="border-[0.5px] border-[#2A3C46]" />
+                  <div className="p-4">
+                    <img src={tweet.media} alt="Media" />
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+      </div> */}
     </>
   );
 };
