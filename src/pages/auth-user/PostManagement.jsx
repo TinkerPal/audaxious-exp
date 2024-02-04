@@ -111,7 +111,7 @@ const PostManagement = () => {
     setAnchorEl(null);
   };
 
-  const TWITTER_URL = "http://localhost:4000";
+  const TWITTER_URL = "https://twitter-auth.audaxious.com";
 
   function handleLogin() {
     // if (authUser) {
