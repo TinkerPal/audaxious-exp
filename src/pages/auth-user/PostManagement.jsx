@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
@@ -17,10 +17,9 @@ import pathConstant from "../../routes/pathConstant";
 import HowToCreateTweetModal from "../../components/HowToCreateTweetModal";
 import SelectComponent from "../../components/Select";
 import Emoji from "../../components/Emoji";
-import Select from "../../components/Select";
+import Spinner from "../../common/Spinner";
 
 import { ReactComponent as Connect } from "../../assets/svg/connect.svg";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 import useAuthUser from "../../hooks/useAuthUser";
@@ -38,58 +37,38 @@ const PostManagement = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
   const [selected, setSelected] = useState(null);
-  // const [authUser, setAuthUser] = useState();
-  // const [tweets, setTweets] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [accessToken, setAccessToken] = useState(null);
+
   const dispatch = useDispatch();
+  const authUser = useAuthUser();
+  console.log(authUser);
 
-  // const authUser = useAuthUser();
-  // console.log(authUser);
-  // const setAuthUserActions = setAuthUserAction();
-  // console.log(setAuthUserActions);
-  // const authUserAction = setAuthUserAction();
-  // console.log(authUserAction);
+  // const accessToken = authUser.twitter.twitterAccess;
 
-  const handleSelect = (option) => {
-    setSelected(option);
+  useEffect(() => {
+    if (authUser) {
+      const accessToken = authUser.twitter.twitterAccess;
+      setAccessToken(accessToken);
+      setLoading(false);
+    }
+  }, [authUser]);
+
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
   };
 
-  const [value, onChange] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
+    headers,
+    skip: loading || !accessToken,
+  });
+
+  console.log("Data:", data);
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
-    return date.toLocaleString(); // Adjust formatting as needed
-  };
-
-  const authUser = useAuthUser();
-  // const accessToken = authUser.twitter.twitterAccess;
-
-  // const headers = {
-  //   Authorization: `Bearer ${accessToken}`,
-  //   "Content-Type": "application/json",
-  // };
-
-  // const { data, error, isLoading } = TweetApi.useGetTweetRequestQuery({
-  //   headers,
-  // });
-
-  // console.log("Data:", data);
-
-  // console.log(accessToken);
-
-  // const handleDateChange = (selectedDate) => {
-  //   onChange(selectedDate);
-  //   setIsDateSelected(true);
-  //   setSelectedDate(selectedDate);
-  // };
-
-  // add emoji
-  const addEmoji = (e) => {
-    const sym = e.unified.split("_");
-    const codeArray = [];
-    sym.forEach((el) => codeArray.push("0x" + el));
-    let emoji = String.fromCodePoint(...codeArray);
-    setText(text + emoji);
+    return date.toLocaleString();
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -148,6 +127,27 @@ const PostManagement = () => {
     }
     getUser();
   }, []);
+
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
+  }
+
+  if (!accessToken) {
+    return (
+      <div className="flex flex-col justify-center items-center mt-14 mb-8">
+        <Connect />
+        <p className="font-Poppins text-[16px] text-center font-light text-[#585C60] my-4">
+          You are yet to connect your Twitter account to audaxious
+        </p>
+        <button
+          onClick={handleLogin}
+          className="border-[1px] border-[#2A3C46] rounded-[4px] py-3 px-6 text-[#E8E8E8] text-[15px] font-Poppins font-normal"
+        >
+          Connect Twitter
+        </button>
+      </div>
+    );
+  }
 
   let people = [
     {
@@ -375,7 +375,7 @@ const PostManagement = () => {
 
   return (
     <>
-      {/* <Helmet>
+      <Helmet>
         <title>Post Management | Audaxious</title>
         <meta
           name="description"
@@ -384,205 +384,97 @@ const PostManagement = () => {
         <link rel="canonical" href={pathConstant.POSTMANAGEMENT} />
       </Helmet>
 
-      <div className="container">
-        <div className="border-[0.5px] border-[#24343D] rounded-[8px] min-h-screen">
-          <div className="border-[0.5px] border-[#24343D] rounded-[8px] bg-[#74C3F0] bg-opacity-[4%] m-2">
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-4">
-                <p>Logo</p>
-                <div>
-                  <h3 className="text-[#EBEDED] font-Bricolage_Grotesque font-normal text-[20px] leading-[32px]">
-                    Create & Schedule post using{" "}
-                    <span className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
-                      AudaXious AI
-                    </span>
-                  </h3>
-                  <p className="font-Poppins text-[#A5A5A5] text-[14px] font-light">
-                    Utilize the power of our AI to schedule and automate your
-                    <br />
-                    posts OR simply post manually
-                  </p>
-                </div>
-              </div>
+      {data && data.length > 0 ? (
+        <div className="grid md:grid-cols-2 gap-8 container mt-10">
+          <Suspense
+            fallback={
+              <h1 className="text-white justify-center items-center flex">
+                Loading Tweet...
+              </h1>
+            }
+          >
+            {data.map((tweet) => (
+              <div
+                key={tweet.id}
+                className="border-[0.5px] border-[#2A3C46] rounded-[4px]"
+              >
+                <div className="p-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                        engage to earn
+                      </button>
+                      <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                        Airdrops
+                      </button>
+                      <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                        Play to earn
+                      </button>
+                    </div>
 
-              <div className="border border-[#314048] z-20 relative rounded-[14px] p-4 bg-[#18242B] bg-opacity-10">
-                <div className="text-white absolute -left-5 z-10 top-0">
-                  <p>Logo</p>
+                    <div>
+                      <IconButton
+                        aria-label="more"
+                        onClick={handleClick}
+                        aria-haspopup="true"
+                        aria-controls="long-menu"
+                      >
+                        <MoreVertIcon className="text-white" />
+                      </IconButton>
+                      <Menu
+                        anchorEl={anchorEl}
+                        keepMounted
+                        onClose={handleClose}
+                        open={open}
+                      >
+                        {MyOptions.map((option) => (
+                          <MenuItem key={option} onClick={handleClose}>
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <p className="text-white">Logo</p>
-                  <div>
-                    <p className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
-                      Janet C
+                <div className="border-[0.5px] border-[#2A3C46]" />
+                <div className="p-4">
+                  <div className="flex items-center gap-4">
+                    <p className="text-white">Logo</p>
+                    <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
+                      {tweet.user}
+                    </h3>
+                    <p className="text-[#929192] text-[14px] font-light">
+                      {formatDate(tweet.created_at)}
                     </p>
-                    <p className="text-[#D3D3D3]">2.3k Likes</p>
                   </div>
-                </div>
-                <div className="text-white absolute -right-5 z-10 bottom-0">
-                  <p>Logo</p>
-                </div>{" "}
-              </div>
-            </div>
-          </div>
-
-          <div className="border-[0.5px] border-[#24343D] rounded-[8px] m-2 mt-4 p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-white">Recent Post</p>
-              </div>
-
-              <div>
-                <div className="mt-3 flex -space-x-2 overflow-hidden">
-                  {people.map((person, index) => (
-                    <img
-                      key={index}
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
-                      src={person.avatarUrl}
-                      alt=""
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-center gap-4">
-                  {[
-                    { label: "twitter (X)", SvgIcon: "Icons" },
-                    { label: "Instagram", SvgIcon: "Icons" },
-                    { label: "Telegram", SvgIcon: "Icons" },
-                    { label: "Discord", SvgIcon: "Icons" },
-                    { label: "Facebook", SvgIcon: "Icons" },
-                  ].map(({ label, SvgIcon }, index) => {
-                    return (
-                      <div key={index} className="relative">
-                        <button
-                          className={clsx(
-                            "flex items-center flex-col gap-2 font-Poppins text-[12px] leading-[16px]",
-                            tab === index ? "text-[#E8E8E8]" : "text-[#A5A5A5]"
-                          )}
-                          onClick={() => setTab(index)}
-                        >
-                          <p>Icon</p>
-                          {label}
-                        </button>
-                        {tab === index && (
-                          <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#EBEDED] left-1/2" />
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
-                >
-                  Compose Post
-                </button>
-                <HowToCreateTweetModal
-                  isOpen={isOpen}
-                  onClose={() => setIsOpen(false)}
-                  setIsOpen={setIsOpen}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div>{[<>{memberBenefitTab}</>, <>{projectBenefitTab}</>][tab]}</div>
-        </div>
-      </div> */}
-      <div className="flex flex-col justify-center items-center mt-14 mb-8">
-        <Connect />
-        <p className="font-Poppins text-[16px] text-center font-light text-[#585C60] my-4">
-          You are {authUser ? "connected" : "yet to connect"} to your Twitter{" "}
-          <br /> account to audaxious
-        </p>
-        <button
-          onClick={handleLogin}
-          className="border-[1px] border-[#2A3C46] rounded-[4px] py-3 px-6 text-[#E8E8E8] text-[15px] font-Poppins font-normal"
-        >
-          {/* {authUser?.twitter ? "Disconnect Twitter" : "Connect Twitter (X)"} */}
-          connect
-        </button>
-
-        {/* <img src={user} alt="" /> */}
-      </div>
-
-      {/* <div className="grid md:grid-cols-2 gap-8 container mt-10">
-        {data &&
-          data.map((tweet) => (
-            <div
-              key={tweet.id}
-              className="border-[0.5px] border-[#2A3C46] rounded-[4px]"
-            >
-              <div className="p-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-3">
-                    <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                      engage to earn
-                    </button>
-                    <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                      Airdrops
-                    </button>
-                    <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                      Play to earn
-                    </button>
-                  </div>
-
-                  <div>
-                    <IconButton
-                      aria-label="more"
-                      onClick={handleClick}
-                      aria-haspopup="true"
-                      aria-controls="long-menu"
-                    >
-                      <MoreVertIcon className="text-white" />
-                    </IconButton>
-                    <Menu
-                      anchorEl={anchorEl}
-                      keepMounted
-                      onClose={handleClose}
-                      open={open}
-                    >
-                      {MyOptions.map((option) => (
-                        <MenuItem key={option} onClick={handleClose}>
-                          {option}
-                        </MenuItem>
-                      ))}
-                    </Menu>
-                  </div>
-                </div>
-              </div>
-              <div className="border-[0.5px] border-[#2A3C46]" />
-              <div className="p-4">
-                <div className="flex items-center gap-4">
-                  <p className="text-white">Logo</p>
-                  <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
-                    {tweet.user}
-                  </h3>
-                  <p className="text-[#929192] text-[14px] font-light">
-                    {formatDate(tweet.created_at)}
+                  <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
+                    {tweet.tweet}
                   </p>
+                  <p className="text-white">Logo</p>
                 </div>
-                <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
-                  {tweet.tweet}
-                </p>
-                <p className="text-white">Logo</p>
-              </div>
 
-              {tweet.media && (
-                <>
-                  <div className="border-[0.5px] border-[#2A3C46]" />
-                  <div className="p-4">
-                    <img src={tweet.media} alt="Media" />
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-      </div> */}
+                {tweet.media && (
+                  <>
+                    <div className="border-[0.5px] border-[#2A3C46]" />
+                    <div className="p-4">
+                      <img src={tweet.media} alt="Media" />
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </Suspense>
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center mt-14 mb-8">
+          <p className="font-Poppins text-[20px] text-center font-light text-[#585C60] my-4">
+            Nothing to see here!{" "}
+          </p>
+          <p className="font-Poppins text-[14px] text-center font-light text-[#585C60] my-4">
+            Your post will appear here{" "}
+          </p>
+        </div>
+      )}
     </>
   );
 };

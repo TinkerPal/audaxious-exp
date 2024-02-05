@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import DateTimePicker from "react-datetime-picker";
 
-import SelectCreateTweetType from "../../components/SelectCreateTweetType";
 import PathConstant from "../../routes/pathConstant";
 import { TweetApi } from "../../config/StoreQueryConfig";
 import useAuthUser from "../../hooks/useAuthUser";
@@ -32,12 +31,7 @@ const Manual = () => {
 
   const navigate = useNavigate();
 
-  const handleSelect = (option) => {
-    setSelected(option);
-  };
-
   const handleImageChange = (event) => {
-    // setSelectedFile(event.target.files[0]);
     const file = event.target.files[0];
     setSelectedFile(file);
     setFileName(file ? file.name : "");
@@ -102,7 +96,6 @@ const Manual = () => {
 
   const addEmoji = (emoji) => {
     setSelectedEmoji(emoji.native);
-    // setShowEmoji(false);
     setFieldValue("tweet", values.tweet + emoji.native);
   };
 
@@ -192,9 +185,9 @@ const Manual = () => {
               type="submit"
               onClick={scheduleTweetMutationResult.isLoading}
               disabled={isGeneratingTweet}
-              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] w-30 py-3 px-6 font-Poppins text-[14px] font-normal"
+              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] w-40 py-3 px-6 font-Poppins text-[14px] font-normal"
             >
-              {isGeneratingTweet ? "Scheduling" : "Schedule Tweet"}
+              {isGeneratingTweet ? "Scheduling..." : "Schedule Tweet"}
             </button>
           </div>
         </form>

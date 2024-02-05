@@ -33,6 +33,7 @@ import avatar2 from "../assets/svg/avatar2.svg";
 
 import "react-datepicker/dist/react-datepicker.css";
 import DecorativeElement from "./DecorativeElement";
+import useAuthUser from "../hooks/useAuthUser";
 
 const PostManagementLayout = () => {
   const [tab, setTab] = useState(0);
@@ -40,6 +41,9 @@ const PostManagementLayout = () => {
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
   const [selected, setSelected] = useState(null);
+
+  const authUser = useAuthUser();
+  const screenName = authUser.twitter.screenName;
 
   const handleSelect = (option) => {
     setSelected(option);
@@ -308,14 +312,14 @@ const PostManagementLayout = () => {
 
   return (
     <>
-      {/* <Helmet>
+      <Helmet>
         <title>Post Management | Audaxious</title>
         <meta
           name="description"
           content="Create account so you can start trading tokens"
         />
         <link rel="canonical" href={pathConstant.POSTMANAGEMENT} />
-      </Helmet> */}
+      </Helmet>
 
       <div className="container">
         <div className="border-[0.5px] border-[#24343D] rounded-[8px] min-h-screen relative">
@@ -395,7 +399,22 @@ const PostManagementLayout = () => {
               <div>
                 <div className="flex justify-center gap-4 flex-wrap">
                   {[
-                    { label: "twitter (X)", SvgIcon: PX },
+                    // { label: "twitter (X)", SvgIcon: PX },
+                    {
+                      label: authUser.twitter ? (
+                        <a
+                          href={`https://twitter.com/${screenName}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent"
+                        >
+                          @{screenName}
+                        </a>
+                      ) : (
+                        "twitter (X)"
+                      ),
+                      SvgIcon: PX,
+                    },
                     { label: "Instagram", SvgIcon: PIG },
                     { label: "Telegram", SvgIcon: PTelegram },
                     { label: "Discord", SvgIcon: PDiscord },
@@ -418,7 +437,7 @@ const PostManagementLayout = () => {
                           {label}
                         </button>
                         {tab === index && (
-                          <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#EBEDED] left-1/2" />
+                          <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#0C74F1] left-1/2" />
                         )}
                       </div>
                     );
