@@ -117,7 +117,7 @@ const PostManagement = () => {
 
         const userData = {
           name: response.data.user.name,
-          screenName: response.data.user.screenName,
+          screenName: response?.data.user.screenName,
           twitterAccess: response.data.user?.twitterAccess,
         };
         dispatch(setAuthUserTwitterAction(userData));
