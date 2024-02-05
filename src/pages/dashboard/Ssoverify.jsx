@@ -8,7 +8,7 @@ const Ssoverify = () => {
     async function run() {
       try {
         const response = await axios.get(
-          "https://audaxious-auth-api-a107eed7620b.herokuapp.com/api/v1/login/success",
+          "https://api.audaxious.com/api/v1/login/success",
           {
             withCredentials: true,
           }
@@ -23,19 +23,19 @@ const Ssoverify = () => {
     }
     run();
   }, []);
-  return (
-    <div>
-      {loading ? (
-        <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
-          Loading...
-        </div>
-      ) : (
-        <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
-          Ssoverify
-        </div>
-      )}
-    </div>
-  );
+  // return (
+  //   <div>
+  //     {loading ? (
+  //       <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
+  //         Loading...
+  //       </div>
+  //     ) : (
+  //       <div className="flex flex-col justify-center items-center min-h-screen text-white text-base">
+  //         Ssoverify
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default Ssoverify;
