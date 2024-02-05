@@ -43,7 +43,8 @@ const PostManagementLayout = () => {
   const [selected, setSelected] = useState(null);
 
   const authUser = useAuthUser();
-  const screenName = authUser?.twitter?.screenName;
+  // const screenName = authUser?.twitter?.screenName;
+  const screenName = "Hello";
 
   const handleSelect = (option) => {
     setSelected(option);
