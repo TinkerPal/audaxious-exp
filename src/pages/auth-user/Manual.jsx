@@ -185,9 +185,9 @@ const Manual = () => {
               type="submit"
               onClick={scheduleTweetMutationResult.isLoading}
               disabled={isGeneratingTweet}
-              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] w-32 py-3 px-6 font-Poppins text-[14px] font-normal"
+              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] w-40 py-3 px-6 font-Poppins text-[14px] font-normal"
             >
-              {isGeneratingTweet ? "Scheduling" : "Schedule Tweet"}
+              {isGeneratingTweet ? "Scheduling..." : "Schedule Tweet"}
             </button>
           </div>
         </form>
