@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { TweetApi } from "../config/StoreQueryConfig";
 import useAuthUser from "../hooks/useAuthUser";
 
-import { ReactComponent as Stars } from "../assets/svg/startsss.svg";
 import { ReactComponent as Divide } from "../assets/svg/divide.svg";
 
 export default function GenerateTweet({ onGenerated }) {
@@ -134,13 +133,6 @@ export default function GenerateTweet({ onGenerated }) {
 
       <div className="flex flex-col justify-center items-center py-10">
         <Divide />
-
-        <div className="flex justify-center gap-3 mt-4 items-center">
-          <Stars />
-          <p className="font-Poppins text-[16px] font-normal leading-[15px] bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
-            1 posts generated, view results below
-          </p>
-        </div>
       </div>
     </>
   );

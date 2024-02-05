@@ -20,6 +20,7 @@ import Emoji from "../../components/Emoji";
 import Spinner from "../../common/Spinner";
 
 import { ReactComponent as Connect } from "../../assets/svg/connect.svg";
+import { ReactComponent as Nothing } from "../../assets/svg/nothing-img.svg";
 import "react-datepicker/dist/react-datepicker.css";
 
 import useAuthUser from "../../hooks/useAuthUser";
@@ -33,12 +34,12 @@ import { AppApi, TweetApi } from "../../config/StoreQueryConfig";
 
 const PostManagement = () => {
   const [tab, setTab] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
   const [showEmoji, setShowEmoji] = useState(false);
   const [text, setText] = useState("");
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(true);
   const [accessToken, setAccessToken] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
   const authUser = useAuthUser();
@@ -48,7 +49,7 @@ const PostManagement = () => {
 
   useEffect(() => {
     if (authUser) {
-      const accessToken = authUser.twitter.twitterAccess;
+      const accessToken = authUser?.twitter?.twitterAccess;
       setAccessToken(accessToken);
       setLoading(false);
     }
@@ -91,6 +92,7 @@ const PostManagement = () => {
   };
 
   const TWITTER_URL = "https://twitter-auth.audaxious.com";
+  // https://twitter-auth.audaxious.com
 
   function handleLogin() {
     // if (authUser) {
@@ -116,9 +118,10 @@ const PostManagement = () => {
         console.log(response);
 
         const userData = {
-          name: response.data.user.name,
-          screenName: response.data.user.screenName,
-          twitterAccess: response.data.user?.twitterAccess,
+          name: response?.data?.user?.name,
+          screenName: response?.data?.user?.screenName,
+          twitterAccess: response?.data?.user?.twitterAccess,
+          profileImageUrl: response?.data?.user?.profileImageUrl,
         };
         dispatch(setAuthUserTwitterAction(userData));
       } catch (error) {
@@ -439,7 +442,7 @@ const PostManagement = () => {
                 <div className="border-[0.5px] border-[#2A3C46]" />
                 <div className="p-4">
                   <div className="flex items-center gap-4">
-                    <p className="text-white">Logo</p>
+                    {/* <p className="text-white">Logo</p> */}
                     <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
                       {tweet.user}
                     </h3>
@@ -450,7 +453,6 @@ const PostManagement = () => {
                   <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
                     {tweet.tweet}
                   </p>
-                  <p className="text-white">Logo</p>
                 </div>
 
                 {tweet.media && (
@@ -467,12 +469,27 @@ const PostManagement = () => {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center mt-14 mb-8">
+          <Nothing />
           <p className="font-Poppins text-[20px] text-center font-light text-[#585C60] my-4">
             Nothing to see here!{" "}
           </p>
           <p className="font-Poppins text-[14px] text-center font-light text-[#585C60] my-4">
             Your post will appear here{" "}
           </p>
+
+          <div className="">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+            >
+              Create Post
+            </button>
+            <HowToCreateTweetModal
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              setIsOpen={setIsOpen}
+            />
+          </div>
         </div>
       )}
     </>

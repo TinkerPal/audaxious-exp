@@ -25,6 +25,8 @@ import { ReactComponent as CommunitySvg } from "../../assets/svg/People-Outline-
 import { ReactComponent as RewardsSvg } from "../../assets/svg/Award-Outline-32px.svg";
 import { ReactComponent as SettingsSvg } from "../../assets/svg/Setting2-Outline-32px.svg";
 import { ReactComponent as HelpSvg } from "../../assets/svg/Setting2-Outline-32px.svg";
+import { ReactComponent as Logo } from "../../assets/svg/audaxious-logo.svg";
+
 import LineSvg from "../../assets/svg/line 2.svg";
 
 const Sidebar = (props) => {
@@ -75,8 +77,7 @@ const Sidebar = (props) => {
           >
             <div className="">
               <div className="mb-10 ml-4 xl:ml-12">
-                {/* <Logo /> */}
-                <div className="text-white">Logo</div>
+                <Logo />
               </div>
             </div>
             {!ismd && (

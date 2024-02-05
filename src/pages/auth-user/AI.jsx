@@ -18,8 +18,9 @@ import down from "../../assets/svg/down-time.svg";
 import clock from "../../assets/svg/clock.svg";
 import addimg from "../../assets/svg/add-img.svg";
 
+import { ReactComponent as EdithIcon } from "../../assets/svg/edit-post.svg";
+import { ReactComponent as SaveIcon } from "../../assets/svg/save-post.svg";
 import { ReactComponent as Stars } from "../../assets/svg/startsss.svg";
-import { ReactComponent as Divide } from "../../assets/svg/divide.svg";
 import { Try } from "@mui/icons-material";
 
 const AI = () => {
@@ -66,25 +67,23 @@ const AI = () => {
   async function sendTweets() {
     try {
       const selectedTweets = generatedTweets.filter((t) => t.selected);
+      const formData = new FormData();
 
-      for (let i = 0; i < selectedTweets.length; i++) {
-        const tweet = selectedTweets[i];
-        const formData = new FormData();
+      selectedTweets.forEach((t) =>
+        Object.keys(t).forEach((k) => formData.append(k, t[k]))
+      );
 
-        Object.keys(tweet).forEach((k) => formData.append(k, tweet[k]));
+      const scheduleHeader = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "multipart/form-data",
+      };
 
-        const scheduleHeader = {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "multipart/form-data",
-        };
+      const responseData = await scheduleTweetMutation({
+        headers: scheduleHeader,
+        data: formData,
+      }).unwrap();
 
-        const responseData = await scheduleTweetMutation({
-          headers: scheduleHeader,
-          data: formData,
-        }).unwrap();
-
-        console.log(responseData);
-      }
+      console.log(responseData);
     } catch (error) {
       toast.error("Error while scheduling tweets");
       console.log(error);
@@ -101,6 +100,14 @@ const AI = () => {
     <>
       <div className="App">
         <GenerateTweet onGenerated={handleGenerateTweet} />
+
+        <div className="flex justify-center gap-3 mb-3 items-center">
+          <Stars />
+          <p className="font-Poppins text-[16px] font-normal leading-[15px] bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
+            {generatedTweets.length} posts generated, view results below
+          </p>
+        </div>
+
         <div>
           {generatedTweets.map((tweet, index) => (
             <GeneratedTweet
@@ -113,9 +120,15 @@ const AI = () => {
             />
           ))}
         </div>
-        <button onClick={sendTweets} className="text-white">
-          Schedule
-        </button>
+        <div className="flex justify-center items-center my-10">
+          <button
+            onClick={sendTweets}
+            disabled={generatedTweets.length === 0}
+            className="bg-[#79C4EC] text-[#15151A] rounded-[9px] py-3 px-6 w-32 font-Poppins text-[14px] font-normal"
+          >
+            Schedule
+          </button>
+        </div>
       </div>
     </>
   );
@@ -131,9 +144,20 @@ function GeneratedTweet({ tweet, onChange, index, addEmojiToTweet }) {
 
   // console.log(tweet);
 
+  // const handleInputChange = (e) => {
+  //   const { name, value, type, files } = e.target;
+  //   const inputValue = type === "file" ? files[0] : value;
+
+  //   onChange(name, inputValue);
+  // };
+
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
     const inputValue = type === "file" ? files[0] : value;
+
+    if (type === "file") {
+      setSelectedFileName(files[0].name);
+    }
 
     onChange(name, inputValue);
   };
@@ -223,24 +247,19 @@ function GeneratedTweet({ tweet, onChange, index, addEmojiToTweet }) {
                 onChange={handleInputChange}
                 className="mr-2"
               />
-
-              {/* <label htmlFor="media">
-                  <img
-                    src={addimg}
-                    alt="file icon"
-                    className="cursor-pointer"
-                  />
-                </label>
-                <input
-                  id="media"
-                  type="file"
-                  name="media"
-                  onChange={handleInputChange}
-                  style={{ display: "none" }}
-                />
-                {selectedFileName && (
-                  <span className="text-white">{selectedFileName}</span>
-                )} */}
+              {/* <label htmlFor="file-upload">
+                <img src={addimg} alt="file icon" className="cursor-pointer" />
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                name="media"
+                onChange={handleInputChange}
+                style={{ display: "none" }}
+              />
+              {selectedFileName && (
+                <span className="text-white">{selectedFileName}</span>
+              )} */}
             </div>
           </div>
         )}
@@ -266,10 +285,18 @@ function GeneratedTweet({ tweet, onChange, index, addEmojiToTweet }) {
           </div>
           <div>
             <button
-              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] py-3 px-6 w-32 font-Poppins text-[14px] font-normal"
+              className="bg-[#79C4EC] text-[#15151A] rounded-[9px] flex items-center justify-center py-3 px-3 w-36 font-Poppins text-[14px] font-normal"
               onClick={() => setIsEditing((p) => !p)}
             >
-              {isEditing ? "Save Post" : "Edit Post"}
+              {isEditing ? (
+                <div className="flex items-center gap-2">
+                  <SaveIcon /> Save Post
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <EdithIcon /> Edit Post
+                </div>
+              )}{" "}
             </button>
           </div>
         </div>
