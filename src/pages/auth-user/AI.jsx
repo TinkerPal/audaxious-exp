@@ -67,23 +67,26 @@ const AI = () => {
   async function sendTweets() {
     try {
       const selectedTweets = generatedTweets.filter((t) => t.selected);
-      const formData = new FormData();
-
-      selectedTweets.forEach((t) =>
-        Object.keys(t).forEach((k) => formData.append(k, t[k]))
-      );
 
       const scheduleHeader = {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "multipart/form-data",
       };
 
-      const responseData = await scheduleTweetMutation({
-        headers: scheduleHeader,
-        data: formData,
-      }).unwrap();
+      for (const tweet of selectedTweets) {
+        const formData = new FormData();
 
-      console.log(responseData);
+        Object.keys(tweet).forEach((key) => {
+          formData.append(key, tweet[key]);
+        });
+
+        const responseData = await scheduleTweetMutation({
+          headers: scheduleHeader,
+          data: formData,
+        }).unwrap();
+
+        console.log(responseData);
+      }
     } catch (error) {
       toast.error("Error while scheduling tweets");
       console.log(error);
