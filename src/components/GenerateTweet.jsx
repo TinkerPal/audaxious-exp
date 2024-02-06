@@ -70,7 +70,7 @@ export default function GenerateTweet({ onGenerated }) {
 
   return (
     <>
-      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 3xl:mx-72 mt-4">
+      <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 3xl:mx-[34rem] mt-4">
         <div className="border-[0.5px] z-10 border-[#436C82] rounded-[4px] py-4 px-6 md:mx-20">
           <div className="w-full rounded-sm relative">
             <textarea
