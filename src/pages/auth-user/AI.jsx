@@ -77,7 +77,9 @@ const AI = () => {
         const formData = new FormData();
 
         Object.keys(tweet).forEach((key) => {
-          formData.append(key, tweet[key]);
+          if (tweet[key] !== null) {
+            formData.append(key, tweet[key]);
+          }
         });
 
         const responseData = await scheduleTweetMutation({

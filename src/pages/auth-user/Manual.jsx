@@ -72,8 +72,12 @@ const Manual = () => {
         const formData = new FormData();
 
         formData.append("tweet", values.tweet);
-        formData.append("media", selectedFile);
+
         formData.append("tweet_at", values.tweet_at.toISOString());
+
+        if (selectedFile !== null) {
+          formData.append("media", selectedFile);
+        }
 
         const data = await scheduleTweetMutation({
           data: formData,
