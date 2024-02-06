@@ -212,7 +212,7 @@ const Manual = () => {
             </form>
           </div>
         </div>
-        <NavigationToggle />
+        {/* <NavigationToggle /> */}
         <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 mt-4">
           <form>
             <div className="border-[0.5px] border-[#436C82] rounded-[4px] md:px-6 px-5 py-4 md:mx-16">

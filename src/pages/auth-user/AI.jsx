@@ -222,7 +222,7 @@ const AI = () => {
           </div>
         </div>
 
-        <NavigationToggle />
+        {/* <NavigationToggle /> */}
 
         <GenerateTweet onGenerated={handleGenerateTweet} />
 
