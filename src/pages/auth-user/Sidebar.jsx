@@ -17,11 +17,11 @@ import PathConstant from "../../routes/pathConstant";
 
 // import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 
-import { ReactComponent as DashBoardSvg } from "../../assets/svg/Home2-Outline-32px.svg";
+import { ReactComponent as DashBoardSvg } from "../../assets/svg/dashboard-icon.svg";
 import { ReactComponent as MultisenderSvg } from "../../assets/svg/MoneySend-Outline-32px.svg";
 import { ReactComponent as EventsSvg } from "../../assets/svg/Calendar1-Outline-32px.svg";
-import { ReactComponent as EngageSvg } from "../../assets/svg/Calendar1-Outline-32px.svg";
-import { ReactComponent as CommunitySvg } from "../../assets/svg/People-Outline-32px.svg";
+import { ReactComponent as EngageSvg } from "../../assets/svg/People-Outline-32px.svg";
+import { ReactComponent as CommunitySvg } from "../../assets/svg/Home2-Outline-32px.svg";
 import { ReactComponent as RewardsSvg } from "../../assets/svg/Award-Outline-32px.svg";
 import { ReactComponent as SettingsSvg } from "../../assets/svg/Setting2-Outline-32px.svg";
 import { ReactComponent as HelpSvg } from "../../assets/svg/Setting2-Outline-32px.svg";
@@ -105,7 +105,7 @@ const Sidebar = (props) => {
             );
           })}
         </div>
-        <div className="py-6">
+        <div className="py-3">
           {/* Logout button */}
           <button
             className="w-full flex gap-4 transition-all text-[#818282] hover:text-white ml-12"
@@ -202,10 +202,10 @@ function AppSidebarLink({
       <NavLink
         className={({ isActive }) =>
           clsx(
-            "px-2 relative my-3 py-[0.59rem] xl:ml-10 mx-2 rounded-lg flex items-center gap-1 transition-all duration-300 ease-in-out text-[#818282] hover:text-white",
+            "px-2 relative my-3 py-[0.60rem] xl:ml-10 mx-2 rounded-lg flex items-center gap-1 transition-all duration-300 ease-in-out text-[#818282] hover:text-white",
             isFullSidebarWidth ? "" : "justify-center",
             isActive && "bg-[#2C2D30] text-[#D6D8D8]",
-            marginBottom && "lg:mb-16"
+            marginBottom && "lg:mb-12"
           )
         }
         {...restProps}
@@ -213,7 +213,7 @@ function AppSidebarLink({
       >
         {({ isActive }) => (
           <>
-            <SvgIcon fill={isActive ? "#FF844B" : "#6D7A86"} />
+            <SvgIcon fill={isActive ? "#EBEDED" : "#818282"} />
             {isFullSidebarWidth && (
               <>
                 <span className="flex-1 text-[15px] font-normal ml-3">
@@ -249,11 +249,6 @@ const AUDAXIOUS_LINKS = [
     SvgIcon: MultisenderSvg,
   },
   {
-    label: "Events",
-    to: PathConstant.EVENTS,
-    SvgIcon: EventsSvg,
-  },
-  {
     label: "Engage Portal",
     to: PathConstant.ENGAGEPORTALAUTH,
     SvgIcon: EngageSvg,
@@ -263,18 +258,17 @@ const AUDAXIOUS_LINKS = [
     to: PathConstant.COMMUNITY,
     SvgIcon: CommunitySvg,
   },
-
-  {
-    label: "Rewards",
-    to: PathConstant.REWARDS,
-    SvgIcon: RewardsSvg,
-  },
   {
     label: "Post Management",
     to: PathConstant.POSTMANAGEMENT,
     SvgIcon: RewardsSvg,
     marginBottom: true,
     underlineImage: LineSvg,
+  },
+  {
+    label: "Profile",
+    to: PathConstant.EVENTS,
+    SvgIcon: EventsSvg,
   },
   {
     label: "Settings",

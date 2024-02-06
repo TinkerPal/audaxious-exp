@@ -282,3 +282,11 @@ export const hearAboutUs = [
   { label: "Telegram", value: "Telegram" },
   { label: "Others", value: "Others" },
 ];
+
+export const numOfTweets = [
+  { label: "Generate 1", value: "Generate 1" },
+  { label: "Generate 2", value: "Generate 2" },
+  { label: "Generate 3", value: "Generate 3" },
+  { label: "Generate 4", value: "Generate 4" },
+  { label: "Generate 5", value: "Generate 5" },
+];

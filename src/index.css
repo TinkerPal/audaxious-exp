@@ -212,6 +212,10 @@ button:disabled {
 }
 
 .react-datetime-picker__wrapper {
-  border: none !important; /* Override the default border */
-  /* Additional styles if needed */
+  border: none !important;
+}
+
+.react-datetime-picker__inputGroup__input
+  .react-datetime-picker__inputGroup__minute {
+  cursor: pointer;
 }

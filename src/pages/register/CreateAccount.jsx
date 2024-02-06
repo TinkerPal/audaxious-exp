@@ -43,10 +43,13 @@ const CreateAccount = () => {
           const data = await verifyNewUserIdentityMutation({
             data: values,
           }).unwrap();
+
           console.log(data);
-          if (data.error) {
-            return toast.error(data.message);
-          }
+
+          // if (data.message) {
+          //   toast.success("OTP sent to your email");
+          //   return toast.error(data.error.message || "An Error Occured");
+          // }
 
           if (data) {
             toast.success("OTP sent to your email");
@@ -64,6 +67,18 @@ const CreateAccount = () => {
           }
         } catch (error) {
           toast.error(error);
+          // if (
+          //   error.response &&
+          //   error.response.data &&
+          //   error.response.data.error &&
+          //   error.response.data.error.message
+          // ) {
+          //   // Display the error message in a toast notification
+          //   toast.error(error.response.data.error.message);
+          // } else {
+          //   // Display a generic error message if no specific error message is available
+          //   toast.error("An error occurred while processing your request.");
+          // }
         }
       },
     });
