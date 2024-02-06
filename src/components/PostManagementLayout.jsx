@@ -184,7 +184,7 @@ const PostManagementLayout = () => {
                           {label}
                         </button>
                         {tab === index && (
-                          <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#0C74F1] left-1/2" />
+                          <div className="absolute -bottom-6 w-[48px] h-[4.5px] transform -translate-x-1/2 bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] left-1/2" />
                         )}
                       </div>
                     );
