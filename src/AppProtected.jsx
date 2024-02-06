@@ -81,12 +81,12 @@ const AppProtected = () => {
               element={<PostManagementLayout />}
             >
               <Route index element={<PostManagement />} />
-              <Route path={PathConstant.POSTMANAGEMENTAI} element={<AI />} />
-              <Route
-                path={PathConstant.POSTMANAGEMENTMANUAL}
-                element={<Manual />}
-              />
             </Route>
+            <Route path={PathConstant.POSTMANAGEMENTAI} element={<AI />} />
+            <Route
+              path={PathConstant.POSTMANAGEMENTMANUAL}
+              element={<Manual />}
+            />
             <Route path={PathConstant.REWARDS} element={<Rewards />} />
             <Route path={PathConstant.SETTINGS} element={<Settings />} />
             <Route path={PathConstant.HELP} element={<Help />} />

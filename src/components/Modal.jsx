@@ -7,7 +7,7 @@ const Modal = ({ open, onClose, heading, children, className }) => {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className={`relative z-10 ${className}`}
+        className={`relative z-30 ${className}`}
         onClose={onClose}
       >
         <Transition.Child

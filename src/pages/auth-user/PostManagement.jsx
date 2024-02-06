@@ -91,7 +91,7 @@ const PostManagement = () => {
     setAnchorEl(null);
   };
 
-  const TWITTER_URL = "https://twitter-auth.audaxious.com";
+  const TWITTER_URL = "http://localhost:4000";
   // https://twitter-auth.audaxious.com
 
   function handleLogin() {
@@ -387,6 +387,8 @@ const PostManagement = () => {
         <link rel="canonical" href={pathConstant.POSTMANAGEMENT} />
       </Helmet>
 
+      <h1 className="">Nothing</h1>
+
       {data && data.length > 0 ? (
         <div className="grid md:grid-cols-2 gap-8 container mt-10">
           <Suspense
@@ -396,91 +398,93 @@ const PostManagement = () => {
               </h1>
             }
           >
-            {data.map((tweet) => (
-              <div
-                key={tweet.id}
-                className="border-[0.5px] border-[#2A3C46] rounded-[4px]"
-              >
-                <div className="p-4">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                        engage to earn
-                      </button>
-                      <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                        Airdrops
-                      </button>
-                      <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
-                        Play to earn
-                      </button>
-                    </div>
+            {data
+              .slice()
+              .reverse()
+              .map((tweet) => (
+                <div
+                  key={tweet.id}
+                  className="border-[0.5px] border-[#2A3C46] rounded-[4px]"
+                >
+                  <div className="p-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-3">
+                        <button className="border-[1px] border-[#25D986] opacity-50 bg-[#51E19E] bg-opacity-10 text-[#25D986] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                          engage to earn
+                        </button>
+                        <button className="border-[1px] border-[#B525D9] opacity-50 bg-[#E0A2EF] bg-opacity-10 text-[#B525D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                          Airdrops
+                        </button>
+                        <button className="border-[1px] border-[#25D9D9] opacity-50 bg-[#51E1E1] bg-opacity-10 text-[#25D9D9] rounded-[4px] text-[10px] font-light font-Poppins py-2 px-3">
+                          Play to earn
+                        </button>
+                      </div>
 
-                    <div>
-                      <IconButton
-                        aria-label="more"
-                        onClick={handleClick}
-                        aria-haspopup="true"
-                        aria-controls="long-menu"
-                      >
-                        <MoreVertIcon className="text-white" />
-                      </IconButton>
-                      <Menu
-                        anchorEl={anchorEl}
-                        keepMounted
-                        onClose={handleClose}
-                        open={open}
-                      >
-                        {MyOptions.map((option) => (
-                          <MenuItem key={option} onClick={handleClose}>
-                            {option}
-                          </MenuItem>
-                        ))}
-                      </Menu>
+                      <div>
+                        <IconButton
+                          aria-label="more"
+                          onClick={handleClick}
+                          aria-haspopup="true"
+                          aria-controls="long-menu"
+                        >
+                          <MoreVertIcon className="text-white" />
+                        </IconButton>
+                        <Menu
+                          anchorEl={anchorEl}
+                          keepMounted
+                          onClose={handleClose}
+                          open={open}
+                        >
+                          {MyOptions.map((option) => (
+                            <MenuItem key={option} onClick={handleClose}>
+                              {option}
+                            </MenuItem>
+                          ))}
+                        </Menu>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="border-[0.5px] border-[#2A3C46]" />
-                <div className="p-4">
-                  <div className="flex items-center gap-4">
-                    {/* <p className="text-white">Logo</p> */}
-                    <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
-                      {tweet.user}
-                    </h3>
-                    <p className="text-[#929192] text-[14px] font-light">
-                      {formatDate(tweet.created_at)}
+                  <div className="border-[0.5px] border-[#2A3C46]" />
+                  <div className="p-4">
+                    <div className="flex items-center gap-4">
+                      <h3 className="font-Poppins font-normal text-[18px] text-[#E8E8E8]">
+                        {tweet.user}
+                      </h3>
+                      <p className="text-[#929192] text-[14px] font-light">
+                        {formatDate(tweet.created_at)}
+                      </p>
+                    </div>
+                    <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
+                      {tweet.tweet}
                     </p>
                   </div>
-                  <p className="font-Poppins font-light text-[#E8E8E8] text-[14px]">
-                    {tweet.tweet}
-                  </p>
-                </div>
 
-                {tweet.media && (
-                  <>
-                    <div className="border-[0.5px] border-[#2A3C46]" />
-                    <div className="p-4">
-                      <img src={tweet.media} alt="Media" />
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
+                  {tweet.media && (
+                    <>
+                      <div className="border-[0.5px] border-[#2A3C46]" />
+                      <div className="p-4">
+                        <img src={tweet.media} alt="Media" />
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
           </Suspense>
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center mt-14 mb-8">
           <Nothing />
-          <p className="font-Poppins text-[20px] text-center font-light text-[#585C60] my-4">
+          <p className="font-Poppins text-[20px] text-center font-light text-[#707171] mt-3">
             Nothing to see here!{" "}
           </p>
-          <p className="font-Poppins text-[14px] text-center font-light text-[#585C60] my-4">
+          <p className="font-Poppins text-[14px] text-center font-light text-[#FFF]">
             Your post will appear here{" "}
           </p>
 
-          <div className="">
+          <div className="pt-5">
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-[#636464] text-[#15151A] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
+              className="border border-[#2A3C46] text-[#E8E8E8] rounded-[9px] py-3 px-6 font-Poppins text-[14px] font-normal"
             >
               Create Post
             </button>
