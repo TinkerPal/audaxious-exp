@@ -13,14 +13,14 @@ import { ReactComponent as Discord } from "../assets/svg/discord.svg";
 
 function Footer(props) {
   return (
-    <div className="container relative w-full text-white font-Poppins">
+    <div className="pl-10 pr-10 relative w-full text-white font-Poppins">
       <div className="pb-7 pt-14">
         <div className="flex flex-wrap mb-16 gap-x-24 md:gap-x-20 gap-y-8">
           <div className="md:mr-32" style={{ maxWidth: 400 }}>
             <Audaxios />
             <p className="text-[14px] md:leading-[21.63px] font-light md:mt-3 mt-2">
-              leveraging web3 and AI to grow strong communities
-              <br className="hidden md:block" /> and incentivize active members
+            making access to web 3.0 simple...
+              {/* <br className="hidden md:block" /> and incentivize active members */}
             </p>
           </div>
           {GROUP_LINKS.map((group, key) => (
@@ -40,8 +40,50 @@ function Footer(props) {
           ))}
         </div>
 
-        <div className="border-t-[1px] border-[#71757D]">
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-5 md:pt-5">
+        <div className="border-t-[1px] border-[#71757D] flex pt-[30px] pb-[40]">
+
+        <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px] text-center">
+              © 2023 AudaXious. | All rights reserved
+            </p>
+            <div className="flex items-center gap-4 md:ml-auto">
+              <a
+                href="https://twitter.com/AudaXious3"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <X />
+              </a>
+
+              <a
+                href="https://t.me/audaxious"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Telegram />
+              </a>
+
+             
+              <Discord />
+
+              <a
+                href="https://coinmarketcap.com/community/profile/AudaXious/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Cmc />
+              </a>
+
+              
+
+              <a
+                href="https://github.com/AudaXious"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github />
+              </a>
+            </div>
+          {/* <div className="flex flex-wrap items-center justify-center gap-2 pt-5 md:pt-5">
             <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px]">
               © 2023 AudaXious. | All rights reserved
             </p>
@@ -62,7 +104,7 @@ function Footer(props) {
                 <Telegram />
               </a>
 
-              {/* <Instagram /> */}
+             
               <Discord />
 
               <a
@@ -73,7 +115,7 @@ function Footer(props) {
                 <Cmc />
               </a>
 
-              {/* <Facebook /> */}
+              
 
               <a
                 href="https://github.com/AudaXious"
@@ -83,7 +125,7 @@ function Footer(props) {
                 <Github />
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Version  */}
