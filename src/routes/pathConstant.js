@@ -1,5 +1,6 @@
 const pathConstant = {
   HOME: "/",
+  ABOUT: "/about",
   CREATEACCOUNT: "/create-account",
   CREATEACCOUNTOTP: "/create-account-otp",
   QUESTIONAIRE: "/create-account/questionaire",
