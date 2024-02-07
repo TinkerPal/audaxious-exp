@@ -19,7 +19,7 @@ function Footer(props) {
           <div className="md:mr-32" style={{ maxWidth: 400 }}>
             <Audaxios />
             <p className="text-[14px] md:leading-[21.63px] font-light md:mt-3 mt-2">
-            making access to web 3.0 simple...
+              making access to web 3.0 simple...
               {/* <br className="hidden md:block" /> and incentivize active members */}
             </p>
           </div>
@@ -40,49 +40,45 @@ function Footer(props) {
           ))}
         </div>
 
-        <div className="border-t-[1px] border-[#71757D] flex pt-[30px] pb-[40]">
+        <div className="hidden md:flex border-t-[1px] border-[#71757D] flex pt-[30px] pb-[40]">
+          <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px] text-center">
+            © 2023 AudaXious. | All rights reserved
+          </p>
+          <div className="flex items-center gap-4 md:ml-auto">
+            <a
+              href="https://twitter.com/AudaXious3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <X />
+            </a>
 
-        <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px] text-center">
-              © 2023 AudaXious. | All rights reserved
-            </p>
-            <div className="flex items-center gap-4 md:ml-auto">
-              <a
-                href="https://twitter.com/AudaXious3"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <X />
-              </a>
+            <a
+              href="https://t.me/audaxious"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Telegram />
+            </a>
 
-              <a
-                href="https://t.me/audaxious"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Telegram />
-              </a>
+            <Discord />
 
-             
-              <Discord />
+            <a
+              href="https://coinmarketcap.com/community/profile/AudaXious/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Cmc />
+            </a>
 
-              <a
-                href="https://coinmarketcap.com/community/profile/AudaXious/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Cmc />
-              </a>
-
-              
-
-              <a
-                href="https://github.com/AudaXious"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github />
-              </a>
-            </div>
+            <a
+              href="https://github.com/AudaXious"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github />
+            </a>
+          </div>
           {/* <div className="flex flex-wrap items-center justify-center gap-2 pt-5 md:pt-5">
             <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px]">
               © 2023 AudaXious. | All rights reserved
@@ -129,20 +125,20 @@ function Footer(props) {
         </div>
 
         {/* Mobile Version  */}
-        {/* <div className='block md:hidden'>
-          <div className='flex flex-wrap items-center justify-center gap-2 pt-7'>
-            <div className='flex items-center gap-8'>
+        <div className="block md:hidden">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-7">
+            <div className="flex items-center gap-8">
               <Facebook />
               <Instagram />
               <X />
             </div>
-            <div className='border-t-[1px] border-[#71757D]  mt-4'>
-              <p className='text-[#4F5259] font-medium font-Raleway text-[14px] mt-4'>
+            <div className="border-t-[1px] border-[#71757D]  mt-4">
+              <p className="text-[#4F5259] font-medium font-Raleway text-[14px] mt-4">
                 © 2023 HackCity, Inc. | All rights reserved
               </p>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

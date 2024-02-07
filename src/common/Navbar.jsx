@@ -49,8 +49,10 @@ function Navbar() {
 
   return (
     <>
-      <div className={`sticky top-0 transition-transform duration-500 z-30 bg-[#060B12]`}>
-        <div className="container border-slate-700 border-b-[1.5px]">
+      <div
+        className={`sticky top-0 transition-transform duration-500 z-30 border-slate-700 border-b-[1.5px] bg-[#060B12]`}
+      >
+        <div className="container">
           <div className="flex items-center justify-between py-6 transition-transform duration-500 md:py-8">
             <div
             // className={`${
@@ -185,41 +187,41 @@ function Navbar() {
                       </span>
                     </ScrollLink>
                   ))} */}
-                                <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
-                to={"/"}
-              >
-                <span className="text-[15px] font-light font-Poppins">
-                  {"Home"}
-                </span>
-              </Link>
-              <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
-                to={"#"}
-              >
-                <span className="text-[15px] font-light font-Poppins">
-                  {"Company"}
-                </span>
-              </Link>
-              <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
-                to={"/about"}
-              >
-                <span className="text-[15px] font-light font-Poppins">
-                  {"About"}
-                </span>
-              </Link>
-              <ScrollLink
-                smooth={true}
-                offset={-100}
-                duration={500}
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
-                to={"#"}
-              >
-                <span className="text-[15px] font-light font-Poppins">
-                  {"Download app"}
-                </span>
-              </ScrollLink>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"/"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Home"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Company"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"/about"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"About"}
+                    </span>
+                  </Link>
+                  <ScrollLink
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Download app"}
+                    </span>
+                  </ScrollLink>
                   <a
                     href="https://docs.audaxious.com/"
                     target="_blank"
