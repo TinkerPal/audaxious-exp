@@ -14,6 +14,8 @@ import { ReactComponent as Network1 } from "../../assets/svg/network1.svg";
 import { ReactComponent as Network2 } from "../../assets/svg/network2.svg";
 import { ReactComponent as Apple } from "../../assets/svg/buttonApple.svg";
 import { ReactComponent as Play } from "../../assets/svg/buttonPlay.svg";
+import { ReactComponent as LineBtw } from "../../assets/svg/linePhone.svg";
+import { ReactComponent as Rectangle } from "../../assets/svg/rectangle.svg";
 
 const About = () => {
   return (
@@ -26,27 +28,44 @@ const About = () => {
 
       <Container>
         <section className="flex flex-col items-center justify-items-center overflow-hidden">
-          <button className="pt-2 pb-2 pl-6 pr-6 border-slate-700 text-[#FFF] border-[2px] bg-neutral rounded-md mt-[60px] font-light font-Poppins">
-            About us
-          </button>
-          <p className="xl:text-[2.5rem] lg:text-[2rem] md:text-[2rem] text-[20px] md:leading-[55px] font-Poppins font-[900] text-[#FFF] leading-[45px] mt-[70px] text-center">
-            Promote Projects. Build Communities. Earn Rewards
-          </p>
+          <div className="mt-[-60px] bg-buttonCustom bg-no-repeat bg-cover bg-opacity-600 py-[120px] px-[200px]">
+            <button
+              style={{ whiteSpace: "nowrap" }}
+              className="px-[19px] py-[8px] border-[#314048] text-[#FFF] border-[2px] bg-neutral rounded-lg font-light font-Poppins"
+            >
+              About us
+            </button>
+          </div>
           <div className="container">
-            <div className="pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+            <p className="xl:text-[2.7rem] lg:text-[2rem] md:text-[2rem] text-[20px] md:leading-[55px] font-Poppins font-[900] text-[#FFF] leading-[45px] mt-[-70px] text-center">
+              Promote Projects. Build Communities. Earn Rewards
+            </p>
+          </div>
+          <div className="container">
+            <div className="relative pt-[2rem] bg-heroCustom bg-no-repeat bg-cover pl-[1rem] pb-[1rem] pr-[0.8rem] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+              <div className="absolute md:bottom-[20px] lg:bottom-[-55px] xl:bottom-[-10px] right-0">
+                <Rectangle />
+              </div>
               <div className="flex flex-col gap-[34px]">
-                <h2 className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent text-[32px] font-Poppins font-[900]">
+                <h2 className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent text-[2rem] font-Poppins font-[500]">
                   Our Purpose
                 </h2>
-                <p className="font-Poppins text-[14px] md:text-[30px] font-[400] text-[#EBEDED]">
+                <p className="font-Poppins text-[14px] md:text-[30px] lg:text-[2rem] font-[400] text-[#E8E8E8]">
                   Decentralized Social Blockchain
                 </p>
-                <p className="font-Poppins xl:text-[24px] md:text-[20px] text-[14px] font-[275] text-[#F5F5F5]">
-                  We at audaxious are very concerned with helping brands develop
-                  and scale healthy communities, Improve engagements on social
-                  post and provide product owners with AI tools for content
-                  generation and engagement analysis
-                </p>
+                <div className="">
+                  <p
+                    className="font-Poppins xl:text-[1.5rem] md:text-[20px] text-[14px] font-light text-[#E8E8E8] normal"
+                    style={{ fontWeight: "275" }}
+                  >
+                    We at audaxious are very concerned with helping brands
+                    develop and scale
+                    <br /> healthy communities, Improve engagements on social
+                    post and provide product
+                    <br /> owners with AI tools for content generation and
+                    engagement analysis
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -61,10 +80,13 @@ const About = () => {
               </p>
             </div>
           </div>
+
           <div className="container flex flex-col md:w-[90%] lg:w-auto mt-[56px] gap-[56px] md:mx-[auto] lg:mx-[4rem] xl:mx-[0rem]">
             <div className="flex justify-between gap-20 items-center sm: flex-col md:flex-row">
               <div className="flex gap-6 flex-col md:flex-row justify-items-center items-center md:items-start md:justify-items-start w-[310px] md:w-[544px]">
-                <Ones />
+                <div>
+                  <Ones />
+                </div>
                 <div className="flex flex-col gap-5">
                   <p className="xl:text-[2rem] lg:text-[1.6rem] font-[900] font-Poppins text-[#A5D7F2] text-center md:text-start">
                     Grow Communities
@@ -84,7 +106,9 @@ const About = () => {
             <div className="flex justify-between gap-20 items-center sm: flex-col md:flex-row flex-col-reverse">
               <Community2 />
               <div className="flex gap-6 flex-col md:flex-row justify-items-center items-center md:items-start md:justify-items-start  w-[310px] md:w-[544px]">
-                <Two />
+                <div>
+                  <Two />
+                </div>
                 <div className="flex flex-col gap-5">
                   <p className="xl:text-[2rem] lg:text-[1.6rem] font-[900] font-Poppins text-[#A5D7F2] text-center md:text-start">
                     Accelerate Engagements
@@ -99,9 +123,11 @@ const About = () => {
 
             <div className="flex justify-between gap-20 items-center sm: flex-col md:flex-row">
               <div className="flex gap-6 flex-col md:flex-row justify-items-center items-center md:items-start md:justify-items-start  w-[310px] md:w-[544px]">
-                <Three />
+                <div>
+                  <Three />
+                </div>
                 <div className="flex flex-col gap-5">
-                  <p className="xl:text-[2rem] lg:text-[1.6rem] font-[900] font-Poppins text-[#A5D7F2] text-center md:text-start">
+                  <p className="xl:text-[1.8rem] lg:text-[1.6rem] font-[900] font-Poppins text-[#A5D7F2] text-center md:text-start">
                     Reward social engagements
                   </p>
                   <p className="xl:text-[1.25rem] lg:text-[1rem] md:text-[0.6rem] font-[275] font-Poppins text-[#F0F0F0]">
@@ -116,24 +142,27 @@ const About = () => {
             </div>
           </div>
           <div className="mt-[56px] md:w-[90%] lg:w-[90%] xl:w-[100%] flex flex-col items-center">
-            <h2 className="text-center font-Poppins text-[2rem] font-[900] text-[#EBEDED]">
+            <h2 className="text-center font-Poppins text-[2.5rem] font-[500] text-[#EBEDED]">
               Our values
             </h2>
             <div className="mt-[32px] flex gap-[24px] sm: items-center sm: flex-col md:flex-wrap lg:flex-nowrap lg:flex-row">
-              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[390px] lg:h-[500px] pt-[56px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm">
-                <p className="text-[1.5rem] text-[#E6F1BA] font-Poppins font-400">
-                  Transparency
-                </p>
-                <p className="text-[1.125rem] font-Poppins font-[275] text-[#A5A5A5] pt-[1.25rem]">
-                  Our records are unchangeable openly accessible to everyone in
-                  the participants in the network, promoting trust and
-                  accountability within the audaxious eco-system.
-                </p>
+              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[390px] lg:h-[500px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm bg-boxGrid bg-no-repeat bg-cover">
+                <div className="pt-[56px] pb-[20px] bg-blur1 bg-no-repeat bg-contain">
+                  <p className="text-[1.5rem] text-[#E6F1BA] font-Poppins font-400">
+                    Transparency
+                  </p>
+
+                  <p className="text-[1.125rem] font-Poppins font-[275] text-[#A5A5A5] pt-[1.25rem]">
+                    Our records are unchangeable openly accessible to everyone
+                    in the participants in the network, promoting trust and
+                    accountability within the audaxious eco-system.
+                  </p>
+                </div>
                 <div className="mt-[2rem]">
                   <Search />
                 </div>
               </div>
-              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[410px] lg:h-[500px] pt-[56px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm">
+              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[410px] lg:h-[500px] pt-[56px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm bg-blur bg-no-repeat bg-center">
                 <p className="text-[1.5rem] text-[#E49EF6] font-Poppins font-400">
                   Accountability
                 </p>
@@ -145,7 +174,7 @@ const About = () => {
                   <Mark />
                 </div>
               </div>
-              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[410px] lg:h-[500px] pt-[56px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm">
+              <div className="border-[#20475E] border-[2px] w-[90%] xl:w-[365px] lg:w-[300px] xl:h-[435px] h-[410px] lg:h-[500px] pt-[56px] pb-[40px] pl-[28px] pr-[28px] flex flex-col rounded-sm bg-blur2 bg-no-repeat bg-center">
                 <p className="text-[1.5rem] text-[#A5D7F2] font-Poppins font-400">
                   Integrity
                 </p>
@@ -161,7 +190,7 @@ const About = () => {
             </div>
           </div>
           <div className="container">
-            <div className="pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+            <div className="bg-heroCustom bg-no-repeat bg-cover pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
               <div className="flex gap-[14px] justify-between">
                 <div className="flex flex-col gap-[36px]">
                   <p className="xl:text-[2rem] lg:text-[1.2rem] font-[900] font-Poppins text-[#FFF] text-center md:text-start">
@@ -174,8 +203,8 @@ const About = () => {
                   <div>
                     <button className="flex border-[#1A2935] border-[1px] rounded-lg py-[14px] px-[20px]">
                       <Apple />
-                      <span className="w-[0.5px] h-[28px] text-[#79C4EC] mx-[0.5rem]">
-                        |
+                      <span className="mx-[0.5rem]">
+                        <LineBtw />
                       </span>
                       <Play />
                       <span className="ml-[0.5rem] font-Poppins text-[16px] text-[#79C4EC] font-[300">

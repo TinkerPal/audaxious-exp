@@ -29,6 +29,12 @@ export default {
       },
       backgroundImage: {
         custom: 'url("/src/assets/svg/hero.svg")',
+        heroCustom: 'url("/src/assets/svg/hero-imgBg.svg")',
+        boxGrid: 'url("/src/assets/svg/boxGrid.svg")',
+        blur: 'url("/src/assets/svg/blur.svg")',
+        blur1: 'url("/src/assets/svg/blur1.svg")',
+        blur2: 'url("/src/assets/svg/blur2.svg")',
+        buttonCustom: 'url("/src/assets/svg/buttondivBg.svg")',
         split_screen: 'url("/src/assets/svg/new-split-img.svg")',
       },
       backgroundColor: {
@@ -45,11 +51,11 @@ export default {
       addBase({
         ".h-app": {
           height: "100vh",
-          height: "100dvh",
+          // height: "100dvh",
         },
         ".min-h-app": {
           "min-height": "100vh",
-          "min-height": "100dvh",
+          // "min-height": "100dvh",
         },
       });
     }),
