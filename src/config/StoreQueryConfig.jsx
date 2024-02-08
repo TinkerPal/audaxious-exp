@@ -37,6 +37,13 @@ export const AppApi = createApi({
         ...config,
       }),
     }),
+    verifyOldUserOneTimePassword: builder.mutation({
+      query: (config) => ({
+        url: "/user/verify?type=forgot",
+        method: "post",
+        ...config,
+      }),
+    }),
     resetPassword: builder.mutation({
       query: (config) => ({
         url: "/user/change-password",

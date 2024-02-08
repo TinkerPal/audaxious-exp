@@ -21,8 +21,10 @@ const ForgetPasswordLink = () => {
 
   // console.log(userId);
 
-  const [verifyOneTimePasswordMutation, verifyOneTimePasswordMutationResult] =
-    AppApi.useVerifyOneTimePasswordMutation();
+  const [
+    verifyOldUserOneTimePasswordMutation,
+    verifyOldUserOneTimePasswordMutationResult,
+  ] = AppApi.useVerifyOldUserOneTimePasswordMutation();
 
   const { values, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
@@ -33,7 +35,7 @@ const ForgetPasswordLink = () => {
       setIsLoading(true);
 
       try {
-        const data = await verifyOneTimePasswordMutation({
+        const data = await verifyOldUserOneTimePasswordMutation({
           data: values,
         }).unwrap();
         console.log(data);
@@ -122,7 +124,7 @@ const ForgetPasswordLink = () => {
               <Button
                 type="submit"
                 isLoading={isLoading}
-                disabled={verifyOneTimePasswordMutationResult.isLoading}
+                disabled={verifyOldUserOneTimePasswordMutationResult.isLoading}
                 primary
                 round
                 className="mt-6 mx-auto w-1/2"
