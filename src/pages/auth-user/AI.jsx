@@ -299,7 +299,7 @@ function GeneratedTweet({ tweet, onChange, index, addEmojiToTweet }) {
   // };
 
   return (
-    <div className="container grid grid-cols-1 justify-center items-center max-w-3xl 3xl:max-w-7xl gap-8 pt-4">
+    <div className="container grid grid-cols-1 justify-center items-center 2xl:max-w-[60rem] lg:max-w-[49rem] 3xl:max-w-7xl gap-8 pt-4">
       <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] p-10">
         {/* <div className=""> */}
         <div className="flex gap-2 mb-3">
