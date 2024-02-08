@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import OtpInput from "react18-input-otp";
@@ -14,38 +14,47 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
 
 const ForgetPasswordLink = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  // console.log(userId);
 
   const [verifyOneTimePasswordMutation, verifyOneTimePasswordMutationResult] =
     AppApi.useVerifyOneTimePasswordMutation();
 
   const { values, setFieldValue, handleSubmit } = useFormik({
     initialValues: {
-      email: searchParams.get("email"),
+      email: searchParams.get("email")?.toString(),
       otp: "",
     },
     onSubmit: async (values) => {
+      setIsLoading(true);
+
       try {
         const data = await verifyOneTimePasswordMutation({
           data: values,
         }).unwrap();
         console.log(data);
+        const userId = searchParams.get("userId");
 
-        if (data.error) {
-          return toast.error(data.message);
-        }
-
-        // const otp = searchParams.get("otp");
-
-        if (data) {
-          navigate("/reset-password".concat("?otp=", values.otp), {
-            state: { data: data },
-          });
+        if (data.success) {
+          toast(data.message);
+          navigate(
+            pathConstant.RESETPASSWORD.concat(
+              "?userId=",
+              userId,
+              "&otp=",
+              values.otp
+            )
+          );
         }
       } catch (error) {
         // console.log(error);
-        toast.error(error);
+        toast.error(error?.data?.error || "Something went wrong");
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -112,6 +121,7 @@ const ForgetPasswordLink = () => {
             <div className="flex justify-center pt-6">
               <Button
                 type="submit"
+                isLoading={isLoading}
                 disabled={verifyOneTimePasswordMutationResult.isLoading}
                 primary
                 round

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -14,6 +14,8 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
 
 const CreateAccountLink = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -28,24 +30,24 @@ const CreateAccountLink = () => {
       otp: "",
     },
     onSubmit: async (values) => {
+      setIsLoading(true);
+
       try {
         const data = await verifyOneTimePasswordMutation({
           data: values,
         }).unwrap();
         console.log(data);
 
-        if (data.error) {
-          console.log(data.error);
-          return toast.error(data.message);
-        }
-
-        if (data) {
-          console.log(data);
+        if (data.success) {
+          // console.log(data);
+          toast(data.message);
           navigate(pathConstant.QUESTIONAIRE.concat("?user=", user));
         }
       } catch (error) {
-        console.log(error);
-        toast.error(error);
+        // console.log(error);
+        toast.error(error?.data?.error || "Something went wrong");
+      } finally {
+        setIsLoading(false);
       }
     },
   });
@@ -112,6 +114,7 @@ const CreateAccountLink = () => {
             <div className="flex justify-center pt-6">
               <Button
                 type="submit"
+                isLoading={isLoading}
                 disabled={verifyOneTimePasswordMutationResult.isLoading}
                 primary
                 round

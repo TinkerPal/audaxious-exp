@@ -20,6 +20,8 @@ import { ReactComponent as Communities } from "../../assets/svg/communities.svg"
 
 const CreateAccount = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const [verifyNewUserIdentityMutation, verifyNewUserIdentityMutationResult] =
@@ -39,20 +41,17 @@ const CreateAccount = () => {
       }),
 
       onSubmit: async (values) => {
+        setIsLoading(true);
+
         try {
           const data = await verifyNewUserIdentityMutation({
             data: values,
           }).unwrap();
 
-          console.log(data);
+          // console.log(data);
 
-          // if (data.message) {
-          //   toast.success("OTP sent to your email");
-          //   return toast.error(data.error.message || "An Error Occured");
-          // }
-
-          if (data) {
-            toast.success("OTP sent to your email");
+          if (data.success) {
+            toast.success(data.message);
 
             const user = data.user;
 
@@ -66,19 +65,10 @@ const CreateAccount = () => {
             );
           }
         } catch (error) {
-          toast.error(error);
-          // if (
-          //   error.response &&
-          //   error.response.data &&
-          //   error.response.data.error &&
-          //   error.response.data.error.message
-          // ) {
-          //   // Display the error message in a toast notification
-          //   toast.error(error.response.data.error.message);
-          // } else {
-          //   // Display a generic error message if no specific error message is available
-          //   toast.error("An error occurred while processing your request.");
-          // }
+          // console.log(error);
+          toast.error(error?.data?.error || "Something went wrong");
+        } finally {
+          setIsLoading(false);
         }
       },
     });
@@ -146,6 +136,7 @@ const CreateAccount = () => {
 
               <Button
                 type="submit"
+                isLoading={isLoading}
                 disabled={verifyNewUserIdentityMutationResult.isLoading}
                 primary
                 round

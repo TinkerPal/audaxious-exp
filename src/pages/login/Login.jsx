@@ -21,6 +21,8 @@ import { ReactComponent as Chart } from "../../assets/svg/Chart.svg";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   // const authUser = useAuthUser();
   // console.log(authUser);
@@ -42,34 +44,27 @@ const Login = () => {
       }),
 
       onSubmit: async (values) => {
+        setIsLoading(true);
+
         try {
           const data = await loginUserMutation({
             data: values,
           }).unwrap();
-          console.log(data);
+          // console.log(data);
 
-          if (data.error) {
-            if (
-              data.message === "Please Check Your Credentials and Try Again."
-            ) {
-              return toast.error("Invalid email or password");
-            } else {
-              return toast.error(data.message);
-            }
-          }
-
-          if (data) {
+          if (data.success) {
             toast.success("login successful");
 
             navigate(pathConstant.DASHBOARD);
           }
         } catch (error) {
+          toast.error(error?.data?.error || "Something went wrong");
           toast.error(error);
+        } finally {
+          setIsLoading(false);
         }
       },
     });
-
-  // localhost:5000/api/v1/login/success
 
   return (
     <>
@@ -140,6 +135,7 @@ const Login = () => {
 
             <Button
               disabled={loginUserMutationResult.isLoading}
+              isLoading={isLoading}
               type="submit"
               primary
               round

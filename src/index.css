@@ -219,3 +219,16 @@ button:disabled {
   .react-datetime-picker__inputGroup__minute {
   cursor: pointer;
 }
+
+.active {
+  /* border: 2px solid red; */
+  /* background-color: red; */
+}
+
+.active {
+  background-image: linear-gradient(to bottom, #0c74f1, #28eddb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* background-color: red; */
+}

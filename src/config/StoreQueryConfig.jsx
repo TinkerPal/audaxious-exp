@@ -2,6 +2,7 @@ import axios from "axios";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { AppHttp, TweetHttp } from "./HttpConfig";
 import { StoreQueryTagEnum } from "../constants/storeConstants";
+import { toast } from "react-toastify";
 
 export const AppApi = createApi({
   reducerPath: "app",
@@ -151,7 +152,8 @@ export function axiosBaseQuery(baseConfig = {}, http = axios) {
     } catch (error) {
       // console.log(data);
 
-      console.log(error);
+      // console.log(error.response.data.error);
+      // toast(error.response.data.error);
       return {
         error: error.response
           ? {

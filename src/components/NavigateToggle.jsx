@@ -1,68 +1,66 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom"; // Import NavLink from React Router
-// import { ReactComponent as EdithIcon } from "../assets/svg/edit-tweet-img.svg";
-// import { ReactComponent as Star } from "../assets/svg/starsss.svg";
+import { ReactComponent as EdithIcon } from "../assets/svg/edit-tweet-img.svg";
+import { ReactComponent as Star } from "../assets/svg/starsss.svg";
 
 const NavigationToggle = () => {
   const location = useLocation();
 
   const navLinks = [
     {
-      name: "Home",
+      name: "Create With AI",
       to: "/post-management/create-post-with-ai",
+      icon: <Star />,
     },
     {
-      name: "About",
+      name: "Create manually",
       to: "/post-management/create-post-manually",
+      icon: <EdithIcon />,
     },
   ];
 
   return (
-    <div className="flex justify-center items-center gap-5">
-      {/* Use NavLink instead of Link */}
+    <div className="flex justify-center items-center my-8">
       {navLinks.map((nav, i) => (
-        <NavLink
-          to={nav.to}
-          style={{
-            border:
-              location.pathname === "/post-management/create-post-with-ai"
-                ? "2px solid green"
-                : "",
-          }}
+        <div
+          className={`relative border-[0.5px] border-[#2A3C46] p-3.5 px-6 rounded-sm ${
+            location.pathname === nav.to ? "active" : ""
+          }`}
+          key={i}
         >
-          <span className="text-white">{nav.name}</span>
-        </NavLink>
+          <NavLink
+            to={nav.to}
+            activeClassName="active-link"
+            className="font-Poppins text-[12px] font-light gap-2 flex items-center text-white"
+          >
+            {nav.icon}
+            {nav.name}
+          </NavLink>
+          {location.pathname === nav.to && (
+            <div className="absolute inset-y-0 left-0 w-[4px] bg-[#79C4EC]" />
+          )}
+        </div>
       ))}
-      {/* <NavLink
-        to="/post-management/create-post-with-ai"
-        // style={(isActive) => ({ color: isActive ? "green" : "blue" })}
-        style={{
-          border:
-            location.pathname === "/post-management/create-post-with-ai"
-              ? "2px solid green"
-              : "2px solid blue",
-        }}
-        className="flex items-center font-Poppins text-[12px] font-light bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent"
-      >
-        <Star /> Create With AI
-      </NavLink>
-      <NavLink
-        to="/post-management/create-post-manually"
-        // className="flex items-center gap-2"
-        // style={(isActive) => ({ color: isActive ? "green" : "blue" })}
-        style={{
-          border:
-            location.pathname === "/post-management/create-post-manually"
-              ? "2px solid green"
-              : "2px solid blue",
-        }}
-        className="flex gap-2 items-center text-[#E8E8E8] font-Poppins text-[12px] font-light"
-
-        // className="px-4 py-2 rounded bg-gray-200 text-gray-800"
-      >
-        <EdithIcon /> Create manually
-      </NavLink> */}
     </div>
+
+    // <div className="flex justify-center items-center my-8">
+    //   {navLinks.map((nav, i) => (
+    //     <div className="border border-[#2A3C46] p-3.5 px-6 rounded-sm gap-2 flex items-center">
+    //       <NavLink
+    //         className="font-Poppins text-[12px] font-light "
+    //         to={nav.to}
+    //         style={{
+    //           border: location.pathname === nav.to ? "active" : "",
+    //         }}
+    //       >
+    //         <span>
+    //           {nav.icon}
+    //           {nav.name}
+    //         </span>
+    //       </NavLink>
+    //     </div>
+    //   ))}
+    // </div>
   );
 };
 

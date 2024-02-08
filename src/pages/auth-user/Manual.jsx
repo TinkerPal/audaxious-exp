@@ -27,6 +27,7 @@ import { ReactComponent as ManagePeople } from "../../assets/svg/manage-people.s
 import NavigationToggle from "../../components/NavigateToggle";
 import SharedLayout from "../../components/SharedLayout";
 import pathConstant from "../../routes/pathConstant";
+import Container from "../../components/Container";
 
 const Manual = () => {
   const [showEmoji, setShowEmoji] = useState(false);
@@ -174,7 +175,7 @@ const Manual = () => {
                         {label}
                       </button>
                       {tab === index && (
-                        <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#0C74F1] left-1/2" />
+                        <div className="absolute -bottom-6 w-[48px] h-[4.5px] transform -translate-x-1/2 bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] left-1/2" />
                       )}
                     </div>
                   );
@@ -213,89 +214,91 @@ const Manual = () => {
           </div>
         </div>
         {/* <NavigationToggle /> */}
-        <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 mt-4">
-          <form>
-            <div className="border-[0.5px] border-[#436C82] rounded-[4px] md:px-6 px-5 py-4 md:mx-16">
-              <div className="w-full rounded-sm relative">
-                <textarea
-                  value={values.tweet}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  name="tweet"
-                  placeholder="Type Something"
-                  className="w-full outline-none text-white text-sm bg-transparent resize-none"
-                  cols="30"
-                  rows="6"
-                ></textarea>
-                {errors.tweet && touched.tweet && (
+        <SharedLayout>
+          <div className="border-[0.5px] border-[#2A3C46] rounded-[4px] md:p-8 lg:mx-36 mt-4">
+            <form>
+              <div className="border-[0.5px] border-[#436C82] rounded-[4px] md:px-6 px-5 py-4 md:mx-16">
+                <div className="w-full rounded-sm relative">
+                  <textarea
+                    value={values.tweet}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name="tweet"
+                    placeholder="Type Something"
+                    className="w-full outline-none text-white text-sm bg-transparent resize-none"
+                    cols="30"
+                    rows="6"
+                  ></textarea>
+                  {errors.tweet && touched.tweet && (
+                    <div className="pt-1 mb-4 text-[#EB5757] text-[12px] font-Poppins">
+                      {errors.tweet}
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-x-4">
+                    <span
+                      onClick={() => setShowEmoji(!showEmoji)}
+                      className="cursor-pointer hover:text-slate-300 text-[#6EB2D7]"
+                    >
+                      <BsEmojiSmile />
+                    </span>
+
+                    <label htmlFor="file-upload">
+                      <img
+                        src={addimg}
+                        alt="file icon"
+                        className="cursor-pointer"
+                      />
+                    </label>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      name="media"
+                      onChange={handleImageChange}
+                      style={{ display: "none" }}
+                    />
+                    {fileName && <span className="text-white">{fileName}</span>}
+
+                    <div className="absolute top-[100%] left-0">
+                      {showEmoji && (
+                        <Picker
+                          data={data}
+                          emojiSize={20}
+                          emojiButtonSize={28}
+                          onEmojiSelect={addEmoji}
+                          maxFrequentRows={0}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="container pt-3 flex justify-between items-center px-16">
+                <div className="flex justify-center gap-1 cursor-pointer">
+                  <img src={clock} alt="clock" />
+                  <DateTimePicker
+                    onChange={handleDateChange}
+                    value={tweetScheduledTimes}
+                    className="text-[#707171] font-Poppins2 react-datetime-picker__wrapper cursor-pointer"
+                    calendarClassName="backgrounds"
+                    calendarIcon={null}
+                    clearIcon={null}
+                    disableClock
+                    minDate={new Date()}
+                    required
+                    style={{ outline: "none", boxShadow: "none" }}
+                    amPmAriaLabel={null}
+                  />
+                </div>
+                {errors.tweet_at && touched.tweet_at && (
                   <div className="pt-1 mb-4 text-[#EB5757] text-[12px] font-Poppins">
-                    {errors.tweet}
+                    {errors.tweet_at}
                   </div>
                 )}
-
-                <div className="flex items-center gap-x-4">
-                  <span
-                    onClick={() => setShowEmoji(!showEmoji)}
-                    className="cursor-pointer hover:text-slate-300 text-[#6EB2D7]"
-                  >
-                    <BsEmojiSmile />
-                  </span>
-
-                  <label htmlFor="file-upload">
-                    <img
-                      src={addimg}
-                      alt="file icon"
-                      className="cursor-pointer"
-                    />
-                  </label>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    name="media"
-                    onChange={handleImageChange}
-                    style={{ display: "none" }}
-                  />
-                  {fileName && <span className="text-white">{fileName}</span>}
-
-                  <div className="absolute top-[100%] left-0">
-                    {showEmoji && (
-                      <Picker
-                        data={data}
-                        emojiSize={20}
-                        emojiButtonSize={28}
-                        onEmojiSelect={addEmoji}
-                        maxFrequentRows={0}
-                      />
-                    )}
-                  </div>
-                </div>
               </div>
-            </div>
-            <div className="container pt-3 flex justify-between items-center px-16">
-              <div className="flex justify-center gap-1 cursor-pointer">
-                <img src={clock} alt="clock" />
-                <DateTimePicker
-                  onChange={handleDateChange}
-                  value={tweetScheduledTimes}
-                  className="text-[#707171] font-Poppins2 react-datetime-picker__wrapper cursor-pointer"
-                  calendarClassName="backgrounds"
-                  calendarIcon={null}
-                  clearIcon={null}
-                  disableClock
-                  minDate={new Date()}
-                  required
-                  style={{ outline: "none", boxShadow: "none" }}
-                  amPmAriaLabel={null}
-                />
-              </div>
-              {errors.tweet_at && touched.tweet_at && (
-                <div className="pt-1 mb-4 text-[#EB5757] text-[12px] font-Poppins">
-                  {errors.tweet_at}
-                </div>
-              )}
-            </div>
-          </form>
-        </div>{" "}
+            </form>
+          </div>{" "}
+        </SharedLayout>
       </div>{" "}
     </>
   );

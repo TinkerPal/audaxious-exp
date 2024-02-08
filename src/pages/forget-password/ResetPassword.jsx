@@ -1,38 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import PasswordInput from "../../components/PasswordInput";
 import Button from "../../components/Button";
 import pathConstant from "../../routes/pathConstant";
 import { AppApi } from "../../config/StoreQueryConfig";
-import useAuthUser from "../../hooks/useAuthUser";
 
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as MoneyBag } from "../../assets/svg/money-bag.svg";
 
 const ResetPassword = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  // const authUser = useAuthUser();
-  // const userId = authUser?.userId;
-  // console.log(authUser, userId);
-  const location = useLocation();
-  const userId = location?.state?.data?.userId;
-  // const userId = state;
-  // console.log(state);
 
   const [resetPasswordMutation, resetPasswordMutationResult] =
     AppApi.useResetPasswordMutation();
+
+  // const otp = searchParams?.get("otp")?.toString();
+  // const userId = searchParams?.get("userId")?.toString();
+  // console.log(otp);
+  // console.log(userId);
 
   // const passwordRules =
   //   '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$';
@@ -41,29 +35,34 @@ const ResetPassword = () => {
     useFormik({
       initialValues: {
         password: "",
-        otp: searchParams.get("otp"),
-        userId: userId,
+        otp: searchParams?.get("otp"),
+        userId: searchParams?.get("userId"),
       },
       validationSchema: Yup.object().shape({
         password: Yup.string().min(8).required("Password is required"),
       }),
 
       onSubmit: async (values) => {
+        setIsLoading(true);
+
         try {
+          console.log("Before Request", values);
+
           const data = await resetPasswordMutation({
             data: values,
           }).unwrap();
-          console.log(data);
-          if (data.error) {
-            return toast.error(data.Message);
-          }
-          if (data) {
-            toast.success("password reset successful");
 
+          console.log(`After request ${data}`);
+
+          if (data.success) {
+            toast.success(data.message);
             navigate(pathConstant.LOGIN);
           }
         } catch (error) {
-          toast.error(error);
+          console.log(error);
+          toast.error(error?.data?.error || "Something went wrong");
+        } finally {
+          setIsLoading(false);
         }
       },
     });
@@ -119,6 +118,7 @@ const ResetPassword = () => {
             )}
 
             <Button
+              isLoading={isLoading}
               disabled={resetPasswordMutationResult.isLoading}
               type="submit"
               primary

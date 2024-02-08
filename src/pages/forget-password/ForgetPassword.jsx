@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet-async";
@@ -15,6 +15,8 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { ReactComponent as Communities } from "../../assets/svg/communities.svg";
 
 const ForgetPassword = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const [verifyOldUserIdentityMutation, verifyOldUserIdentityMutationResult] =
@@ -32,24 +34,34 @@ const ForgetPassword = () => {
       }),
 
       onSubmit: async (values) => {
+        setIsLoading(true);
+
         try {
           const data = await verifyOldUserIdentityMutation({
             data: values,
           }).unwrap();
           console.log(data);
-          if (data.error) {
-            return toast.error(data.message);
-          }
 
-          if (data) {
-            toast.success("OTP sent to your email");
+          if (data.success) {
+            toast.success(data.message);
+
+            const userId = data.userId;
+            console.log(userId);
 
             navigate(
-              pathConstant.FORGETPASSWORDOTP.concat("?email=", values.email)
+              pathConstant.FORGETPASSWORDOTP.concat(
+                "?userId=",
+                userId,
+                "&email=",
+                values.email
+              )
             );
           }
         } catch (error) {
           console.log(error);
+          toast.error(error?.data?.error || "Something went wrong");
+        } finally {
+          setIsLoading(false);
         }
       },
     });
@@ -107,6 +119,7 @@ const ForgetPassword = () => {
             )}
 
             <Button
+              isLoading={isLoading}
               disabled={verifyOldUserIdentityMutationResult.isLoading}
               type="submit"
               primary
