@@ -16,6 +16,8 @@ import { ReactComponent as Apple } from "../../assets/svg/buttonApple.svg";
 import { ReactComponent as Play } from "../../assets/svg/buttonPlay.svg";
 import { ReactComponent as LineBtw } from "../../assets/svg/linePhone.svg";
 import { ReactComponent as Rectangle } from "../../assets/svg/rectangle.svg";
+import { ReactComponent as RectangleMobile1 } from "../../assets/svg/rectangleMobile.svg";
+import { ReactComponent as RectangleMobile2 } from "../../assets/svg/rectangleMobile2.svg";
 
 const About = () => {
   return (
@@ -43,8 +45,14 @@ const About = () => {
           </div>
           <div className="container">
             <div className="relative pt-[2rem] bg-heroCustom bg-no-repeat bg-cover pl-[1rem] pb-[1rem] pr-[0.8rem] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
-              <div className="absolute md:bottom-[20px] lg:bottom-[-55px] xl:bottom-[-10px] right-0">
+              <div className="hidden md:block absolute top-0 right-0">
                 <Rectangle />
+              </div>
+              <div className="block md:hidden absolute top-0 right-0">
+                <RectangleMobile1 />
+              </div>
+              <div className="block md:hidden absolute top-0 right-0">
+                <RectangleMobile2 />
               </div>
               <div className="flex flex-col gap-[34px]">
                 <h2 className="bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent text-[2rem] font-Poppins font-[500]">
