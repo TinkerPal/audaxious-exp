@@ -184,7 +184,7 @@ const AI = () => {
                         {label}
                       </button>
                       {tab === index && (
-                        <div className="absolute -bottom-4 w-full h-[4px] transform -translate-x-1/2 bg-[#0C74F1] left-1/2" />
+                        <div className="absolute -bottom-6 w-[48px] h-[4.5px] transform -translate-x-1/2 bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] left-1/2" />
                       )}
                     </div>
                   );
@@ -224,27 +224,29 @@ const AI = () => {
 
         {/* <NavigationToggle /> */}
 
-        <GenerateTweet onGenerated={handleGenerateTweet} />
+        <SharedLayout>
+          <GenerateTweet onGenerated={handleGenerateTweet} />
 
-        <div className="flex justify-center gap-3 mb-3 items-center">
-          <Stars />
-          <p className="font-Poppins text-[16px] font-normal leading-[15px] bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
-            {generatedTweets.length} posts generated, view results below
-          </p>
-        </div>
+          <div className="flex justify-center gap-3 mb-3 items-center">
+            <Stars />
+            <p className="font-Poppins text-[16px] font-normal leading-[15px] bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent">
+              {generatedTweets.length} posts generated, view results below
+            </p>
+          </div>
 
-        <div>
-          {generatedTweets.map((tweet, index) => (
-            <GeneratedTweet
-              key={index}
-              {...{
-                tweet,
-                index,
-                onChange: handleChanges(index),
-              }}
-            />
-          ))}
-        </div>
+          <div>
+            {generatedTweets.map((tweet, index) => (
+              <GeneratedTweet
+                key={index}
+                {...{
+                  tweet,
+                  index,
+                  onChange: handleChanges(index),
+                }}
+              />
+            ))}
+          </div>
+        </SharedLayout>
         {/* <div className="flex justify-center items-center my-10">
           <button
           
