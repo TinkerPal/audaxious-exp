@@ -7,6 +7,7 @@ import pathConstant from "../routes/pathConstant";
 
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Menu } from "../assets/svg/menu.svg";
+import { ReactComponent as Line } from "../assets/svg/saying.svg";
 
 const links = [
   {
@@ -50,7 +51,7 @@ function Navbar() {
   return (
     <>
       <div
-        className={`sticky top-0 transition-transform duration-500 z-30 border-slate-700 border-b-[1.5px] bg-[#060B12]`}
+        className={`sticky top-0 transition-transform duration-500 z-30 bg-[#060B12]`}
       >
         <div className="container">
           <div className="flex items-center justify-between py-6 transition-transform duration-500 md:py-8">
@@ -292,6 +293,7 @@ function Navbar() {
             className="absolute inset-0 h-screen bg-black/20 lg:hidden"
             onClick={navCloseHandler}
           ></Transition>
+          <Line />
         </div>
       </div>
     </>

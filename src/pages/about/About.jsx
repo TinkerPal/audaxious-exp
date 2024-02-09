@@ -16,8 +16,13 @@ import { ReactComponent as Apple } from "../../assets/svg/buttonApple.svg";
 import { ReactComponent as Play } from "../../assets/svg/buttonPlay.svg";
 import { ReactComponent as LineBtw } from "../../assets/svg/linePhone.svg";
 import { ReactComponent as Rectangle } from "../../assets/svg/rectangle.svg";
+import { ReactComponent as Rectangle2 } from "../../assets/svg/rectangle2.svg";
 import { ReactComponent as RectangleMobile1 } from "../../assets/svg/rectangleMobile.svg";
 import { ReactComponent as RectangleMobile2 } from "../../assets/svg/rectangleMobile2.svg";
+import { ReactComponent as Star } from "../../assets/svg/startH.svg";
+import { ReactComponent as Star2 } from "../../assets/svg/starH.svg";
+import { ReactComponent as Dollar } from "../../assets/svg/dollar.svg";
+import { ReactComponent as Chart } from "../../assets/svg/chartF.svg";
 
 const About = () => {
   return (
@@ -30,7 +35,16 @@ const About = () => {
 
       <Container>
         <section className="flex flex-col items-center justify-items-center overflow-hidden">
-          <div className="mt-[-60px] bg-buttonCustom bg-no-repeat bg-cover bg-opacity-600 py-[120px] px-[200px]">
+          <div className="mt-[-60px] relative bg-buttonCustom bg-no-repeat bg-cover bg-opacity-600 py-[120px] px-[200px]">
+            <div className="absolute bottom-[100px] right-20">
+              <Star />
+            </div>
+            <div className="absolute bottom-15 left-20">
+              <Star />
+            </div>
+            <div className="absolute top-[73px] left-60">
+              <Star2 />
+            </div>
             <button
               style={{ whiteSpace: "nowrap" }}
               className="px-[19px] py-[8px] border-[#314048] text-[#FFF] border-[2px] bg-neutral rounded-lg font-light font-Poppins"
@@ -45,13 +59,16 @@ const About = () => {
           </div>
           <div className="container">
             <div className="relative pt-[2rem] bg-heroCustom bg-no-repeat bg-cover pl-[1rem] pb-[1rem] pr-[0.8rem] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
-              <div className="hidden md:block absolute top-0 right-0">
+              <div className="hidden z-10 md:block absolute top-0 right-0">
                 <Rectangle />
               </div>
-              <div className="block md:hidden absolute top-0 right-0">
+              <div className="hidden md:block absolute top-0 right-0">
+                <Rectangle2 />
+              </div>
+              <div className="block z-10 md:hidden absolute top-0 right-0">
                 <RectangleMobile1 />
               </div>
-              <div className="block md:hidden absolute top-0 right-0">
+              <div className="block z-5 md:hidden absolute top-0 right-0">
                 <RectangleMobile2 />
               </div>
               <div className="flex flex-col gap-[34px]">
@@ -221,12 +238,18 @@ const About = () => {
                     </button>
                   </div>
                 </div>
-                <div className="hidden lg:block">
-                  <div className="mt-[5rem]">
+                <div className="hidden lg:block relative">
+                  <div className="absolute right-[70px] bottom-[-50px]">
                     <Network1 />
                   </div>
-                  <div className="mt-[-16rem] ml-[3rem]">
+                  <div className="absolute right-[-15px] lg:top-[-8px] xl:top-[30px]">
                     <Network2 />
+                  </div>
+                  <div className="absolute right-[120px] lg:top-[-10px] xl:top-[30px]">
+                    <Dollar />
+                  </div>
+                  <div className="absolute right-[335px] lg:top-[60px] xl:top-[100px]">
+                    <Chart />
                   </div>
                 </div>
               </div>
