@@ -1,3 +1,5 @@
+/* Example if you're using plain CSS */
+
 const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
@@ -36,6 +38,8 @@ export default {
         blur2: 'url("/src/assets/svg/blur2.svg")',
         buttonCustom: 'url("/src/assets/svg/buttondivBg.svg")',
         split_screen: 'url("/src/assets/svg/new-split-img.svg")',
+        homeScreen: 'url("/src/assets/svg/new-split-img.svg")',
+        bgLanding: 'url("/src/assets/svg/bgLanding.svg")',
       },
       backgroundColor: {
         backdrop: "rgba(5, 22, 31, 0.75)",
