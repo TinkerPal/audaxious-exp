@@ -19,6 +19,8 @@ import { ReactComponent as Rectangle } from "../../assets/svg/rectangle.svg";
 import { ReactComponent as Rectangle2 } from "../../assets/svg/rectangle2.svg";
 import { ReactComponent as RectangleMobile1 } from "../../assets/svg/rectangleMobile.svg";
 import { ReactComponent as RectangleMobile2 } from "../../assets/svg/rectangleMobile2.svg";
+import { ReactComponent as RectangleMd } from "../../assets/svg/rectangleMd.svg";
+import { ReactComponent as Rectangle2Xl } from "../../assets/svg/rectangle2xl.svg";
 import { ReactComponent as Star } from "../../assets/svg/startH.svg";
 import { ReactComponent as Star2 } from "../../assets/svg/starH.svg";
 import { ReactComponent as Dollar } from "../../assets/svg/dollar.svg";
@@ -63,7 +65,13 @@ const About = () => {
                 <Rectangle />
               </div>
               <div className="hidden md:block absolute top-0 right-0">
+                <RectangleMd />
+              </div>
+              <div className="hidden lg:block absolute top-0 right-0">
                 <Rectangle2 />
+              </div>
+              <div className="hidden xl:block absolute top-0 right-0">
+                <Rectangle2Xl />
               </div>
               <div className="block z-10 md:hidden absolute top-0 right-0">
                 <RectangleMobile1 />
