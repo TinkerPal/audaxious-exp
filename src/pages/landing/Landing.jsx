@@ -53,7 +53,7 @@ const Landing = () => {
                 </p>
               </div>
               <div className="mt-[0rem] mb-[3rem]">
-                <p className="text-center font-Poppins text-[1.5rem] text-neutral-400 font-[275] leading-normal">
+                <p className="text-center font-Poppins text-[1.5rem] text-[#91A9BA] font-[275] leading-normal">
                   Seamlessly connecting millions of social network users to web3
                   and its benefits.
                   <br /> With AI and Web3, AudaXious offers projects an optimal
@@ -63,6 +63,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
+          {/* remember responsiveness for mobile */}
           <div className="container">
             <div className="flex flex-col justify-center items-center">
               <div className="flex justify-center">
@@ -90,7 +91,7 @@ const Landing = () => {
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
             <div className="rounded-sm border-[#323A49] border-[0.89px] p-[1rem] w-[50%]">
               <p
-                className="text-[#79C4EC] font-[300] text-[1.25rem] text-center font-Poppins"
+                className="text-[#79C4EC] font-[300] text-[0.86rem] md:text-[1.25rem] text-center font-Poppins"
                 style={{ whiteSpace: "nowrap" }}
               >
                 Projects & Brands can now
@@ -98,19 +99,19 @@ const Landing = () => {
             </div>
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
-          <div className="flex flex-col container mt-[1rem] gap-[0.3rem]">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-[1rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[2rem] font-[400] font-normal">
+          <div className="flex flex-col container mt-[2.4rem] md:mt-[1rem] gap-[3rem] md:gap-[0.3rem]">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="flex flex-col gap-[1rem] items-center md:items-start">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
                   Expand reach and adoption
                 </p>
-                <div className="flex flex-col gap-[0.6rem]">
+                <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
                   <div className="flex">
                     <div>
                       <People />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
                         Harness the power of community-driven marketing to
                         expand your product&apos;s reach and adoption by over 10
                         times
@@ -121,8 +122,8 @@ const Landing = () => {
                     <div>
                       <Ai />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
                         Use AI tools to build community support and retention
                         for your projects
                       </p>
@@ -136,21 +137,21 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col-reverse mt-[-2rem] md:mt-[0rem] md:flex-row md:justify-between items-center">
               <div>
                 <Airdrop />
               </div>
-              <div className="flex flex-col gap-[1rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[2rem] font-[400] font-normal">
+              <div className="flex flex-col gap-[1rem] items-center md:items-start">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
                   Send Airdrops and Multi-tokens
                 </p>
-                <div className="flex flex-col gap-[0.6rem]">
+                <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
                   <div className="flex">
                     <div>
                       <Chip />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
                         Seamless airdrops into social accounts of early adopters
                         of projects
                       </p>
@@ -160,8 +161,8 @@ const Landing = () => {
                     <div>
                       <Chip2 />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
+                    <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
                         Token multi-sender supporting more than 400 crypto
                         currency
                       </p>
@@ -171,11 +172,11 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex flex-row justify-center items-center mt-[2rem] md:mt-[0rem]">
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
             <div className="rounded-sm border-[#323A49] border-[0.89px] p-[1rem] w-[50%]">
               <p
-                className="text-[#79C4EC] font-[300] text-[1.25rem] text-center font-Poppins"
+                className="text-[#79C4EC] font-[300] text-[0.86rem] text-center font-Poppins"
                 style={{ whiteSpace: "nowrap" }}
               >
                 Users are not left out
@@ -183,21 +184,21 @@ const Landing = () => {
             </div>
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
-          <div className="flex flex-col container mt-[1rem] gap-[0.3rem]">
-            <div className="flex justify-between items-center">
+          <div className="flex flex-col container mt-[-3.4rem] md:mt-[1rem] gap-[3rem] md:gap-[0.3rem]">
+            <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
                 <Earnings />
               </div>
-              <div className="flex flex-col gap-[1rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[2rem] font-[400] font-normal">
+              <div className="flex flex-col gap-[3rem] md:gap-[1rem] items-center md:items-start mt-[-5rem] md:mt-[0rem]">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
                   Earn rewards while engaging
                 </p>
-                <div className="flex flex-col gap-[0.6rem]">
+                <div className="flex flex-col items-center md:items-start gap-[2.6rem] md:gap-[0.6rem]">
                   <div className="flex">
                     <div>
                       <Bag />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
                       <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
                         Earn exciting rewards when you like, comment, or share
                         posts on your portal
@@ -208,7 +209,7 @@ const Landing = () => {
                     <div>
                       <Reward />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
                       <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
                         Rank high on our engagement leader board and win big in
                         out free to play contest
@@ -218,9 +219,9 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-[1rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[2rem] font-[400] font-normal">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="flex flex-col gap-[1rem] items-center md:items-start">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
                   Create content using AI
                 </p>
                 <div className="flex flex-col gap-[0.6rem]">
@@ -228,7 +229,7 @@ const Landing = () => {
                     <div>
                       <Build />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
                       <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
                         Build strong and engaging communities using our Ai
                         assisted content creating tool
@@ -239,7 +240,7 @@ const Landing = () => {
                     <div>
                       <Schedule />
                     </div>
-                    <div className="w-[25rem] md:w-[20rem] lg:w-[25rem]">
+                    <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
                       <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1.25rem] font-[100]">
                         Plan and schedule contents in minutes not days, with our
                         post management system
@@ -254,7 +255,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
-
+          {/* remember responsiveness for mobile */}
           <div className="container flex flex-col gap-[2rem] items-center mt-[4rem]">
             <p className="text-[1.5rem] font-[400] font-Poppins text-[#A5A5A5] normal">
               Trusted by 2500+ Crypto Project Owners Globally{" "}
