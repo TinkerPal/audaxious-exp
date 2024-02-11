@@ -66,7 +66,7 @@ function Navbar() {
             </div>
             <div className="items-center hidden lg:flex bg-[#060b12] h-[40px]">
               <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
                 to={"/"}
               >
                 <span className="text-[15px] font-light font-Poppins">
@@ -74,15 +74,7 @@ function Navbar() {
                 </span>
               </Link>
               <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
-                to={"#"}
-              >
-                <span className="text-[15px] font-light font-Poppins">
-                  {"Company"}
-                </span>
-              </Link>
-              <Link
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
                 to={"/about"}
               >
                 <span className="text-[15px] font-light font-Poppins">
@@ -93,13 +85,54 @@ function Navbar() {
                 smooth={true}
                 offset={-100}
                 duration={500}
-                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
                 to={"#"}
               >
                 <span className="text-[15px] font-light font-Poppins">
                   {"Download app"}
                 </span>
               </ScrollLink>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Blog"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Engage portal"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Airdrops"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Multisender"}
+                </span>
+              </Link>
+              {/* <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Company"}
+                </span>
+              </Link> */}
+
               {/* {links.map((link, i) => (
                 <ScrollLink
                   smooth={true}
@@ -114,14 +147,14 @@ function Navbar() {
                   </span>
                 </ScrollLink>
               ))} */}
-              <a
+              {/* <a
                 href="https://docs.audaxious.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex text-[15px] font-light font-Poppins items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
               >
                 Resources
-              </a>
+              </a> */}
               {/* <a
                 href="https://blog.audaxious.com/"
                 target="_blank"
@@ -206,6 +239,30 @@ function Navbar() {
                   </Link>
                   <Link
                     className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Engagement portal"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Airdrops"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Multisender"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
                     to={"/about"}
                   >
                     <span className="text-[15px] font-light font-Poppins">
@@ -223,7 +280,7 @@ function Navbar() {
                       {"Download app"}
                     </span>
                   </ScrollLink>
-                  <a
+                  {/* <a
                     href="https://docs.audaxious.com/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -240,7 +297,7 @@ function Navbar() {
                     className={`flex text-[15px] font-light font-Poppins items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-2 rounded-full transition-colors hover:text-white`}
                   >
                     Blog
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className="p-2 mt-6 font-medium">
