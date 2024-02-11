@@ -36,38 +36,40 @@ const Landing = () => {
         <link rel="canonical" href={pathConstant.LANDING} />
       </Helmet>
       <Container>
-        <section className="">
-          <div className="container bg-homeScreen bg-no-repeat bg-cover flex flex-col justify-items-center">
-            <div className="border-[1.5px] border-[#383B42] rounded-sm mt-[1.5rem] mx-auto py-[6px] px-[16px] bg-[#2C2D30]">
-              <p className="text-neutral-400 font-[300] font-Poppins text-[0.875rem]">
-                Welcome to the future of engagement
-              </p>
-            </div>
-            <div className="mt-[4rem] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
-              <div className="text-3.5xl font-normal">
-                <p className="leading-[124%] text-center text-[1.36rem] md:text-[2.5rem] xl:text-[3.5rem] font-[400] font-Poppins bg-gradient-to-l from-pink-400 to-blue-400 bg-clip-text text-transparent normal">
-                  <span className="bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent">
-                    Providing
-                  </span>{" "}
-                  <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
-                    web
-                  </span>{" "}
-                  3.0 benefits
-                  <br />{" "}
-                  <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
-                    through
-                  </span>{" "}
-                  social networks
+        <section className="bg-homeScreen bg-no-repeat bg-contain">
+          <div>
+            <div className="flex flex-col justify-items-center container">
+              <div className="border-[1.5px] border-[#383B42] rounded-sm mt-[2.5rem] mx-auto py-[6px] px-[16px] bg-[#2C2D30]">
+                <p className="text-neutral-400 font-[300] font-Poppins text-[0.875rem]">
+                  Welcome to the future of engagement
                 </p>
               </div>
-              <div className="mt-[1rem] mb-[3rem]">
-                <p className="text-center font-Poppins text-[1rem] md:text-[1.5rem] text-[#91A9BA] font-[275] leading-normal normal">
-                  Seamlessly connecting millions of social network users to web3
-                  and its benefits.
-                  <br /> With AI and Web3, AudaXious offers projects an optimal
-                  way to incentivize
-                  <br /> members, grow communities, and enhance adoption
-                </p>
+              <div className="mt-[4rem] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
+                <div className="text-3.5xl font-normal">
+                  <p className="leading-[124%] text-center text-[1.36rem] md:text-[2.5rem] xl:text-[3.5rem] font-[400] font-Poppins bg-gradient-to-l from-pink-400 to-blue-400 bg-clip-text text-transparent normal">
+                    <span className="bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent">
+                      Providing
+                    </span>{" "}
+                    <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+                      web
+                    </span>{" "}
+                    3.0 benefits
+                    <br />{" "}
+                    <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+                      through
+                    </span>{" "}
+                    social networks
+                  </p>
+                </div>
+                <div className="mt-[1rem] mb-[3rem]">
+                  <p className="text-center font-Poppins text-[1rem] md:text-[1.5rem] text-[#91A9BA] font-[275] leading-normal normal">
+                    Seamlessly connecting millions of social network users to
+                    web3 and its benefits.
+                    <br /> With AI and Web3, AudaXious offers projects an
+                    optimal way to incentivize
+                    <br /> members, grow communities, and enhance adoption
+                  </p>
+                </div>
               </div>
             </div>
           </div>
