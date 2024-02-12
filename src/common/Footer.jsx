@@ -15,7 +15,7 @@ import { ReactComponent as Greater } from "../assets/svg/greater.svg";
 
 function Footer(props) {
   return (
-    <div className="pl-10 pr-10 relative w-full text-white font-Poppins">
+    <div className="container pl-10 pr-10 relative w-full text-white font-Poppins">
       <div className="pb-7 pt-14">
         <div className="flex flex-col md:flex-row flex-wrap mb-16 gap-x-24 md:gap-x-20 gap-y-8 items-center md:items-start">
           <div className="md:mr-32" style={{ maxWidth: 400 }}>
@@ -163,8 +163,8 @@ function Footer(props) {
             </Link>
           </div>
         </div>
-        <div className="hidden md:flex border-t-[1px] border-[#71757D] flex pt-[30px] pb-[40]">
-          <p className="text-[#4F5259] md:flex-1 text-left font-medium font-Raleway text-[14px] text-center">
+        <div className="hidden md:flex border-t-[1px] border-[#71757D] pt-[30px] pb-[40]">
+          <p className="text-[#4F5259] md:flex-1 md:text-left font-medium font-Raleway text-[14px] text-center">
             © 2023 AudaXious. | All rights reserved
           </p>
           <div className="flex items-center gap-4 md:ml-auto">

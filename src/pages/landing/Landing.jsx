@@ -117,10 +117,10 @@ const Landing = () => {
             </div>
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
-          <div className="flex flex-col container mt-[2.4rem] md:mt-[1rem] gap-[3rem] md:gap-[0.3rem]">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-[2.5rem]">
+          <div className="flex flex-col container mt-[2.4rem] md:mt-[5rem] gap-[3rem] md:gap-[0.3rem]">
+            <div className="flex flex-col md:flex-row justify-center xl:gap-[13rem] items-center gap-[2.5rem]">
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
                   Expand reach and adoption
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
@@ -155,12 +155,12 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="flex flex-col-reverse mt-[-2rem] md:mt-[0rem] md:flex-row md:justify-between items-center gap-[2.5rem]">
+            <div className="flex flex-col-reverse mt-[-2rem] md:mt-[0rem] md:flex-row md:justify-center items-center gap-[2.5rem] xl:gap-[13rem]">
               <div className="w-[20rem] md:w-[25rem]">
                 <Airdrop />
               </div>
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
                   Send Airdrops and Multi-tokens
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
@@ -205,16 +205,16 @@ const Landing = () => {
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
           <div className="flex flex-col container mt-[-3.4rem] md:mt-[1rem] gap-[2.5rem] md:gap-[0.3rem]">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="w-[25rem]">
+            <div className="flex flex-col md:flex-row justify-center xl:gap-[13rem] items-center">
+              <div className="w-[20rem] md:w-[25rem] xl:w-[35rem]">
                 <Earnings />
               </div>
               <div className="flex flex-col gap-[1.5rem] md:gap-[1rem] items-center md:items-start mt-[-5rem] md:mt-[0rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
                   Earn rewards while engaging
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[1.6rem] md:gap-[0.6rem]">
-                  <div className="flex">
+                  <div className="flex md:ml-[-1rem]">
                     <div>
                       <Bag />
                     </div>
@@ -239,9 +239,9 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row justify-between items-center gap-[2.5rem]">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-[2.5rem] xl:gap-[13rem]">
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-[400] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
                   Create content using AI
                 </p>
                 <div className="flex flex-col gap-[1.5rem] md:gap-[0.6rem]">
@@ -313,7 +313,7 @@ const Landing = () => {
           </div>
 
           <div className="container block md:hidden">
-            <div className="bg-heroCustom bg-no-repeat bg-cover pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+            <div className="bg-heroCustom bg-no-repeat bg-cover pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg:pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
               <div className="flex gap-[14px] justify-between">
                 <div className="flex flex-col gap-[36px] items-center md:items-start">
                   <p className="text-[1.5rem] xl:text-[2rem] lg:text-[1.2rem] font-[200] font-Poppins text-[#FFF] text-center md:text-start">
