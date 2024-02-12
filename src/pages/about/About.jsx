@@ -60,7 +60,7 @@ const About = () => {
             </p>
           </div>
           <div className="container">
-            <div className="relative pt-[2rem] bg-heroCustom bg-no-repeat bg-cover pl-[1rem] pb-[1rem] pr-[0.8rem] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+            <div className="relative pt-[2rem] bg-heroCustom bg-no-repeat bg-cover pl-[1rem] pb-[1rem] pr-[0.8rem] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg:pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
               <div className="hidden z-10 md:block absolute top-0 right-0">
                 <Rectangle />
               </div>
@@ -136,7 +136,7 @@ const About = () => {
               <Community1 />
             </div>
 
-            <div className="flex justify-between gap-20 items-center sm: flex-col md:flex-row flex-col-reverse">
+            <div className="flex justify-between gap-20 items-center sm:flex-col md:flex-row flex-col-reverse">
               <Community2 />
               <div className="flex gap-6 flex-col md:flex-row justify-items-center items-center md:items-start md:justify-items-start  w-[310px] md:w-[544px]">
                 <div>
@@ -223,7 +223,7 @@ const About = () => {
             </div>
           </div>
           <div className="container">
-            <div className="bg-heroCustom bg-no-repeat bg-cover pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg: pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
+            <div className="bg-heroCustom bg-no-repeat bg-cover pt-[2rem] pl-[1rem] pb-[1rem] pr-[0.8rem] md:w-[90%] lg:w-[auto] border-[3px] border-[#1A2935] rounded-md xl:pt-[55px] lg:pt-[40px] xl:pb-[92px] lg:pb-[80px] xl:pl-[42px] lg:pl-[52px] xl:pr-[32px] lg:pr-[32px] md:pt-[30px] md:pl-[42px] lg:ml-[0rem] xl:ml-[0rem] md:mx-[auto] lg:mx-[0rem] mt-[88px] self-center">
               <div className="flex gap-[14px] justify-between">
                 <div className="flex flex-col gap-[36px] items-center md:items-start">
                   <p className="text-[1.5rem] xl:text-[2rem] lg:text-[1.2rem] font-[900] font-Poppins text-[#FFF] text-center md:text-start">

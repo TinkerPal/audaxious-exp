@@ -103,7 +103,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center mt-[-7rem] md:mt-[0rem]">
+          <div className="flex flex-row justify-center items-center mt-[-7rem] md:mt-[2.5rem]">
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
             <div className="rounded-sm border-[#323A49] border-[0.89px] p-[1rem] w-[50%] flex justify-between items-center gap-[0.5rem]">
               <Dot />
