@@ -39,12 +39,12 @@ const Landing = () => {
         <section className="bg-homeScreen bg-no-repeat bg-contain">
           <div>
             <div className="flex flex-col justify-items-center container">
-              <div className="border-[1.5px] border-[#383B42] rounded-sm mt-[2.5rem] mx-auto py-[6px] px-[16px] bg-[#2C2D30]">
+              <div className="border-[1.5px] border-[#383B42] rounded-sm mt-[5rem] mx-auto py-[6px] px-[16px] bg-[#2C2D30]">
                 <p className="text-neutral-400 font-[300] font-Poppins text-[0.875rem]">
                   Welcome to the future of engagement
                 </p>
               </div>
-              <div className="mt-[4rem] md:mt-[5rem] lg:mt-[10rem] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
+              <div className="mt-[4rem] md:mt-[5rem] lg:mtt-[106px] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
                 <div className="text-3.5xl font-normal">
                   <p className="leading-[124%] text-center text-[1.36rem] md:text-[2.5rem] xl:text-[3.5rem] font-[400] font-Poppins bg-gradient-to-l from-pink-400 to-blue-400 bg-clip-text text-transparent normal">
                     <span className="bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent">
@@ -118,9 +118,9 @@ const Landing = () => {
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
           <div className="flex flex-col container mt-[2.4rem] md:mt-[5rem] gap-[3rem] md:gap-[0.3rem]">
-            <div className="flex flex-col md:flex-row justify-center xl:gap-[13rem] items-center gap-[2.5rem]">
+            <div className="flex flex-col md:flex-row justify-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem] items-center">
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[1.5rem] xl:text-[2rem] text-[1.3rem] font-normal">
                   Expand reach and adoption
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
@@ -129,7 +129,7 @@ const Landing = () => {
                       <People />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Harness the power of community-driven marketing to
                         expand your product&apos;s reach and adoption by over 10
                         times
@@ -141,7 +141,7 @@ const Landing = () => {
                       <Ai />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Use AI tools to build community support and retention
                         for your projects
                       </p>
@@ -155,12 +155,12 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="flex flex-col-reverse mt-[-2rem] md:mt-[0rem] md:flex-row md:justify-center items-center gap-[2.5rem] xl:gap-[13rem]">
+            <div className="flex flex-col-reverse mt-[-2rem] md:mt-[0rem] md:flex-row md:justify-center items-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem]">
               <div className="w-[20rem] md:w-[25rem]">
                 <Airdrop />
               </div>
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[1.5rem] xl:text-[2rem] text-[1.3rem] font-normal">
                   Send Airdrops and Multi-tokens
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[0.6rem]">
@@ -169,7 +169,7 @@ const Landing = () => {
                       <Chip />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Seamless airdrops into social accounts of early adopters
                         of projects
                       </p>
@@ -180,7 +180,7 @@ const Landing = () => {
                       <Chip2 />
                     </div>
                     <div className="flex flex-col items-center md:items-start gap-[0.6rem] w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Token multi-sender supporting more than 400 crypto
                         currency
                       </p>
@@ -205,12 +205,12 @@ const Landing = () => {
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
           <div className="flex flex-col container mt-[-3.4rem] md:mt-[1rem] gap-[2.5rem] md:gap-[0.3rem]">
-            <div className="flex flex-col md:flex-row justify-center xl:gap-[13rem] items-center">
+            <div className="flex flex-col md:flex-row justify-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem] items-center">
               <div className="w-[20rem] md:w-[25rem] xl:w-[35rem]">
                 <Earnings />
               </div>
               <div className="flex flex-col gap-[1.5rem] md:gap-[1rem] items-center md:items-start mt-[-5rem] md:mt-[0rem]">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[1.5rem] xl:text-[2rem] text-[1.3rem] font-normal">
                   Earn rewards while engaging
                 </p>
                 <div className="flex flex-col items-center md:items-start gap-[1.6rem] md:gap-[0.6rem]">
@@ -219,7 +219,7 @@ const Landing = () => {
                       <Bag />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Earn exciting rewards when you like, comment, or share
                         posts on your portal
                       </p>
@@ -230,7 +230,7 @@ const Landing = () => {
                       <Reward />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Rank high on our engagement leader board and win big in
                         out free to play contest
                       </p>
@@ -239,9 +239,9 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-[2.5rem] xl:gap-[13rem]">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem]">
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
-                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[2rem] text-[1.3rem] font-normal">
+                <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[1.5rem] xl:text-[2rem] text-[1.3rem] font-normal">
                   Create content using AI
                 </p>
                 <div className="flex flex-col gap-[1.5rem] md:gap-[0.6rem]">
@@ -250,7 +250,7 @@ const Landing = () => {
                       <Build />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Build strong and engaging communities using our Ai
                         assisted content creating tool
                       </p>
@@ -261,7 +261,7 @@ const Landing = () => {
                       <Schedule />
                     </div>
                     <div className="w-[18rem] md:w-[20rem] lg:w-[25rem]">
-                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.25rem] text-[1rem] font-[100]">
+                      <p className="text-neutral-100 md:text-[1rem] lg:text-[1.1rem] xl:text-[1.25rem] text-[1rem] font-[100]">
                         Plan and schedule contents in minutes not days, with our
                         post management system
                       </p>
@@ -270,7 +270,7 @@ const Landing = () => {
                 </div>
               </div>
 
-              <div className="w-[18rem] md:w-[25rem]">
+              <div className="w-[18rem] xl:w-[25rem]">
                 <Content />
               </div>
             </div>
