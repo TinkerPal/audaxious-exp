@@ -44,7 +44,7 @@ const Landing = () => {
                   Welcome to the future of engagement
                 </p>
               </div>
-              <div className="mt-[4rem] md:mt-[5rem] lg:mtt-[106px] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
+              <div className="mt-[4rem] md:mt-[5rem] lg:mt-[106px] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
                 <div className="text-3.5xl font-normal">
                   <p className="leading-[124%] text-center text-[1.36rem] md:text-[2.5rem] xl:text-[3.5rem] font-[400] font-Poppins bg-gradient-to-l from-pink-400 to-blue-400 bg-clip-text text-transparent normal">
                     <span className="bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent">
