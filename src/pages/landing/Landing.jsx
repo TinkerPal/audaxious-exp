@@ -44,7 +44,7 @@ const Landing = () => {
                   Welcome to the future of engagement
                 </p>
               </div>
-              <div className="mt-[4rem] md:mt-[5rem] lg:mt-[5rem] xl:mt-[8rem] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
+              <div className="mt-[4rem] md:mt-[5rem] lg:mt-[5rem] xl:mt-[12rem] flex flex-col justify-center gap-[0.6rem] p-[0.65rem]">
                 <div className="text-3.5xl font-normal">
                   <p className="leading-[124%] text-center text-[1.36rem] md:text-[2.5rem] xl:text-[3.5rem] font-[400] font-Poppins bg-gradient-to-l from-pink-400 to-blue-400 bg-clip-text text-transparent normal">
                     <span className="bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent">
@@ -75,7 +75,7 @@ const Landing = () => {
           </div>
           {/* remember responsiveness for mobile */}
           <div className="container">
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center xl:mt-[7rem] xxl:mt-[17rem]">
               <div className="flex justify-center">
                 <div className="hidden md:block mt-[0rem]">
                   <Left />
@@ -103,7 +103,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center mt-[-7rem] md:mt-[2.5rem]">
+          <div className="flex flex-row justify-center items-center mt-[-7rem] md:mt-[2.5rem] xl:mt-[5rem]">
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
             <div className="rounded-sm border-[#323A49] border-[0.89px] p-[1rem] w-[50%] flex justify-between items-center gap-[0.5rem]">
               <Dot />
@@ -117,7 +117,7 @@ const Landing = () => {
             </div>
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
-          <div className="flex flex-col container mt-[2.4rem] md:mt-[5rem] gap-[3rem] md:gap-[0.3rem]">
+          <div className="flex flex-col container mt-[2.4rem] md:mt-[5rem] xl:mt-[7rem] gap-[3rem] md:gap-[0.3rem]">
             <div className="flex flex-col md:flex-row justify-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem] items-center">
               <div className="flex flex-col gap-[1.5rem] items-center md:items-start">
                 <p className="text-[#E8E8E8] font-Poppins md:text-[1.2rem] lg:text-[1.5rem] xl:text-[2rem] text-[1.3rem] font-normal">
@@ -190,7 +190,7 @@ const Landing = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center mt-[2rem] md:mt-[0rem]">
+          <div className="flex flex-row justify-center items-center mt-[2rem] md:mt-[0rem] xl:mt-[3rem]">
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
             <div className="rounded-sm border-[#323A49] border-[0.89px] p-[1rem] w-[50%] flex justify-between items-center gap-[0.5rem]">
               <Dot />
@@ -204,7 +204,7 @@ const Landing = () => {
             </div>
             <div className="w-[100%] h-[1px] bg-[#323A49]"></div>
           </div>
-          <div className="flex flex-col container mt-[-3.4rem] md:mt-[1rem] gap-[2.5rem] md:gap-[0.3rem]">
+          <div className="flex flex-col container mt-[-3.4rem] md:mt-[1rem] xl:mt-[3rem] gap-[2.5rem] md:gap-[0.3rem] xl:gap-[5rem]">
             <div className="flex flex-col md:flex-row justify-center gap-[2.5rem] md:gap-[5rem] lg:gap-[8rem] xl:gap-[13rem] items-center">
               <div className="w-[20rem] md:w-[25rem] xl:w-[35rem]">
                 <Earnings />
@@ -276,7 +276,7 @@ const Landing = () => {
             </div>
           </div>
           {/* remember responsiveness for mobile */}
-          <div className="container flex flex-col gap-[2rem] items-center mt-[1rem] md:mt-[4rem]">
+          <div className="container flex flex-col gap-[2rem] items-center mt-[1rem] md:mt-[4rem] xl:mt-[7rem]">
             <p className="text-[1rem] md:text-[1.5rem] font-[400] font-Poppins text-[#A5A5A5] normal">
               Trusted by 2500+ Crypto Project Owners Globally{" "}
             </p>
