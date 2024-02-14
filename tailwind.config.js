@@ -40,6 +40,7 @@ export default {
         split_screen: 'url("/src/assets/svg/new-split-img.svg")',
         homeScreen: 'url("/src/assets/svg/homeScreen.svg")',
         bgLanding: 'url("/src/assets/svg/bgLanding.svg")',
+        dashboardHeroBg: 'url("/src/assets/svg/dashboardSvg/heroBg.svg")',
       },
       backgroundColor: {
         backdrop: "rgba(5, 22, 31, 0.75)",
