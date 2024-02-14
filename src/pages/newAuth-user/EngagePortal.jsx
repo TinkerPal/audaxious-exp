@@ -25,10 +25,10 @@ const EngagePortals = () => {
             <Friends />
           </div>
           <div className="font-Poppins font-normal">
-            <p className="text-[1.5rem] text-neutral-300 font-[400] font-Poppins">
+            <p className="text-[1.1rem] xl:[1.5rem] text-neutral-300 font-[400] font-Poppins">
               Promote & Engage with Posts
             </p>
-            <p className="text-[1rem] font-[275] text-neutral-400 font-Poppins">
+            <p className="text-[0.7rem] xl:text-[1rem] font-[275] text-neutral-400 font-Poppins">
               Create, Like , comment, share contents and earn exciting rewards
             </p>
           </div>
@@ -64,7 +64,12 @@ const EngagePortals = () => {
               <span>
                 <X style={{ fill: toggle === 1 ? "#FFF" : "#A5A5A5" }} />
               </span>
-              <span className="font-Poppins text-[0.8rem] font-[300] normal-case text-neutral-400">
+              <span
+                className={clsx(
+                  "font-Poppins text-[0.8rem] font-[300] normal-case",
+                  toggle === 1 ? "text-[#FFF]" : "text-neutral-400"
+                )}
+              >
                 twitter (X)
               </span>
             </div>
@@ -81,7 +86,12 @@ const EngagePortals = () => {
                   style={{ fill: toggle === 2 ? "#FFF" : "#A5A5A5" }}
                 />
               </span>
-              <span className="font-Poppins text-[0.8rem] font-[300] normal-case text-neutral-400">
+              <span
+                className={clsx(
+                  "font-Poppins text-[0.8rem] font-[300] normal-case",
+                  toggle === 2 ? "text-[#FFF]" : "text-neutral-400"
+                )}
+              >
                 instagram
               </span>
             </div>
@@ -94,9 +104,14 @@ const EngagePortals = () => {
               onClick={() => toggleTabHandler(3)}
             >
               <span>
-                <Telegram />
+                <Telegram style={{ fill: toggle === 3 ? "#FFF" : "#A5A5A5" }} />
               </span>
-              <span className="font-Poppins text-[0.8rem] font-[300] normal-case text-neutral-400">
+              <span
+                className={clsx(
+                  "font-Poppins text-[0.8rem] font-[300] normal-case",
+                  toggle === 3 ? "text-[#FFF]" : "text-neutral-400"
+                )}
+              >
                 Telegram
               </span>
             </div>
@@ -109,9 +124,14 @@ const EngagePortals = () => {
               onClick={() => toggleTabHandler(4)}
             >
               <span>
-                <Discord />
+                <Discord style={{ fill: toggle === 4 ? "#FFF" : "#A5A5A5" }} />
               </span>
-              <span className="font-Poppins text-[0.8rem] font-[300] normal-case text-neutral-400">
+              <span
+                className={clsx(
+                  "font-Poppins text-[0.8rem] font-[300] normal-case",
+                  toggle === 4 ? "text-[#FFF]" : "text-neutral-400"
+                )}
+              >
                 Discord
               </span>
             </div>
@@ -123,9 +143,14 @@ const EngagePortals = () => {
               onClick={() => toggleTabHandler(5)}
             >
               <span>
-                <Facebook />
+                <Facebook style={{ fill: toggle === 5 ? "#FFF" : "#A5A5A5" }} />
               </span>
-              <span className="font-Poppins text-[0.8rem] font-[300] normal-case text-neutral-400">
+              <span
+                className={clsx(
+                  "font-Poppins text-[0.8rem] font-[300] normal-case",
+                  toggle === 5 ? "text-[#FFF]" : "text-neutral-400"
+                )}
+              >
                 Facebook
               </span>
             </div>

@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import clsx from "clsx";
 import { ReactComponent as DashBoardIcon } from "../../assets/svg/dashboardSvg/dasboardIcon.svg";
 import { ReactComponent as MultiSenderIcon } from "../../assets/svg/dashboardSvg/multisender.svg";
 import { ReactComponent as EngagePortalIcon } from "../../assets/svg/dashboardSvg/portal.svg";
@@ -13,16 +14,32 @@ import { ReactComponent as MdLineIcon } from "../../assets/svg/dashboardSvg/mdLi
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/logo.svg";
 
 const Sidebar = () => {
+  const location = useLocation();
+
+  const path = location.pathname;
+  // console.log(path);
+
   return (
     <div className="flex flex-col gap-3 pl-[3.74rem]">
       <NavLink
         to={"/dashboard"}
         className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
       >
-        <span>
-          <DashBoardIcon />
-        </span>
-        <span className="hidden xl:block">Dashboard</span>
+        <div>
+          <DashBoardIcon
+            style={{
+              fill: path === "/dashboard" ? "#FFF" : "#818282",
+            }}
+          />
+        </div>
+        <div
+          className={clsx(
+            "hidden xl:block",
+            path === "/dashboard" ? "text-[#FFF]" : "text-[#818282]"
+          )}
+        >
+          Dashboard
+        </div>
       </NavLink>
       <div className="hidden xl:block">
         <Lines />
@@ -42,9 +59,22 @@ const Sidebar = () => {
           className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
         >
           <span>
-            <EngagePortalIcon />
+            <EngagePortalIcon
+              style={{
+                fill: path === "/dashboard/engage-portal" ? "#FFF" : "#818282",
+              }}
+            />
           </span>
-          <span className="hidden xl:block">Engage Portal</span>
+          <span
+            className={clsx(
+              "hidden xl:block",
+              path === "/dashboard/engage-portal"
+                ? "text-[#FFF]"
+                : "text-[#818282]"
+            )}
+          >
+            Engage Portal
+          </span>
         </NavLink>
         <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
           <span>
@@ -94,12 +124,15 @@ const Sidebar = () => {
         </NavLink>
       </div>
 
-      <div className="p-[0.5rem] flex gap-3 items-center mt-36">
+      <div className="p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md">
         <span>
           <LogoMd fill={"#818282"} />
         </span>
-        <span className="font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
+        <span className="hidden xl:block font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
           audaXious version 1.1.0
+        </span>
+        <span className="block xl:hidden font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
+          V 1.1.0
         </span>
       </div>
     </div>

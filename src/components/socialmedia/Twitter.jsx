@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ReactComponent as ProfilePicture } from "../../assets/svg/dashboardSvg/profilePic.svg";
 import { ReactComponent as MessageIcon } from "../../assets/svg/dashboardSvg/message.svg";
 import { ReactComponent as RetweenIcon } from "../../assets/svg/dashboardSvg/retweet.svg";
@@ -84,10 +82,10 @@ const Twitter = () => {
                     {post.time} seconds ago
                   </span>
                 </div>
-                <div className="w-[80%]">
+                <div className="w-[100%]">
                   <p className="text-[0.95rem]">{post.tweet}</p>
                 </div>
-                <div className="flex gap-[2.64rem]">
+                <div className="flex gap-[0.5rem] xl:gap-[2.64rem]">
                   <div className="flex gap-[0.47rem]">
                     <span>
                       <MessageIcon />
