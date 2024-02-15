@@ -18,7 +18,7 @@ const EngagePortals = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container overflow-y-auto">
       <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
         <div className="flex items-center gap-[1rem]">
           <div>
@@ -164,7 +164,7 @@ const EngagePortals = () => {
         </div>
 
         {/* grid */}
-        <div className="border-[#314048] border-l-[0.5px]">
+        <div className="border-[#314048] bg-[#080E15]">
           {/* twitter post */}
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
             <Twitter />

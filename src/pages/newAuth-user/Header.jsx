@@ -6,7 +6,7 @@ import { ReactComponent as Line } from "../../assets/svg/dashboardSvg/linebtw.sv
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/audaxiousmd.svg";
 const Header = () => {
   return (
-    <div className="max-w-[1920px]">
+    <div className="max-w-[1920px] fixed top-0 left-0 right-0 z-50">
       <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
         <div className="flex items-center gap-[2rem] xl:gap-[8.6rem]">
           <div className="hidden xl:block">

@@ -20,7 +20,7 @@ const Sidebar = () => {
   // console.log(path);
 
   return (
-    <div className="flex flex-col gap-3 pl-[3.74rem]">
+    <div className="flex flex-col gap-3 pl-[3.74rem] h-screen fixed top-[100px] left-0 bottom-0 z-40 bg-[#060B12]">
       <NavLink
         to={"/dashboard"}
         className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
@@ -123,17 +123,18 @@ const Sidebar = () => {
           <span className="hidden xl:block">Logout</span>
         </NavLink>
       </div>
-
-      <div className="p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md">
-        <span>
-          <LogoMd fill={"#818282"} />
-        </span>
-        <span className="hidden xl:block font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
-          audaXious version 1.1.0
-        </span>
-        <span className="block xl:hidden font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
-          V 1.1.0
-        </span>
+      <div className="items-baseline fixed bottom-5">
+        <div className="p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md">
+          <span>
+            <LogoMd fill={"#818282"} />
+          </span>
+          <span className="hidden xl:block font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
+            audaXious version 1.1.0
+          </span>
+          <span className="block xl:hidden font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
+            V 1.1.0
+          </span>
+        </div>
       </div>
     </div>
   );
