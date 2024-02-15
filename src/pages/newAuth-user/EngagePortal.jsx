@@ -164,10 +164,18 @@ const EngagePortals = () => {
         </div>
 
         {/* grid */}
-        <div className="border-[#314048] bg-[#080E15]">
+        <div className="border-[#314048]">
           {/* twitter post */}
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
-            <Twitter />
+            <div>
+              <p className="font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
+                Top Earners
+              </p>
+              <div></div>
+            </div>
+            <div className=" bg-[#080E15]">
+              <Twitter />
+            </div>
           </div>
 
           <div className={clsx(toggle === 2 ? "block" : "hidden")}>

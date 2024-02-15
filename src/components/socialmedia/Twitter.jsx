@@ -3,6 +3,9 @@ import { ReactComponent as MessageIcon } from "../../assets/svg/dashboardSvg/mes
 import { ReactComponent as RetweenIcon } from "../../assets/svg/dashboardSvg/retweet.svg";
 import { ReactComponent as Like } from "../../assets/svg/dashboardSvg/like.svg";
 import { ReactComponent as Friends } from "../../assets/svg/dashboardSvg/friendsPlus.svg";
+import { ReactComponent as Clock } from "../../assets/svg/dashboardSvg/clock.svg";
+import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
+import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
 import clsx from "clsx";
 
 const POST = [
@@ -134,21 +137,27 @@ const Twitter = () => {
         >
           <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
             <div className="flex items-center gap-[0.75rem]">
-              <button className="bg-[#152A39] border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
-                Tasks | {post.tasks}/10
+              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
+                <span>
+                  <Clock />
+                </span>
+                <span>Tasks | {post.tasks}/10</span>
               </button>
               <button
                 className={clsx(
-                  "border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
+                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
                   post.coin.eth
                     ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
                     : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                 )}
               >
-                engage to earn |{" "}
-                {post.coin.eth
-                  ? `${post.coin.eth} ETH`
-                  : `${post.coin.bnb} BNB`}
+                <span>
+                  engage to earn |{" "}
+                  {post.coin.eth
+                    ? `${post.coin.eth} ETH`
+                    : `${post.coin.bnb} BNB`}
+                </span>
+                <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
               </button>
             </div>
           </div>
@@ -184,24 +193,6 @@ const Twitter = () => {
                         </div>
                       ))}
                     </div>
-                    // <div className="flex flex-wrap gap-[8px] mb-[30px]">
-                    //   <div className="h-[4rem] w-[10rem] bg-white rounded-[8px] object-cover">
-                    //     <img
-                    //       src="/tweetImages/cycling.svg"
-                    //       width={"400"}
-                    //       height={"400"}
-                    //       alt="cyling"
-                    //     />
-                    //   </div>
-                    //   <div className="h-[4rem] w-[10rem] bg-white rounded-[8px]">
-                    //     <img
-                    //       src="/tweetImages/avatar.svg"
-                    //       width={"400"}
-                    //       height={"400"}
-                    //       alt="avatar"
-                    //     />
-                    //   </div>
-                    // </div>
                   )}
                 </div>
                 <div className="flex items-baseline">
