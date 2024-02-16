@@ -8,17 +8,59 @@ import { ReactComponent as Telegram } from "../../assets/svg/dashboardSvg/telegr
 import { ReactComponent as Facebook } from "../../assets/svg/dashboardSvg/facebook.svg";
 import { ReactComponent as Discord } from "../../assets/svg/dashboardSvg/discord.svg";
 import Twitter from "../../components/socialmedia/Twitter";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import clsx from "clsx";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const TOPEARNERS = [
+  { id: "t1", name: "Blessing", coin: { eth: "10" } },
+  { id: "t2", name: "JacobNFT", coin: { btc: "0.10" } },
+  { id: "t3", name: "Adams", coin: { eth: "0.0010" } },
+  { id: "t4", name: "Osazuwa", coin: { btc: "10" } },
+  { id: "t5", name: "Ofunameh", coin: { btc: "100" } },
+  { id: "t6", name: "Love", coin: { eth: "50" } },
+  { id: "t7", name: "Ahmed", coin: { eth: "30" } },
+  { id: "t8", name: "Habibat", coin: { btc: "10" } },
+  { id: "t9", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t10", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t11", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t12", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t13", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t14", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t15", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t16", name: "OdogwuBTC", coin: { btc: "10" } },
+  { id: "t17", name: "OdogwuBTC", coin: { btc: "10" } },
+];
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
   const toggleTabHandler = useCallback((id) => {
     setToggle(id);
   }, []);
+  const swiperRefLocal = useRef();
 
+  const handleMouseEnter = () => {
+    swiperRefLocal?.current?.swiper?.autoplay?.stop();
+  };
+
+  const handleMouseLeave = () => {
+    swiperRefLocal?.current?.swiper?.autoplay?.start();
+  };
+  const swiperProps = {
+    navigation: false,
+    modules: [Autoplay, Navigation],
+    autoplay: {
+      delay: 500,
+      disableOnInteraction: false,
+    },
+  };
   return (
-    <div className="container overflow-y-auto">
+    <div className="container max-h-screen overflow-y-auto">
       <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
         <div className="flex items-center gap-[1rem]">
           <div>
@@ -39,8 +81,8 @@ const EngagePortals = () => {
         </div>
       </div>
 
-      <div className="mt-[1.75rem]">
-        <div className="px-[3.16rem] pt-[1.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
+      <div className="mt-[1rem]">
+        <div className="px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
           <div className="flex gap-5 items-center cursor-pointer">
             <span>
               <Hamburger />
@@ -164,16 +206,72 @@ const EngagePortals = () => {
         </div>
 
         {/* grid */}
-        <div className="border-[#314048]">
+        <div className="">
           {/* twitter post */}
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
-            <div>
-              <p className="font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
-                Top Earners
-              </p>
-              <div></div>
-            </div>
-            <div className=" bg-[#080E15]">
+            <section className="">
+              <div className="mt-[1rem] border-[#314048] border-[1px]">
+                <div className="flex">
+                  <div className="px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px]">
+                    <p className="whitespace-nowrap font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
+                      Top Earners
+                    </p>
+                  </div>
+                  <Swiper
+                    grabCursor
+                    effect="slide"
+                    speed={1000}
+                    {...swiperProps}
+                    ref={swiperRefLocal}
+                    autoplay={{
+                      delay: 1000,
+                      disableOnInteraction: false,
+                      pauseOnMouseEnter: true,
+                    }}
+                    breakpoints={{
+                      320: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 2,
+                      },
+                      580: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 5,
+                      },
+                      1240: {
+                        slidesPerView: 6,
+                        spaceBetween: 9,
+                      },
+                      2500: {
+                        slidesPerView: 6,
+                        spaceBetween: 4,
+                      },
+                    }}
+                  >
+                    {TOPEARNERS.map((earners) => (
+                      <SwiperSlide
+                        key={earners.id}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <div
+                          className="flex gap-[0.3rem] pl-[1.62rem] py-[0.6rem]"
+                          key={earners.id}
+                        >
+                          <span className="text-[#E8E8E8] text-[0.85rem] font-Poppins font-[300]">
+                            {earners.name}
+                          </span>
+                          <span className="text-neutral-500 font-Poppins font-[300] text-[0.75rem]">
+                            earned
+                          </span>
+                          <span>{earners.coin.btc}</span>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              </div>
+            </section>
+            <div className="bg-[#080E15]">
               <Twitter />
             </div>
           </div>

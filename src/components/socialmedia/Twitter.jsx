@@ -84,20 +84,6 @@ const POST = [
     tasks: "7",
   },
   {
-    id: "p5",
-    userName: "justmylife_222",
-    time: "2",
-    tweet: {
-      description: "🚀 Bitcoin is undoubtedly the Show more",
-      images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
-    },
-    repost: "125",
-    like: "1200",
-    quote: "10",
-    coin: { eth: "65" },
-    tasks: "7",
-  },
-  {
     id: "p6",
     userName: "justmylife_222",
     time: "2",
@@ -125,11 +111,25 @@ const POST = [
     coin: { eth: "65" },
     tasks: "7",
   },
+  {
+    id: "p8",
+    userName: "justmylife_222",
+    time: "2",
+    tweet: {
+      description: "🚀 Bitcoin is undoubtedly the Show more",
+      images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
+    },
+    repost: "125",
+    like: "1200",
+    quote: "10",
+    coin: { eth: "65" },
+    tasks: "7",
+  },
 ];
 
 const Twitter = () => {
   return (
-    <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[2rem] pl-[0rem] max-h-[390px] overflow-y-auto">
+    <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
       {POST.map((post) => (
         <div
           key={post.id}
