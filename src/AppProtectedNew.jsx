@@ -9,6 +9,7 @@ import Header from "./pages/newAuth-user/Header";
 import Layout from "./pages/newAuth-user/Layout";
 import Dashboard from "./pages/newAuth-user/Dashboard";
 import EngagePortals from "./pages/newAuth-user/EngagePortal";
+import SingleTweetById from "./pages/newAuth-user/SingleTweetById";
 
 const AppProtectedNew = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const AppProtectedNew = () => {
         <Route path="engage-portal" element={<EngagePortals />} />
         <Route />
       </Route>
+      <Route path="/tweet" element={<SingleTweetById />} />
     </Routes>
   );
 };

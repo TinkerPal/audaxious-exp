@@ -381,7 +381,7 @@ const EngagePortals = () => {
                 </div>
               </div>
             </section>
-            <div className="bg-[#080E15]">
+            <div className="bg-[#080E15] max-h-[350px] overflow-y-auto">
               <Twitter />
             </div>
           </div>
