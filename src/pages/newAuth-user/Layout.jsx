@@ -9,7 +9,7 @@ const Layout = () => {
       <Header />
       <main className="flex my-[1.25rem] mt-[7rem] ml-[15rem]">
         <Sidebar />
-        <div className="container">
+        <div className="container overflow-y-hidden max-h-screen">
           <Outlet />
         </div>
       </main>

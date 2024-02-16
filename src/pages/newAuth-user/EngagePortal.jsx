@@ -12,29 +12,116 @@ import { useState, useCallback, useRef } from "react";
 import clsx from "clsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
+import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
+import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const TOPEARNERS = [
-  { id: "t1", name: "Blessing", coin: { eth: "10" } },
-  { id: "t2", name: "JacobNFT", coin: { btc: "0.10" } },
-  { id: "t3", name: "Adams", coin: { eth: "0.0010" } },
-  { id: "t4", name: "Osazuwa", coin: { btc: "10" } },
-  { id: "t5", name: "Ofunameh", coin: { btc: "100" } },
-  { id: "t6", name: "Love", coin: { eth: "50" } },
-  { id: "t7", name: "Ahmed", coin: { eth: "30" } },
-  { id: "t8", name: "Habibat", coin: { btc: "10" } },
-  { id: "t9", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t10", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t11", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t12", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t13", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t14", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t15", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t16", name: "OdogwuBTC", coin: { btc: "10" } },
-  { id: "t17", name: "OdogwuBTC", coin: { btc: "10" } },
+  {
+    id: "t1",
+    name: "Blessing",
+    coin: { eth: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t2",
+    name: "JacobNFT",
+    coin: { btc: "0.10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t3",
+    name: "Adams",
+    coin: { eth: "0.0010" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t4",
+    name: "Osazuwa",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t5",
+    name: "Ofunameh",
+    coin: { btc: "100" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t6",
+    name: "Love",
+    coin: { eth: "50" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t7",
+    name: "Ahmed",
+    coin: { eth: "30" },
+    src: "/tweetImages/cycling.svg",
+  },
+  {
+    id: "t8",
+    name: "Habibat",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t9",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t10",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t11",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t12",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t13",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t14",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t15",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t16",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t17",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
 ];
 
 const EngagePortals = () => {
@@ -60,7 +147,7 @@ const EngagePortals = () => {
     },
   };
   return (
-    <div className="container max-h-screen overflow-y-auto">
+    <div className="container">
       <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
         <div className="flex items-center gap-[1rem]">
           <div>
@@ -238,11 +325,15 @@ const EngagePortals = () => {
                         spaceBetween: 5,
                       },
                       1240: {
-                        slidesPerView: 6,
-                        spaceBetween: 9,
+                        slidesPerView: 2,
+                        spaceBetween: 3,
                       },
-                      2500: {
-                        slidesPerView: 6,
+                      1340: {
+                        slidesPerView: 3,
+                        spaceBetween: 3,
+                      },
+                      1700: {
+                        slidesPerView: 5,
                         spaceBetween: 4,
                       },
                     }}
@@ -254,16 +345,35 @@ const EngagePortals = () => {
                         onMouseLeave={handleMouseLeave}
                       >
                         <div
-                          className="flex gap-[0.3rem] pl-[1.62rem] py-[0.6rem]"
+                          className="flex gap-[0.3rem] pl-[1.62rem] py-[0.6rem] items-center"
                           key={earners.id}
                         >
+                          <div className="border border-[#FFF] w-[30px] h-[30px] rounded-full overflow-hidden">
+                            <img
+                              src={earners.src}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
                           <span className="text-[#E8E8E8] text-[0.85rem] font-Poppins font-[300]">
                             {earners.name}
                           </span>
                           <span className="text-neutral-500 font-Poppins font-[300] text-[0.75rem]">
                             earned
                           </span>
-                          <span>{earners.coin.btc}</span>
+                          <span
+                            className={clsx(
+                              "whitespace-nowrap",
+                              earners.coin.eth
+                                ? "text-[#F04086]"
+                                : "text-[#E1D356]"
+                            )}
+                          >
+                            {earners.coin.eth
+                              ? `${earners.coin.eth} ETH`
+                              : `${earners.coin.btc} BNB`}
+                          </span>
+                          <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span>
                         </div>
                       </SwiperSlide>
                     ))}
