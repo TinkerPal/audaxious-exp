@@ -50,7 +50,7 @@ const EngagePortals = () => {
   };
   return (
     <>
-      {singleTweet && <SingleTweetById />}
+      {singleTweet && <SingleTweetById onCancel={loadTweetByIdHandler} />}
       <div className="container">
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
           <div className="flex items-center gap-[1rem]">
@@ -61,7 +61,7 @@ const EngagePortals = () => {
               <p className="text-[1.1rem] xl:[1.5rem] text-neutral-300 font-[400] font-Poppins">
                 Promote & Engage with Posts
               </p>
-              <p className="text-[0.7rem] xl:text-[1rem] font-[275] text-neutral-400 font-Poppins">
+              <p className="text-[0.5rem] lg:text-[0.7rem] xl:text-[1rem] font-[275] text-neutral-400 font-Poppins">
                 Create, Like , comment, share contents and earn exciting rewards
               </p>
             </div>
@@ -73,12 +73,12 @@ const EngagePortals = () => {
         </div>
 
         <div className="mt-[1rem]">
-          <div className="px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
-            <div className="flex gap-5 items-center cursor-pointer">
+          <div className="px-[1.5rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
+            <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
                 <Hamburger />
               </span>
-              <span className="font-Poppins text-[0.875rem] text-neutral-400">
+              <span className="whitespace-nowrap font-Poppins text-[0.875rem] text-neutral-400">
                 All posts
               </span>
               <span>
@@ -86,7 +86,7 @@ const EngagePortals = () => {
               </span>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-6 xl:gap-3 px-6">
               <div
                 className={clsx(
                   "flex flex-col items-center pb-[1rem]",
@@ -99,6 +99,7 @@ const EngagePortals = () => {
                 </span>
                 <span
                   className={clsx(
+                    "whitespace-nowrap",
                     "font-Poppins text-[0.8rem] font-[300] normal-case",
                     toggle === 1 ? "text-[#FFF]" : "text-neutral-400"
                   )}
@@ -196,7 +197,7 @@ const EngagePortals = () => {
             </div>
 
             <div>
-              <button className="px-[1rem] py-[0.5rem] bg-[#EBEDED] rounded-sm font-Poppins font-[300] text-[0.8rem] text-[#060B12]">
+              <button className="whitespace-nowrap px-[1rem] py-[0.5rem] bg-[#EBEDED] rounded-sm font-Poppins font-[300] text-[0.8rem] text-[#060B12]">
                 Promote a post
               </button>
             </div>
@@ -231,8 +232,12 @@ const EngagePortals = () => {
                           spaceBetween: 2,
                         },
                         580: {
-                          slidesPerView: 2.5,
-                          spaceBetween: 5,
+                          slidesPerView: 1,
+                          spaceBetween: 0,
+                        },
+                        1020: {
+                          slidesPerView: 2,
+                          spaceBetween: 0,
                         },
                         1240: {
                           slidesPerView: 2,
@@ -291,7 +296,7 @@ const EngagePortals = () => {
                   </div>
                 </div>
               </section>
-              <div className="bg-[#080E15] max-h-[350px] overflow-y-auto">
+              <div className="bg-[#080E15] max-h-screen overflow-y-auto">
                 <Twitter onLoadTweet={loadTweetByIdHandler} />
               </div>
             </div>

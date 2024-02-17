@@ -19,6 +19,7 @@ import { ReactComponent as Bird } from "../../assets/svg/dashboardSvg/bird.svg";
 import { ReactComponent as Btw } from "../../assets/svg/dashboardSvg/btw.svg";
 import { ReactComponent as Fam } from "../../assets/svg/dashboardSvg/famnfrd.svg";
 import { ReactComponent as FlexLine } from "../../assets/svg/dashboardSvg/flexLine.svg";
+import { ReactComponent as Cancel } from "../../assets/svg/dashboardSvg/cancel.svg";
 import { POST } from "../../utils/postApi";
 
 const post = {
@@ -36,13 +37,18 @@ const post = {
   coin: { eth: "65" },
   tasks: "7",
 };
-const SingleTweetById = () => {
+const SingleTweetById = ({ onCancel }) => {
   return (
     <section
       className="absolute top-0 left-[0px] w-[100%] overflow-hidden bg-[#060B12]"
       style={{ zIndex: "100" }}
     >
-      <div className="container mt-[3rem]">
+      <div className="text-neutral-300 absolute right-10 pt-[3rem]">
+        <span className="" onClick={onCancel}>
+          <Cancel />
+        </span>
+      </div>
+      <div className="container mt-[6rem]">
         <header className="flex justify-between items-center">
           <div className="flex gap-[2rem]">
             <span>
@@ -64,17 +70,17 @@ const SingleTweetById = () => {
           </div>
         </header>
         <main className="flex gap-[2rem] justify-center container mt-[4rem]">
-          <div className="flex flex-col gap-[2rem] w-[100%] lg:w-[30rem]">
-            <div className="flex gap-3 px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
-              <span className="pr-[2rem]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[50%] lg:w-[30rem]">
+            <div className="flex gap-3 px-[0.8rem] lg:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
+              <span className="pr-[1rem] lg:pr-[2rem]">
                 <button className="rounded-sm bg-[#EBEDED] px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[8rem]">
                   Post
                 </button>
               </span>
-              <span className="font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[3rem] border-x border-[#19242D]">
+              <span className="font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[1rem] lg:px-[3rem] border-x border-[#19242D]">
                 About
               </span>
-              <span className="whitespace-nowrap font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[1rem]">
+              <span className="whitespace-nowrap font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[0.3rem] lg:px-[1rem]">
                 Top earners
               </span>
             </div>
@@ -181,7 +187,7 @@ const SingleTweetById = () => {
 
           {/* second div */}
 
-          <div className="flex flex-col gap-[2rem] w-[100%] lg:w-[30rem] h-[500px]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[50%] lg:w-[30rem] h-[500px]">
             <div className="p-[0.5rem]">
               <span className="whitespace-nowrap font-Poppins text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
                 To complete this task
@@ -194,7 +200,7 @@ const SingleTweetById = () => {
                     <span>
                       <Love />
                     </span>
-                    <span className="whitespace-nowrap font-[300] text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
                       Like this post
                     </span>
                   </div>
@@ -212,7 +218,7 @@ const SingleTweetById = () => {
                     <span>
                       <Retweet />
                     </span>
-                    <span className="whitespace-nowrap font-[300] text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
                       Re-tweet Post
                     </span>
                   </div>
@@ -229,7 +235,7 @@ const SingleTweetById = () => {
                     <span>
                       <Tweet />
                     </span>
-                    <span className="whitespace-nowrap font-[300] text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
                       Follow Tb_e on twitter
                     </span>
                   </div>
@@ -246,7 +252,7 @@ const SingleTweetById = () => {
                     <span>
                       <Infinity />
                     </span>
-                    <span className="whitespace-nowrap font-[300] text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
                       Follow Tb_e on medium
                     </span>
                   </div>
@@ -256,8 +262,8 @@ const SingleTweetById = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-[1.5rem]">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between pt-[2.8rem] lg:pt-[1.5rem]">
+                <div className="flex items-center gap-0 lg:gap-3">
                   <span>
                     <Setting />
                   </span>
@@ -283,7 +289,7 @@ const SingleTweetById = () => {
         <span>
           <Cadabra style={{ height: "40", width: "40" }} />
         </span>
-        <p className="whitespace-nowrap font-Poppins text-[1.25rem] normal-case font-[300] text-[#A5A5A5]">
+        <p className="whitespace-nowrap font-Poppins text-[0.7rem] lg:text-[1.25rem] normal-case font-[300] text-[#A5A5A5]">
           See more posts from Theblockchain_experts
         </p>
         <div className="w-[40%] h-[1px] bg-neutral-600"></div>
