@@ -38,7 +38,10 @@ const post = {
 };
 const SingleTweetById = () => {
   return (
-    <section className="mb-[5rem]">
+    <section
+      className="absolute top-0 left-[0px] w-[100%] overflow-hidden bg-[#060B12]"
+      style={{ zIndex: "100" }}
+    >
       <div className="container mt-[3rem]">
         <header className="flex justify-between items-center">
           <div className="flex gap-[2rem]">
@@ -61,7 +64,7 @@ const SingleTweetById = () => {
           </div>
         </header>
         <main className="flex gap-[2rem] justify-center container mt-[4rem]">
-          <div className="flex flex-col gap-[2rem] w-[30rem]">
+          <div className="flex flex-col gap-[2rem] w-[100%] lg:w-[30rem]">
             <div className="flex gap-3 px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
               <span className="pr-[2rem]">
                 <button className="rounded-sm bg-[#EBEDED] px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[8rem]">
@@ -178,7 +181,7 @@ const SingleTweetById = () => {
 
           {/* second div */}
 
-          <div className="flex flex-col gap-[2rem] w-[30rem] h-[500px]">
+          <div className="flex flex-col gap-[2rem] w-[100%] lg:w-[30rem] h-[500px]">
             <div className="p-[0.5rem]">
               <span className="whitespace-nowrap font-Poppins text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
                 To complete this task
@@ -289,111 +292,113 @@ const SingleTweetById = () => {
         </span>
       </div>
       {/* MORE ABOUT USER POST */}
-
-      <div className="container grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
-        {POST.slice(0, 3).map((post) => (
-          <div
-            key={post.id}
-            className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
-          >
-            <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
-              <div className="flex items-center gap-[0.75rem]">
-                <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
-                  <span>
-                    <Clock />
-                  </span>
-                  <span>Tasks | {post.tasks}/10</span>
-                </button>
-                <button
-                  className={clsx(
-                    "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
-                    post.coin.eth
-                      ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
-                      : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
-                  )}
-                >
-                  <span>
-                    engage to earn |{" "}
-                    {post.coin.eth
-                      ? `${post.coin.eth} ETH`
-                      : `${post.coin.bnb} BNB`}
-                  </span>
-                  <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
-                </button>
-              </div>
-            </div>
-            <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
-            <div className="relative pb-[13px] px-[1rem]">
-              <div className="text-neutral-400 flex flex-col gap-[13px]">
-                <div className="flex items-center gap-3">
-                  <div>
-                    <ProfilePicture />
-                  </div>
-
-                  <span>@{post.userName}</span>
-                  <span className="text-[#929192] font-[500] text-[0.67rem]">
-                    {"Dec 13, 7:44 PM"}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-[1rem]">
-                  <div className="w-[100%] flex flex-col gap-[1rem]">
-                    <p className="text-[0.95rem]">{post.tweet?.description}</p>
-                    {post && post.tweet && post.tweet.images.length > 0 && (
-                      <div className="flex gap-[8px] mb-[30px]">
-                        {post.tweet.images.map((image) => (
-                          <div
-                            key={image}
-                            className="h-[4rem] w-[10rem] bg-white rounded-[8px] object-cover"
-                          >
-                            <img
-                              src={image}
-                              width={"400"}
-                              height={"400"}
-                              alt=""
-                            />
-                          </div>
-                        ))}
-                      </div>
+      <div className="container">
+        <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
+          {POST.slice(0, 3).map((post) => (
+            <div
+              key={post.id}
+              className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
+            >
+              <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
+                <div className="flex items-center gap-[0.75rem]">
+                  <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
+                    <span>
+                      <Clock />
+                    </span>
+                    <span>Tasks | {post.tasks}/10</span>
+                  </button>
+                  <button
+                    className={clsx(
+                      "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
+                      post.coin.eth
+                        ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
+                        : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                     )}
+                  >
+                    <span>
+                      engage to earn |{" "}
+                      {post.coin.eth
+                        ? `${post.coin.eth} ETH`
+                        : `${post.coin.bnb} BNB`}
+                    </span>
+                    <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
+                  </button>
+                </div>
+              </div>
+              <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
+              <div className="relative pb-[13px] px-[1rem]">
+                <div className="text-neutral-400 flex flex-col gap-[13px]">
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <ProfilePicture />
+                    </div>
+
+                    <span>@{post.userName}</span>
+                    <span className="text-[#929192] font-[500] text-[0.67rem]">
+                      {"Dec 13, 7:44 PM"}
+                    </span>
                   </div>
-                  <div className="flex items-baseline">
-                    <div className="flex justify-between gap-1">
-                      <div className="flex gap-[0.4rem]">
-                        <span>
-                          <MessageIcon />
-                        </span>
-                        <span>{post.quote}</span>
-                      </div>
-                      <div className="flex gap-[0.4rem]">
-                        <span>
-                          <RetweenIcon />
-                        </span>
-                        <span>{post.repost}</span>
-                      </div>
-                      <div className="flex gap-[0.4rem]">
-                        <span>
-                          <Like />
-                        </span>
-                        <span>{post.like}</span>
-                      </div>
-                      <div className="">
-                        <span>
-                          <Friends />
-                        </span>
+                  <div className="flex flex-col gap-[1rem]">
+                    <div className="w-[100%] flex flex-col gap-[1rem]">
+                      <p className="text-[0.95rem]">
+                        {post.tweet?.description}
+                      </p>
+                      {post && post.tweet && post.tweet.images.length > 0 && (
+                        <div className="flex gap-[8px] mb-[30px]">
+                          {post.tweet.images.map((image) => (
+                            <div
+                              key={image}
+                              className="h-[4rem] w-[10rem] bg-white rounded-[8px] object-cover"
+                            >
+                              <img
+                                src={image}
+                                width={"400"}
+                                height={"400"}
+                                alt=""
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-baseline">
+                      <div className="flex justify-between gap-1">
+                        <div className="flex gap-[0.4rem]">
+                          <span>
+                            <MessageIcon />
+                          </span>
+                          <span>{post.quote}</span>
+                        </div>
+                        <div className="flex gap-[0.4rem]">
+                          <span>
+                            <RetweenIcon />
+                          </span>
+                          <span>{post.repost}</span>
+                        </div>
+                        <div className="flex gap-[0.4rem]">
+                          <span>
+                            <Like />
+                          </span>
+                          <span>{post.like}</span>
+                        </div>
+                        <div className="">
+                          <span>
+                            <Friends />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
       <div className="w-100% h-[1px] bg-[#2A3C46] my-[3.25rem]"></div>
 
-      <article>
-        <div className="container grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
+      <article className="mb-[5rem] container">
+        <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
           {POST.map((post) => (
             <div
               key={post.id}

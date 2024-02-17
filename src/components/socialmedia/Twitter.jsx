@@ -9,13 +9,15 @@ import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
 import clsx from "clsx";
 import { POST } from "../../../src/utils/postApi";
 
-const Twitter = () => {
+const Twitter = (props) => {
   return (
     <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
       {POST.map((post) => (
         <div
+          onClick={props.onLoadTweet}
+          
           key={post.id}
-          className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
+          className="border-[#314048] cursor-pointer border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
         >
           <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
             <div className="flex items-center gap-[0.75rem]">

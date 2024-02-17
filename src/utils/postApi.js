@@ -116,3 +116,109 @@ export const POST = [
     tasks: "7",
   },
 ];
+
+
+export const TOPEARNERS = [
+  {
+    id: "t1",
+    name: "Blessing",
+    coin: { eth: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t2",
+    name: "JacobNFT",
+    coin: { btc: "0.10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t3",
+    name: "Adams",
+    coin: { eth: "0.0010" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t4",
+    name: "Osazuwa",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t5",
+    name: "Ofunameh",
+    coin: { btc: "100" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t6",
+    name: "Love",
+    coin: { eth: "50" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t7",
+    name: "Ahmed",
+    coin: { eth: "30" },
+    src: "/tweetImages/cycling.svg",
+  },
+  {
+    id: "t8",
+    name: "Habibat",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t9",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t10",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t11",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t12",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t13",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t14",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t15",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t16",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+  {
+    id: "t17",
+    name: "OdogwuBTC",
+    coin: { btc: "10" },
+    src: "/tweetImages/avatar.svg",
+  },
+];
