@@ -14,8 +14,9 @@ const Twitter = (props) => {
     <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
       {POST.map((post) => (
         <div
-          onClick={props.onLoadTweet}
-          
+          onClick={() => props.onLoadTweet(post.id)}
+          id={post.id}
+          // id={props.id}
           key={post.id}
           className="border-[#314048] cursor-pointer border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
         >

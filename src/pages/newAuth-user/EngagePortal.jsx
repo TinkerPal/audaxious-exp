@@ -23,10 +23,15 @@ import { TOPEARNERS } from "../../utils/postApi";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
-  const [singleTweet, setSingleTweet] = useState(false);
+  const [singleTweet, setSingleTweet] = useState();
 
-  const loadTweetByIdHandler = () => {
-    setSingleTweet((prev) => !prev);
+  const loadTweetByIdHandler = (id) => {
+    // console.log(id);
+    setSingleTweet(id);
+  };
+
+  const cancelHandler = () => {
+    setSingleTweet(null);
   };
   const toggleTabHandler = useCallback((id) => {
     setToggle(id);
@@ -50,7 +55,9 @@ const EngagePortals = () => {
   };
   return (
     <>
-      {singleTweet && <SingleTweetById onCancel={loadTweetByIdHandler} />}
+      {singleTweet && (
+        <SingleTweetById tweetId={singleTweet} onCancel={cancelHandler} />
+      )}
       <div className="container">
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
           <div className="flex items-center gap-[1rem]">

@@ -20,24 +20,11 @@ import { ReactComponent as Btw } from "../../assets/svg/dashboardSvg/btw.svg";
 import { ReactComponent as Fam } from "../../assets/svg/dashboardSvg/famnfrd.svg";
 import { ReactComponent as FlexLine } from "../../assets/svg/dashboardSvg/flexLine.svg";
 import { ReactComponent as Cancel } from "../../assets/svg/dashboardSvg/cancel.svg";
-import { POST } from "../../utils/postApi";
+import { POST, getTweetById } from "../../utils/postApi";
 
-const post = {
-  id: "p6",
-  userName: "justmylife_222",
-  time: "2",
-  tweet: {
-    description:
-      "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
-    images: ["/tweetImages/nft.svg", "/tweetImages/nft2.svg"],
-  },
-  repost: "125",
-  like: "1200",
-  quote: "10",
-  coin: { eth: "65" },
-  tasks: "7",
-};
-const SingleTweetById = ({ onCancel }) => {
+const SingleTweetById = ({ onCancel, tweetId }) => {
+  const post = getTweetById(tweetId);
+  // console.log(tweet);
   return (
     <section
       className="absolute top-0 left-[0px] w-[100%] overflow-hidden bg-[#060B12]"
@@ -52,7 +39,7 @@ const SingleTweetById = ({ onCancel }) => {
         <header className="flex justify-between items-center">
           <div className="flex gap-[2rem]">
             <span>
-              <Cadabra style={{ height: "60", width: "60" }} />
+              <Cadabra style={{ height: "60px", width: "60px" }} />
             </span>
             <div className="flex flex-col">
               <span className="font-Poppins text-[1.45rem] normal-case font-[400] text-[#FFF]">
@@ -287,7 +274,7 @@ const SingleTweetById = ({ onCancel }) => {
       {/* second section */}
       <div className="container flex mt-[5rem] mb-[1.5rem] items-center justify-between">
         <span>
-          <Cadabra style={{ height: "40", width: "40" }} />
+          <Cadabra style={{ height: "40px", width: "40px" }} />
         </span>
         <p className="whitespace-nowrap font-Poppins text-[0.7rem] lg:text-[1.25rem] normal-case font-[300] text-[#A5A5A5]">
           See more posts from Theblockchain_experts

@@ -117,6 +117,10 @@ export const POST = [
   },
 ];
 
+export const getTweetById = (id) => {
+  const tweet = POST.find((item) => item.id === id);
+  return tweet;
+};
 
 export const TOPEARNERS = [
   {
