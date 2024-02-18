@@ -41,6 +41,7 @@ export default {
         homeScreen: 'url("/src/assets/svg/homeScreen.svg")',
         bgLanding: 'url("/src/assets/svg/bgLanding.svg")',
         dashboardHeroBg: 'url("/src/assets/svg/dashboardSvg/heroBg.svg")',
+        selectedBg: 'url("/src/assets/svg/dashboardSvg/selected.svg")',
       },
       backgroundColor: {
         backdrop: "rgba(5, 22, 31, 0.75)",
