@@ -8,12 +8,14 @@ import { ReactComponent as Telegram } from "../../assets/svg/dashboardSvg/telegr
 import { ReactComponent as Facebook } from "../../assets/svg/dashboardSvg/facebook.svg";
 import { ReactComponent as Discord } from "../../assets/svg/dashboardSvg/discord.svg";
 import Twitter from "../../components/socialmedia/Twitter";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import clsx from "clsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
 import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
+import { ReactComponent as Brick2 } from "../../assets/svg/brickline2.svg";
+import { ReactComponent as Brick1 } from "../../assets/svg/brick-line.svg";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,14 +26,25 @@ import { TOPEARNERS } from "../../utils/postApi";
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
   const [singleTweet, setSingleTweet] = useState();
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const singleTweetContainerRef = useRef(null);
 
   const loadTweetByIdHandler = (id) => {
-    // console.log(id);
+    setSelectedPostId(id);
     setSingleTweet(id);
   };
 
+  useEffect(() => {
+    // Scroll to the selected post item whenever selectedPostId changes
+
+    if (singleTweetContainerRef.current) {
+      singleTweetContainerRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedPostId]);
+
   const cancelHandler = () => {
     setSingleTweet(null);
+    setSelectedPostId(null);
   };
   const toggleTabHandler = useCallback((id) => {
     setToggle(id);
@@ -55,12 +68,12 @@ const EngagePortals = () => {
   };
   return (
     <>
-      {singleTweet && (
-        <SingleTweetById tweetId={singleTweet} onCancel={cancelHandler} />
-      )}
       <div className="container">
-        <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md flex justify-between border-[#314048] border-[0.5px]">
-          <div className="flex items-center gap-[1rem]">
+        <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
+          <div className="absolute top-0 left-0 z-10 hidden md:block">
+            <Brick1 />
+          </div>
+          <div className="flex items-center gap-[1rem] relative">
             <div>
               <Friends />
             </div>
@@ -76,6 +89,9 @@ const EngagePortals = () => {
 
           <div>
             <Activities />
+          </div>
+          <div className="absolute right-0 -bottom-0 z-10 hidden md:block">
+            <Brick2 />
           </div>
         </div>
 
@@ -303,8 +319,20 @@ const EngagePortals = () => {
                   </div>
                 </div>
               </section>
-              <div className="bg-[#080E15] max-h-screen overflow-y-auto">
-                <Twitter onLoadTweet={loadTweetByIdHandler} />
+              <div ref={singleTweetContainerRef}>
+                {singleTweet && (
+                  <SingleTweetById
+                    tweetId={singleTweet}
+                    onCancel={cancelHandler}
+                  />
+                )}
+
+                <div className="bg-[#080E15] max-h-screen overflow-y-auto mt-[1rem]">
+                  <Twitter
+                    onLoadTweet={loadTweetByIdHandler}
+                    selectedPostId={selectedPostId}
+                  />
+                </div>
               </div>
             </div>
 

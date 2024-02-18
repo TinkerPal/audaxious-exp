@@ -26,17 +26,14 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
   const post = getTweetById(tweetId);
   // console.log(tweet);
   return (
-    <section
-      className="absolute top-0 left-[0px] w-[100%] overflow-hidden bg-[#060B12]"
-      style={{ zIndex: "100" }}
-    >
-      <div className="text-neutral-300 absolute right-10 pt-[3rem]">
+    <section className="bg-[#060B12] relative">
+      <div className="text-neutral-300 top-[-40px] absolute right-0">
         <span className="" onClick={onCancel}>
           <Cancel />
         </span>
       </div>
-      <div className="container mt-[6rem]">
-        <header className="flex justify-between items-center">
+      <div className="container">
+        {/* <header className="flex justify-between items-center">
           <div className="flex gap-[2rem]">
             <span>
               <Cadabra style={{ height: "60px", width: "60px" }} />
@@ -55,16 +52,16 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
               Join community
             </button>
           </div>
-        </header>
-        <main className="flex gap-[2rem] justify-center container mt-[4rem]">
-          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[50%] lg:w-[30rem]">
-            <div className="flex gap-3 px-[0.8rem] lg:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
-              <span className="pr-[1rem] lg:pr-[2rem]">
-                <button className="rounded-sm bg-[#EBEDED] px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[8rem]">
+        </header> */}
+        <main className="flex gap-[2rem] justify-center mt-[4rem]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20rem] lg:w-[25rem] xl:w-[30rem]">
+            <div className="flex gap-3 px-[0.8rem] lg:px-[1rem] xl:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
+              <span className="pr-[0.1rem] lg:pr-[0.5rem] xl:pr-[2rem]">
+                <button className="rounded-sm bg-[#EBEDED] lg:px-[0rem] xl:px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[4rem] lg:w-[8rem]">
                   Post
                 </button>
               </span>
-              <span className="font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[1rem] lg:px-[3rem] border-x border-[#19242D]">
+              <span className="font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[1rem] lg:px-[1rem] xl:px-[3rem] border-x border-[#19242D]">
                 About
               </span>
               <span className="whitespace-nowrap font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[0.3rem] lg:px-[1rem]">
@@ -82,7 +79,9 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                       <span>
                         <Clock />
                       </span>
-                      <span>Tasks | {post.tasks}/10</span>
+                      <span className="whitespace-nowrap">
+                        Tasks | {post.tasks}/10
+                      </span>
                     </button>
                     <button
                       className={clsx(
@@ -92,7 +91,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                           : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                       )}
                     >
-                      <span>
+                      <span className="whitespace-nowrap">
                         engage to earn |{" "}
                         {post.coin.eth
                           ? `${post.coin.eth} ETH`
@@ -123,14 +122,13 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                         {post && post.tweet && post.tweet.images.length > 0 && (
                           <div className="flex gap-[20px]">
                             {post.tweet.images.map((image) => (
-                              <div
-                                key={image}
-                                className="h-[13rem] w-[13rem] rounded-[20px] object-cover"
-                              >
+                              <div key={image} className="">
                                 <img
                                   src={image}
-                                  alt=""
-                                  className="w-full h-full object-contain"
+                                  width={"400"}
+                                  height={"400"}
+                                  className="w-[100%] h-[13rem] object-cover rounded-[10px]"
+                                  alt={post.userName}
                                 />
                               </div>
                             ))}
@@ -174,9 +172,9 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
 
           {/* second div */}
 
-          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[50%] lg:w-[30rem] h-[500px]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20rem] lg:w-[25rem] xl:w-[30rem]">
             <div className="p-[0.5rem]">
-              <span className="whitespace-nowrap font-Poppins text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
+              <span className="whitespace-nowrap font-Poppins text-[1.3rem] lg:text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
                 To complete this task
               </span>
             </div>
@@ -223,7 +221,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                       <Tweet />
                     </span>
                     <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
-                      Follow Tb_e on twitter
+                      {post.userName}
                     </span>
                   </div>
                   <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
@@ -240,7 +238,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                       <Infinity />
                     </span>
                     <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
-                      Follow Tb_e on medium
+                      {post.userName}
                     </span>
                   </div>
                   <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
@@ -272,7 +270,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
         </main>
       </div>
       {/* second section */}
-      <div className="container flex mt-[5rem] mb-[1.5rem] items-center justify-between">
+      {/* <div className="container flex mt-[5rem] mb-[1.5rem] items-center justify-between">
         <span>
           <Cadabra style={{ height: "40px", width: "40px" }} />
         </span>
@@ -283,9 +281,9 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
         <span className="whitespace-nowrap text-[#79C4EC] font-Poppins text-[1.25rem] cursor-pointer">
           View profile
         </span>
-      </div>
+      </div> */}
       {/* MORE ABOUT USER POST */}
-      <div className="container">
+      {/* <div className="container">
         <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
           {POST.slice(0, 3).map((post) => (
             <div
@@ -387,10 +385,10 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="w-100% h-[1px] bg-[#2A3C46] my-[3.25rem]"></div>
+      </div> */}
+      {/* <div className="w-100% h-[1px] bg-[#2A3C46] my-[3.25rem]"></div> */}
 
-      <article className="mb-[5rem] container">
+      {/* <article className="mb-[5rem] container">
         <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
           {POST.map((post) => (
             <div
@@ -444,14 +442,12 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                       {post && post.tweet && post.tweet.images.length > 0 && (
                         <div className="flex gap-[8px] mb-[30px]">
                           {post.tweet.images.map((image) => (
-                            <div
-                              key={image}
-                              className="h-[4rem] w-[10rem] bg-white rounded-[8px] object-cover"
-                            >
+                            <div key={image} className="rounded-[8px]">
                               <img
                                 src={image}
                                 width={"400"}
                                 height={"400"}
+                                className="w-[100%] h-[8rem] object-cover rounded-[8px]"
                                 alt=""
                               />
                             </div>
@@ -492,7 +488,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
             </div>
           ))}
         </div>
-      </article>
+      </article> */}
     </section>
   );
 };

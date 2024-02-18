@@ -18,26 +18,31 @@ const Twitter = (props) => {
           id={post.id}
           // id={props.id}
           key={post.id}
-          className="border-[#314048] cursor-pointer border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
+          className={clsx(
+            "border-[#314048] cursor-pointer border-[0.5px] rounded-[20px] bg-no-repeat bg-cover",
+            props.selectedPostId === post.id ? "bg-selectedBg" : "bg-heroCustom"
+          )}
         >
           <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
             <div className="flex items-center gap-[0.75rem]">
-              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
+              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins font-semibold text-[0.6rem] text-[#87cece] rounded-[26px]">
                 <span>
                   <Clock />
                 </span>
-                <span>Tasks | {post.tasks}/10</span>
+                <span className="whitespace-nowrap">
+                  Tasks | {post.tasks}/10
+                </span>
               </button>
               <button
                 className={clsx(
-                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
+                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-semibold text-[#C556E1] rounded-[26px]",
                   post.coin.eth
                     ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
                     : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                 )}
               >
-                <span>
-                  engage to earn |{" "}
+                <span className="whitespace-nowrap flex">
+                  engage <span className="hidden lg:block">to earn</span> |{" "}
                   {post.coin.eth
                     ? `${post.coin.eth} ETH`
                     : `${post.coin.bnb} BNB`}
@@ -61,24 +66,9 @@ const Twitter = (props) => {
               </div>
               <div className="flex flex-col gap-[1rem]">
                 <div className="w-[100%] flex flex-col gap-[1rem]">
-                  <p className="text-[0.95rem]">{post.tweet?.description}</p>
-                  {post && post.tweet && post.tweet.images.length > 0 && (
-                    <div className="flex gap-[8px] mb-[30px]">
-                      {post.tweet.images.map((image) => (
-                        <div
-                          key={image}
-                          className="h-[4rem] w-[10rem] bg-white rounded-[8px] object-cover"
-                        >
-                          <img
-                            src={image}
-                            width={"400"}
-                            height={"400"}
-                            alt=""
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <p className="text-[0.95rem] xl:text-[1rem]">
+                    {post.tweet?.description.slice(0, 80)}
+                  </p>
                 </div>
                 <div className="flex items-baseline">
                   <div className="flex justify-between gap-1">
