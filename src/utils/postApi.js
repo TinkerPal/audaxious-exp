@@ -64,8 +64,9 @@ export const POST = [
     userName: "justmylife_222",
     time: "2",
     tweet: {
-      description: "🚀 Bitcoin is undoubtedly the Show more",
-      images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
+      description:
+        "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
+      images: ["/tweetImages/nft.svg", "/tweetImages/nft2.svg"],
     },
     repost: "125",
     like: "1200",
@@ -78,7 +79,8 @@ export const POST = [
     userName: "justmylife_222",
     time: "2",
     tweet: {
-      description: "🚀 Bitcoin is undoubtedly the Show more",
+      description:
+        "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
       images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
     },
     repost: "125",
@@ -92,7 +94,8 @@ export const POST = [
     userName: "justmylife_222",
     time: "2",
     tweet: {
-      description: "🚀 Bitcoin is undoubtedly the Show more",
+      description:
+        "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
       images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
     },
     repost: "125",
@@ -106,7 +109,8 @@ export const POST = [
     userName: "justmylife_222",
     time: "2",
     tweet: {
-      description: "🚀 Bitcoin is undoubtedly the Show more",
+      description:
+        "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
       images: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
     },
     repost: "125",
