@@ -1,28 +1,31 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
-import Header from "./pages/newAuth-user/Header";
-import Layout from "./pages/newAuth-user/Layout";
-import Dashboard from "./pages/newAuth-user/Dashboard";
-import EngagePortals from "./pages/newAuth-user/EngagePortal";
-import SingleTweetById from "./pages/newAuth-user/SingleTweetById";
+import { Route, Routes } from "react-router-dom";
+// import DashboardLayout from "./pages/newAuth-user/Layout";
+// import Dashboard from "./pages/newAuth-user/Dashboard";
+// import EngagePortals from "./pages/newAuth-user/EngagePortal";
+import { lazy } from "react";
+// import Landing from "./pages/landing/Landing";
+import Layout from "./layout/Layout";
 
 const AppProtectedNew = () => {
-  const location = useLocation();
+  const Home = lazy(() => import("./pages/landing/Landing"));
+  const About = lazy(() => import("./pages/about/About"));
+  const DashboardLayout = lazy(() => import("./pages/newAuth-user/Layout"));
+  const Dashboard = lazy(() => import("./pages/newAuth-user/Dashboard"));
+  const EngagePortals = lazy(() => import("./pages/newAuth-user/EngagePortal"));
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to={"/dashboard"} replace="true" />} />
-      <Route path="/dashboard" element={<Layout />}>
-        <Route index={true} element={<Dashboard />} />
-        <Route path="engage-portal" element={<EngagePortals />} />
-        <Route />
-      </Route>
-      <Route path="/tweet" element={<SingleTweetById />} />
-    </Routes>
+    <>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index={true} element={<Dashboard />} />
+            <Route path="engage-portal" element={<EngagePortals />} />
+            <Route />
+          </Route>
+        </Routes>
+      </Layout>
+    </>
   );
 };
 

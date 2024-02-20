@@ -53,8 +53,8 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
             </button>
           </div>
         </header> */}
-        <main className="flex gap-[2rem] justify-center mt-[4rem]">
-          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20rem] lg:w-[25rem] xl:w-[30rem]">
+        <main className="flex gap-[0.5rem] lg:gap-[2rem] justify-center mt-[4rem] lg:mt-[2rem] xl:[4rem]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20.5rem] lg:w-[25rem] xl:w-[30rem]">
             <div className="flex gap-3 px-[0.8rem] lg:px-[1rem] xl:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
               <span className="pr-[0.1rem] lg:pr-[0.5rem] xl:pr-[2rem]">
                 <button className="rounded-sm bg-[#EBEDED] lg:px-[0rem] xl:px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[4rem] lg:w-[8rem]">
@@ -127,7 +127,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                                   src={image}
                                   width={"400"}
                                   height={"400"}
-                                  className="w-[100%] h-[13rem] object-cover rounded-[10px]"
+                                  className="w-[100%] h-[7rem] lg:h-[5rem] xl:h-[12rem] object-cover rounded-[10px]"
                                   alt={post.userName}
                                 />
                               </div>
@@ -172,20 +172,20 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
 
           {/* second div */}
 
-          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20rem] lg:w-[25rem] xl:w-[30rem]">
+          <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
             <div className="p-[0.5rem]">
               <span className="whitespace-nowrap font-Poppins text-[1.3rem] lg:text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
                 To complete this task
               </span>
             </div>
-            <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[1.25rem] py-[2.8rem]">
-              <div className="flex flex-col gap-5 border-[#314048] border-b-[0.5px] pb-[1.5rem]">
+            <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[1.25rem] py-[2rem] lg:py-[0.7rem] xl:py-[2.8rem]">
+              <div className="flex flex-col gap-5 border-[#314048] border-b-[0.5px] pb-[1.5rem] lg:pb-[0.6rem] xl:pb-[1.5rem]">
                 <div className="flex justify-between">
                   <div className="flex items-center gap-4">
                     <span>
                       <Love />
                     </span>
-                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
                       Like this post
                     </span>
                   </div>
@@ -203,7 +203,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                     <span>
                       <Retweet />
                     </span>
-                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
                       Re-tweet Post
                     </span>
                   </div>
@@ -220,7 +220,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                     <span>
                       <Tweet />
                     </span>
-                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
                       {post.userName}
                     </span>
                   </div>
@@ -237,7 +237,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                     <span>
                       <Infinity />
                     </span>
-                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1.25rem] normal-case text-[#E8E8E8]">
+                    <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
                       {post.userName}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-[2.8rem] lg:pt-[1.5rem]">
+              <div className="flex items-center justify-between pt-[2.8rem] lg:pt-[0.5rem] xl:pt-[1.5rem]">
                 <div className="flex items-center gap-0 lg:gap-3">
                   <span>
                     <Setting />

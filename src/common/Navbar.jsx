@@ -170,7 +170,7 @@ function Navbar() {
               // }`}
               className={`font-medium`}
             >
-              <Link to={pathConstant.CREATEACCOUNT} target="_blank">
+              <Link to={"/dashboard"}>
                 <button className="hidden lg:inline-block px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70">
                   Log In
                 </button>
@@ -301,7 +301,7 @@ function Navbar() {
                 </div>
 
                 <div className="p-2 mt-6 font-medium">
-                  <Link to={pathConstant.CREATEACCOUNT} target="_blank">
+                  <Link to={"/dashboard"} target="_blank">
                     <button className="md:hidden inline-block w-full text-center px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70">
                       Log In
                     </button>

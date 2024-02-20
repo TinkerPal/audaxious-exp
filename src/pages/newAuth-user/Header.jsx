@@ -4,16 +4,21 @@ import { ReactComponent as Search } from "../../assets/svg/dashboardSvg/search.s
 import { ReactComponent as Bell } from "../../assets/svg/dashboardSvg/bell.svg";
 import { ReactComponent as Line } from "../../assets/svg/dashboardSvg/linebtw.svg";
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/audaxiousmd.svg";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="max-w-[1920px] fixed top-0 left-0 right-0 z-50">
       <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
         <div className="flex items-center gap-[2rem] xl:gap-[8.6rem]">
           <div className="hidden xl:block">
-            <Logo />
+            <Link to={"/"}>
+              <Logo />
+            </Link>
           </div>
           <div className="block xl:hidden">
-            <LogoMd />
+            <Link to={"/"}>
+              <LogoMd />
+            </Link>
           </div>
           <div
             className="text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
