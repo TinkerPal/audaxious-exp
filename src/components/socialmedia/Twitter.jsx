@@ -12,7 +12,6 @@ import { POST } from "../../../src/utils/postApi";
 const Twitter = (props) => {
   const loadTweetByIdHandler = (id) => {
     props.onLoadTweet(id);
-    props.setIsOpen(true);
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">

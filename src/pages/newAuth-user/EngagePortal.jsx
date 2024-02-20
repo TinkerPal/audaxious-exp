@@ -82,7 +82,11 @@ const EngagePortals = () => {
             ref={overlayRef}
           >
             <div className="left-[15%] xl:left-[25%] absolute w-[80%] h-screen xl:w-[73%] top-[5vh] xl:top-[15vh] z-20">
-              <SingleTweetById tweetId={singleTweet} onCancel={cancelHandler} />
+              <SingleTweetById
+                tweetId={singleTweet}
+                onCancel={cancelHandler}
+                setSelectedPostId={setSelectedPostId}
+              />
             </div>
           </div>
         )}
