@@ -10,11 +10,15 @@ import clsx from "clsx";
 import { POST } from "../../../src/utils/postApi";
 
 const Twitter = (props) => {
+  const loadTweetByIdHandler = (id) => {
+    props.onLoadTweet(id);
+    props.setIsOpen(true);
+  };
   return (
-    <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
       {POST.map((post) => (
         <div
-          onClick={() => props.onLoadTweet(post.id)}
+          onClick={() => loadTweetByIdHandler(post.id)}
           id={post.id}
           // id={props.id}
           key={post.id}
@@ -25,7 +29,7 @@ const Twitter = (props) => {
         >
           <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
             <div className="flex items-center gap-[0.75rem]">
-              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins font-semibold text-[0.6rem] text-[#87cece] rounded-[26px]">
+              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins font-semibold text-[0.8rem] text-[#87cece] rounded-[26px]">
                 <span>
                   <Clock />
                 </span>
@@ -35,14 +39,14 @@ const Twitter = (props) => {
               </button>
               <button
                 className={clsx(
-                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-semibold text-[#C556E1] rounded-[26px]",
+                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-semibold text-[#C556E1] rounded-[26px]",
                   post.coin.eth
                     ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
                     : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                 )}
               >
                 <span className="whitespace-nowrap flex">
-                  engage <span className="hidden lg:block">to earn</span> |{" "}
+                  Earn |{" "}
                   {post.coin.eth
                     ? `${post.coin.eth} ETH`
                     : `${post.coin.bnb} BNB`}
@@ -66,7 +70,7 @@ const Twitter = (props) => {
               </div>
               <div className="flex flex-col gap-[1rem]">
                 <div className="w-[100%] flex flex-col gap-[1rem]">
-                  <p className="text-[0.95rem] xl:text-[1rem]">
+                  <p className="text-[0.95rem] xl:text-[1rem] text-[#E8E8E8]">
                     {post.tweet?.description.slice(0, 80)}
                   </p>
                 </div>

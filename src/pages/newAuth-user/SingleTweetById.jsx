@@ -26,8 +26,8 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
   const post = getTweetById(tweetId);
   // console.log(tweet);
   return (
-    <section className="bg-[#060B12] relative">
-      <div className="text-neutral-300 top-[-40px] absolute right-0">
+    <section className="bg-[#060B12] relative py-[0.1rem] pb-4 rounded-md max-w-[1300px]">
+      <div className="text-neutral-300 top-[15px] absolute right-2">
         <span className="" onClick={onCancel}>
           <Cancel />
         </span>
@@ -75,7 +75,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
               >
                 <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
                   <div className="flex items-center gap-[0.75rem]">
-                    <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#87cece] rounded-[26px]">
+                    <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#87cece] rounded-[26px]">
                       <span>
                         <Clock />
                       </span>
@@ -85,14 +85,14 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                     </button>
                     <button
                       className={clsx(
-                        "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.6rem] font-[300] text-[#C556E1] rounded-[26px]",
+                        "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
                         post.coin.eth
                           ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
                           : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
                       )}
                     >
                       <span className="whitespace-nowrap">
-                        engage to earn |{" "}
+                        Earn |{" "}
                         {post.coin.eth
                           ? `${post.coin.eth} ETH`
                           : `${post.coin.bnb} BNB`}
@@ -116,7 +116,7 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                     </div>
                     <div className="flex flex-col gap-[1rem]">
                       <div className="w-[100%] flex flex-col gap-[1rem]">
-                        <p className="text-[0.95rem]">
+                        <p className="text-[0.95rem] text-[#E8E8E8]">
                           {post.tweet?.description}
                         </p>
                         {post && post.tweet && post.tweet.images.length > 0 && (
@@ -136,8 +136,8 @@ const SingleTweetById = ({ onCancel, tweetId }) => {
                         )}
                       </div>
                       <div className="flex items-baseline mb-[1rem]">
-                        <div className="flex justify-between gap-1">
-                          <div className="flex gap-[0.4rem]">
+                        <div className="flex gap-1">
+                          <div className="flex">
                             <span>
                               <MessageIcon />
                             </span>

@@ -28,6 +28,8 @@ const EngagePortals = () => {
   const [singleTweet, setSingleTweet] = useState();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const singleTweetContainerRef = useRef(null);
+  const scrollRef = useRef(null);
+  const overlayRef = useRef(null);
 
   const loadTweetByIdHandler = (id) => {
     setSelectedPostId(id);
@@ -35,13 +37,17 @@ const EngagePortals = () => {
   };
 
   useEffect(() => {
-    // Scroll to the selected post item whenever selectedPostId changes
-
-    if (singleTweetContainerRef.current) {
-      singleTweetContainerRef.current.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.style.overflowY = "auto";
     }
   }, [selectedPostId]);
 
+  const overlayCancelHandler = () => {
+    if (overlayRef.current && event.target === overlayRef.current) {
+      setSingleTweet(null);
+      setSelectedPostId(null);
+    }
+  };
   const cancelHandler = () => {
     setSingleTweet(null);
     setSelectedPostId(null);
@@ -67,10 +73,21 @@ const EngagePortals = () => {
     },
   };
   return (
-    <>
+    <div className="relative" ref={scrollRef}>
       <div className="container">
+        {singleTweet && (
+          <div
+            className="fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-75"
+            onClick={overlayCancelHandler}
+            ref={overlayRef}
+          >
+            <div className="left-[15%] xl:left-[25%] fixed w-[80%] xl:w-[73%] top-[5vh] xl:top-[15vh] z-20 overflow-hidden">
+              <SingleTweetById tweetId={singleTweet} onCancel={cancelHandler} />
+            </div>
+          </div>
+        )}
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
-          <div className="absolute top-0 left-0 z-10 hidden md:block">
+          <div className="absolute top-0 left-0 z-5 hidden md:block">
             <Brick1 />
           </div>
           <div className="flex items-center gap-[1rem] relative">
@@ -90,7 +107,7 @@ const EngagePortals = () => {
           <div>
             <Activities />
           </div>
-          <div className="absolute right-0 -bottom-0 z-10 hidden md:block">
+          <div className="absolute right-0 -bottom-0 z-5 hidden md:block">
             <Brick2 />
           </div>
         </div>
@@ -319,20 +336,12 @@ const EngagePortals = () => {
                   </div>
                 </div>
               </section>
-              <div ref={singleTweetContainerRef}>
-                {singleTweet && (
-                  <SingleTweetById
-                    tweetId={singleTweet}
-                    onCancel={cancelHandler}
-                  />
-                )}
 
-                <div className="bg-[#080E15] max-h-screen overflow-y-auto mt-[1rem]">
-                  <Twitter
-                    onLoadTweet={loadTweetByIdHandler}
-                    selectedPostId={selectedPostId}
-                  />
-                </div>
+              <div className="bg-[#080E15] mt-[1rem]">
+                <Twitter
+                  onLoadTweet={loadTweetByIdHandler}
+                  selectedPostId={selectedPostId}
+                />
               </div>
             </div>
 
@@ -351,7 +360,7 @@ const EngagePortals = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
