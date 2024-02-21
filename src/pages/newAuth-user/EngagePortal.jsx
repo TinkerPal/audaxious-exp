@@ -81,7 +81,7 @@ const EngagePortals = () => {
             onClick={overlayCancelHandler}
             ref={overlayRef}
           >
-            <div className="left-[15%] xl:left-[25%] absolute w-[80%] h-screen xl:w-[73%] top-[5vh] xl:top-[15vh] z-20">
+            <div className="left-[13%] xl:left-[20%] absolute w-[85%] h-screen xl:max-w-[1000px] top-[5vh] xl:top-[15vh] z-20">
               <SingleTweetById
                 tweetId={singleTweet}
                 onCancel={cancelHandler}

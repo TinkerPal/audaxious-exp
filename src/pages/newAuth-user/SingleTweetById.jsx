@@ -50,7 +50,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
 
   return (
-    <section className="bg-[#060B12] relative py-[0.1rem] pb-4 rounded-md max-w-[1300px]">
+    <section className="bg-[#060B12] relative py-[0.1rem] pb-4 rounded-md max-w-[1300px] px-[1rem]">
       <div className="text-neutral-300 top-[15px] absolute right-2">
         <span className="cursor-pointer" onClick={onCancel}>
           <Cancel />
@@ -78,12 +78,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
           </div>
         </header> */}
         <div className="relative">
-          <div className="absolute top-[50%] left-[0px] z-[100]">
+          <div className="absolute top-[50%] left-[-42px] z-[100]">
             <span className="cursor-pointer" onClick={handlePreviousTweet}>
               <Previous />
             </span>
           </div>
-          <div className="absolute top-[50%] right-0">
+          <div className="absolute top-[50%] right-[-42px]">
             <span className="cursor-pointer" onClick={handleNextTweet}>
               <Next />
             </span>
