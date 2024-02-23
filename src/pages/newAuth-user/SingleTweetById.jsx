@@ -50,14 +50,14 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
 
   return (
-    <section className="bg-[#060B12] relative py-[0.1rem] pb-4 rounded-md max-w-[1300px] px-[1rem]">
+    <section className="bg-[#060B12] relative py-[5rem] rounded-md max-w-[1300px] px-[1rem]">
       <div className="text-neutral-300 top-[15px] absolute right-2">
         <span className="cursor-pointer" onClick={onCancel}>
           <Cancel />
         </span>
       </div>
       <div className="container">
-        {/* <header className="flex justify-between items-center">
+        <header className="flex justify-between items-center">
           <div className="flex gap-[2rem]">
             <span>
               <Cadabra style={{ height: "60px", width: "60px" }} />
@@ -67,7 +67,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 Cadabra Finance
               </span>
               <span className="text-[#D3D3D3] font-[275] text-[0.8125rem] font-Poppins normal-case">
-                @Theblckchain_experts
+                @{post.userName}
               </span>
             </div>
           </div>
@@ -76,7 +76,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
               Join community
             </button>
           </div>
-        </header> */}
+        </header>
         <div className="relative">
           <div className="absolute top-[50%] left-[-42px] z-[100]">
             <span className="cursor-pointer" onClick={handlePreviousTweet}>
@@ -151,7 +151,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       </div>
                       <div className="flex flex-col gap-[1rem]">
                         <div className="w-[100%] flex flex-col gap-[1rem]">
-                          <p className="text-[0.95rem] text-[#E8E8E8]">
+                          <p className="text-[0.95rem] text-[#E8E8E8] text-start">
                             {post.tweet?.description}
                           </p>
                           {post &&
