@@ -17,6 +17,8 @@ import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Brick2 } from "../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../assets/svg/brick-line.svg";
 
+import { Dialog, Transition } from "@headlessui/react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,6 +27,7 @@ import { TOPEARNERS } from "../../utils/postApi";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
+  const [open, setOpen] = useState(false);
   const [singleTweet, setSingleTweet] = useState();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const singleTweetContainerRef = useRef(null);
@@ -32,6 +35,7 @@ const EngagePortals = () => {
   const overlayRef = useRef(null);
 
   const loadTweetByIdHandler = (id) => {
+    setOpen(true);
     setSelectedPostId(id);
     setSingleTweet(id);
   };
@@ -49,6 +53,7 @@ const EngagePortals = () => {
     }
   };
   const cancelHandler = () => {
+    setOpen(false);
     setSingleTweet(null);
     setSelectedPostId(null);
   };
@@ -73,23 +78,52 @@ const EngagePortals = () => {
     },
   };
   return (
-    <div className="relative" ref={scrollRef}>
+    <div className="" ref={scrollRef}>
       <div className="container">
-        {singleTweet && (
+        {/* testing header */}
+
+        <Dialog
+          as="div"
+          className={`relative z-[900]`}
+          open={open}
+          onClose={cancelHandler}
+          ref={overlayRef}
+        >
           <div
-            className="fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-75"
+            className="fixed inset-0 bg-black bg-opacity-75"
+            onClick={cancelHandler}
+          />
+          <div className="fixed inset-0 z-[300] overflow-y-auto">
+            <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+              <Dialog.Panel className="">
+                <SingleTweetById
+                  tweetId={singleTweet}
+                  onCancel={cancelHandler}
+                  setSelectedPostId={setSelectedPostId}
+                />
+              </Dialog.Panel>
+            </div>
+          </div>
+        </Dialog>
+
+        {/* testing */}
+        {/* {singleTweet && (
+          <div
+            className="fixed top-0 left-0 overflow-y-auto overflow-x-hidden outline-none focus:outline-none inset-0 z-50 bg-black bg-opacity-75"
             onClick={overlayCancelHandler}
             ref={overlayRef}
           >
-            <div className="left-[13%] xl:left-[20%] absolute w-[85%] h-screen xl:max-w-[1000px] top-[5vh] xl:top-[15vh] z-20">
-              <SingleTweetById
-                tweetId={singleTweet}
-                onCancel={cancelHandler}
-                setSelectedPostId={setSelectedPostId}
-              />
+            <div className="relative">
+              <div className="left-[13%] xl:left-[20%] absolute inset-0 xl:max-w-[1000px] top-[5vh] xl:top-[15vh] z-20">
+                <SingleTweetById
+                  tweetId={singleTweet}
+                  onCancel={cancelHandler}
+                  setSelectedPostId={setSelectedPostId}
+                />
+              </div>
             </div>
           </div>
-        )}
+        )} */}
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-5 hidden md:block">
             <Brick1 />
