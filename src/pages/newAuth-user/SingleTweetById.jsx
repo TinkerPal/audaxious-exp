@@ -58,10 +58,10 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
       </div>
       <div className="container">
         <header className="flex justify-between items-center">
-          <div className="flex gap-[2rem]">
-            <span>
-              <Cadabra style={{ height: "60px", width: "60px" }} />
-            </span>
+          <div className="flex gap-[0rem]">
+            {/* <span>
+              <Cadabra style={{ height: "100px", width: "100px" }} />
+            </span> */}
             <div className="flex flex-col">
               <span className="font-Poppins text-[1.45rem] normal-case font-[400] text-[#FFF]">
                 Cadabra Finance
@@ -73,7 +73,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
           </div>
           <div>
             <button className="px-[1rem] py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm">
-              Join community
+              Join communityssss
             </button>
           </div>
         </header>
@@ -88,7 +88,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
               <Next />
             </span>
           </div>
-          <main className="flex gap-[0.5rem] lg:gap-[2rem] justify-center mt-[4rem] lg:mt-[2rem] xl:[4rem]">
+          <main className="flex flex-wrap md:flex-nowrap gap-[0.5rem] lg:gap-[2rem] justify-center mt-[4rem] lg:mt-[2rem] xl:[4rem]">
             <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20.5rem] lg:w-[25rem] xl:w-[30rem]">
               <div className="flex gap-3 px-[0.8rem] lg:px-[1rem] xl:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
                 <span className="pr-[0.1rem] lg:pr-[0.5rem] xl:pr-[2rem]">
@@ -192,22 +192,14 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                               </span>
                               <span>{post.like}</span>
                             </div>
-                            {/* <div className="">
-                            <span>
-                              <Friends />
-                            </span>
-                          </div> */}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* ))} */}
               </div>
             </div>
-
-            {/* second div */}
 
             <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
               <div className="p-[0.5rem]">
@@ -234,7 +226,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   <span>
                     <FlexLine />
                   </span>
-                  {/* second */}
+
                   <div className="flex justify-between">
                     <div className="flex items-center gap-4">
                       <span>
@@ -251,7 +243,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   <span>
                     <FlexLine />
                   </span>
-                  {/* third */}
+
                   <div className="flex justify-between">
                     <div className="flex items-center gap-4">
                       <span>
@@ -268,7 +260,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   <span>
                     <FlexLine />
                   </span>
-                  {/* fourth */}
+
                   <div className="flex justify-between">
                     <div className="flex items-center gap-3">
                       <span>
