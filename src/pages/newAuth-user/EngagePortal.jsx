@@ -129,11 +129,11 @@ const EngagePortals = () => {
             <Brick1 />
           </div>
           <div className="flex items-center gap-[1rem] relative">
-            <div>
+            <div className="hidden md:block">
               <Friends />
             </div>
             <div className="font-Poppins font-normal">
-              <p className="text-[1.1rem] xl:[1.5rem] text-neutral-300 font-[400] font-Poppins">
+              <p className="text-[0.9rem] md:text-[1.1rem] xl:[1.5rem] text-neutral-300 font-[400] font-Poppins">
                 Promote & Engage with Posts
               </p>
               <p className="text-[0.5rem] lg:text-[0.7rem] xl:text-[1rem] font-[275] text-neutral-400 font-Poppins">
@@ -142,7 +142,7 @@ const EngagePortals = () => {
             </div>
           </div>
 
-          <div>
+          <div className="hidden md:block">
             <Activities />
           </div>
           <div className="absolute right-0 -bottom-0 z-5 hidden md:block">
@@ -151,7 +151,7 @@ const EngagePortals = () => {
         </div>
 
         <div className="mt-[1rem]">
-          <div className="px-[1.5rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
+          <div className="px-[0.8rem] md:px-[1.5rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
             <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
                 <Hamburger />
@@ -164,10 +164,10 @@ const EngagePortals = () => {
               </span>
             </div>
 
-            <div className="flex gap-6 xl:gap-3 px-6">
+            <div className="flex gap-6 xl:gap-3 px-6 pt-[0.6rem] md:pt-[1rem]">
               <div
                 className={clsx(
-                  "flex flex-col items-center pb-[1rem]",
+                  "flex flex-col items-center pb-[0.6rem] md:pb-[1rem]",
                   toggle === 1 ? "border-b-[5px] border-[#FFF]" : ""
                 )}
                 onClick={() => toggleTabHandler(1)}
@@ -275,7 +275,7 @@ const EngagePortals = () => {
             </div>
 
             <div>
-              <button className="whitespace-nowrap px-[1rem] py-[0.5rem] bg-[#EBEDED] rounded-sm font-Poppins font-[300] text-[0.8rem] text-[#060B12]">
+              <button className="whitespace-nowrap px-[0.5rem] md:px-[1rem] py-[0.3rem] md:py-[0.5rem] bg-[#EBEDED] rounded-sm font-Poppins font-[300] text-[0.6rem] md:text-[0.8rem] text-[#060B12]">
                 Promote a post
               </button>
             </div>
@@ -288,7 +288,7 @@ const EngagePortals = () => {
               <section className="">
                 <div className="mt-[1rem] border-[#314048] border-[1px]">
                   <div className="flex">
-                    <div className="px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px]">
+                    <div className="px-[0.5rem] md:px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px] flex items-center">
                       <p className="whitespace-nowrap font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
                         Top Earners
                       </p>
@@ -306,8 +306,8 @@ const EngagePortals = () => {
                       }}
                       breakpoints={{
                         320: {
-                          slidesPerView: 1.2,
-                          spaceBetween: 2,
+                          slidesPerView: 1,
+                          spaceBetween: 0,
                         },
                         580: {
                           slidesPerView: 1,
@@ -338,25 +338,27 @@ const EngagePortals = () => {
                           onMouseLeave={handleMouseLeave}
                         >
                           <div
-                            className="flex gap-[0.3rem] pl-[1.62rem] py-[0.6rem] items-center"
+                            className="flex gap-[0.3rem] pl-[0.7rem] md:pl-[1.62rem] py-[0.6rem] items-center"
                             key={earners.id}
                           >
-                            <div className="border border-[#FFF] w-[30px] h-[30px] rounded-full overflow-hidden">
+                            <div className="border rounded-full overflow-hidden">
                               <img
                                 src={earners.src}
+                                width={"100"}
+                                height={"100"}
                                 alt=""
-                                className="w-full h-full object-cover"
+                                className="w-[30px] h-[30px] object-cover"
                               />
                             </div>
-                            <span className="text-[#E8E8E8] text-[0.85rem] font-Poppins font-[300]">
+                            <span className="text-[#E8E8E8] text-[0.5rem] md:text-[0.85rem] font-Poppins font-[300]">
                               {earners.name}
                             </span>
-                            <span className="text-neutral-500 font-Poppins font-[300] text-[0.75rem]">
+                            <span className="text-neutral-500 font-Poppins font-[300] text-[0.5rem] md:text-[0.75rem]">
                               earned
                             </span>
                             <span
                               className={clsx(
-                                "whitespace-nowrap",
+                                "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
                                 earners.coin.eth
                                   ? "text-[#F04086]"
                                   : "text-[#E1D356]"
