@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="max-w-[1920px] fixed top-0 left-0 right-0 z-50">
-      <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
+      <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
         <div className="flex items-center gap-[2rem] xl:gap-[8.6rem]">
           <div className="hidden xl:block">
             <Link to={"/"}>
@@ -21,13 +21,13 @@ const Header = () => {
             </Link>
           </div>
           <div
-            className="text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
+            className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
             style={{ fontStyle: "normal" }}
           >
             <span>
               <EngagePortal />
             </span>{" "}
-            <span>Engage portal</span>
+            <span className="whitespace-nowrap">Engage portal</span>
           </div>
         </div>
 
