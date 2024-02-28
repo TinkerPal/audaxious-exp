@@ -22,13 +22,15 @@ const Twitter = (props) => {
           // id={props.id}
           key={post.id}
           className={clsx(
-            "border-[#314048] cursor-pointer border-[0.5px] rounded-[20px] bg-no-repeat bg-cover",
-            props.selectedPostId === post.id ? "bg-selectedBg" : "bg-heroCustom"
+            "border-[1px] border-gray-700 border-opacity-50 cursor-pointer rounded-[16px]",
+            props.selectedPostId === post.id
+              ? "bg-selectedBg bg-no-repeat bg-cover"
+              : "bg-[#080e16]"
           )}
         >
-          <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
-            <div className="flex items-center gap-[0.75rem]">
-              <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins font-semibold text-[0.8rem] text-[#87cece] rounded-[26px]">
+          <div className="flex justify-between px-[0.94rem] pt-[0.62rem]">
+            <div className="flex items-center gap-[0.75rem] overflow-x-auto">
+              <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
                 <span>
                   <Clock />
                 </span>
@@ -38,10 +40,10 @@ const Twitter = (props) => {
               </button>
               <button
                 className={clsx(
-                  "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-semibold text-[#C556E1] rounded-[26px]",
+                  "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
                   post.coin.eth
                     ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
-                    : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
+                    : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
                 )}
               >
                 <span className="whitespace-nowrap flex">
@@ -52,56 +54,48 @@ const Twitter = (props) => {
                 </span>
                 <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
               </button>
+              <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
+                {"12 Days left"}
+              </span>
             </div>
           </div>
-          <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
-          <div className="relative pb-[13px] px-[1rem]">
-            <div className="text-neutral-400 flex flex-col gap-[13px]">
-              <div className="flex items-center gap-3">
-                <div>
-                  <ProfilePicture />
-                </div>
+          <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
 
-                <span>@{post.userName}</span>
-                <span className="text-[#929192] font-[500] text-[0.67rem]">
-                  {"Dec 13, 7:44 PM"}
-                </span>
+          <div className="text-neutral-400 flex gap-[1.25rem] px-[1rem]">
+            <div className="flex items-center flex-col gap-[0.3rem]">
+              <div>
+                <img
+                  src={post?.profilePicture}
+                  width="100"
+                  height={"100"}
+                  className="w-[3rem] h-[3rem] object-cover rounded-[4px]"
+                />
               </div>
-              <div className="flex flex-col gap-[1rem]">
-                <div className="w-[100%] flex flex-col gap-[1rem]">
-                  <p className="text-[0.95rem] xl:text-[1rem] text-[#E8E8E8]">
-                    {post.tweet?.description.slice(0, 80)}
-                  </p>
-                </div>
-                <div className="flex items-baseline">
-                  <div className="flex justify-between gap-1">
-                    <div className="flex gap-[0.4rem]">
-                      <span>
-                        <MessageIcon />
-                      </span>
-                      <span>{post.quote}</span>
-                    </div>
-                    <div className="flex gap-[0.4rem]">
-                      <span>
-                        <RetweenIcon />
-                      </span>
-                      <span>{post.repost}</span>
-                    </div>
-                    <div className="flex gap-[0.4rem]">
-                      <span>
-                        <Like />
-                      </span>
-                      <span>{post.like}</span>
-                    </div>
-                    <div className="">
-                      <span>
-                        <Friends />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+              <span className="text-[0.75rem] text-[#FFF] font-[400]">
+                {post.userName}
+              </span>
             </div>
+
+            <div className="flex flex-col gap-[0.3rem]">
+              <p className="text-[#E8E8E8] uppercase font-Poppins font-[700] leading-[150%]">
+                {post.title}
+              </p>
+              <p className="text-[0.75rem] xl:text-[0.75rem] text-[#E8E8E8] font-[300] leading-[150%]">
+                {post.tweet?.description.slice(0, 80)}
+              </p>
+            </div>
+          </div>
+
+          <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
+
+          <div className="my-[0.62rem] mx-[0.94rem]">
+            <p className="text-[#FFF] font-Poppins text-[0.75rem] normal font-normal">
+              Participants:{" "}
+              <span className="text-[#1FDF00] font-[600]">
+                +{post.participants}
+              </span>
+            </p>
           </div>
         </div>
       ))}
