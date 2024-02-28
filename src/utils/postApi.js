@@ -1,7 +1,10 @@
 export const POST = [
   {
     id: "p1",
-    userName: "justmylife_222",
+    userName: "AudaXious",
+    title: "Audaxious Launch",
+    profilePicture: "/tweetImages/audaxious.svg",
+    participants: 4000,
     time: "2",
     coin: { bnb: "10" },
     tasks: "4",
@@ -16,9 +19,12 @@ export const POST = [
   },
   {
     id: "p2",
-    userName: "justmylife_222",
+    userName: "Community",
+    participants: 3000,
+    title: "Community Launch",
     time: "2",
     coin: { eth: "65" },
+    profilePicture: "/tweetImages/profilePic1.svg",
     tasks: "7",
     tweet: {
       description:
@@ -31,8 +37,11 @@ export const POST = [
   },
   {
     id: "p3",
-    userName: "justmylife_222",
+    participants: 5000,
+    userName: "AudaXious",
+    profilePicture: "/tweetImages/profilePic2.svg",
     time: "2",
+    title: "Audaxious Launch",
     tweet: {
       description:
         "🚀 Hello Everyone, I am a fourth-year student of archi at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives. Please, if anyone has any resources that might be helpful, thank you!",
@@ -46,7 +55,10 @@ export const POST = [
   },
   {
     id: "p4",
-    userName: "justmylife_222",
+    participants: 500,
+    userName: "Community",
+    title: "Community Launch",
+    profilePicture: "/tweetImages/profilePic3.svg",
     time: "2",
     tweet: {
       description:
@@ -61,7 +73,10 @@ export const POST = [
   },
   {
     id: "p5",
-    userName: "justmylife_222",
+    participants: 8000,
+    userName: "AudaXious",
+    title: "Audaxious Launch",
+    profilePicture: "/tweetImages/profilePic4.svg",
     time: "2",
     tweet: {
       description:
@@ -76,7 +91,10 @@ export const POST = [
   },
   {
     id: "p6",
-    userName: "justmylife_222",
+    participants: 10000,
+    userName: "Community",
+    title: "community Launch",
+    profilePicture: "/tweetImages/audaxious.svg",
     time: "2",
     tweet: {
       description:
@@ -91,7 +109,10 @@ export const POST = [
   },
   {
     id: "p7",
-    userName: "justmylife_222",
+    participants: 3000,
+    title: "Audaxious Launch",
+    userName: "AudaXious",
+    profilePicture: "/tweetImages/audaxious.svg",
     time: "2",
     tweet: {
       description:
@@ -106,7 +127,10 @@ export const POST = [
   },
   {
     id: "p8",
-    userName: "justmylife_222",
+    participants: 9000,
+    userName: "AudaXious",
+    title: "Audaxious Launch",
+    profilePicture: "/tweetImages/audaxious.svg",
     time: "2",
     tweet: {
       description:
