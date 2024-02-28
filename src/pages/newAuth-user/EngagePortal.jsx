@@ -150,7 +150,7 @@ const EngagePortals = () => {
           </div>
         </div>
 
-        <div className="mt-[1rem]">
+        <div className="mt-[1rem] bg-[#060B12]">
           <div className="px-[0.8rem] md:px-[1.5rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
             <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
@@ -377,7 +377,7 @@ const EngagePortals = () => {
                 </div>
               </section>
 
-              <div className="bg-[#080E15] mt-[1rem]">
+              <div className="mt-[1rem]">
                 <Twitter
                   onLoadTweet={loadTweetByIdHandler}
                   selectedPostId={selectedPostId}
