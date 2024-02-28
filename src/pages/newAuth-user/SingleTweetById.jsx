@@ -22,11 +22,23 @@ import { ReactComponent as FlexLine } from "../../assets/svg/dashboardSvg/flexLi
 import { ReactComponent as Cancel } from "../../assets/svg/dashboardSvg/cancel.svg";
 import { ReactComponent as Next } from "../../assets/svg/dashboardSvg/next.svg";
 import { ReactComponent as Previous } from "../../assets/svg/dashboardSvg/previous.svg";
+import { ReactComponent as Actions } from "../../assets/svg/dashboardSvg/actions.svg";
+import { ReactComponent as Check } from "../../assets/svg/dashboardSvg/check.svg";
 import { POST, getTweetById } from "../../utils/postApi";
 
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweet = getTweetById(tweetId);
   const [post, setPost] = useState(tweet);
+  const [like, setLike] = useState(false);
+  const [repost, setRepost] = useState(false);
+  const [follow, setFollow] = useState(false);
+  const [comment, setComment] = useState(false);
+  const [count, setCount] = useState(0);
+  const [toggle, setToggle] = useState(1);
+
+  const toggleTabHandler = (id) => {
+    setToggle(id);
+  };
 
   const handleNextTweet = () => {
     console.log("clidked");
@@ -90,20 +102,42 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
           </div>
           <main className="flex flex-wrap md:flex-nowrap gap-[0.5rem] lg:gap-[2rem] justify-center mt-[4rem] lg:mt-[2rem] xl:[4rem]">
             <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20.5rem] lg:w-[25rem] xl:w-[30rem]">
-              <div className="flex gap-3 px-[0.8rem] lg:px-[1rem] xl:px-[2.81rem] py-[0.5rem] border border-[#19242D] rounded-md">
-                <span className="pr-[0.1rem] lg:pr-[0.5rem] xl:pr-[2rem]">
-                  <button className="rounded-sm bg-[#EBEDED] lg:px-[0rem] xl:px-[1rem] py-[0.5rem] font-Poppins text-[0.8rem] font-[300] text-[#060B12] w-[4rem] lg:w-[8rem]">
-                    Post
-                  </button>
+              <div className="flex justify-between my-[0.5rem] border border-[#19242D] rounded-md text-[1rem] font-Poppins font-[300]">
+                <span
+                  onClick={() => toggleTabHandler(1)}
+                  className={clsx(
+                    "cursor-pointer py-[0.5rem] w-[100%]",
+                    toggle === 1
+                      ? "text-[#79C4EC] bg-[#13161E] border-b-4 border-[#79C4EC]"
+                      : "text-[#D3D3D3] border-r border-[#19242D]"
+                  )}
+                >
+                  Post
                 </span>
-                <span className="font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[1rem] lg:px-[1rem] xl:px-[3rem] border-x border-[#19242D]">
+                <span
+                  onClick={() => toggleTabHandler(2)}
+                  className={clsx(
+                    "cursor-pointer py-[0.5rem] w-[100%]",
+                    toggle === 2
+                      ? "text-[#79C4EC] bg-[#13161E] border-b-4 border-[#79C4EC]"
+                      : "text-[#D3D3D3] border-x border-[#19242D]"
+                  )}
+                >
                   About
                 </span>
-                <span className="whitespace-nowrap font-Poppins text-[0.8rem] normal-case font-[400] text-[#79C4EC] py-[0.5rem] px-[0.3rem] lg:px-[1rem]">
+                <span
+                  onClick={() => toggleTabHandler(3)}
+                  className={clsx(
+                    "cursor-pointer py-[0.5rem] w-[100%]",
+                    toggle === 3
+                      ? "text-[#79C4EC] bg-[#13161E] border-b-4 border-[#79C4EC]"
+                      : "text-[#D3D3D3]"
+                  )}
+                >
                   Top earners
                 </span>
               </div>
-              <div>
+              <div className={clsx(toggle === 1 ? "block" : "hidden")}>
                 <div
                   key={post.id}
                   className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
@@ -199,17 +233,67 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   </div>
                 </div>
               </div>
+
+              <div className={clsx(toggle === 2 ? "block" : "hidden")}>
+                <div className="">
+                  <p className="text-[#FFF]">About</p>
+                </div>
+              </div>
+              <div className={clsx(toggle === 3 ? "block" : "hidden")}>
+                <div className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover">
+                  <div className="border-[#314048] border-b-[0.5px] py-[1rem]">
+                    <p className="text-[#FFF] font-Poppins text-[1.4rem] font-normal">
+                      Top Earners
+                    </p>
+                  </div>
+                  <div className="py-[1rem] flex flex-col justify-center">
+                    <div>
+                      <div className="flex items-center gap-[0.9rem]">
+                        <span className="text-[#FFF]">1</span>
+                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100"></div>
+                        <span className="text-[#FFF]">Anabel</span>
+                      </div>
+                      <div>
+                        {/* <span
+                              className={clsx(
+                                "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
+                                earners.coin.eth
+                                  ? "text-[#F04086]"
+                                  : "text-[#E1D356]"
+                              )}
+                            >
+                              {earners.coin.eth
+                                ? `${earners.coin.eth} ETH`
+                                : `${earners.coin.btc} BNB`}
+                            </span>
+                            <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
-              <div className="p-[0.5rem]">
-                <span className="whitespace-nowrap font-Poppins text-[1.3rem] lg:text-[1.75rem] normal-case font-[300] text-[#E8E8E8]">
+              <div className="p-[0.5rem] flex justify-between items-center">
+                <span className="whitespace-nowrap font-Poppins text-[1rem] lg:text-[1.25rem] normal-case font-[300] text-[#E8E8E8]">
                   To complete this task
                 </span>
+                <span className="font-Poppins text-[1.25rem] font-[300] text-[#E8E8E8]">
+                  {count}/4
+                </span>
               </div>
-              <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[1.25rem] py-[2rem] lg:py-[0.7rem] xl:py-[2.8rem]">
-                <div className="flex flex-col gap-5 border-[#314048] border-b-[0.5px] pb-[1.5rem] lg:pb-[0.6rem] xl:pb-[1.5rem]">
-                  <div className="flex justify-between">
+              <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
+                <div className="flex flex-col gap-[1rem]">
+                  <button
+                    onClick={() => {
+                      if (!like) {
+                        setLike(true);
+                        setCount((prev) => prev + 1);
+                      }
+                    }}
+                    className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                  >
                     <div className="flex items-center gap-4">
                       <span>
                         <Love />
@@ -219,15 +303,30 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       </span>
                     </div>
 
-                    <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
-                      Like
-                    </div>
-                  </div>
+                    {!like && (
+                      <span>
+                        <Actions />
+                      </span>
+                    )}
+                    {like && (
+                      <span>
+                        <Check />
+                      </span>
+                    )}
+                  </button>
                   <span>
                     <FlexLine />
                   </span>
 
-                  <div className="flex justify-between">
+                  <button
+                    onClick={() => {
+                      if (!repost) {
+                        setRepost(true);
+                        setCount((prev) => prev + 1);
+                      }
+                    }}
+                    className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                  >
                     <div className="flex items-center gap-4">
                       <span>
                         <Retweet />
@@ -236,63 +335,92 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         Re-tweet Post
                       </span>
                     </div>
-                    <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
-                      Re-tweet
-                    </div>
-                  </div>
+                    {!repost && (
+                      <span>
+                        <Actions />
+                      </span>
+                    )}
+                    {repost && (
+                      <span>
+                        <Check />
+                      </span>
+                    )}
+                  </button>
                   <span>
                     <FlexLine />
                   </span>
 
-                  <div className="flex justify-between">
+                  <button
+                    onClick={() => {
+                      if (!follow) {
+                        setFollow(true);
+                        setCount((prev) => prev + 1);
+                      }
+                    }}
+                    className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                  >
                     <div className="flex items-center gap-4">
                       <span>
                         <Tweet />
                       </span>
                       <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                        {post.userName}
+                        {"Follow account"}
                       </span>
                     </div>
-                    <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
-                      Follow
-                    </div>
-                  </div>
+                    {!follow && (
+                      <span>
+                        <Actions />
+                      </span>
+                    )}
+                    {follow && (
+                      <span>
+                        <Check />
+                      </span>
+                    )}
+                  </button>
                   <span>
                     <FlexLine />
                   </span>
 
-                  <div className="flex justify-between">
+                  <button
+                    onClick={() => {
+                      if (!comment) {
+                        setComment(true);
+                        setCount((prev) => prev + 1);
+                      }
+                    }}
+                    className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                  >
                     <div className="flex items-center gap-3">
                       <span>
                         <Infinity />
                       </span>
                       <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                        {post.userName}
+                        {"Comment"}
                       </span>
                     </div>
-                    <div className="px-[1rem] py-[0.5rem] font-Poppins font-normal text-[1rem] border-[0.2px] border-[#8F989D] rounded-[4px] text-[#E8E8E8] w-[8rem] text-center">
-                      Follow
-                    </div>
-                  </div>
+                    {!comment && (
+                      <span>
+                        <Actions />
+                      </span>
+                    )}
+                    {comment && (
+                      <span>
+                        <Check />
+                      </span>
+                    )}
+                  </button>
                 </div>
 
-                <div className="flex items-center justify-between pt-[2.8rem] lg:pt-[0.5rem] xl:pt-[1.5rem]">
-                  <div className="flex items-center gap-0 lg:gap-3">
-                    <span>
-                      <Setting />
+                <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
+                  <span>
+                    <Fam />
+                  </span>
+                  <button className="border-[1.5px] border-[#4C5656] bg-[#B6B9B9] px-[1rem] py-[0.5rem] rounded-md">
+                    <span className="font-Poppins text-[#000] text-[1rem] font-normal text-center">
+                      Redeem reward
                     </span>
-                    <span>
-                      <Btw />
-                    </span>
-                    <span>
-                      <Bird />
-                    </span>
-                  </div>
-                  <div>
-                    <span>
-                      <Fam />
-                    </span>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
