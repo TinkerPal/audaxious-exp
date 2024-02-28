@@ -24,6 +24,10 @@ import { ReactComponent as Next } from "../../assets/svg/dashboardSvg/next.svg";
 import { ReactComponent as Previous } from "../../assets/svg/dashboardSvg/previous.svg";
 import { ReactComponent as Actions } from "../../assets/svg/dashboardSvg/actions.svg";
 import { ReactComponent as Check } from "../../assets/svg/dashboardSvg/check.svg";
+import { ReactComponent as Group } from "../../assets/svg/dashboardSvg/group.svg";
+import { ReactComponent as World } from "../../assets/svg/dashboardSvg/world.svg";
+import { ReactComponent as Retweets } from "../../assets/svg/dashboardSvg/retweets.svg";
+import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discords.svg";
 import { POST, getTweetById } from "../../utils/postApi";
 import { TOPEARNERS } from "../../utils/postApi";
 
@@ -144,8 +148,8 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
                 >
                   <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
-                    <div className="flex items-center gap-[0.75rem]">
-                      <button className="bg-[#152A39] flex items-center gap-1 border-[1px] border-[#5a8686] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#87cece] rounded-[26px]">
+                    <div className="flex items-center gap-[0.75rem] overflow-x-auto">
+                      <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
                         <span>
                           <Clock />
                         </span>
@@ -155,13 +159,13 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       </button>
                       <button
                         className={clsx(
-                          "flex items-center gap-1 border-[1px] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
+                          "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
                           post.coin.eth
                             ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
-                            : "bg-[#2C2C2C] text-[#E1D356] border-[#708026]"
+                            : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
                         )}
                       >
-                        <span className="whitespace-nowrap">
+                        <span className="whitespace-nowrap flex">
                           Earn |{" "}
                           {post.coin.eth
                             ? `${post.coin.eth} ETH`
@@ -169,6 +173,9 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         </span>
                         <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
                       </button>
+                      <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
+                        {"12 Days left"}
+                      </span>
                     </div>
                   </div>
                   <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
@@ -180,9 +187,6 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         </div>
 
                         <span>@{post.userName}</span>
-                        <span className="text-[#929192] font-[500] text-[0.67rem]">
-                          {"Dec 13, 7:44 PM"}
-                        </span>
                       </div>
                       <div className="flex flex-col gap-[1rem]">
                         <div className="w-[100%] flex flex-col gap-[1rem]">
@@ -207,7 +211,15 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                               </div>
                             )}
                         </div>
-                        <div className="flex items-baseline mb-[1rem]">
+                        <div>
+                          <p className="text-[#FFF] font-Poppins text-[1rem] normal font-normal text-start">
+                            Participants:{" "}
+                            <span className="text-[#1FDF00] font-[600]">
+                              +{post.participants}
+                            </span>
+                          </p>
+                        </div>
+                        {/* <div className="flex items-baseline mb-[1rem]">
                           <div className="flex gap-1">
                             <div className="flex">
                               <span>
@@ -228,7 +240,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                               <span>{post.like}</span>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -236,8 +248,67 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
               </div>
 
               <div className={clsx(toggle === 2 ? "block" : "hidden")}>
-                <div className="">
-                  <p className="text-[#FFF]">About</p>
+                <div className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover">
+                  <div>
+                    <div className="flex items-center justify-center gap-[1rem] border-[#314048] border-b-[0.5px] py-[1.19rem]">
+                      <span>
+                        <img
+                          width={"48"}
+                          height={"48"}
+                          src={post.profilePicture}
+                          className="h-[48px] w-[48px] object-cover rounded-full"
+                          alt=""
+                        />
+                      </span>
+                      <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.4rem]">
+                        {post.userName}
+                      </p>
+                    </div>
+                    <div className="px-[1.25rem] py-[0.69rem]">
+                      <div className="px-[0.5rem] py-[0.62rem]">
+                        <p className="font-Poppins text-[1rem] font-[300] text-[#A5A5A5] leading-[140%] text-start">
+                          The next-gen smart platform for multi-chain yield
+                          maximization and with deflationary ABRA token. Boost
+                          yields, automate manual actions, save gas and your
+                          time. The next-gen smart platform for multi-chain
+                          yield maximization and with deflationary ABRA token.
+                          Boost yields, automate manual actions, save gas and
+                          your time.
+                        </p>
+                      </div>
+
+                      <div className="flex gap-[2rem] items-center">
+                        <div className="flex items-center gap-[0.62rem] px-[0.62rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
+                          <span>
+                            <Group />
+                          </span>
+                          <span className="h-[1.5rem] w-[1px] bg-[#314048]"></span>
+                          <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
+                            200k
+                          </span>
+                        </div>
+                        <div className="flex gap-[0.62rem] items-center">
+                          <span>
+                            <World />
+                          </span>
+                          <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
+                          <span>
+                            <Retweets />
+                          </span>
+                          <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
+                          <span>
+                            <Discords />
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col justify-baseline items-stretch pt-[1.5rem] pb-[0.5rem]">
+                        <button className="rounded-md py-[0.5rem] px-[1rem] font-Poppins text-[1.25rem] font-normal text-[#E8E8E8] border-[#314048] border-opacity-[40%] border-[1px]">
+                          Join community
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className={clsx(toggle === 3 ? "block" : "hidden")}>
@@ -247,35 +318,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       Top Earners
                     </p>
                   </div>
-                  {/* <div className="py-[1rem] flex flex-col justify-center">
-                    <div className="flex justify-center gap-[10rem]">
-                      <div className="flex items-center gap-[0.9rem]">
-                        <span className="text-[#FFF]">1</span>
-                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100 rounded-full"></div>
-                        <span className="text-[#FFF]">Anabel</span>
-                      </div>
-                      <div className="flex items-center gap-[1rem]">
-                        <span className="text-[#FFF]">10 BNB</span>
-                        <span className="text-[#FFF]">
-                          <Bnb />
-                        </span>
-                      </div>
-                    </div>
-                  </div> */}
                   <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
-                    {/* <div className="flex justify-center gap-[10rem]">
-                      <div className="flex items-center gap-[0.9rem]">
-                        <span className="text-[#FFF]">1</span>
-                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100 rounded-full"></div>
-                        <span className="text-[#FFF]">Anabel</span>
-                      </div>
-                      <div className="flex items-center gap-[1rem]">
-                        <span className="text-[#FFF]">10 BNB</span>
-                        <span className="text-[#FFF]">
-                          <Bnb />
-                        </span>
-                      </div>
-                    </div> */}
                     {TOPEARNERS.slice(0, 7).map((earners, index) => (
                       <div className="flex justify-between" key={earners.id}>
                         <div className="flex items-center gap-[0.9rem]">
@@ -461,9 +504,14 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 </div>
 
                 <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
-                  <span>
-                    <Fam />
-                  </span>
+                  <div>
+                    <p className="text-[#FFF] font-Poppins text-[1.2rem] normal font-normal">
+                      Participants:{" "}
+                      <span className="text-[#1FDF00] font-[600]">
+                        +{post.participants}
+                      </span>
+                    </p>
+                  </div>
                   <button className="border-[1.5px] border-[#4C5656] bg-[#B6B9B9] px-[1rem] py-[0.5rem] rounded-md">
                     <span className="font-Poppins text-[#000] text-[1rem] font-normal text-center">
                       Redeem reward

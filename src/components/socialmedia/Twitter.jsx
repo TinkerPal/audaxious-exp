@@ -68,7 +68,7 @@ const Twitter = (props) => {
                   src={post?.profilePicture}
                   width="100"
                   height={"100"}
-                  className="w-[3rem] h-[3rem] object-cover rounded-[4px]"
+                  className="w-[4rem] h-[3rem] object-cover rounded-[4px]"
                 />
               </div>
 
