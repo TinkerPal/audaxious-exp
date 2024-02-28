@@ -17,7 +17,7 @@ import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Brick2 } from "../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../assets/svg/brick-line.svg";
 
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
 
 import "swiper/css";
 import "swiper/css/navigation";

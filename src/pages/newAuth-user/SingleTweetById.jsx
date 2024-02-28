@@ -25,6 +25,7 @@ import { ReactComponent as Previous } from "../../assets/svg/dashboardSvg/previo
 import { ReactComponent as Actions } from "../../assets/svg/dashboardSvg/actions.svg";
 import { ReactComponent as Check } from "../../assets/svg/dashboardSvg/check.svg";
 import { POST, getTweetById } from "../../utils/postApi";
+import { TOPEARNERS } from "../../utils/postApi";
 
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweet = getTweetById(tweetId);
@@ -101,7 +102,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
             </span>
           </div>
           <main className="flex flex-wrap md:flex-nowrap gap-[0.5rem] lg:gap-[2rem] justify-center mt-[4rem] lg:mt-[2rem] xl:[4rem]">
-            <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20.5rem] lg:w-[25rem] xl:w-[30rem]">
+            <div className="flex flex-col gap-[2rem] w-[100%] md:w-[20.5rem] lg:w-[25rem] xl:w-[25rem] xl:max-w-[25rem]">
               <div className="flex justify-between my-[0.5rem] border border-[#19242D] rounded-md text-[1rem] font-Poppins font-[300]">
                 <span
                   onClick={() => toggleTabHandler(1)}
@@ -246,29 +247,76 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       Top Earners
                     </p>
                   </div>
-                  <div className="py-[1rem] flex flex-col justify-center">
-                    <div>
+                  {/* <div className="py-[1rem] flex flex-col justify-center">
+                    <div className="flex justify-center gap-[10rem]">
                       <div className="flex items-center gap-[0.9rem]">
                         <span className="text-[#FFF]">1</span>
-                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100"></div>
+                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100 rounded-full"></div>
                         <span className="text-[#FFF]">Anabel</span>
                       </div>
-                      <div>
-                        {/* <span
-                              className={clsx(
-                                "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
-                                earners.coin.eth
-                                  ? "text-[#F04086]"
-                                  : "text-[#E1D356]"
-                              )}
-                            >
-                              {earners.coin.eth
-                                ? `${earners.coin.eth} ETH`
-                                : `${earners.coin.btc} BNB`}
-                            </span>
-                            <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span> */}
+                      <div className="flex items-center gap-[1rem]">
+                        <span className="text-[#FFF]">10 BNB</span>
+                        <span className="text-[#FFF]">
+                          <Bnb />
+                        </span>
                       </div>
                     </div>
+                  </div> */}
+                  <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
+                    {/* <div className="flex justify-center gap-[10rem]">
+                      <div className="flex items-center gap-[0.9rem]">
+                        <span className="text-[#FFF]">1</span>
+                        <div className="w-[2.5rem] h-[2.5rem] bg-slate-100 rounded-full"></div>
+                        <span className="text-[#FFF]">Anabel</span>
+                      </div>
+                      <div className="flex items-center gap-[1rem]">
+                        <span className="text-[#FFF]">10 BNB</span>
+                        <span className="text-[#FFF]">
+                          <Bnb />
+                        </span>
+                      </div>
+                    </div> */}
+                    {TOPEARNERS.slice(0, 7).map((earners, index) => (
+                      <div className="flex justify-between" key={earners.id}>
+                        <div className="flex items-center gap-[0.9rem]">
+                          <span className="text-[#FFF] text-[0.96rem] normal font-Poppins font-[300]">
+                            {index + 1}
+                          </span>
+                          <div className="">
+                            <img
+                              src={earners.src}
+                              height={"100"}
+                              width={"100"}
+                              className="w-[2.3rem] h-[2.3rem] object-cover rounded-full"
+                            />
+                          </div>
+                          <span className="text-[#FFF] text-[0.96rem] normal font-Poppins font-[300]">
+                            {earners.name}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-[1rem]">
+                          {/* <span className="text-[#FFF] text-[0.8rem] normal font-Poppins font-[300]">
+                            10 BNB
+                          </span>
+                          <span className="text-[#FFF]">
+                            <Bnb />
+                          </span> */}
+                          <span
+                            className={clsx(
+                              "whitespace-nowrap text-[0.5rem] md:text-[0.96rem]",
+                              earners.coin.eth
+                                ? "text-[#F04086]"
+                                : "text-[#E1D356]"
+                            )}
+                          >
+                            {earners.coin.eth
+                              ? `${earners.coin.eth} ETH`
+                              : `${earners.coin.btc} BNB`}
+                          </span>
+                          <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
