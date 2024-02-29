@@ -2,7 +2,7 @@ export const POST = [
   {
     id: "p1",
     userName: "AudaXious",
-    title: "Audaxious Launch",
+    title: "Massive ADX Airdrop",
     profilePicture: "/tweetImages/audaxious.svg",
     participants: 4000,
     time: "2",
@@ -10,7 +10,7 @@ export const POST = [
     tasks: "4",
     tweet: {
       description:
-        "🚀 Hello Everyone, I am a fourth-year student of archi at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives. Please, if anyone has any resources that might be helpful, thank you!",
+        "🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.",
       images: [],
     },
     repost: "125",
@@ -21,14 +21,14 @@ export const POST = [
     id: "p2",
     userName: "Community",
     participants: 3000,
-    title: "Community Launch",
+    title: "Community Launch Airdrop",
     time: "2",
     coin: { eth: "65" },
     profilePicture: "/tweetImages/profilePic1.svg",
     tasks: "7",
     tweet: {
       description:
-        "🚀 Hello Everyone, I am a fourth-year student of archi at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives. Please, if anyone has any resources that might be helpful, thank you!",
+        "1000 USDT airdrop to 100 most active AudaXious Community members. To qualify for the draw, pleace complete the listed tasks",
       images: [],
     },
     repost: "125",
@@ -44,7 +44,7 @@ export const POST = [
     title: "Audaxious Launch",
     tweet: {
       description:
-        "🚀 Hello Everyone, I am a fourth-year student of archi at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives. Please, if anyone has any resources that might be helpful, thank you!",
+        "🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.",
       images: [],
     },
     repost: "125",
@@ -56,13 +56,13 @@ export const POST = [
   {
     id: "p4",
     participants: 500,
-    userName: "Community",
-    title: "Community Launch",
+    userName: "AudaXious",
+    title: "5,000,000 ADX Airdrop",
     profilePicture: "/tweetImages/profilePic3.svg",
     time: "2",
     tweet: {
       description:
-        "🚀 Hello Everyone, I am a fourth-year student of archi at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives. Please, if anyone has any resources that might be helpful, thank you!",
+        "🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.",
       images: [],
     },
     repost: "125",
@@ -80,7 +80,7 @@ export const POST = [
     time: "2",
     tweet: {
       description:
-        "🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency",
+        "🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.",
       images: ["/tweetImages/nft.svg", "/tweetImages/nft2.svg"],
     },
     repost: "125",
