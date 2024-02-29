@@ -28,7 +28,7 @@ const Sidebar = () => {
         <div>
           <DashBoardIcon
             style={{
-              fill: path === "/dashboard" ? "#FFF" : "#818282",
+              fill: path === "/dashboard" ? "#FFF" : "none",
             }}
           />
         </div>
@@ -76,11 +76,25 @@ const Sidebar = () => {
             Engage Portal
           </span>
         </NavLink>
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
+        <NavLink
+          className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
+          to={"/dashboard/spaces"}
+        >
           <span>
-            <CommunityIcon />
+            <CommunityIcon
+              style={{
+                fill: path === "/dashboard/spaces" ? "#FFF" : "none",
+              }}
+            />
           </span>
-          <span className="hidden xl:block">Community</span>
+          <span
+            className={clsx(
+              "hidden xl:block",
+              path === "/dashboard/spaces" ? "text-[#FFF]" : "text-[#818282]"
+            )}
+          >
+            Spaces
+          </span>
         </NavLink>
         <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap">
           <span>
