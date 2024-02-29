@@ -254,3 +254,107 @@ export const TOPEARNERS = [
     src: "/tweetImages/avatar.svg",
   },
 ];
+
+// spaces
+
+export const SPACES = [
+  {
+    id: "s1",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s2",
+    userName: "Audaxious",
+    src: "/tweetImages/audaxious.svg",
+    engagement: 2000,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s3",
+    userName: "NFT",
+    src: "/tweetImages/profilePic2.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s4",
+    userName: "Skillbit",
+    src: "/tweetImages/profilePic3.svg",
+    engagement: 100,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s5",
+    userName: "Pension BTC",
+    src: "/tweetImages/profilePic4.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s6",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s7",
+    userName: "Afrobeats",
+    src: "/tweetImages/profilePic4.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s8",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s9",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s10",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+  {
+    id: "s11",
+    userName: "Afrobeats Web 3.0",
+    src: "/tweetImages/profilePic1.svg",
+    engagement: 200,
+    description: `Griffin AI Protocol is designed to bring the power of AI
+    to the vast world of web3. It is an innovative trans media
+    development studio`,
+  },
+];
