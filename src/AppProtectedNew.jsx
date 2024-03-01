@@ -13,6 +13,7 @@ const AppProtectedNew = () => {
   const Dashboard = lazy(() => import("./pages/newAuth-user/Dashboard"));
   const EngagePortals = lazy(() => import("./pages/newAuth-user/EngagePortal"));
   const Spaces = lazy(() => import("./pages/newAuth-user/Spaces"));
+  const SpaceDetail = lazy(() => import("./pages/newAuth-user/SpaceDetail"));
   return (
     <>
       <Layout>
@@ -23,6 +24,7 @@ const AppProtectedNew = () => {
             <Route index={true} element={<Dashboard />} />
             <Route path="engage-portal" element={<EngagePortals />} />
             <Route path="spaces" element={<Spaces />} />
+            <Route path="spaces/:spaceId" element={<SpaceDetail />} />
             <Route />
           </Route>
         </Routes>
