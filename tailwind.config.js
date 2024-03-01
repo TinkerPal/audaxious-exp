@@ -43,6 +43,7 @@ export default {
         dashboardHeroBg: 'url("/src/assets/svg/dashboardSvg/heroBg.svg")',
         selectedBg: 'url("/src/assets/svg/dashboardSvg/selected.svg")',
         ElipseBg: 'url("/src/assets/svg/dashboardSvg/elipse.svg")',
+        HeaderBg: 'url("/src/assets/svg/dashboardSvg/header.svg")',
       },
       backgroundColor: {
         backdrop: "rgba(5, 22, 31, 0.75)",
