@@ -6,15 +6,40 @@ import Query from "./Query";
 import AllSpaces from "./AllSpaces";
 import MySpace from "./MySpace";
 import JoinedSpace from "./JoinedSpace";
+import { Dialog } from "@headlessui/react";
+import CreateSpace from "./CreateSpace";
 
 const Spaces = () => {
   const [toggle, setToggle] = useState(1);
+  const [open, setOpen] = useState(false);
   const toggleHandler = (id) => {
     setToggle(id);
+  };
+
+  const cancelHandler = () => {
+    setOpen(false);
   };
   return (
     <div className="text-[#FFF] max-w-[1670px] mt-[-2rem]">
       <div className="container">
+        <Dialog
+          as="div"
+          className={`relative z-[900]`}
+          open={open}
+          onClose={cancelHandler}
+        >
+          <div
+            className="fixed inset-0 bg-black bg-opacity-75"
+            onClick={cancelHandler}
+          />
+          <div className="fixed inset-0 z-[300] overflow-y-auto">
+            <div className="flex items-center justify-center mt-[2rem] text-center sm:items-center sm:p-0">
+              <Dialog.Panel className="">
+                <CreateSpace />
+              </Dialog.Panel>
+            </div>
+          </div>
+        </Dialog>
         <div>
           <div className="flex items-end justify-between border border-[#19242D] border-r-0">
             <div className="flex justify-between items-center text-[1rem] font-Poppins font-[300]">
@@ -66,10 +91,10 @@ const Spaces = () => {
             </div>
           </div>
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
-            <AllSpaces />
+            <AllSpaces onCreateSpace={setOpen} />
           </div>
           <div className={clsx(toggle === 2 ? "block" : "hidden")}>
-            <MySpace />
+            <MySpace onCreateSpace={setOpen} />
           </div>
           <div className={clsx(toggle === 3 ? "block" : "hidden")}>
             <JoinedSpace />
