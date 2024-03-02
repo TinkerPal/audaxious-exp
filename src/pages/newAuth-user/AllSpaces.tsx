@@ -7,19 +7,20 @@ import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discor
 import Query from "./Query";
 import { NavLink } from "react-router-dom";
 
-const AllSpaces = () => {
+const AllSpaces = ({ onCreateSpace }) => {
+  const createSpaceHandler = () => {
+    onCreateSpace(true);
+    console.log("AllSpace");
+  };
   return (
     <div>
-      <Query />
+      <Query onCreateSpace={createSpaceHandler} />
       <div className="border-[#2A3C46] border-l border-opacity-[80%] py-[1.47rem] px-[1.5rem]">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem]">
           {SPACES &&
             SPACES.map((space) => (
-              <NavLink to={`/dashboard/spaces/${space.id}`}>
-                <div
-                  key={space.id}
-                  className="px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[1.25rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer"
-                >
+              <NavLink to={`/dashboard/spaces/${space.id}`} key={space.id}>
+                <div className="px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[1.25rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                   <div className="flex flex-col gap-[0.75rem]">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-[0.5rem]">
@@ -43,7 +44,7 @@ const AllSpaces = () => {
                         {space.description}
                       </p>
                     </div>
-                    <div className="flex gap-[0.4rem] items-center">
+                    <div className="flex justify-between items-center">
                       <div className="flex items-center gap-[0.3rem] px-[0.3rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
                         <span>
                           <Group />
