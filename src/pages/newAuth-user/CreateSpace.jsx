@@ -9,7 +9,7 @@ import { ReactComponent as Music } from "../../assets/svg/dashboardSvg/music.svg
 import { ReactComponent as Required } from "../../assets/svg/dashboardSvg/required.svg";
 const CreateSpace = () => {
   return (
-    <div className="text-[#FFF] bg-[#060B12] w-[70rem]">
+    <div className="text-[#FFF] bg-[#060B12] min-w-[15rem] md:w-[43rem] lg:w-[58rem] xl:w-[70rem]">
       <div className="border-[#2A3C46] border border-opacity-[80%] rounded-sm">
         <div>
           <div className="bg-ElipseBg bg-cover">
@@ -63,9 +63,9 @@ const CreateSpace = () => {
               </p>
             </div>
           </div>
-          <div className="container mt-[2rem] flex flex-col gap-[3rem]">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col items-start gap-[0.6rem]">
+          <div className="container mt-[2rem] md:mt-[2rem] flex flex-col gap-[1.5rem] md:gap-[3rem]">
+            <div className="flex items-center justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
+              <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
                 <label
                   htmlFor="name"
                   className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
@@ -77,22 +77,22 @@ const CreateSpace = () => {
                   name="name"
                   id="name"
                   placeholder="Enter your space name"
-                  className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                  className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                 />
               </div>
-              <div className="flex flex-col items-start gap-[0.6rem] w-[25rem]">
+              <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-[20rem] lg:w-[25rem]">
                 <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                  Link yout account
+                  Link your account
                 </p>
                 <div className="flex gap-[1rem] items-center">
                   <button className="px-[1rem] py-[0.5rem] font-Poppins text-[0.75rem] text-[#E8E8E8] font-[300] border-[#2A3C46] border border-opacity-[80%] flex items-center justify-center gap-[0.62rem] rounded-[2.5rem]">
-                    <span>Connect Twitter</span>
+                    <span className="whitespace-nowrap">Connect Twitter</span>
                     <span>
                       <X />
                     </span>
                   </button>
                   <button className="px-[1rem] py-[0.5rem] font-Poppins text-[0.75rem] text-[#E8E8E8] font-[300] border-[#2A3C46] border border-opacity-[80%] flex items-center justify-center gap-[0.62rem] rounded-[2.5rem]">
-                    <span>Connect Discord</span>
+                    <span className="whitespace-nowrap">Connect Discord</span>
                     <span>
                       <Discord />
                     </span>
@@ -100,14 +100,14 @@ const CreateSpace = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
               <div className="flex flex-col items-start gap-[0.6rem]">
                 <div>
                   <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
                     Select Category
                   </p>
                 </div>
-                <div className="w-[25rem] flex flex-wrap items-center gap-[0.5rem]">
+                <div className="w-[100%] md:w-[18rem] lg:w-[25rem] flex flex-wrap items-center gap-[0.5rem]">
                   <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
                     <span>
                       <Defi />
@@ -174,7 +174,7 @@ const CreateSpace = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-[0.6rem] items-start w-[25rem]">
+              <div className="flex flex-col gap-[0.6rem] items-start w-[100%] md:w-[20rem] lg:w-[25rem]">
                 <label htmlFor="spaceDescription" className="flex gap-[0.4rem]">
                   <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
                     Space Description
@@ -190,7 +190,7 @@ const CreateSpace = () => {
                     id="spaceDescription"
                     cols="100"
                     rows="7"
-                    className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                    className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                   ></textarea>
                   <p className="text-end font-Poppins text-[#768898] text-[0.75rem] font-[300] mt-[-0.3rem]">
                     20 words max
@@ -198,8 +198,8 @@ const CreateSpace = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between mt-[-2rem] mb-[2rem]">
-              <div className="flex flex-col items-start gap-[0.6rem]">
+            <div className="flex justify-between mt-[-2rem] mb-[2rem] gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
+              <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
                 <label htmlFor="website" className="flex gap-[0.4rem]">
                   <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
                     Add website
@@ -213,11 +213,11 @@ const CreateSpace = () => {
                   name="website"
                   id="website"
                   placeholder="https://"
-                  className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                  className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                 />
               </div>
 
-              <div className="w-[25rem] flex flex-col items-end justify-end">
+              <div className="w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
                 <button className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#EBEDED]">
                   Create space
                 </button>
