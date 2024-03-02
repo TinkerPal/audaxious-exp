@@ -30,7 +30,7 @@ const EngagePortals = () => {
   const [open, setOpen] = useState(false);
   const [singleTweet, setSingleTweet] = useState();
   const [selectedPostId, setSelectedPostId] = useState(null);
-  const singleTweetContainerRef = useRef(null);
+  // const singleTweetContainerRef = useRef(null);
   const scrollRef = useRef(null);
   const overlayRef = useRef(null);
 
@@ -46,12 +46,12 @@ const EngagePortals = () => {
     }
   }, [selectedPostId]);
 
-  const overlayCancelHandler = () => {
-    if (overlayRef.current && event.target === overlayRef.current) {
-      setSingleTweet(null);
-      setSelectedPostId(null);
-    }
-  };
+  // const overlayCancelHandler = () => {
+  //   if (overlayRef.current && event.target === overlayRef.current) {
+  //     setSingleTweet(null);
+  //     setSelectedPostId(null);
+  //   }
+  // };
   const cancelHandler = () => {
     setOpen(false);
     setSingleTweet(null);
@@ -129,7 +129,7 @@ const EngagePortals = () => {
             <Brick1 />
           </div>
           <div className="flex items-center gap-[1rem] relative">
-            <div className="hidden md:block">
+            <div className="hidden md:block z-10">
               <Friends />
             </div>
             <div className="font-Poppins font-normal">
@@ -142,7 +142,7 @@ const EngagePortals = () => {
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block z-10">
             <Activities />
           </div>
           <div className="absolute right-0 -bottom-0 z-5 hidden md:block">
