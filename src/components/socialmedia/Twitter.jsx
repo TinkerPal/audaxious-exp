@@ -78,10 +78,10 @@ const Twitter = (props) => {
             </div>
 
             <div className="flex flex-col gap-[0.3rem]">
-              <p className="text-[#E8E8E8] uppercase font-Poppins font-[700] leading-[150%]">
+              <p className="text-[#E8E8E8] uppercase font-Poppins font-[400] leading-[150%]">
                 {post.title}
               </p>
-              <p className="text-[0.75rem] xl:text-[0.75rem] text-[#E8E8E8] font-[300] leading-[150%]">
+              <p className="text-[0.75rem] xl:text-[0.75rem] text-[#A5A5A5] font-[300] leading-[150%]">
                 {post.tweet?.description.slice(0, 80)}
               </p>
             </div>
