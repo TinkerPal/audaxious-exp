@@ -5,7 +5,10 @@ import { ReactComponent as Defi } from "../../assets/svg/dashboardSvg/defi.svg";
 import { ReactComponent as Gaming } from "../../assets/svg/dashboardSvg/gaming.svg";
 import { ReactComponent as Startups } from "../../assets/svg/dashboardSvg/startups.svg";
 import { ReactComponent as Music } from "../../assets/svg/dashboardSvg/music.svg";
-const Query = () => {
+const Query = ({ onCreateSpace }) => {
+  // const createSpaceHandler = () => {
+  //   onCreateSpace(true);
+  // };
   return (
     <div className="py-[1.5rem] pl-[1rem] border border-[#19242D] border-r-0 border-t-0 flex gap-[1rem] justify-between overflow-x-auto max-w-[1920px] container">
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -67,7 +70,10 @@ const Query = () => {
         </span>
       </div>
       <span className="w-[1px] h-[2rem] bg-[#19242D]"></span>
-      <button className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]">
+      <button
+        onClick={onCreateSpace}
+        className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+      >
         Create space
       </button>
     </div>
