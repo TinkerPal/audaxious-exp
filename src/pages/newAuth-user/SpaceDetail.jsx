@@ -27,20 +27,20 @@ const SpaceDetail = () => {
   //   };
   return (
     <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] border-l border-opacity-[80%] ml-[0.7rem]">
-      <div className="h-[12.5rem] bg-HeaderBg bg-cover bg-no-repeat mr-[-1.9rem]"></div>
+      <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:h-[10.5rem] bg-HeaderBg bg-cover bg-no-repeat mr-[-1.9rem]"></div>
 
-      <div className="container">
-        <div className="flex gap-[17rem] items-end mt-[-5rem]">
+      <div className="container ml-[0.4rem] md:ml-[0rem]">
+        <div className="flex flex-wrap md:flex-nowrap gap-[3rem] lg:gap-[17rem] items-end mt-[-2rem] md:mt-[-5rem]">
           <div>
             <img
               src="/tweetImages/audaxious.svg"
               width="100"
               height="100"
               alt=""
-              className="w-[10rem] h-[10rem] object-cover rounded-full border border-[#2A3C46] border-opacity-[80%]"
+              className="xl:w-[10rem] w-[5rem] md:w-[9rem] xl:h-[10rem] md:h-[9rem] h-[5rem] object-cover rounded-full border border-[#2A3C46] border-opacity-[80%]"
             />
           </div>
-          <div className="flex gap-[3rem] items-center">
+          <div className="flex gap-[1.5rem] md:gap-[3rem] items-center flex-wrap md:flex-nowrap">
             <div className="flex gap-[1rem] items-center">
               <div className="flex items-center gap-[0.63rem] px-[0.63rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
                 <span>
@@ -74,7 +74,7 @@ const SpaceDetail = () => {
         </div>
 
         <div className="font-Poppins mt-[1rem] flex flex-col gap-[0.6rem]">
-          <div className="flex gap-[2rem] items-center">
+          <div className="flex gap-[0.2rem] md:gap-[2rem] items-center flex-wrap md:flex-nowrap">
             <p className="text-[#FFF] text-[2rem] font-normal normal-case font-Poppins">
               Audaxious Inc
             </p>
@@ -83,13 +83,13 @@ const SpaceDetail = () => {
             </p>
           </div>
           <div>
-            <p className="text-[#A5A5A5] text-[1.25rem] w-[90%] max-w-[35rem] leading-[140%] font-Poppins">
+            <p className="text-[#A5A5A5] text-[1.25rem] w-[100%] md:w-[90%] max-w-[35rem] leading-[140%] font-Poppins">
               The next-gen smart platform for multi-chain yield maximization and
               with deflationary ABRA token. Boost yields, automate manual
               actions, save gas and your time.
             </p>
           </div>
-          <div className="flex gap-[1rem]">
+          <div className="flex gap-[1rem] flex-wrap">
             <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
               <span>
                 <Defi />
@@ -150,7 +150,7 @@ const SpaceDetail = () => {
               Leaderboard
             </div>
           </div>
-          <div className="ml-[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
+          <div className="ml-[-1rem] lg:ml-[-0.5rem] xl:[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
           <div className={clsx("mt-[1rem]", toggle === 1 ? "block" : "hidden")}>
             <Twitter
             //   onLoadTweet={loadTweetByIdHandler}
@@ -158,7 +158,7 @@ const SpaceDetail = () => {
             />
           </div>
           <div className={clsx("mt-[1rem]", toggle === 2 ? "block" : "hidden")}>
-            <div className="flex gap-[5rem]">
+            <div className="flex gap-[2rem] xl:gap-[5rem] flex-wrap md:flex-nowrap">
               <div className="border-[#314048] border-[0.5px] rounded-md bg-ElipseBg bg-no-repeat bg-cover w-[46rem]">
                 <div className="border-[rgb(49,64,72)] border-b-[0.5px] py-[1rem] px-[1rem] flex gap-[1rem] items-center">
                   <p className="text-[#E8E8E8] font-Poppins text-[1rem] font-normal">
@@ -208,7 +208,7 @@ const SpaceDetail = () => {
                 </div>
               </div>
 
-              <div className="w-[22rem] h-[20rem] bg-ElipseBg bg-no-repeat bg-cover border-[#314048] border-[0.5px] rounded-md p-[1rem] flex flex-col gap-[1.5rem] items-center">
+              <div className="w-[22rem] md:h-[24rem] lg:h-[22rem] xl:h-[20rem] bg-ElipseBg bg-no-repeat bg-cover border-[#314048] border-[0.5px] rounded-md p-[1rem] flex flex-col gap-[1.5rem] items-center">
                 <div className="mt-[1.5rem]">
                   <span>
                     <Details />
@@ -221,7 +221,7 @@ const SpaceDetail = () => {
                   </p>
                 </div>
 
-                <button className="text-[#060B12] font-Poppins font-[400] text-[1rem] w-[90%] px-[1rem] py-[0.5rem] bg-[#EBEDED] rounded-md">
+                <button className="text-[#060B12] whitespace-nowrap font-Poppins font-[400] text-[1rem] w-[100%] lg:w-[90%] px-[1rem] py-[0.5rem] bg-[#EBEDED] rounded-md">
                   Commence tasks
                 </button>
               </div>
