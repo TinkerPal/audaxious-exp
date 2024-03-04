@@ -81,14 +81,14 @@ const Sidebar = () => {
           <span>
             <CommunityIcon
               style={{
-                fill: path === "/spaces" ? "#FFF" : "none",
+                fill: path.startsWith("/spaces") ? "#FFF" : "none",
               }}
             />
           </span>
           <span
             className={clsx(
               "hidden xl:block",
-              path === "/spaces" ? "text-[#FFF]" : "text-[#818282]"
+              path.startsWith("/spaces") ? "text-[#FFF]" : "text-[#818282]"
             )}
           >
             Spaces

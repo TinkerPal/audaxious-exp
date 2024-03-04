@@ -1,11 +1,31 @@
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
-import { ReactComponent as EngagePortal } from "../../assets/svg/dashboardSvg/engageportal.svg";
+import { ReactComponent as EngagePortalIcon } from "../../assets/svg/dashboardSvg/portal.svg";
 import { ReactComponent as Search } from "../../assets/svg/dashboardSvg/search.svg";
 import { ReactComponent as Bell } from "../../assets/svg/dashboardSvg/bell.svg";
 import { ReactComponent as Line } from "../../assets/svg/dashboardSvg/linebtw.svg";
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/audaxiousmd.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { ReactComponent as DashBoardIcon } from "../../assets/svg/dashboardSvg/dasboardIcon.svg";
+import { ReactComponent as CommunityIcon } from "../../assets/svg/dashboardSvg/community.svg";
 const Header = () => {
+  let title = "Dashboard";
+  let specificIcon = <DashBoardIcon style={{ fill: "#FFF" }} />;
+  const location = useLocation();
+  const path = location.pathname;
+
+  if (path === "/engage-portal") {
+    title = "Engage portal";
+    specificIcon = (
+      <EngagePortalIcon
+        style={{
+          fill: path === "/engage-portal" ? "#FFF" : "#818282",
+        }}
+      />
+    );
+  } else if (path.startsWith("/spaces")) {
+    title = "Spaces";
+    specificIcon = <CommunityIcon style={{ fill: "#FFF" }} />;
+  }
   return (
     <div className="max-w-[1920px] fixed top-0 left-0 right-0 z-50">
       <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
@@ -24,10 +44,8 @@ const Header = () => {
             className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
             style={{ fontStyle: "normal" }}
           >
-            <span>
-              <EngagePortal />
-            </span>{" "}
-            <span className="whitespace-nowrap">Engage portal</span>
+            <span>{specificIcon}</span>{" "}
+            <span className="whitespace-nowrap">{title}</span>
           </div>
         </div>
 
@@ -66,10 +84,7 @@ export default Header;
         className="text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
         style={{ fontStyle: "normal" }}
       >
-        <span>
-          <EngagePortal />
-        </span>{" "}
-        <span>Engage portal</span>
+        <span>specificIcon</span> <span>Engage portal</span>
       </div>
     </div>
     <div className="">
