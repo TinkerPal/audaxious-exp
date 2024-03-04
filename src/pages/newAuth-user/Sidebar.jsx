@@ -55,22 +55,20 @@ const Sidebar = () => {
           <span className="hidden xl:block">Multisender</span>
         </NavLink>
         <NavLink
-          to={"/dashboard/engage-portal"}
+          to={"/engage-portal"}
           className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
         >
           <span>
             <EngagePortalIcon
               style={{
-                fill: path === "/dashboard/engage-portal" ? "#FFF" : "#818282",
+                fill: path === "/engage-portal" ? "#FFF" : "#818282",
               }}
             />
           </span>
           <span
             className={clsx(
               "hidden xl:block",
-              path === "/dashboard/engage-portal"
-                ? "text-[#FFF]"
-                : "text-[#818282]"
+              path === "/engage-portal" ? "text-[#FFF]" : "text-[#818282]"
             )}
           >
             Engage Portal
@@ -78,19 +76,19 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
-          to={"/dashboard/spaces"}
+          to={"/spaces"}
         >
           <span>
             <CommunityIcon
               style={{
-                fill: path === "/dashboard/spaces" ? "#FFF" : "none",
+                fill: path === "/spaces" ? "#FFF" : "none",
               }}
             />
           </span>
           <span
             className={clsx(
               "hidden xl:block",
-              path === "/dashboard/spaces" ? "text-[#FFF]" : "text-[#818282]"
+              path === "/spaces" ? "text-[#FFF]" : "text-[#818282]"
             )}
           >
             Spaces
