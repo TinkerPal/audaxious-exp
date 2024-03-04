@@ -19,7 +19,7 @@ const MySpace = ({ onCreateSpace }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem]">
           {SPACES &&
             SPACES.slice(0, 5).map((space) => (
-              <NavLink to={`/dashboard/spaces/${space.id}`} key={space.id}>
+              <NavLink to={`/spaces/${space.id}`} key={space.id}>
                 <div className="px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[1.25rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                   <div className="flex flex-col gap-[0.75rem]">
                     <div className="flex items-center justify-between">
