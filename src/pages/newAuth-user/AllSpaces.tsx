@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 const AllSpaces = ({ onCreateSpace }) => {
   const createSpaceHandler = () => {
     onCreateSpace(true);
-    console.log("AllSpace");
+    // console.log("AllSpace");
   };
   return (
     <div>
