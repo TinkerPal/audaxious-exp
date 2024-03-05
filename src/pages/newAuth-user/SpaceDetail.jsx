@@ -27,10 +27,12 @@ const SpaceDetail = () => {
   //   };
   return (
     <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] border-l border-opacity-[80%] ml-[0.7rem]">
-      <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:h-[10.5rem] bg-HeaderBg bg-cover bg-no-repeat mr-[-1.9rem]"></div>
+      <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:h-[10.5rem] mr-[-1.9rem]">
+        <img src="/tweetImages/header.svg" alt="" className="w-[100%]" />
+      </div>
 
       <div className="container ml-[0.4rem] md:ml-[0rem]">
-        <div className="flex flex-wrap md:flex-nowrap gap-[3rem] lg:gap-[17rem] items-end mt-[-2rem] md:mt-[-5rem]">
+        <div className="flex flex-wrap md:flex-nowrap gap-[3rem] lg:gap-[17rem] items-end mt-[-2rem] md:mt-[-3.5rem]">
           <div>
             <img
               src="/tweetImages/audaxious.svg"
