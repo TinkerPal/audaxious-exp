@@ -21,6 +21,12 @@ import { ReactComponent as Retweets } from "../../assets/svg/dashboardSvg/retwee
 import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discords.svg";
 import { POST, getTweetById } from "../../utils/postApi";
 import { TOPEARNERS } from "../../utils/postApi";
+import {
+  CommentIntent,
+  FollowIntent,
+  LikeIntent,
+  RepostIntent,
+} from "./TweeterIntent";
 
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweet = getTweetById(tweetId);
@@ -34,6 +40,59 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
 
   const toggleTabHandler = (id) => {
     setToggle(id);
+  };
+
+  // useEffect(() => {
+  //   // Fetch tweet data when tweetId changes
+  //   const tweet = getTweetById(tweetId);
+  //   setPost(tweet);
+  // }, [tweetId]);
+
+  // if (!post) {
+  //   return <p className="text-[#FFF]">Loading</p>;
+  // }
+  // if (!repost) {
+  //   setRepost(true);
+  //   setCount((prev) => prev + 1);
+  // }
+  const handleLike = () => {
+    // Update the like field to true for the current tweet
+    if (!post.like) {
+      LikeIntent("1763151012615925766");
+      const updatedPost = { ...post, like: true };
+      setPost(updatedPost);
+      // setCount((prev) => prev + 1);
+    }
+  };
+  const handleRetweet = () => {
+    // Update the repost field to true for the current tweet
+    if (!post.repost) {
+      RepostIntent("1763151012615925766");
+      const updatedPost = { ...post, repost: true };
+      setPost(updatedPost);
+      // setCount((prev) => prev + 1);
+    }
+  };
+  const handleFollow = () => {
+    // Update the repost field to true for the current tweet
+    if (!post.follow) {
+      FollowIntent("AudaXious3");
+      const updatedPost = { ...post, follow: true };
+      setPost(updatedPost);
+      // setCount((prev) => prev + 1);
+    }
+  };
+  const handleComment = () => {
+    // Update the repost field to true for the current tweet
+    if (!post.comment) {
+      CommentIntent(
+        "1763151012615925766",
+        "AUDIAXIOUS CHANGING THE WORLD FOR GOOD"
+      );
+      const updatedPost = { ...post, comment: true };
+      setPost(updatedPost);
+      // setCount((prev) => prev + 1);
+    }
   };
 
   const handleNextTweet = () => {
@@ -346,12 +405,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
               <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                 <div className="flex flex-col gap-[1rem]">
                   <button
-                    onClick={() => {
-                      if (!like) {
-                        setLike(true);
-                        setCount((prev) => prev + 1);
-                      }
-                    }}
+                    onClick={handleLike}
                     className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                   >
                     <div className="flex items-center gap-4">
@@ -363,12 +417,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       </span>
                     </div>
 
-                    {!like && (
+                    {!post.like && (
                       <span>
                         <Actions />
                       </span>
                     )}
-                    {like && (
+                    {post.like && (
                       <span>
                         <Check />
                       </span>
@@ -379,12 +433,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   </span>
 
                   <button
-                    onClick={() => {
-                      if (!repost) {
-                        setRepost(true);
-                        setCount((prev) => prev + 1);
-                      }
-                    }}
+                    onClick={handleRetweet}
                     className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                   >
                     <div className="flex items-center gap-4">
@@ -395,12 +444,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         Re-tweet Post
                       </span>
                     </div>
-                    {!repost && (
+                    {!post.repost && (
                       <span>
                         <Actions />
                       </span>
                     )}
-                    {repost && (
+                    {post.repost && (
                       <span>
                         <Check />
                       </span>
@@ -411,12 +460,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   </span>
 
                   <button
-                    onClick={() => {
-                      if (!follow) {
-                        setFollow(true);
-                        setCount((prev) => prev + 1);
-                      }
-                    }}
+                    onClick={handleFollow}
                     className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                   >
                     <div className="flex items-center gap-4">
@@ -427,12 +471,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         {"Follow account"}
                       </span>
                     </div>
-                    {!follow && (
+                    {!post.follow && (
                       <span>
                         <Actions />
                       </span>
                     )}
-                    {follow && (
+                    {post.follow && (
                       <span>
                         <Check />
                       </span>
@@ -443,12 +487,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                   </span>
 
                   <button
-                    onClick={() => {
-                      if (!comment) {
-                        setComment(true);
-                        setCount((prev) => prev + 1);
-                      }
-                    }}
+                    onClick={handleComment}
                     className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                   >
                     <div className="flex items-center gap-3">
@@ -459,12 +498,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                         {"Comment"}
                       </span>
                     </div>
-                    {!comment && (
+                    {!post.comment && (
                       <span>
                         <Actions />
                       </span>
                     )}
-                    {comment && (
+                    {post.comment && (
                       <span>
                         <Check />
                       </span>
