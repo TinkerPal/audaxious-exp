@@ -54,9 +54,9 @@ const Twitter = (props) => {
                 </span>
                 <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
               </button>
-              <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
+              {/* <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
                 {"12 Days left"}
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
@@ -89,13 +89,16 @@ const Twitter = (props) => {
 
           <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
 
-          <div className="my-[0.62rem] mx-[0.94rem]">
+          <div className="my-[0.62rem] mx-[0.94rem] flex justify-between items-center">
             <p className="text-[#FFF] font-Poppins text-[0.75rem] normal font-normal">
               Participants:{" "}
               <span className="text-[#1FDF00] font-[600]">
                 +{post.participants}
               </span>
             </p>
+            <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
+              {"12 Days left"}
+            </span>
           </div>
         </div>
       ))}

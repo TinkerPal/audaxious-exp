@@ -10,7 +10,7 @@ const Query = ({ onCreateSpace }) => {
   //   onCreateSpace(true);
   // };
   return (
-    <div className="py-[1.5rem] pl-[1rem] border border-[#19242D] border-r-0 border-t-0 flex gap-[1rem] justify-between overflow-x-auto max-w-[1920px] container">
+    <div className="py-[1.5rem] pl-[1rem] border border-[#19242D] border-r-0 border-t-0 flex gap-[1rem] justify-between overflow-x-auto max-w-[1920px]">
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
         <span>
           <All />

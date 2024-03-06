@@ -26,14 +26,14 @@ const SpaceDetail = () => {
   //     setSingleTweet(id);
   //   };
   return (
-    <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] border-l border-opacity-[80%] ml-[0.7rem]">
+    <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] md:border-l border-opacity-[80%] ml-[0.7rem] md:ml-[2rem] xl:ml-[0.7rem]">
       <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:h-[10.5rem] mr-[-1.9rem]">
         <img src="/tweetImages/header.svg" alt="" className="w-[100%]" />
       </div>
 
-      <div className="container ml-[0.4rem] md:ml-[0rem]">
-        <div className="flex flex-wrap md:flex-nowrap gap-[3rem] lg:gap-[17rem] items-end mt-[-2rem] md:mt-[-3.5rem]">
-          <div>
+      <div className="md:container md:ml-[0rem]">
+        <div className="flex flex-wrap md:flex-nowrap gap-[1rem] md:gap-[3rem] lg:gap-[17rem] items-end mt-[-2rem] md:mt-[-3.5rem]">
+          <div className="ml-[1rem] md:ml-[0rem]">
             <img
               src="/tweetImages/audaxious.svg"
               width="100"
@@ -77,15 +77,15 @@ const SpaceDetail = () => {
 
         <div className="font-Poppins mt-[1rem] flex flex-col gap-[0.6rem]">
           <div className="flex gap-[0.2rem] md:gap-[2rem] items-center flex-wrap md:flex-nowrap">
-            <p className="text-[#FFF] text-[2rem] font-normal normal-case font-Poppins">
+            <p className="text-[#FFF] text-[1.5rem] md:text-[2rem] font-normal normal-case font-Poppins">
               Audaxious Inc
             </p>
-            <p className="text-[#6DE6AE] text-[1rem] font-normal font-Poppins">
+            <p className="text-[#6DE6AE] text-[0.7rem] md:text-[1rem] font-normal font-Poppins">
               20 Active campaigns
             </p>
           </div>
-          <div>
-            <p className="text-[#A5A5A5] text-[1.25rem] w-[100%] md:w-[90%] max-w-[35rem] leading-[140%] font-Poppins">
+          <div className="w-[100%] md:w-[90%] max-w-[35rem]">
+            <p className="text-[#A5A5A5] text-[0.875rem] md:text-[1.25rem] leading-[140%] font-Poppins">
               The next-gen smart platform for multi-chain yield maximization and
               with deflationary ABRA token. Boost yields, automate manual
               actions, save gas and your time.
@@ -152,7 +152,7 @@ const SpaceDetail = () => {
               Leaderboard
             </div>
           </div>
-          <div className="ml-[-1rem] lg:ml-[-0.5rem] xl:[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
+          <div className="ml-[-1rem] lg:ml-[-2rem] xl:[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
           <div className={clsx("mt-[1rem]", toggle === 1 ? "block" : "hidden")}>
             <Twitter
             //   onLoadTweet={loadTweetByIdHandler}

@@ -145,12 +145,12 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
           </div>
         </header>
         <div className="relative">
-          <div className="absolute top-[50%] left-[-42px] z-[100]">
+          <div className="absolute top-[50%] left-[-42px] z-[100] hidden md:block">
             <span className="cursor-pointer" onClick={handlePreviousTweet}>
               <Previous />
             </span>
           </div>
-          <div className="absolute top-[50%] right-[-42px]">
+          <div className="absolute top-[50%] right-[-42px] hidden md:block">
             <span className="cursor-pointer" onClick={handleNextTweet}>
               <Next />
             </span>
@@ -513,7 +513,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
 
                 <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
                   <div>
-                    <p className="text-[#FFF] font-Poppins text-[1.2rem] normal font-normal">
+                    <p className="text-[#FFF] whitespace-nowrap font-Poppins text-[1rem] md:text-[0.9rem] lg:text-[1.2rem] normal font-normal">
                       Participants:{" "}
                       <span className="text-[#1FDF00] font-[600]">
                         +{post.participants}
@@ -521,7 +521,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                     </p>
                   </div>
                   <button className="border-[1.5px] border-[#4C5656] bg-[#B6B9B9] px-[1rem] py-[0.5rem] rounded-md">
-                    <span className="font-Poppins text-[#000] text-[1rem] font-normal text-center">
+                    <span className="whitespace-nowrap font-Poppins text-[#000] text-[0.8rem] lg:text-[1rem] font-normal text-center">
                       Redeem reward
                     </span>
                   </button>
@@ -529,6 +529,24 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
               </div>
             </div>
           </main>
+          <div className="text-[#FFF] flex mt-[1rem] justify-between md:hidden">
+            <button
+              onClick={handlePreviousTweet}
+              className="border-[1.5px] border-[#4C5656] bg-[#79C4EC] px-[1rem] py-[0.5rem] rounded-md"
+            >
+              <span className="whitespace-nowrap font-Poppins text-[#000] text-[0.8rem] md:text-[1rem] font-normal text-center">
+                Prev
+              </span>
+            </button>
+            <button
+              onClick={handleNextTweet}
+              className="border-[1.5px] border-[#4C5656] bg-[#79C4EC] px-[1rem] py-[0.5rem] rounded-md"
+            >
+              <span className="whitespace-nowrap font-Poppins text-[#000] text-[0.8rem] md:text-[1rem] font-normal text-center">
+                Next
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

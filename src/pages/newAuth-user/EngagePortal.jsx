@@ -16,7 +16,7 @@ import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
 import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Brick2 } from "../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../assets/svg/brick-line.svg";
-
+import { ReactComponent as SeachIcon } from "../../assets/svg/dashboardSvg/searchIcon.svg";
 import { Dialog } from "@headlessui/react";
 
 import "swiper/css";
@@ -80,8 +80,6 @@ const EngagePortals = () => {
   return (
     <div className="" ref={scrollRef}>
       <div className="container">
-        {/* testing header */}
-
         <Dialog
           as="div"
           className={`relative z-[900]`}
@@ -105,25 +103,6 @@ const EngagePortals = () => {
             </div>
           </div>
         </Dialog>
-
-        {/* testing */}
-        {/* {singleTweet && (
-          <div
-            className="fixed top-0 left-0 overflow-y-auto overflow-x-hidden outline-none focus:outline-none inset-0 z-50 bg-black bg-opacity-75"
-            onClick={overlayCancelHandler}
-            ref={overlayRef}
-          >
-            <div className="relative">
-              <div className="left-[13%] xl:left-[20%] absolute inset-0 xl:max-w-[1000px] top-[5vh] xl:top-[15vh] z-20">
-                <SingleTweetById
-                  tweetId={singleTweet}
-                  onCancel={cancelHandler}
-                  setSelectedPostId={setSelectedPostId}
-                />
-              </div>
-            </div>
-          </div>
-        )} */}
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-5 hidden md:block">
             <Brick1 />
@@ -151,7 +130,7 @@ const EngagePortals = () => {
         </div>
 
         <div className="mt-[1rem] bg-[#060B12]">
-          <div className="px-[0.8rem] md:px-[1.5rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
+          <div className="px-[0.8rem] md:px-[1.5rem] gap-[2rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
             <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
                 <Hamburger />
@@ -163,8 +142,19 @@ const EngagePortals = () => {
                 <Dropdown />
               </span>
             </div>
-
-            <div className="flex gap-6 xl:gap-3 px-6 pt-[0.6rem] md:pt-[1rem]">
+            <div className="flex items-center py-[0.6rem]">
+              <div className="border-[1px] border-r-0 rounded-l-[2.5rem] border-[#2A3C46] border-opacity-[80%] py-[0.69rem] md:py-[0.7rem] px-[1rem] cursor-pointer">
+                <SeachIcon />
+              </div>
+              <input
+                type="search"
+                name="search"
+                id="search"
+                placeholder="search spaces.."
+                className="rounded-[2.5rem] placeholder:font-Poppins placeholder:font-[300] placeholder:text-[#536169] rounded-l-none w-[11rem] md:w-[11rem] lg:w-[22.6rem] py-[0.5rem] border-[1px] border-[#2A3C46] border-opacity-[80%] bg-transparent outline-none px-[0.5rem]"
+              />
+            </div>
+            {/* <div className="flex gap-6 xl:gap-3 px-6 pt-[0.6rem] md:pt-[1rem]">
               <div
                 className={clsx(
                   "flex flex-col items-center pb-[0.6rem] md:pb-[1rem]",
@@ -272,13 +262,13 @@ const EngagePortals = () => {
                   Facebook
                 </span>
               </div>
-            </div>
+            </div> */}
 
-            <div>
+            {/* <div>
               <button className="whitespace-nowrap px-[0.5rem] md:px-[1rem] py-[0.3rem] md:py-[0.5rem] bg-[#EBEDED] rounded-sm font-Poppins font-[300] text-[0.6rem] md:text-[0.8rem] text-[#060B12]">
                 Promote a post
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* grid */}

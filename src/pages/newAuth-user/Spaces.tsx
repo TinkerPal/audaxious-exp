@@ -20,29 +20,31 @@ const Spaces = () => {
     setOpen(false);
   };
   return (
-    <div className="text-[#FFF] max-w-[1670px] mt-[-2rem]">
-      <div className="container">
-        <Dialog
-          as="div"
-          className={`relative z-[900]`}
-          open={open}
-          onClose={cancelHandler}
-        >
-          <div
-            className="fixed inset-0 bg-black bg-opacity-75"
-            onClick={cancelHandler}
-          />
-          <div className="fixed inset-0 z-[300] overflow-y-auto">
-            <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
-              <Dialog.Panel className="">
-                <CreateSpace />
-              </Dialog.Panel>
+    <div className="text-[#FFF] max-w-[1670px] ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] mt-[-2rem]">
+      <div className="">
+        <div className="container">
+          <Dialog
+            as="div"
+            className={`relative z-[900]`}
+            open={open}
+            onClose={cancelHandler}
+          >
+            <div
+              className="fixed inset-0 bg-black bg-opacity-75"
+              onClick={cancelHandler}
+            />
+            <div className="fixed inset-0 z-[300] overflow-y-auto">
+              <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
+                <Dialog.Panel className="">
+                  <CreateSpace />
+                </Dialog.Panel>
+              </div>
             </div>
-          </div>
-        </Dialog>
-        <div>
-          <div className="flex items-end justify-between gap-[1rem] md:gap-[0rem] border border-[#19242D] border-r-0 overflow-x-auto max-w-[1920px]">
-            <div className="flex justify-between items-center text-[1rem] font-Poppins font-[300]">
+          </Dialog>
+        </div>
+        <div className="border-[#2A3C46] border-l-0 md:border-l border-opacity-[80%]">
+          <div className="flex flex-col-reverse md:flex-row items-center md:items-end justify-between gap-[0.5rem] md:gap-[0rem] pt-[1rem] md:pt-[0rem] border border-[#19242D] border-r-0">
+            <div className="flex justify-between items-center text-[0.7rem] md:text-[1rem] font-Poppins font-[300]">
               <div
                 onClick={() => toggleHandler(1)}
                 className={clsx(
@@ -78,7 +80,7 @@ const Spaces = () => {
               </div>
             </div>
             <div className="flex items-center py-[0.6rem]">
-              <div className="border-[1px] border-r-0 rounded-l-[2.5rem] border-[#2A3C46] border-opacity-[80%] py-[0.75rem] lg:py-[0.75rem] xl:py-[0.7rem] px-[1rem] cursor-pointer">
+              <div className="border-[1px] border-r-0 rounded-l-[2.5rem] border-[#2A3C46] border-opacity-[80%] py-[0.71rem] md:py-[0.7rem] px-[1rem] cursor-pointer">
                 <SeachIcon />
               </div>
               <input
@@ -86,7 +88,7 @@ const Spaces = () => {
                 name="search"
                 id="search"
                 placeholder="search spaces.."
-                className="rounded-[2.5rem] placeholder:font-Poppins placeholder:font-[300] placeholder:text-[#536169] rounded-l-none w-[11rem] lg:w-[22.6rem] py-[0.5rem] border-[1px] border-[#2A3C46] border-opacity-[80%] bg-transparent outline-none px-[0.5rem]"
+                className="rounded-[2.5rem] placeholder:font-Poppins placeholder:font-[300] placeholder:text-[#536169] rounded-l-none w-[100%] md:w-[11rem] lg:w-[22.6rem] py-[0.5rem] border-[1px] border-[#2A3C46] border-opacity-[80%] bg-transparent outline-none px-[0.5rem]"
               />
             </div>
           </div>
