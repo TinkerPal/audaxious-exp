@@ -80,7 +80,7 @@ const CreateSpace = () => {
   };
   return (
     <form onSubmit={submitFormHandler}>
-      <div className="text-[#FFF] bg-[#060B12] min-w-[15rem] md:w-[43rem] lg:w-[58rem] xl:w-[70rem]">
+      <div className="text-[#FFF] bg-[#060B12] w-[100%] min-w-[15rem] md:w-[43rem] lg:w-[58rem] xl:w-[70rem]">
         <div className="border-[#2A3C46] border border-opacity-[80%] rounded-sm">
           <div>
             <div className="bg-ElipseBg bg-cover">
@@ -103,6 +103,7 @@ const CreateSpace = () => {
                   // value={cover}
                   // onBlur={coverImageOnBlur}
                   onChange={onChangeCover}
+                  required
                   type="file"
                   name="coverImage"
                   id="coverImage"
@@ -135,6 +136,7 @@ const CreateSpace = () => {
                     </p>
                   </div>
                   <input
+                    required
                     type="file"
                     name="profilePicture"
                     id="profilePicture"
@@ -162,6 +164,7 @@ const CreateSpace = () => {
                     Name
                   </label>
                   <input
+                    required
                     type="text"
                     name="name"
                     id="name"
@@ -199,7 +202,7 @@ const CreateSpace = () => {
               </div>
               <div className="flex items-center md:items-start justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
                 <div className="flex flex-col items-start gap-[0.6rem]">
-                  <div>
+                  <div className="">
                     <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
                       Select Category
                     </p>
@@ -359,6 +362,7 @@ const CreateSpace = () => {
                     </span>
                   </label>
                   <input
+                    required
                     type="text"
                     value={website}
                     onChange={websiteOnchange}
@@ -375,7 +379,7 @@ const CreateSpace = () => {
                   )}
                 </div>
 
-                <div className="w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
+                <div className="md:w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
                   <button
                     type="submit"
                     className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#EBEDED]"
