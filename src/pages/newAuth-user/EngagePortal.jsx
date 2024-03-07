@@ -78,31 +78,36 @@ const EngagePortals = () => {
     },
   };
   return (
-    <div className="" ref={scrollRef}>
-      <div className="container">
-        <Dialog
-          as="div"
-          className={`relative z-[900]`}
-          open={open}
-          onClose={cancelHandler}
-          ref={overlayRef}
-        >
-          <div
-            className="fixed inset-0 bg-black bg-opacity-75"
-            onClick={cancelHandler}
-          />
-          <div className="fixed inset-0 z-[300] overflow-y-auto">
-            <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
-              <Dialog.Panel className="">
-                <SingleTweetById
-                  tweetId={singleTweet}
-                  onCancel={cancelHandler}
-                  setSelectedPostId={setSelectedPostId}
-                />
-              </Dialog.Panel>
+    <div
+      className="ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] max-w-[1670px]"
+      ref={scrollRef}
+    >
+      <div>
+        <div className="container">
+          <Dialog
+            as="div"
+            className={`relative z-[900]`}
+            open={open}
+            onClose={cancelHandler}
+            ref={overlayRef}
+          >
+            <div
+              className="fixed inset-0 bg-black bg-opacity-75"
+              onClick={cancelHandler}
+            />
+            <div className="fixed inset-0 z-[300] overflow-y-auto">
+              <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
+                <Dialog.Panel className="">
+                  <SingleTweetById
+                    tweetId={singleTweet}
+                    onCancel={cancelHandler}
+                    setSelectedPostId={setSelectedPostId}
+                  />
+                </Dialog.Panel>
+              </div>
             </div>
-          </div>
-        </Dialog>
+          </Dialog>
+        </div>
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-5 hidden md:block">
             <Brick1 />
@@ -130,7 +135,7 @@ const EngagePortals = () => {
         </div>
 
         <div className="mt-[1rem] bg-[#060B12]">
-          <div className="px-[0.8rem] md:px-[1.5rem] gap-[2rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1920px] container overflow-x-auto justify-between rounded-t-md">
+          <div className="px-[0.8rem] md:px-[1.5rem] gap-[2rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1670px] overflow-x-auto justify-between rounded-t-md">
             <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
                 <Hamburger />
