@@ -16,7 +16,7 @@ const MySpace = ({ onCreateSpace }) => {
     <div>
       <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
-        <div className="py-[1.47rem]">
+        <div className="py-[1.47rem] flex flex-col items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem]">
             {SPACES &&
               SPACES.slice(0, 5).map((space) => (
