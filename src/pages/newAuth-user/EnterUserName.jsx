@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import Input from "../../components/Input";
+import { useDispatch } from "react-redux";
+import { authAction } from "../../store/store";
 
 const EnterUserName = ({ onOpen }) => {
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
     onOpen(false);
-    console.log("Login");
-    localStorage.setItem("loggedin", "loggedin");
+    dispatch(authAction.loggin());
+    // console.log("Login");
+    // localStorage.setItem("loggedin", "loggedin");
     // window.location.href = "/spaces";
   };
 
