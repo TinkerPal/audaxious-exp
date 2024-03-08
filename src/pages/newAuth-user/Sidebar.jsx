@@ -12,17 +12,20 @@ import { ReactComponent as HelpIcon } from "../../assets/svg/dashboardSvg/help.s
 import { ReactComponent as LogoutIcon } from "../../assets/svg/dashboardSvg/logout.svg";
 import { ReactComponent as MdLineIcon } from "../../assets/svg/dashboardSvg/mdLines.svg";
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/logo.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/store";
 
 const Sidebar = ({ onOpen }) => {
   const location = useLocation();
   const token = useSelector((state) => state.isLogedIn);
+  const dispatch = useDispatch();
 
   const path = location.pathname;
   // console.log(path);
 
   const logoutHandler = () => {
-    localStorage.removeItem("loggedin");
+    // localStorage.removeItem("loggedin");
+    dispatch(authAction.logout());
   };
 
   return (
