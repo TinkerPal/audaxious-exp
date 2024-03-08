@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { Dialog } from "@headlessui/react";
-import CreateSpace from "./CreateSpace";
-import Login from "./Login";
 import Authentication from "./Authentication";
 
 const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
-  // const openLoginModal = () => {
-  //   setOpen(true);
-  // };
   const cancelHandler = () => {
     setOpen(false);
   };
+
   return (
     <div className="">
-      <Header />
+      <Header onOpen={setOpen} />
       <main className="flex my-[1.25rem] mt-[7rem] ml-[3rem] md:ml-[6rem] lg:ml-[4rem] xl:ml-[15rem]">
         <Sidebar onOpen={setOpen} />
         <div className="container">
@@ -35,7 +31,7 @@ const DashboardLayout = () => {
               <div className="fixed inset-0 z-[300] overflow-y-auto">
                 <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
                   <Dialog.Panel className="">
-                    <Authentication />
+                    <Authentication onOpen={setOpen} />
                   </Dialog.Panel>
                 </div>
               </div>

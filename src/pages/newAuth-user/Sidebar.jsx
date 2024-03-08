@@ -12,18 +12,18 @@ import { ReactComponent as HelpIcon } from "../../assets/svg/dashboardSvg/help.s
 import { ReactComponent as LogoutIcon } from "../../assets/svg/dashboardSvg/logout.svg";
 import { ReactComponent as MdLineIcon } from "../../assets/svg/dashboardSvg/mdLines.svg";
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/logo.svg";
-import { useState } from "react";
-import CreateSpace from "./CreateSpace";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ onOpen }) => {
-  const openLoginModal = (bool) => {
-    onOpen(bool);
-  };
-
   const location = useLocation();
+  const token = useSelector((state) => state.isLogedIn);
 
   const path = location.pathname;
   // console.log(path);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("loggedin");
+  };
 
   return (
     <div className="flex flex-col gap-3 pl-[1rem] md:pl-[3.74rem] h-screen fixed top-[82px] left-0 bottom-0 z-40 bg-[#060B12]">
@@ -134,18 +134,31 @@ const Sidebar = ({ onOpen }) => {
           </span>
           <span className="hidden xl:block">Help</span>
         </NavLink>
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap">
-          <span>
-            <LogoutIcon />
-          </span>
-          <span className="hidden xl:block">Logout</span>
-        </NavLink>
+        {token && (
+          <button
+            onClick={logoutHandler}
+            className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
+          >
+            <span>
+              <LogoutIcon />
+            </span>
+            <span className="hidden xl:block">Logout</span>
+          </button>
+        )}
+        {!token && (
+          <button
+            onClick={() => onOpen(true)}
+            className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
+          >
+            <span>
+              <LogoutIcon />
+            </span>
+            <span className="hidden xl:block">Login</span>
+          </button>
+        )}
       </div>
       <div className="items-baseline fixed bottom-5">
-        <div
-          onClick={() => openLoginModal(true)}
-          className="cursor-pointer p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md"
-        >
+        <div className="cursor-pointer p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md">
           <span>
             <LogoMd fill={"#818282"} />
           </span>

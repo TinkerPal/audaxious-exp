@@ -31,10 +31,6 @@ import {
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweet = getTweetById(tweetId);
   const [post, setPost] = useState(tweet);
-  const [like, setLike] = useState(false);
-  const [repost, setRepost] = useState(false);
-  const [follow, setFollow] = useState(false);
-  const [comment, setComment] = useState(false);
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
 

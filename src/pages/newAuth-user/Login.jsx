@@ -18,20 +18,11 @@ const Login = ({ onVerifyEmail }) => {
     onVerifyEmail(true);
   };
   return (
-    <div className="text-[#FFF] bg-[#060B12] w-[100%] min-w-[15rem] md:w-[35rem]">
-      <div className="border-[#2A3C46] border border-opacity-[80%] rounded-md">
+    <div className="text-[#FFF] bg-[#060B12] w-[100%] min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg">
+      <div className="w-[100%]">
         <div>
-          <div className="container py-[2rem]">
+          <div className="container py-[4rem]">
             <div className="text-white font-Poppins flex flex-col justify-center items-center">
-              <div className="mr-40">
-                <Star />
-              </div>
-              <div className="mt-[1rem] mb-8">
-                <Link to={"/"}>
-                  <Logo />
-                </Link>
-              </div>
-
               <h3 className="text-[22px] leading-[28px] font-light font-Bricolage_Grotesque">
                 Login
               </h3>
@@ -54,36 +45,38 @@ const Login = ({ onVerifyEmail }) => {
                   type="submit"
                   primary
                   round
-                  className="mt-8 mx-auto whitespace-nowrap w-[17rem]"
+                  className="mt-8 mx-auto whitespace-nowrap lg:w-[17rem]"
                 >
                   Login with email
                 </Button>
               </form>
             </div>
             <div className="flex items-center justify-center pt-6">
-              <div className="w-1/4 border-t border-[#24343D]"></div>
+              <div className="w-1/4 md:w-[14rem] border-t border-[#24343D]"></div>
               <div className="px-6 text-[#A5A5A5] font-Poppins font-normal text-[16px]">
                 OR
               </div>
-              <div className="w-1/4 border-t border-[#24343D]"></div>
+              <div className="w-1/4 md:w-[14rem] border-t border-[#24343D]"></div>
             </div>
+            <div className="flex flex-col md:flex-row items-center justify-center md:gap-[2rem]">
+              <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] px-3.5 md:px-1 py-3.5 mt-8 md:w-[15rem]">
+                <a
+                  // href="https://api.audaxious.com/api/v1/auth/google"
+                  href="#"
+                  className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins"
+                >
+                  <Google /> Signin with Google
+                </a>
+              </div>
 
-            <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] mx-auto p-3.5 mt-8 md:w-[17rem]">
-              <a
-                href="https://api.audaxious.com/api/v1/auth/google"
-                className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins"
-              >
-                <Google /> Signin with Google
-              </a>
-            </div>
-
-            <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] mx-auto p-3.5 mt-8 md:w-[17rem]">
-              <button
-                //   onClick={() => setIsOpen(true)}
-                className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins"
-              >
-                <Bitcoin /> Signin with Wallet
-              </button>
+              <div className="bg-[#14171E] flex items-center justify-center rounded-[8px] border border-[#24343D] px-3.5 md:px-1 py-3.5 mt-8 md:w-[15rem]">
+                <button
+                  //   onClick={() => setIsOpen(true)}
+                  className="text-[#A0A09C] flex gap-3 text-[16px] font-Poppins"
+                >
+                  <Bitcoin /> Signin with Wallet
+                </button>
+              </div>
             </div>
 
             <p className="text-white text-center font-Poppins text-[13px] font-light pt-16">
