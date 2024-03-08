@@ -12,8 +12,14 @@ import { ReactComponent as HelpIcon } from "../../assets/svg/dashboardSvg/help.s
 import { ReactComponent as LogoutIcon } from "../../assets/svg/dashboardSvg/logout.svg";
 import { ReactComponent as MdLineIcon } from "../../assets/svg/dashboardSvg/mdLines.svg";
 import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/logo.svg";
+import { useState } from "react";
+import CreateSpace from "./CreateSpace";
 
-const Sidebar = () => {
+const Sidebar = ({ onOpen }) => {
+  const openLoginModal = (bool) => {
+    onOpen(bool);
+  };
+
   const location = useLocation();
 
   const path = location.pathname;
@@ -136,7 +142,10 @@ const Sidebar = () => {
         </NavLink>
       </div>
       <div className="items-baseline fixed bottom-5">
-        <div className="p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md">
+        <div
+          onClick={() => openLoginModal(true)}
+          className="cursor-pointer p-[0.5rem] flex flex-col xl:flex-row gap-3 items-center mt-36 bg-[#323333] rounded-md"
+        >
           <span>
             <LogoMd fill={"#818282"} />
           </span>
