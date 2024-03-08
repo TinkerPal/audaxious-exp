@@ -26,6 +26,27 @@ const Header = ({ onOpen }) => {
   //   setToken(newToken);
   // }, [token]);
 
+  let butons = (
+    <button
+      onClick={() => openLoginModal(true)}
+      className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70"
+    >
+      Log In
+    </button>
+  );
+
+  if (token) {
+    butons = (
+      <div>
+        <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
+          <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
+            H
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (path === "/engage-portal") {
     title = "Engage portal";
     specificIcon = (
@@ -69,23 +90,7 @@ const Header = ({ onOpen }) => {
           <div>
             <Line />
           </div>
-          {token && (
-            <div>
-              <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
-                <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
-                  H
-                </p>
-              </div>
-            </div>
-          )}
-          {!token && (
-            <button
-              onClick={() => openLoginModal(true)}
-              className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70"
-            >
-              Log In
-            </button>
-          )}
+          {butons}
         </div>
       </div>
     </div>
