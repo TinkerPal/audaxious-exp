@@ -18,8 +18,8 @@ const Login = ({ onVerifyEmail }) => {
     onVerifyEmail(true);
   };
   return (
-    <div className="text-[#FFF] bg-[#060B12] w-[100%] min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg">
-      <div className="w-[100%]">
+    <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
+      <div className="">
         <div>
           <div className="container py-[4rem]">
             <div className="text-white font-Poppins flex flex-col justify-center items-center">
@@ -27,30 +27,30 @@ const Login = ({ onVerifyEmail }) => {
                 Login
               </h3>
             </div>
-            <div className="2xl:mx-28 md:mx-36 lg:mx-16 3xl:mx-72">
-              <form autoComplete="off" className="" onSubmit={submitHandler}>
-                <Input
-                  value={value}
-                  onChange={onChangeValueHandler}
-                  onBlur={onBlurHandler}
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter email"
-                  className=""
-                  required
-                />
 
-                <Button
-                  type="submit"
-                  primary
-                  round
-                  className="mt-8 mx-auto whitespace-nowrap lg:w-[17rem]"
-                >
-                  Login with email
-                </Button>
-              </form>
-            </div>
+            <form autoComplete="off" className="" onSubmit={submitHandler}>
+              <Input
+                value={value}
+                onChange={onChangeValueHandler}
+                onBlur={onBlurHandler}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                className="md:w-[70%]"
+                required
+              />
+
+              <Button
+                type="submit"
+                primary
+                round
+                className="mt-8 mx-auto whitespace-nowrap lg:w-[17rem]"
+              >
+                Login with email
+              </Button>
+            </form>
+
             <div className="flex items-center justify-center pt-6">
               <div className="w-1/4 md:w-[14rem] border-t border-[#24343D]"></div>
               <div className="px-6 text-[#A5A5A5] font-Poppins font-normal text-[16px]">

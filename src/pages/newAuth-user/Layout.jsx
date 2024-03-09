@@ -29,7 +29,8 @@ const DashboardLayout = () => {
                 onClick={cancelHandler}
               />
               <div className="fixed inset-0 z-[300] overflow-y-auto">
-                <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
+                {/* className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0" */}
+                <div className="flex items-center justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
                   <Dialog.Panel className="">
                     <Authentication onOpen={setOpen} />
                   </Dialog.Panel>

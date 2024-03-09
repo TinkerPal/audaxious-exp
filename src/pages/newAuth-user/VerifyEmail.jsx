@@ -17,7 +17,7 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
     onVerifyEmail(false);
   };
   return (
-    <div className="text-[#FFF] w-[85%] min-w-[15rem] md:w-[35rem] xl:w-[45rem] container bg-[#060B12] rounded-lg">
+    <div className="text-[#FFF] w-screen md:w-[35rem] xl:w-[45rem] container bg-[#060B12] rounded-lg">
       <div className="w-[100%]">
         <div className="container py-[4rem]">
           <div className="text-[#E8E8E8] font-Poppins flex flex-col justify-center items-center">
@@ -64,7 +64,8 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-[#14171E] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] mx-auto p-3.5 mt-8 w-[10rem] md:w-[17rem]"
+                className="bg-[#14171E] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
+                // mt-8 mx-auto whitespace-nowrap lg:w-[17rem]
               >
                 Next
               </button>

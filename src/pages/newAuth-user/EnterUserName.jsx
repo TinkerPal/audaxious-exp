@@ -16,7 +16,7 @@ const EnterUserName = ({ onOpen }) => {
   };
 
   return (
-    <div className="text-[#FFF] bg-[#060B12] w-[85%] min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
+    <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
       <div className="">
         <div className="container py-[4rem]">
           <div className="text-[#E8E8E8] font-Poppins flex flex-col justify-center items-center">
@@ -47,7 +47,7 @@ const EnterUserName = ({ onOpen }) => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-[#14171E] text-[#000] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] mx-auto p-3.5 mt-8 md:w-[17rem]"
+                className="bg-[#14171E] text-[#000] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
               >
                 Next
               </button>
