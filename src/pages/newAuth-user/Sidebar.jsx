@@ -24,7 +24,7 @@ const Sidebar = ({ onOpen }) => {
   // console.log(path);
 
   const logoutHandler = () => {
-    // localStorage.removeItem("loggedin");
+    localStorage.removeItem("loggedin");
     dispatch(authAction.logout());
   };
 
