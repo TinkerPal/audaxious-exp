@@ -8,6 +8,7 @@ const EnterUserName = ({ onOpen }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     onOpen(false);
+    localStorage.setItem("loggedin", "loggedin");
     dispatch(authAction.loggin());
     // console.log("Login");
     // localStorage.setItem("loggedin", "loggedin");
