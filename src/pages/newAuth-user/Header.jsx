@@ -7,17 +7,20 @@ import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/audaxiou
 import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as DashBoardIcon } from "../../assets/svg/dashboardSvg/dasboardIcon.svg";
 import { ReactComponent as CommunityIcon } from "../../assets/svg/dashboardSvg/community.svg";
-import { useSelector } from "react-redux";
-const Header = ({ onOpen }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/store";
+const Header = () => {
   const token = useSelector((state) => state.isLogedIn);
 
   let title = "Dashboard";
   let specificIcon = <DashBoardIcon style={{ fill: "#FFF" }} />;
   const location = useLocation();
   const path = location.pathname;
+  const dispatch = useDispatch();
 
-  const openLoginModal = (bool) => {
-    onOpen(bool);
+  const openLoginModal = () => {
+    // onOpen(bool);
+    dispatch(authAction.onOpen());
   };
   // console.log(token);
   // useEffect(() => {
@@ -28,7 +31,7 @@ const Header = ({ onOpen }) => {
 
   let butons = (
     <button
-      onClick={() => openLoginModal(true)}
+      onClick={openLoginModal}
       className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70"
     >
       Log In

@@ -3,11 +3,13 @@ import Input from "../../components/Input";
 import { useDispatch } from "react-redux";
 import { authAction } from "../../store/store";
 
-const EnterUserName = ({ onOpen }) => {
+const EnterUserName = () => {
   const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
-    onOpen(false);
+    // onOpen(false);
+    dispatch(authAction.onclose());
     localStorage.setItem("loggedin", "loggedin");
     dispatch(authAction.loggin());
     // console.log("Login");

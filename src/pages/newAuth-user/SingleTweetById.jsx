@@ -27,6 +27,9 @@ import {
   LikeIntent,
   RepostIntent,
 } from "./TweeterIntent";
+import { getToken } from "../../utils/accesstoken";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/store";
 
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweet = getTweetById(tweetId);
@@ -34,25 +37,20 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
 
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.isLogedIn);
+
   const toggleTabHandler = (id) => {
     setToggle(id);
   };
 
-  // useEffect(() => {
-  //   // Fetch tweet data when tweetId changes
-  //   const tweet = getTweetById(tweetId);
-  //   setPost(tweet);
-  // }, [tweetId]);
-
-  // if (!post) {
-  //   return <p className="text-[#FFF]">Loading</p>;
-  // }
-  // if (!repost) {
-  //   setRepost(true);
-  //   setCount((prev) => prev + 1);
-  // }
   const handleLike = () => {
     // Update the like field to true for the current tweet
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
     if (!post.like) {
       LikeIntent("1763151012615925766");
       const updatedPost = { ...post, like: true };
@@ -62,6 +60,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
   const handleRetweet = () => {
     // Update the repost field to true for the current tweet
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
     if (!post.repost) {
       RepostIntent("1763151012615925766");
       const updatedPost = { ...post, repost: true };
@@ -71,6 +74,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
   const handleFollow = () => {
     // Update the repost field to true for the current tweet
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
     if (!post.follow) {
       FollowIntent("AudaXious3");
       const updatedPost = { ...post, follow: true };
@@ -80,6 +88,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
   const handleComment = () => {
     // Update the repost field to true for the current tweet
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
     if (!post.comment) {
       CommentIntent(
         "1763151012615925766",

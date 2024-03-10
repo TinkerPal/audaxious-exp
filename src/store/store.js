@@ -1,19 +1,25 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { getToken } from "../utils/accesstoken";
 
 const initialState = {
   isLogedIn: false,
+  isOpen: false,
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    loggin(state, payload) {
+    loggin(state) {
       state.isLogedIn = true;
     },
-    logout(state, payload) {
+    logout(state) {
       state.isLogedIn = false;
+    },
+    onOpen(state) {
+      state.isOpen = true;
+    },
+    onclose(state) {
+      state.isOpen = false;
     },
   },
 });

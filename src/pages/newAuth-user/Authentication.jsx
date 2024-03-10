@@ -3,7 +3,7 @@ import EnterUserName from "./EnterUserName";
 import Login from "./Login";
 import VerifyEmail from "./VerifyEmail";
 
-const Authentication = ({ onOpen }) => {
+const Authentication = () => {
   const [verifyEmal, setVerifyEmal] = useState(false);
   const [userName, setUserName] = useState(false);
   return (
@@ -15,7 +15,7 @@ const Authentication = ({ onOpen }) => {
           onVerifyEmail={setVerifyEmal}
         />
       )}
-      {!verifyEmal && userName && <EnterUserName onOpen={onOpen} />}
+      {!verifyEmal && userName && <EnterUserName />}
     </div>
   );
 };

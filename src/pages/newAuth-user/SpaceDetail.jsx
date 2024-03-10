@@ -13,10 +13,23 @@ import { ReactComponent as Details } from "../../assets/svg/dashboardSvg/details
 import clsx from "clsx";
 import Twitter from "../../components/socialmedia/Twitter";
 import { TOPEARNERS } from "../../utils/postApi";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/store";
 
 const SpaceDetail = () => {
   const [toggle, setToggle] = useState(1);
   //   const [selectedPostId, setSelectedPostId] = useState(null);
+  const dispatch = useDispatch();
+  // const token = getToken();
+  const isAuthenticated = useSelector((state) => state.isLogedIn);
+
+  const joinSpaceHandler = () => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      return;
+    }
+    dispatch(authAction.loggin());
+  };
   const toggleHandler = (id) => {
     setToggle(id);
   };
@@ -68,9 +81,22 @@ const SpaceDetail = () => {
               </div>
             </div>
             <div>
-              <button className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]">
-                Join space
-              </button>
+              {!isAuthenticated && (
+                <button
+                  onClick={joinSpaceHandler}
+                  className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                >
+                  Join space
+                </button>
+              )}
+              {isAuthenticated && (
+                <button
+                  // onClick={joinSpaceHandler}
+                  className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                >
+                  Joined
+                </button>
+              )}
             </div>
           </div>
         </div>

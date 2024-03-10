@@ -15,13 +15,18 @@ import { ReactComponent as LogoMd } from "../../assets/svg/dashboardSvg/logo.svg
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../store/store";
 
-const Sidebar = ({ onOpen }) => {
+const Sidebar = () => {
   const location = useLocation();
   const token = useSelector((state) => state.isLogedIn);
   const dispatch = useDispatch();
 
   const path = location.pathname;
   // console.log(path);
+
+  const openLoginModal = () => {
+    // onOpen(bool);
+    dispatch(authAction.onOpen());
+  };
 
   const logoutHandler = () => {
     localStorage.removeItem("loggedin");
@@ -150,7 +155,7 @@ const Sidebar = ({ onOpen }) => {
         )}
         {!token && (
           <button
-            onClick={() => onOpen(true)}
+            onClick={openLoginModal}
             className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
           >
             <span>

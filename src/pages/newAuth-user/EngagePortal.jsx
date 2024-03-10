@@ -52,6 +52,7 @@ const EngagePortals = () => {
   //     setSelectedPostId(null);
   //   }
   // };
+
   const cancelHandler = () => {
     setOpen(false);
     setSingleTweet(null);
@@ -86,9 +87,9 @@ const EngagePortals = () => {
         <div className="container">
           <Dialog
             as="div"
-            className={`relative z-[900]`}
+            className={`relative z-[800]`}
             open={open}
-            onClose={cancelHandler}
+            onClose={() => {}}
             ref={overlayRef}
           >
             <div
