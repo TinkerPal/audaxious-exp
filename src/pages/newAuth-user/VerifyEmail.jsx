@@ -6,12 +6,17 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 
 const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
   const [otpValue, setOtpValue] = useState("");
+  const [otpError, setOtpError] = useState(false);
 
   const handleOtpChange = (otp) => {
     setOtpValue(otp);
   };
   const submitHandler = (e) => {
     e.preventDefault();
+    if (otpValue.length !== 4) {
+      setOtpError(true);
+      return;
+    }
     console.log(otpValue);
     onEnterUserName(true);
     onVerifyEmail(false);
@@ -55,6 +60,11 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
                 separator={<span></span>}
               />
             </div>
+            {otpError && (
+              <div className="mt-[0.5rem]">
+                <p className="text-[#A91612] font-[700]">Enter a valid OTP</p>
+              </div>
+            )}
             <div className="mt-[2rem]">
               <p className="text-[#79C4EC] font-Poppins text-[1rem] font-[400]">
                 Resend Code

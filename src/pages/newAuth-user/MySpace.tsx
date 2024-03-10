@@ -6,11 +6,20 @@ import { ReactComponent as Retweets } from "../../assets/svg/dashboardSvg/retwee
 import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discords.svg";
 import Query from "./Query";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/store";
 
 const MySpace = ({ onCreateSpace }) => {
+  const isAuthenticated = useSelector((state) => state.isLogedIn);
+  const dispatch = useDispatch();
+
   const createSpaceHandler = () => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      return;
+    }
     onCreateSpace(true);
-    console.log("MySpace");
+    // console.log("AllSpace");
   };
   return (
     <div>

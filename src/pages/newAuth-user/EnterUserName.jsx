@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import Input from "../../components/Input";
 import { useDispatch } from "react-redux";
 import { authAction } from "../../store/store";
+import useInput from "../../hooks/useInput";
 
+const validUserName = (name) => name.trim() !== "";
 const EnterUserName = () => {
   const dispatch = useDispatch();
+  const { onBlurHandler, value, onChangeValueHandler, valueIsInvalid } =
+    useInput(validUserName);
 
   const submitHandler = (e) => {
     e.preventDefault();
     // onOpen(false);
+    console.log(value);
     dispatch(authAction.onclose());
     localStorage.setItem("loggedin", "loggedin");
     dispatch(authAction.loggin());
@@ -34,12 +39,22 @@ const EnterUserName = () => {
           <form className="w-full" onSubmit={submitHandler}>
             <Input
               type="text"
+              onBlur={onBlurHandler}
+              onChange={onChangeValueHandler}
+              value={value}
               id="userName"
               name="userName"
               placeholder="Enter user name"
               className="md:w-[70%]"
               required
             />
+            {valueIsInvalid && (
+              <div className="mt-[0.5rem]">
+                <p className="text-[#A91612] font-[700]">
+                  Enter a valid user name
+                </p>
+              </div>
+            )}
             <div className="mt-[2rem]">
               <p className="text-[#79C4EC] font-Poppins text-[1rem] font-[400]">
                 Resend Code

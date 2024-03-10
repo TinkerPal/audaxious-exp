@@ -40,7 +40,13 @@ const Login = ({ onVerifyEmail }) => {
                 className="md:w-[70%]"
                 required
               />
-
+              {valueIsInvalid && (
+                <div className="mt-[0.5rem]">
+                  <p className="text-[#A91612] font-[700]">
+                    Enter a valid email address
+                  </p>
+                </div>
+              )}
               <Button
                 type="submit"
                 primary
