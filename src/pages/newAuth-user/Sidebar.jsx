@@ -17,7 +17,7 @@ import { authAction } from "../../store/store";
 
 const Sidebar = () => {
   const location = useLocation();
-  const token = useSelector((state) => state.isLogedIn);
+  const isAuthenticated = useSelector((state) => state.isLogedIn);
   const dispatch = useDispatch();
 
   const path = location.pathname;
@@ -142,7 +142,7 @@ const Sidebar = () => {
           </span>
           <span className="hidden xl:block">Help</span>
         </NavLink>
-        {token && (
+        {isAuthenticated && (
           <button
             onClick={logoutHandler}
             className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
@@ -153,7 +153,7 @@ const Sidebar = () => {
             <span className="hidden xl:block">Logout</span>
           </button>
         )}
-        {!token && (
+        {!isAuthenticated && (
           <button
             onClick={openLoginModal}
             className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
