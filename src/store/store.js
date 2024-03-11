@@ -4,12 +4,16 @@ const initialState = {
   isLogedIn: false,
   isOpen: false,
   email: "",
+  verifyTweet: false,
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
+    verifyTweeterAccount(state, actions) {
+      state.verifyTweet = true;
+    },
     setEmail(state, actions) {
       state.email = actions.payload;
     },
