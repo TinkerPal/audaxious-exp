@@ -6,10 +6,15 @@ export const loginWithEmail = (email) => {
   return async (dispatch) => {
     const sendLoginRequest = async () => {
       const request = authInstance();
-      const requestData = await request.post(`/user/onboard`, {
-        email,
-      });
-      return requestData.data.data;
+      try {
+        const requestData = await request.post(`/user/onboard`, {
+          email,
+        });
+        return requestData.data.data;
+      } catch (error) {
+        console.error("An error occurred", error);
+        throw error;
+      }
     };
     try {
       const data = await sendLoginRequest();
@@ -45,10 +50,11 @@ export const verifyEmailWithOtp = (data) => {
   };
 };
 
-const token = getToken();
+// const token = getToken();
 
 export const enterUserName = (username) => {
   return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken");
     console.log(token);
     const sendUserNameRequest = async () => {
       const request = createAxiousInstance(token);
