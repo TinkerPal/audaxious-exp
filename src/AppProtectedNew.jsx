@@ -14,6 +14,9 @@ const AppProtectedNew = () => {
   const EngagePortals = lazy(() => import("./pages/newAuth-user/EngagePortal"));
   const Spaces = lazy(() => import("./pages/newAuth-user/Spaces"));
   const SpaceDetail = lazy(() => import("./pages/newAuth-user/SpaceDetail"));
+  const EngagementDetail = lazy(() =>
+    import("./pages/newAuth-user/SingleTweetById")
+  );
   return (
     <>
       <Layout>
@@ -29,6 +32,7 @@ const AppProtectedNew = () => {
           </Route>
           <Route path="/engage-portal" element={<DashboardLayout />}>
             <Route index={true} element={<EngagePortals />} />
+            <Route path=":postId" element={<EngagementDetail />} />
             <Route />
           </Route>
           <Route path="/spaces" element={<DashboardLayout />}>
