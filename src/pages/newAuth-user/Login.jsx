@@ -9,7 +9,10 @@ import useInput from "../../hooks/useInput";
 import { useDispatch } from "react-redux";
 import { loginWithEmail } from "../../store/authActions";
 
-const validEmail = (email) => email.includes("@");
+const validEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const Login = ({ onVerifyEmail }) => {
   const {
@@ -17,17 +20,24 @@ const Login = ({ onVerifyEmail }) => {
     onBlurHandler,
     value,
     valueIsInvalid,
-    valueIsValid,
+    // valueIsValid,
   } = useInput(validEmail);
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    if (valueIsInvalid) {
-      return;
-    } else if (valueIsValid) {
+    try {
       dispatch(loginWithEmail(value));
       onVerifyEmail(true);
+    } catch (error) {
+      console.log("LOGIN EMAIL ERROR: ", error);
+      onVerifyEmail(false);
     }
+    // if (valueIsInvalid) {
+    //   return;
+    // } else if (valueIsValid) {
+    //   dispatch(loginWithEmail(value));
+    //   onVerifyEmail(true);
+    // }
   };
   return (
     <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
