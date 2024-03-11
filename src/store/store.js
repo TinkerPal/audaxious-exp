@@ -3,12 +3,16 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLogedIn: false,
   isOpen: false,
+  email: "",
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
+    setEmail(state, actions) {
+      state.email = actions.payload;
+    },
     loggin(state) {
       state.isLogedIn = true;
     },
