@@ -16,16 +16,7 @@ const Modal = ({ children, onClose, open }) => {
         />
         <div className="fixed inset-0 z-[300] overflow-y-auto">
           <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
-            <Dialog.Panel className="">
-              {/* <SingleTweetById
-                tweetId={singleTweet}
-                onCancel={cancelHandler}
-                setSelectedPostId={setSelectedPostId}
-                onLoadTweet={loadTweetByIdHandler}
-                selectedPostId={selectedPostId}
-              /> */}
-              {children}
-            </Dialog.Panel>
+            <Dialog.Panel className="">{children}</Dialog.Panel>
           </div>
         </div>
       </Dialog>
