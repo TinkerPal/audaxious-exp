@@ -3,23 +3,62 @@ import OtpInput from "react18-input-otp";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyEmailWithOtp } from "../../store/authActions";
+import { authAction } from "../../store/store";
 
 const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
   const [otpValue, setOtpValue] = useState("");
   const [otpError, setOtpError] = useState(false);
 
+  const email = useSelector((state) => state.email);
+  const dispatch = useDispatch();
+
   const handleOtpChange = (otp) => {
     setOtpValue(otp);
   };
-  const submitHandler = (e) => {
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   if (valueIsInvalid) {
+  //     return;
+  //   } else if (valueIsValid) {
+  //     dispatch(loginWithEmail(value));
+  //     onVerifyEmail(true);
+  //   }
+  // };
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (otpValue.length !== 4) {
+    if (otpValue.length !== 6) {
       setOtpError(true);
       return;
     }
-    console.log(otpValue);
-    onEnterUserName(true);
-    onVerifyEmail(false);
+    try {
+      const result = await dispatch(
+        verifyEmailWithOtp({ email: email, otp: otpValue })
+      );
+      console.log(result);
+      // dispatch(authAction.onclose());
+      // localStorage.setItem("loggedin", "loggedin");
+      // dispatch(authAction.loggin());
+      console.log(result.data.token);
+      localStorage.setItem("audaxiousAccessToken", result.data.token);
+
+      dispatch(authAction.loggin());
+      if (!result.data.username) {
+        onEnterUserName(true);
+        onVerifyEmail(false);
+        return;
+      } else {
+        dispatch(authAction.onclose());
+      }
+    } catch (error) {
+      console.log("TYPO", error);
+      onEnterUserName(false);
+      onVerifyEmail(true);
+    }
+
+    // console.log(otpValue);
   };
   return (
     <div className="text-[#FFF] w-screen md:w-[35rem] xl:w-[45rem] container bg-[#060B12] rounded-lg">
@@ -31,9 +70,7 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
             </h3>
             <p className="text-[#A5A5A5] text-center text-[1rem] font-normal leading-[22px] mt-2 font-Poppins">
               Enter the verification code we sent to{" "}
-              <span className="text-[1.1rem] text-[#E8E8E8]">
-                {"your email address"}{" "}
-              </span>
+              <span className="text-[1.1rem] text-[#E8E8E8]">{email} </span>
             </p>
           </div>
 
@@ -42,10 +79,11 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
               <OtpInput
                 value={otpValue}
                 onChange={handleOtpChange}
-                numInputs={4}
+                numInputs={6}
                 isInputNum
+                // className="w-[2.5rem] md:w-[4.37rem] h-[2rem] md:h-[3.75rem]"
                 inputStyle={{
-                  width: "4.37rem",
+                  width: "3rem",
                   height: "3.75rem",
                   margin: "0 5px",
                   border: "2px solid rgba(42, 60, 70, 0.75)",
