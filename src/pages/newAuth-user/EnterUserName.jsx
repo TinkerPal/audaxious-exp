@@ -3,6 +3,7 @@ import Input from "../../components/Input";
 import { useDispatch } from "react-redux";
 import { authAction } from "../../store/store";
 import useInput from "../../hooks/useInput";
+import { enterUserName } from "../../store/authActions";
 
 const validUserName = (name) => name.trim() !== "";
 const EnterUserName = () => {
@@ -10,16 +11,32 @@ const EnterUserName = () => {
   const { onBlurHandler, value, onChangeValueHandler, valueIsInvalid } =
     useInput(validUserName);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     // onOpen(false);
-    console.log(value);
-    dispatch(authAction.onclose());
-    localStorage.setItem("loggedin", "loggedin");
-    dispatch(authAction.loggin());
+    // console.log(value);
+    // dispatch(authAction.onclose());
+    // dispatch(authAction.loggin());
     // console.log("Login");
     // localStorage.setItem("loggedin", "loggedin");
     // window.location.href = "/spaces";
+    try {
+      const result = await dispatch(enterUserName(value));
+      console.log("RESULT", result);
+      dispatch(authAction.onclose());
+      // dispatch(authAction.loggin());
+      // if (!result.data.username) {
+      //   // onEnterUserName(true);
+      //   // onVerifyEmail(false);
+      //   return;
+      // } else {
+      //   dispatch(authAction.onclose());
+      // }
+    } catch (error) {
+      console.log("TYPO", error);
+      // onEnterUserName(false);
+      // onVerifyEmail(true);
+    }
   };
 
   return (
