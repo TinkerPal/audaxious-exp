@@ -72,16 +72,10 @@ const EnterUserName = () => {
                 </p>
               </div>
             )}
-            <div className="mt-[2rem]">
-              <p className="text-[#79C4EC] font-Poppins text-[1rem] font-[400]">
-                Resend Code
-                <span className="text-[#E8E8E8] ml-[0.5rem]">00:00</span>
-              </p>
-            </div>
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-[#14171E] text-[#000] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
+                className="bg-[#E8E8E8] text-[#060B12] font-[600] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
               >
                 Next
               </button>
@@ -90,7 +84,7 @@ const EnterUserName = () => {
 
           <p className="text-[#A5A5A5] text-center font-Poppins text-[13px] font-light pt-20">
             You entered a wrong email?{" "}
-            <Link to={"pathConstant.LOGIN"} className="text-[#79C4EC]">
+            <Link to={"#"} className="text-[#79C4EC]">
               Change Email
             </Link>
           </p>
