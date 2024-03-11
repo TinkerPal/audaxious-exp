@@ -35,6 +35,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../components/socialmedia/Modal";
 import { Dialog } from "@headlessui/react";
 import VerifyTweeterModal from "../../components/socialmedia/VerifyTweetModal";
+import useInput from "../../hooks/useInput";
+
+const checkWebsiteValidity = (url) => {
+  const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+  return urlPattern.test(url);
+};
 
 const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const checkTweetId = useParams();
@@ -44,6 +50,14 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
   const [openIntent, setOpenIntent] = useState(true);
+
+  const {
+    onChangeValueHandler: websiteOnchange,
+    value: website,
+    onBlurHandler: websiteOnBlur,
+    valueIsInvalid: websiteInvalid,
+    valueIsValid: websiteIsValid,
+  } = useInput(checkWebsiteValidity);
 
   // const loadTweetByIdHandler = (id) => {
   //   props.onLoadTweet(id);
@@ -160,6 +174,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
   };
+
+  const verifyTweeterHandler = (event) => {
+    event.preventDefault();
+    console.log(website);
+  };
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
     navigate(-1);
@@ -214,13 +233,13 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 <span className="text-[#fff] px-[1.5rem]">2</span>
                 <span className="bg-[#8AADC2] w-[100%] h-[1px]"></span>
               </div>
-              <form>
+              <form onSubmit={verifyTweeterHandler}>
                 <input
                   required
                   type="text"
-                  // value={website}
-                  // onChange={websiteOnchange}
-                  // onBlur={websiteOnBlur}
+                  value={website}
+                  onChange={websiteOnchange}
+                  onBlur={websiteOnBlur}
                   name="website"
                   id="website"
                   placeholder="Copy and paste the link to the tweet"
@@ -229,7 +248,8 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 <div className="flex items-center justify-center mt-[1.6rem]">
                   <button
                     type="submit"
-                    className="bg-[#E8E8E8] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
+                    disabled={!websiteIsValid}
+                    className="bg-[#E8E8E8] disabled:cursor-not-allowed flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
                   >
                     <span className="text-[#060B12] font-Poppins font-[600]">
                       Verify Twitter Acount
