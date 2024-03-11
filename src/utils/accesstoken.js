@@ -1,5 +1,5 @@
 export const getToken = () => {
-  const token = localStorage.getItem("loggedin");
+  const token = localStorage.getItem("audaxiousAccessToken");
   if (!token) {
     return null;
   }
