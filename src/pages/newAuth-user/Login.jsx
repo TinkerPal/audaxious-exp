@@ -6,16 +6,28 @@ import { ReactComponent as Bitcoin } from "../../assets/svg/bitcoin.svg";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import useInput from "../../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { loginWithEmail } from "../../store/authActions";
 
 const validEmail = (email) => email.includes("@");
 
 const Login = ({ onVerifyEmail }) => {
-  const { onChangeValueHandler, onBlurHandler, value, valueIsInvalid } =
-    useInput(validEmail);
+  const {
+    onChangeValueHandler,
+    onBlurHandler,
+    value,
+    valueIsInvalid,
+    valueIsValid,
+  } = useInput(validEmail);
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(value);
-    onVerifyEmail(true);
+    if (valueIsInvalid) {
+      return;
+    } else if (valueIsValid) {
+      dispatch(loginWithEmail(value));
+      onVerifyEmail(true);
+    }
   };
   return (
     <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
