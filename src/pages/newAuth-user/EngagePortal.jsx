@@ -2,11 +2,11 @@ import { ReactComponent as Friends } from "../../assets/svg/dashboardSvg/friends
 import { ReactComponent as Activities } from "../../assets/svg/dashboardSvg/activities.svg";
 import { ReactComponent as Hamburger } from "../../assets/svg/dashboardSvg/hambuger.svg";
 import { ReactComponent as Dropdown } from "../../assets/svg/dashboardSvg/dropdown.svg";
-import { ReactComponent as X } from "../../assets/svg/dashboardSvg/x.svg";
-import { ReactComponent as Instagram } from "../../assets/svg/dashboardSvg/instagram.svg";
-import { ReactComponent as Telegram } from "../../assets/svg/dashboardSvg/telegram.svg";
-import { ReactComponent as Facebook } from "../../assets/svg/dashboardSvg/facebook.svg";
-import { ReactComponent as Discord } from "../../assets/svg/dashboardSvg/discord.svg";
+// import { ReactComponent as X } from "../../assets/svg/dashboardSvg/x.svg";
+// import { ReactComponent as Instagram } from "../../assets/svg/dashboardSvg/instagram.svg";
+// import { ReactComponent as Telegram } from "../../assets/svg/dashboardSvg/telegram.svg";
+// import { ReactComponent as Facebook } from "../../assets/svg/dashboardSvg/facebook.svg";
+// import { ReactComponent as Discord } from "../../assets/svg/dashboardSvg/discord.svg";
 import Twitter from "../../components/socialmedia/Twitter";
 import { useState, useCallback, useRef, useEffect } from "react";
 import clsx from "clsx";
@@ -17,34 +17,34 @@ import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Brick2 } from "../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../assets/svg/brick-line.svg";
 import { ReactComponent as SeachIcon } from "../../assets/svg/dashboardSvg/searchIcon.svg";
-import { Dialog } from "@headlessui/react";
+// import { Dialog } from "@headlessui/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import SingleTweetById from "./SingleTweetById";
+// import SingleTweetById from "./SingleTweetById";
 import { TOPEARNERS } from "../../utils/postApi";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
-  const [open, setOpen] = useState(false);
-  const [singleTweet, setSingleTweet] = useState();
-  const [selectedPostId, setSelectedPostId] = useState(null);
+  // const [open, setOpen] = useState(false);
+  // const [singleTweet, setSingleTweet] = useState();
+  // const [selectedPostId, setSelectedPostId] = useState(null);
   // const singleTweetContainerRef = useRef(null);
-  const scrollRef = useRef(null);
-  const overlayRef = useRef(null);
+  // const scrollRef = useRef(null);
+  // const overlayRef = useRef(null);
 
-  const loadTweetByIdHandler = (id) => {
-    setOpen(true);
-    setSelectedPostId(id);
-    setSingleTweet(id);
-  };
+  // const loadTweetByIdHandler = (id) => {
+  //   setOpen(true);
+  //   setSelectedPostId(id);
+  //   setSingleTweet(id);
+  // };
 
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.style.overflowY = "auto";
-    }
-  }, [selectedPostId]);
+  // useEffect(() => {
+  //   if (scrollRef.current) {
+  //     scrollRef.current.style.overflowY = "auto";
+  //   }
+  // }, [selectedPostId]);
 
   // const overlayCancelHandler = () => {
   //   if (overlayRef.current && event.target === overlayRef.current) {
@@ -53,14 +53,14 @@ const EngagePortals = () => {
   //   }
   // };
 
-  const cancelHandler = () => {
-    setOpen(false);
-    setSingleTweet(null);
-    setSelectedPostId(null);
-  };
-  const toggleTabHandler = useCallback((id) => {
-    setToggle(id);
-  }, []);
+  // const cancelHandler = () => {
+  //   setOpen(false);
+  //   setSingleTweet(null);
+  //   setSelectedPostId(null);
+  // };
+  // const toggleTabHandler = useCallback((id) => {
+  //   setToggle(id);
+  // }, []);
   const swiperRefLocal = useRef();
 
   const handleMouseEnter = () => {
@@ -81,10 +81,10 @@ const EngagePortals = () => {
   return (
     <div
       className="ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] max-w-[1670px]"
-      ref={scrollRef}
+      // ref={scrollRef}
     >
       <div>
-        <div className="container">
+        {/* <div className="container">
           <Dialog
             as="div"
             className={`relative z-[800]`}
@@ -103,12 +103,14 @@ const EngagePortals = () => {
                     tweetId={singleTweet}
                     onCancel={cancelHandler}
                     setSelectedPostId={setSelectedPostId}
+                    onLoadTweet={loadTweetByIdHandler}
+                    selectedPostId={selectedPostId}
                   />
                 </Dialog.Panel>
               </div>
             </div>
           </Dialog>
-        </div>
+        </div> */}
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-5 hidden md:block">
             <Brick1 />
@@ -374,14 +376,11 @@ const EngagePortals = () => {
               </section>
 
               <div className="mt-[1rem]">
-                <Twitter
-                  onLoadTweet={loadTweetByIdHandler}
-                  selectedPostId={selectedPostId}
-                />
+                <Twitter />
               </div>
             </div>
 
-            <div className={clsx(toggle === 2 ? "block" : "hidden")}>
+            {/* <div className={clsx(toggle === 2 ? "block" : "hidden")}>
               <p className="text-white">Instagram tab</p>
             </div>
             <div className={clsx(toggle === 3 ? "block" : "hidden")}>
@@ -392,7 +391,7 @@ const EngagePortals = () => {
             </div>
             <div className={clsx(toggle === 5 ? "block" : "hidden")}>
               <p className="text-white">Facebook tab</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
