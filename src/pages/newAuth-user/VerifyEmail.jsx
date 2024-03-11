@@ -112,10 +112,12 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-[#14171E] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
+                className="bg-[#E8E8E8] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 mt-8 w-[15rem] md:w-[17rem]"
                 // mt-8 mx-auto whitespace-nowrap lg:w-[17rem]
               >
-                Next
+                <span className="text-[#060B12] font-Poppins font-[600]">
+                  Next
+                </span>
               </button>
             </div>
           </form>
