@@ -29,7 +29,7 @@ const Sidebar = () => {
   };
 
   const logoutHandler = () => {
-    localStorage.removeItem("loggedin");
+    localStorage.removeItem("audaxiousAccessToken");
     dispatch(authAction.logout());
   };
 
