@@ -37,11 +37,11 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
       const result = await dispatch(
         verifyEmailWithOtp({ email: email, otp: otpValue })
       );
-      console.log(result);
+      // console.log(result);
       // dispatch(authAction.onclose());
       // localStorage.setItem("loggedin", "loggedin");
       // dispatch(authAction.loggin());
-      console.log(result.data.token);
+      // console.log(result.data.token);
       localStorage.setItem("audaxiousAccessToken", result.data.token);
 
       dispatch(authAction.loggin());
@@ -53,7 +53,7 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
         dispatch(authAction.onclose());
       }
     } catch (error) {
-      console.log("TYPO", error);
+      // console.log("TYPO", error);
       onEnterUserName(false);
       onVerifyEmail(true);
     }
