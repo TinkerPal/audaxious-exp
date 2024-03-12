@@ -12,7 +12,7 @@ const authenticationSlice = createSlice({
   initialState,
   reducers: {
     verifyTweeterAccount(state, actions) {
-      state.verifyTweet = true;
+      state.verifyTweet = actions.payload;
     },
     setEmail(state, actions) {
       state.email = actions.payload;
