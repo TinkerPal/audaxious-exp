@@ -98,9 +98,9 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const tweetText = `Verifying my Twitter account for my #Audaxious aud-id=${userId}`;
   const tweetUrl = `https://galxe.com/${userId}`;
 
-  console.log(userId);
+  // console.log(userId);
 
-  console.log("VERIFYTWEETACCOUT", verifyTweeter);
+  // console.log("VERIFYTWEETACCOUT", verifyTweeter);
 
   const VerifyTweeterHandler = () => {
     VerifyIntent(tweetText, tweetUrl);
