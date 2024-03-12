@@ -27,6 +27,7 @@ import {
   FollowIntent,
   LikeIntent,
   RepostIntent,
+  VerifyIntent,
 } from "./TweeterIntent";
 import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +37,7 @@ import Modal from "../../components/socialmedia/Modal";
 import { Dialog } from "@headlessui/react";
 import VerifyTweeterModal from "../../components/socialmedia/VerifyTweetModal";
 import useInput from "../../hooks/useInput";
+import { getUserId, verifyTweeterAccount } from "../../store/authActions";
 
 const checkWebsiteValidity = (url) => {
   const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -50,6 +52,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
   const [openIntent, setOpenIntent] = useState(true);
+  const [userId, setUserId] = useState("");
 
   const {
     onChangeValueHandler: websiteOnchange,
@@ -66,6 +69,19 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.isLogedIn);
   const verifyTweeter = useSelector((state) => state.verifyTweet);
+  const getUserIdFunction = async () => {
+    try {
+      const result = await dispatch(getUserId());
+      setUserId(result.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserIdFunction();
+  }, []);
+
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -79,9 +95,18 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     setToggle(id);
   };
 
+  const tweetText = `Verifying my Twitter account for my #Audaxious aud-id=${userId}`;
+  const tweetUrl = `https://galxe.com/${userId}`;
+
+  console.log(userId);
+
+  console.log("VERIFYTWEETACCOUT", verifyTweeter);
+
+  const VerifyTweeterHandler = () => {
+    VerifyIntent(tweetText, tweetUrl);
+  };
+
   const handleLike = () => {
-    console.log("BEGINING", open);
-    console.log("clicked");
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -89,9 +114,8 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     if (!verifyTweeter) {
       setOpen(true);
-      console.log("SCOPE", open);
+      // VerifyIntent(tweetText, tweetUrl);
       document.activeElement.blur();
-
       return;
     }
     if (!post.like) {
@@ -175,9 +199,19 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     setPost(nextTweet);
   };
 
-  const verifyTweeterHandler = (event) => {
+  const verifyTweeterHandler = async (event) => {
     event.preventDefault();
-    console.log(website);
+    try {
+      await dispatch(verifyTweeterAccount({ url: website }));
+      // console.log(result.response.data);
+      setOpen(false);
+      dispatch(authAction.verifyTweeterAccount(true));
+    } catch (error) {
+      console.log(error);
+      dispatch(authAction.verifyTweeterAccount(false));
+      setOpen(true);
+    }
+    // console.log(website);
   };
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
@@ -193,7 +227,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
       <VerifyTweeterModal onClose={closeModalHandler} open={open}>
         <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="container">
-            <h2 className="text-[#FDF2F8] font-Poppins font-normal text-[1.25rem] md:[2rem]">
+            <h2 className="text-[#A5A5A5] font-Poppins font-normal text-[1.25rem] md:[2rem]">
               AudaXious Engage
             </h2>
             <div className="flex flex-col items-center gap-[1rem] md:gap-[1.6rem] mt-[3rem]">
@@ -201,11 +235,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 <TwitterVerification />
               </span>
               <div>
-                <h2 className="text-[#FDF2F8] font-Poppins font-[900] text-[1.25rem] md:text-[2rem]">
+                <h2 className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem] md:text-[2rem]">
                   Twitter Verification
                 </h2>
                 <div className="mt-[0.5rem]">
-                  <p className="text-[#EBEDED] text-center text-[0.875rem] md:text-[1.2rem] font-Poppins leading-[140%] font-[300]">
+                  <p className="text-[#A5A5A5] text-center text-[0.875rem] md:text-[1.2rem] font-Poppins leading-[140%] font-[300]">
                     In order to continue, you need to verify your twitter
                     account
                   </p>
@@ -214,14 +248,15 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
             </div>
             <div className="flex flex-col gap-[1.5rem] md:gap-[2.3rem] mt-[2.3rem]">
               <div className="flex items-center justify-between">
-                <span className="bg-[#8AADC2] w-[100%] h-[1px]"></span>
-                <span className="text-[#fff] px-[1.5rem]">1</span>
-                <span className="bg-[#8AADC2] w-[100%] h-[1px]"></span>
+                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
+                <span className="text-[#A5A5A5] px-[1.5rem]">1</span>
+                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
               </div>
               <div className="flex items-center justify-center">
                 <button
+                  onClick={VerifyTweeterHandler}
                   // type="submit"
-                  className="bg-[#E8E8E8] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
+                  className="bg-[#E8E8E8] hover:bg-[#FFF] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
                 >
                   <span className="text-[#060B12] font-Poppins font-[600]">
                     Tweet authentication post
@@ -229,9 +264,9 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                 </button>
               </div>
               <div className="flex items-center justify-between">
-                <span className="bg-[#8AADC2] w-[100%] h-[1px]"></span>
-                <span className="text-[#fff] px-[1.5rem]">2</span>
-                <span className="bg-[#8AADC2] w-[100%] h-[1px]"></span>
+                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
+                <span className="text-[#A5A5A5] px-[1.5rem]">2</span>
+                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
               </div>
               <form onSubmit={verifyTweeterHandler}>
                 <input
