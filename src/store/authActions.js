@@ -1,6 +1,5 @@
 import { authAction } from "./store";
 import { authInstance, createAxiousInstance } from "../hooks/authInstance";
-import { getToken } from "../utils/accesstoken";
 
 export const loginWithEmail = (email) => {
   return async (dispatch) => {
@@ -54,8 +53,7 @@ export const verifyEmailWithOtp = (data) => {
 
 export const enterUserName = (username) => {
   return async () => {
-    const token = localStorage.getItem("audaxiousAccessToken");
-    console.log(token);
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
     const sendUserNameRequest = async () => {
       const request = createAxiousInstance(token);
       try {
@@ -72,6 +70,51 @@ export const enterUserName = (username) => {
       return await sendUserNameRequest();
     } catch (error) {
       console.error("An error occurred at the end of the request", error);
+      throw error;
+    }
+  };
+};
+
+export const getUserId = () => {
+  return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const getUser = async () => {
+      const response = createAxiousInstance(token);
+      try {
+        const responseData = await response.get("/twitter/link-account");
+        return responseData.data;
+      } catch (error) {
+        console.log("throw Error", error);
+        throw error;
+      }
+    };
+    try {
+      return await getUser();
+    } catch (error) {
+      console.log("throw Error", error);
+      throw error;
+    }
+  };
+};
+
+export const verifyTweeterAccount = (url) => {
+  return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const verifyTweeter = async () => {
+      const request = createAxiousInstance(token);
+      try {
+        const requestData = await request.post("/twitter/verify", url);
+        return requestData.data;
+      } catch (error) {
+        console.log("106", error);
+        throw error;
+      }
+    };
+
+    try {
+      return await verifyTweeter();
+    } catch (error) {
+      console.log("VERIFY", error);
       throw error;
     }
   };
