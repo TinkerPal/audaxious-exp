@@ -119,3 +119,26 @@ export const verifyTweeterAccount = (url) => {
     }
   };
 };
+
+export const getTwitterUserName = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const twitterUserName = async () => {
+      const response = createAxiousInstance(token);
+      try {
+        const resData = await response.get("/profile/user");
+        return resData.data;
+      } catch (error) {
+        console.log("TWITTER USER ERROR", error);
+        throw error;
+      }
+    };
+    try {
+      return await twitterUserName();
+      // dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
+    } catch (error) {
+      console.log("TWITTER USER RESPONSE ERROR", error);
+      throw error;
+    }
+  };
+};
