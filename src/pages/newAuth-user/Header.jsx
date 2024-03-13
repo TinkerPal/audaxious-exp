@@ -29,6 +29,10 @@ const Header = () => {
     setShowMenu((prev) => !prev);
   };
 
+  const openLogoutModal = () => {
+    dispatch(authAction.logoutModalMethod(true));
+  };
+
   const logoutHandler = () => {
     localStorage.removeItem("loggedin");
     dispatch(authAction.logout());
@@ -136,7 +140,7 @@ const Header = () => {
                 </NavLink>
                 {isAuthenticated && (
                   <button
-                    onClick={logoutHandler}
+                    onClick={openLogoutModal}
                     className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
                   >
                     <span>
