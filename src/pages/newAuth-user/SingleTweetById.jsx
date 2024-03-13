@@ -43,6 +43,7 @@ import {
   getUserId,
   verifyTweeterAccount,
 } from "../../store/authActions";
+import { toast } from "react-toastify";
 
 const checkWebsiteValidity = (url) => {
   const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -73,6 +74,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   // };
   // console.log(navigation(".."));
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading);
   const isAuthenticated = useSelector((state) => state.isLogedIn);
   const verifyTweeter = useSelector((state) => state.verifyTweet);
   const getUserIdFunction = async () => {
@@ -224,6 +226,10 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
 
   const verifyTweeterHandler = async (event) => {
     event.preventDefault();
+    dispatch(authAction.setLoading(true));
+    // if (loading) {
+    //   toast.loading("Please wait");
+    // }
     let formattedWebsite = website;
     // Check if the original URL contains "x.com" and replace it with "twitter.com"
     if (website.includes("x.com")) {
@@ -235,12 +241,18 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     // console.log("WEBSITE", formattedWebsite);
     try {
-      await dispatch(verifyTweeterAccount({ url: formattedWebsite }));
+      console.log(loading);
+      const result = await dispatch(
+        verifyTweeterAccount({ url: formattedWebsite })
+      );
       // console.log(result.response.data);
+      dispatch(authAction.setLoading(false));
+      toast.success(result.message);
       setOpen(false);
       dispatch(authAction.verifyTweeterAccount(true));
     } catch (error) {
-      console.log(error);
+      dispatch(authAction.setLoading(false));
+      toast.error(error.response.data.error);
       dispatch(authAction.verifyTweeterAccount(false));
       setOpen(true);
     }
@@ -260,6 +272,11 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
       <VerifyTweeterModal onClose={closeModalHandler} open={open}>
         <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="container">
+            {loading && (
+              <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
+                {"Loading..."}
+              </p>
+            )}
             <h2 className="text-[#A5A5A5] font-Poppins font-normal text-[1.25rem] md:[2rem]">
               AudaXious Engage
             </h2>

@@ -6,11 +6,12 @@ import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyEmailWithOtp } from "../../store/authActions";
 import { authAction } from "../../store/store";
+import { toast } from "react-toastify";
 
 const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
   const [otpValue, setOtpValue] = useState("");
   const [otpError, setOtpError] = useState(false);
-
+  const loading = useSelector((state) => state.loading);
   const email = useSelector((state) => state.email);
   const dispatch = useDispatch();
 
@@ -18,17 +19,9 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
     setOtpValue(otp);
   };
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   if (valueIsInvalid) {
-  //     return;
-  //   } else if (valueIsValid) {
-  //     dispatch(loginWithEmail(value));
-  //     onVerifyEmail(true);
-  //   }
-  // };
   const submitHandler = async (e) => {
     e.preventDefault();
+    dispatch(authAction.setLoading(true));
     if (otpValue.length !== 6) {
       setOtpError(true);
       return;
@@ -37,14 +30,12 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
       const result = await dispatch(
         verifyEmailWithOtp({ email: email, otp: otpValue })
       );
-      // console.log(result);
-      // dispatch(authAction.onclose());
-      // localStorage.setItem("loggedin", "loggedin");
-      // dispatch(authAction.loggin());
-      // console.log(result.data.token);
+      dispatch(authAction.setLoading(false));
+      toast.success(result.message);
       localStorage.setItem("audaxiousAccessToken", result.data.token);
 
       dispatch(authAction.loggin());
+
       if (!result.data.username) {
         onEnterUserName(true);
         onVerifyEmail(false);
@@ -53,7 +44,11 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
         dispatch(authAction.onclose());
       }
     } catch (error) {
-      // console.log("TYPO", error);
+      console.log("TYPO", error.response.data.error);
+      dispatch(authAction.setLoading(false));
+      toast.error(
+        `${error.response.data.error} or check your email for valid token`
+      );
       onEnterUserName(false);
       onVerifyEmail(true);
     }
@@ -64,6 +59,11 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
     <div className="text-[#FFF] w-screen md:w-[35rem] xl:w-[45rem] container bg-[#060B12] rounded-lg">
       <div className="w-[100%]">
         <div className="container py-[4rem]">
+          {loading && (
+            <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
+              {"Loading..."}
+            </p>
+          )}
           <div className="text-[#E8E8E8] font-Poppins flex flex-col justify-center items-center">
             <h3 className="text-[22px] leading-[28px] mb-1 font-light font-Bricolage_Grotesque">
               Verify Email{" "}

@@ -1,41 +1,29 @@
 import { Link } from "react-router-dom";
 import Input from "../../components/Input";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../store/store";
 import useInput from "../../hooks/useInput";
 import { enterUserName } from "../../store/authActions";
+import { toast } from "react-toastify";
 
 const validUserName = (name) => name.trim() !== "";
 const EnterUserName = () => {
   const dispatch = useDispatch();
   const { onBlurHandler, value, onChangeValueHandler, valueIsInvalid } =
     useInput(validUserName);
-
+  const loading = useSelector((state) => state.loading);
   const submitHandler = async (e) => {
     e.preventDefault();
-    // onOpen(false);
-    // console.log(value);
-    // dispatch(authAction.onclose());
-    // dispatch(authAction.loggin());
-    // console.log("Login");
-    // localStorage.setItem("loggedin", "loggedin");
-    // window.location.href = "/spaces";
+    dispatch(authAction.setLoading(true));
     try {
       const result = await dispatch(enterUserName(value));
-      console.log("RESULT", result);
+      dispatch(authAction.setLoading(false));
+      toast.success(result.message);
       dispatch(authAction.onclose());
-      // dispatch(authAction.loggin());
-      // if (!result.data.username) {
-      //   // onEnterUserName(true);
-      //   // onVerifyEmail(false);
-      //   return;
-      // } else {
-      //   dispatch(authAction.onclose());
-      // }
     } catch (error) {
-      console.log("TYPO", error);
-      // onEnterUserName(false);
-      // onVerifyEmail(true);
+      console.log("TYPO", error.response.data.error);
+      dispatch(authAction.setLoading(false));
+      toast.error(error.response.data.error);
     }
   };
 
@@ -43,6 +31,11 @@ const EnterUserName = () => {
     <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
       <div className="">
         <div className="container py-[4rem]">
+          {loading && (
+            <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
+              {"Loading..."}
+            </p>
+          )}
           <div className="text-[#E8E8E8] font-Poppins flex flex-col justify-center items-center">
             <h3 className="text-[22px] leading-[28px] mb-1 font-light font-Bricolage_Grotesque">
               Set Username{" "}

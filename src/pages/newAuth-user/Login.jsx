@@ -6,8 +6,11 @@ import { ReactComponent as Bitcoin } from "../../assets/svg/bitcoin.svg";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import useInput from "../../hooks/useInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginWithEmail } from "../../store/authActions";
+import { toast } from "react-toastify";
+import { Token } from "@mui/icons-material";
+import { authAction } from "../../store/store";
 
 const validEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,13 +26,21 @@ const Login = ({ onVerifyEmail }) => {
     // valueIsValid,
   } = useInput(validEmail);
   const dispatch = useDispatch();
-  const submitHandler = (e) => {
+  const loading = useSelector((state) => state.loading);
+  const submitHandler = async (e) => {
     e.preventDefault();
+    dispatch(authAction.setLoading(true));
+    // toast.loading("Please wait");
     try {
-      dispatch(loginWithEmail(value));
+      const result = await dispatch(loginWithEmail(value));
+      dispatch(authAction.setLoading(false));
+      toast.success(result.message);
+      console.log(result);
       onVerifyEmail(true);
     } catch (error) {
-      console.log("LOGIN EMAIL ERROR: ", error);
+      console.log("LOGIN EMAIL ERROR: ", error.response.data.error);
+      dispatch(authAction.setLoading(false));
+      toast.error(error.response.data.error);
       onVerifyEmail(false);
     }
     // if (valueIsInvalid) {
@@ -44,6 +55,11 @@ const Login = ({ onVerifyEmail }) => {
       <div className="">
         <div>
           <div className="container py-[4rem]">
+            {loading && (
+              <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
+                {"Loading..."}
+              </p>
+            )}
             <div className="text-white font-Poppins flex flex-col justify-center items-center">
               <h3 className="text-[22px] leading-[28px] font-light font-Bricolage_Grotesque">
                 Login
