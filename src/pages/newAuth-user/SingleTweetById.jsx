@@ -38,7 +38,11 @@ import Modal from "../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import VerifyTweeterModal from "../../components/socialmedia/VerifyTweetModal";
 import useInput from "../../hooks/useInput";
-import { getUserId, verifyTweeterAccount } from "../../store/authActions";
+import {
+  getTwitterUserName,
+  getUserId,
+  verifyTweeterAccount,
+} from "../../store/authActions";
 
 const checkWebsiteValidity = (url) => {
   const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -54,6 +58,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   const [open, setOpen] = useState(false);
   const [openIntent, setOpenIntent] = useState(true);
   const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState();
 
   const {
     onChangeValueHandler: websiteOnchange,
@@ -80,8 +85,25 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
   };
 
   useEffect(() => {
-    getUserIdFunction();
-  }, []);
+    if (isAuthenticated) {
+      getUserIdFunction();
+    }
+  }, [isAuthenticated]);
+
+  const getTwetterVerifiedUserName = async () => {
+    try {
+      const result = await dispatch(getTwitterUserName());
+      dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getTwetterVerifiedUserName();
+    }
+  }, [isAuthenticated]);
 
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -202,8 +224,18 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
 
   const verifyTweeterHandler = async (event) => {
     event.preventDefault();
+    let formattedWebsite = website;
+    // Check if the original URL contains "x.com" and replace it with "twitter.com"
+    if (website.includes("x.com")) {
+      formattedWebsite = website.replace("x.com", "twitter.com");
+    }
+    // Check if the original URL contains "twitter.com", if not keep it unchanged
+    else if (website.includes("twitter.com")) {
+      formattedWebsite = website;
+    }
+    // console.log("WEBSITE", formattedWebsite);
     try {
-      await dispatch(verifyTweeterAccount({ url: website }));
+      await dispatch(verifyTweeterAccount({ url: formattedWebsite }));
       // console.log(result.response.data);
       setOpen(false);
       dispatch(authAction.verifyTweeterAccount(true));
