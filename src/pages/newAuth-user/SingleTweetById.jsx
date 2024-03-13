@@ -19,6 +19,7 @@ import { ReactComponent as Group } from "../../assets/svg/dashboardSvg/group.svg
 import { ReactComponent as World } from "../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discords.svg";
+import { ReactComponent as Earn } from "../../assets/svg/dashboardSvg/earn.svg";
 import { ReactComponent as TwitterVerification } from "../../assets/svg/dashboardSvg/twitterVerification.svg";
 import { POST, getTweetById } from "../../utils/postApi";
 import { TOPEARNERS } from "../../utils/postApi";
@@ -29,12 +30,12 @@ import {
   RepostIntent,
   VerifyIntent,
 } from "./TweeterIntent";
-import { getToken } from "../../utils/accesstoken";
+// import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../store/store";
 import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../components/socialmedia/Modal";
-import { Dialog } from "@headlessui/react";
+// import { Dialog } from "@headlessui/react";
 import VerifyTweeterModal from "../../components/socialmedia/VerifyTweetModal";
 import useInput from "../../hooks/useInput";
 import { getUserId, verifyTweeterAccount } from "../../store/authActions";
@@ -298,7 +299,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
       </VerifyTweeterModal>
 
       <Modal onClose={closeIntentModalHandler} open={openIntent}>
-        <section className="bg-[#060B12] relative py-[5rem] rounded-md max-w-[1300px] px-[1rem]">
+        <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="text-neutral-300 top-[15px] absolute right-2">
             <span className="cursor-pointer" onClick={closeIntentModalHandler}>
               <Cancel />
@@ -710,7 +711,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                       </button>
                     </div>
 
-                    <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
+                    {/* <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
                       <div>
                         <p className="text-[#FFF] whitespace-nowrap font-Poppins text-[1rem] md:text-[0.9rem] lg:text-[1.2rem] normal font-normal">
                           Participants:{" "}
@@ -724,10 +725,28 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
                           Redeem reward
                         </span>
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </main>
+              <div className="flex items-center justify-between mt-[1rem] pt-[1rem] pb-[1rem] bg-[#070C13] rounded-xl px-[0.38rem]">
+                <button className="bg-[#0E161D] px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]">
+                  <span>
+                    <Earn />
+                  </span>
+                  <span className="whitespace-nowrap font-Poppins text-[#E8E8E8] text-[0.5rem] md:text-[0.8rem] lg:text-[1rem] font-[300] text-center">
+                    Claim Rewards & Points
+                  </span>
+                </button>
+                <div className="flex items-center gap-[0.6rem] md:gap-[1.5rem]">
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#E1D356]">
+                    5 USDIT
+                  </span>
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#7ABB81]">
+                    50 XP
+                  </span>
+                </div>
+              </div>
               <div className="text-[#FFF] flex mt-[1rem] justify-between md:hidden">
                 <button
                   onClick={handlePreviousTweet}
