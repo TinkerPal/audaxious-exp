@@ -6,12 +6,16 @@ const initialState = {
   logoutModal: false,
   email: "",
   verifyTweet: false,
+  loading: null,
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
+    setLoading(state, actions) {
+      state.loading = actions.payload;
+    },
     verifyTweeterAccount(state, actions) {
       state.verifyTweet = actions.payload;
     },
