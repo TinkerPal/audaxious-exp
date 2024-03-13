@@ -3,6 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLogedIn: false,
   isOpen: false,
+  logoutModal: false,
   email: "",
   verifyTweet: false,
 };
@@ -19,6 +20,9 @@ const authenticationSlice = createSlice({
     },
     loggin(state) {
       state.isLogedIn = true;
+    },
+    logoutModalMethod(state, actions) {
+      state.logoutModal = actions.payload;
     },
     logout(state) {
       state.isLogedIn = false;
