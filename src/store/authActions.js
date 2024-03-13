@@ -1,5 +1,6 @@
 import { authAction } from "./store";
 import { authInstance, createAxiousInstance } from "../hooks/authInstance";
+import { toast } from "react-toastify";
 
 export const loginWithEmail = (email) => {
   return async (dispatch) => {
@@ -9,7 +10,7 @@ export const loginWithEmail = (email) => {
         const requestData = await request.post(`/user/onboard`, {
           email,
         });
-        return requestData.data.data;
+        return requestData.data;
       } catch (error) {
         console.error("An error occurred", error);
         throw error;
@@ -17,10 +18,12 @@ export const loginWithEmail = (email) => {
     };
     try {
       const data = await sendLoginRequest();
-      dispatch(authAction.setEmail(data.email));
+      console.log("CHECK EMAIL", data.data.email);
+      dispatch(authAction.setEmail(data.data.email));
+      return data;
     } catch (error) {
       console.error("An error occurred during login:", error);
-      throw await error;
+      throw error;
     }
   };
 };
