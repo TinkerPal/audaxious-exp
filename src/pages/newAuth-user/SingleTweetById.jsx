@@ -241,7 +241,6 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     // console.log("WEBSITE", formattedWebsite);
     try {
-      console.log(loading);
       const result = await dispatch(
         verifyTweeterAccount({ url: formattedWebsite })
       );
