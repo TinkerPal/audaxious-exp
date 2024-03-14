@@ -1,22 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OtpInput from "react18-input-otp";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import { ReactComponent as Star } from "../../assets/svg/star.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyEmailWithOtp } from "../../store/authActions";
+import { loginWithEmail, verifyEmailWithOtp } from "../../store/authActions";
 import { authAction } from "../../store/store";
 import { toast } from "react-toastify";
 
 const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
   const [otpValue, setOtpValue] = useState("");
   const [otpError, setOtpError] = useState(false);
+  const [countDown, setCountDown] = useState(120);
+  const [countdownActive, setCountdownActive] = useState(true);
   const loading = useSelector((state) => state.loading);
   const email = useSelector((state) => state.email);
   const dispatch = useDispatch();
 
   const handleOtpChange = (otp) => {
     setOtpValue(otp);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountDown((prev) => {
+        if (prev > 0) {
+          return prev - 1;
+        } else {
+          clearInterval(interval);
+          setCountdownActive(false);
+          return 0;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [countDown, countdownActive]);
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes < 10 ? "0" : ""}${minutes}:${
+      seconds < 10 ? "0" : ""
+    }${seconds}`;
+  };
+
+  const count = formatTime(countDown);
+
+  const resendTokenHandler = async () => {
+    dispatch(authAction.setLoading(true));
+    // toast.loading("Please wait");
+    try {
+      const result = await dispatch(loginWithEmail(email));
+      dispatch(authAction.setLoading(false));
+      toast.success("Check you email for another token");
+      setCountDown(120);
+      setCountdownActive(true);
+      // console.log(result);
+      // onVerifyEmail(true);
+    } catch (error) {
+      console.log("LOGIN EMAIL ERROR: ", error.response.data.error);
+      dispatch(authAction.setLoading(false));
+      toast.error(error.response.data.error);
+      // onVerifyEmail(false);
+    }
+  };
+
+  const changeEmailHandler = () => {
+    onVerifyEmail(false);
   };
 
   const submitHandler = async (e) => {
@@ -105,8 +156,14 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
             )}
             <div className="mt-[2rem]">
               <p className="text-[#79C4EC] font-Poppins text-[1rem] font-[400]">
-                Resend Code
-                <span className="text-[#E8E8E8] ml-[0.5rem]">00:00</span>
+                <button
+                  onClick={resendTokenHandler}
+                  disabled={countdownActive}
+                  className="disabled:cursor-not-allowed cursor-pointer"
+                >
+                  Resend Code
+                </button>
+                <span className="text-[#E8E8E8] ml-[0.5rem]">{count}</span>
               </p>
             </div>
             <div className="flex justify-center">
@@ -124,9 +181,12 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
 
           <p className="text-[#A5A5A5] text-center font-Poppins text-[13px] font-light pt-20">
             You entered a wrong email?{" "}
-            <Link to={"pathConstant.LOGIN"} className="text-[#79C4EC]">
+            <span
+              className="text-[#79C4EC] cursor-pointer"
+              onClick={changeEmailHandler}
+            >
               Change Email
-            </Link>
+            </span>
           </p>
         </div>
       </div>
