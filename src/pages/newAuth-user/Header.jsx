@@ -33,10 +33,10 @@ const Header = () => {
     dispatch(authAction.logoutModalMethod(true));
   };
 
-  const logoutHandler = () => {
-    localStorage.removeItem("loggedin");
-    dispatch(authAction.logout());
-  };
+  // const logoutHandler = () => {
+  //   localStorage.removeItem("loggedin");
+  //   dispatch(authAction.logout());
+  // };
 
   const openLoginModal = () => {
     dispatch(authAction.onOpen());
