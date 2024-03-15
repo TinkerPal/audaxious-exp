@@ -21,6 +21,8 @@ const Header = () => {
     (state) => state.authentication.isLogedIn
   );
 
+  const username = useSelector((state) => state.authentication.userName);
+
   let title = "Dashboard";
   let specificIcon = <DashBoardIcon style={{ fill: "#FFF" }} />;
   const location = useLocation();
@@ -58,7 +60,7 @@ const Header = () => {
       <div onClick={toggleMenuHandler}>
         <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
           <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
-            H
+            {username ? username.slice(0, 1) : ""}
           </p>
         </div>
       </div>
