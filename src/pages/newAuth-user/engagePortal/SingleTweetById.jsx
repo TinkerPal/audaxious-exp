@@ -96,20 +96,21 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
   }, [isAuthenticated]);
 
-  const getTwetterVerifiedUserName = async () => {
-    try {
-      const result = await dispatch(getTwitterUserName());
-      dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getTwetterVerifiedUserName = async () => {
+  //   try {
+  //     const result = await dispatch(getTwitterUserName());
+  //     console.log(result.data.username);
+  //     dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      getTwetterVerifiedUserName();
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     getTwetterVerifiedUserName();
+  //   }
+  // }, [isAuthenticated]);
 
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
