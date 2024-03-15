@@ -3,12 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   .border-text {
     -webkit-text-stroke: 2px #cbcdcd; /* WebKit browsers (Chrome, Safari) */
     -webkit-text-stroke: 4px #cbcdcd; /* Standard syntax */
   }
 }
-
+/* @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+} */
 @layer utilities {
   .bg-rgba-blue-alpha-04 {
     background-color: rgba(116, 195, 240, 0.04);
@@ -55,6 +62,21 @@
     background: linear-gradient(316.8deg, #fb167c 7.09%, #fd7b03 100%);
     box-shadow: 0px 8px 24px -8px rgba(253, 116, 11, 0.2);
   }
+}
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/* @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+} */
+
+.gradient-border {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #000, #79c4ec, #000);
+  border-image-slice: 1;
 }
 
 body {

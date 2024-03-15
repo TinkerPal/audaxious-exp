@@ -1,6 +1,6 @@
-import { authAction } from "./store";
 import { authInstance, createAxiousInstance } from "../hooks/authInstance";
 import { toast } from "react-toastify";
+import { authAction } from "./authorizationSlice";
 
 export const loginWithEmail = (email) => {
   return async (dispatch) => {

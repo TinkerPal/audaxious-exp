@@ -5,17 +5,26 @@ import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 // import Landing from "./pages/landing/Landing";
 import Layout from "./layout/Layout";
+// import Home from "./pages/Homes/Home";
 
 const AppProtectedNew = () => {
-  const Home = lazy(() => import("./pages/landing/Landing"));
+  const Home = lazy(() => import("./pages/Homes/Home"));
   const About = lazy(() => import("./pages/about/About"));
-  const DashboardLayout = lazy(() => import("./pages/newAuth-user/Layout"));
-  const Dashboard = lazy(() => import("./pages/newAuth-user/Dashboard"));
-  const EngagePortals = lazy(() => import("./pages/newAuth-user/EngagePortal"));
-  const Spaces = lazy(() => import("./pages/newAuth-user/Spaces"));
-  const SpaceDetail = lazy(() => import("./pages/newAuth-user/SpaceDetail"));
+  const DashboardLayout = lazy(() =>
+    import("./pages/newAuth-user/layout/Layout")
+  );
+  const Dashboard = lazy(() =>
+    import("./pages/newAuth-user/dashboard/Dashboard")
+  );
+  const EngagePortals = lazy(() =>
+    import("./pages/newAuth-user/engagePortal/EngagePortal")
+  );
+  const Spaces = lazy(() => import("./pages/newAuth-user/spaces/Spaces"));
+  const SpaceDetail = lazy(() =>
+    import("./pages/newAuth-user/spaces/SpaceDetail")
+  );
   const EngagementDetail = lazy(() =>
-    import("./pages/newAuth-user/SingleTweetById")
+    import("./pages/newAuth-user/engagePortal/SingleTweetById")
   );
   return (
     <>
