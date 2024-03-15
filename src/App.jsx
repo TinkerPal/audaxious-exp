@@ -7,7 +7,7 @@ import AppProtectedNew from "./AppProtectedNew";
 import { useEffect } from "react";
 import { getToken } from "./utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
-import { authAction } from "./store/store";
+import { authAction } from "./store/authorizationSlice";
 
 function App() {
   // let authUser = useAuthUser();
