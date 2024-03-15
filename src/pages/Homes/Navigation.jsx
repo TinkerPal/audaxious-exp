@@ -70,7 +70,6 @@ export default function Navigation() {
             {/* Menu items */}
             <a
               href={"#features"}
-              onScroll={"smoothly"}
               title=""
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
