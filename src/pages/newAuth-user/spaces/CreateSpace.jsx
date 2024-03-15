@@ -39,9 +39,18 @@ const CreateSpace = () => {
     valueIsInvalid: descriptionInvalid,
   } = useInput(checkDescriptionValidity);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedWebsite, setSelectedWebsite] = useState([]);
   const { image: cover, onChangeHandler: onChangeCover } = useImage();
   const { image: profilePicture, onChangeHandler: onChangeProfilePicture } =
     useImage();
+
+  const selectWebsiteHandler = (website) => {
+    setSelectedWebsite((prev) => {
+      return [...prev, website];
+    });
+  };
+
+  console.log(selectedWebsite);
 
   const handleCategoryClick = useCallback(
     (category) => {
@@ -362,17 +371,37 @@ const CreateSpace = () => {
                       <Required />
                     </span>
                   </label>
-                  <input
-                    required
-                    type="text"
-                    value={website}
-                    onChange={websiteOnchange}
-                    onBlur={websiteOnBlur}
-                    name="website"
-                    id="website"
-                    placeholder="https://"
-                    className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
-                  />
+                  {selectedWebsite && (
+                    <div className="flex flex-col gap-2 items-start">
+                      {selectedWebsite.map((website, index) => (
+                        <p
+                          key={index}
+                          className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+                        >
+                          {website}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                  <div className="relative w-[100%] md:w-auto">
+                    <input
+                      required
+                      type="text"
+                      value={website}
+                      onChange={websiteOnchange}
+                      onBlur={websiteOnBlur}
+                      name="website"
+                      id="website"
+                      placeholder="https://"
+                      className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                    />
+                    <span
+                      onClick={() => selectWebsiteHandler(website)}
+                      className="absolute cursor-pointer font-Poppins text-[#060B12] text-[1.5rem] font-normal rounded-md bg-[#EBEDED] top-[0px] right-0 px-[1rem]"
+                    >
+                      +
+                    </span>
+                  </div>
                   {websiteInvalid && (
                     <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
                       Must follow a valid url format
