@@ -18,8 +18,8 @@ const Footer2 = () => {
             </div>
 
             <p className="text-base leading-relaxed text-gray-200 mt-7">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
+              AudaXious - Earn, win rewards, and airdrops by engaging, creating
+              quality contents, and contributing to web3 communities.
             </p>
 
             <ul className="flex items-center space-x-3 mt-9">
