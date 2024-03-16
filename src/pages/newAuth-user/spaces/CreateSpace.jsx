@@ -11,6 +11,11 @@ import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/chec
 // import useInput, { useImage } from "../../../hooks/useInput";
 import { useCallback, useState } from "react";
 import useInput, { useImage } from "../../../hooks/useInput";
+import Loading from "../../Homes/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { spaceActions } from "../../../store/spaceSlice";
+import { createSpace } from "../../../store/spaceActions";
+import { toast } from "react-toastify";
 
 const checkNameValidity = (name) => name.trim() !== "";
 // const checkcoverImageValidity = (name) => name.trim() !== "";
@@ -31,6 +36,7 @@ const CreateSpace = () => {
     value: website,
     onBlurHandler: websiteOnBlur,
     valueIsInvalid: websiteInvalid,
+    reset: websiteReset,
   } = useInput(checkWebsiteValidity);
   const {
     onChangeValueHandler: descriptionOnchange,
@@ -39,6 +45,8 @@ const CreateSpace = () => {
     valueIsInvalid: descriptionInvalid,
   } = useInput(checkDescriptionValidity);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategoriesError, setSelectedCategoriesError] = useState(null);
+  const [selectedWebsiteError, setSelectedWebsiteError] = useState(null);
   const [selectedWebsite, setSelectedWebsite] = useState([]);
   const { image: cover, onChangeHandler: onChangeCover } = useImage();
   const { image: profilePicture, onChangeHandler: onChangeProfilePicture } =
@@ -50,8 +58,8 @@ const CreateSpace = () => {
     });
   };
 
-  console.log(selectedWebsite);
-
+  const loading = useSelector((state) => state.space.loading);
+  const dispatch = useDispatch();
   const handleCategoryClick = useCallback(
     (category) => {
       if (selectedCategories.includes(category)) {
@@ -62,30 +70,58 @@ const CreateSpace = () => {
     },
     [selectedCategories]
   );
-  // console.log(selectedCategories);
-  // console.log(name);
-  // console.log(website);
 
-  const submitFormHandler = (e) => {
-    e.preventDefault();
+  const submitFormHandler = async (event) => {
+    event.preventDefault();
+    if (selectedCategories.length < 1) {
+      setSelectedCategoriesError(true);
+      return;
+    } else {
+      setSelectedCategoriesError(false);
+    }
+    if (selectedWebsite.length < 1) {
+      setSelectedWebsiteError(true);
+      return;
+    } else {
+      setSelectedWebsiteError(false);
+    }
+    dispatch(spaceActions.setLoading(true));
     const data = {
-      cover,
-      profilePicture,
-      name,
-      website,
-      description,
-      selectedCategories,
+      title: name,
+      description: description,
+      tags: selectedCategories,
+      links: selectedWebsite,
     };
+
+    console.log(data);
+
+    try {
+      const result = await dispatch(createSpace(data));
+      dispatch(spaceActions.setLoading(false));
+      console.log(result);
+    } catch (error) {
+      console.log("CREATE SPACE PAGE ERROR", error);
+      dispatch(spaceActions.setLoading(false));
+      toast.error(error.response.data.error);
+    }
+    // const data = {
+    //   cover,
+    //   profilePicture,
+    //   name,
+    //   website,
+    //   description,
+    //   selectedCategories,
+    // };
     // console.log(data);
-    const formData = new FormData();
-    formData.append("image", data.cover);
-    formData.append("userName", data.name);
-    formData.append("userName", data.profilePicture);
-    formData.append("website", data.website);
-    formData.append("categories", [data.selectedCategories]);
-    formData.append("description", data.description);
-    const newFormData = Object.fromEntries(formData);
-    console.log(newFormData);
+    // const formData = new FormData();
+    // formData.append("image", data.cover);
+    // formData.append("userName", data.name);
+    // formData.append("userName", data.profilePicture);
+    // formData.append("website", data.website);
+    // formData.append("categories", [data.selectedCategories]);
+    // formData.append("description", data.description);
+    // const newFormData = Object.fromEntries(formData);
+    // console.log(newFormData);
     // console.log("TYPEOF", typeof newFormData.categories);
   };
   return (
@@ -113,7 +149,7 @@ const CreateSpace = () => {
                   // value={cover}
                   // onBlur={coverImageOnBlur}
                   onChange={onChangeCover}
-                  required
+                  // required
                   type="file"
                   name="coverImage"
                   id="coverImage"
@@ -146,7 +182,7 @@ const CreateSpace = () => {
                     </p>
                   </div>
                   <input
-                    required
+                    // required
                     type="file"
                     name="profilePicture"
                     id="profilePicture"
@@ -165,6 +201,11 @@ const CreateSpace = () => {
               </div>
             </div>
             <div className="container mt-[2rem] md:mt-[2rem] flex flex-col gap-[1.5rem] md:gap-[1.5rem]">
+              {loading && (
+                <div className="">
+                  <Loading />
+                </div>
+              )}
               <div className="flex items-center justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
                 <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
                   <label
@@ -323,6 +364,11 @@ const CreateSpace = () => {
                     </span>
                   </div> */}
                   </div>
+                  {selectedCategoriesError && (
+                    <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
+                      Selecte category
+                    </p>
+                  )}
                 </div>
                 <div className="flex flex-col gap-[0.6rem] items-start w-[100%] md:w-[20rem] lg:w-[25rem]">
                   <label
@@ -339,6 +385,7 @@ const CreateSpace = () => {
 
                   <div>
                     <textarea
+                      required
                       name="spaceDescription"
                       id="spaceDescription"
                       cols="100"
@@ -383,9 +430,15 @@ const CreateSpace = () => {
                       ))}
                     </div>
                   )}
+                  {selectedWebsiteError && (
+                    <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
+                      Enter your website link
+                    </p>
+                  )}
+
                   <div className="relative w-[100%] md:w-auto">
                     <input
-                      required
+                      // required
                       type="text"
                       value={website}
                       onChange={websiteOnchange}
@@ -396,7 +449,10 @@ const CreateSpace = () => {
                       className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                     />
                     <span
-                      onClick={() => selectWebsiteHandler(website)}
+                      onClick={() => {
+                        selectWebsiteHandler(website);
+                        websiteReset();
+                      }}
                       className="absolute cursor-pointer font-Poppins text-[#060B12] text-[1.5rem] font-normal rounded-md bg-[#EBEDED] top-[0px] right-0 px-[1rem]"
                     >
                       +
