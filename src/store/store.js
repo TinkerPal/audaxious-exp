@@ -1,51 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authenticationSlice from "./authorizationSlice";
-
-// const initialState = {
-//   isLogedIn: false,
-//   isOpen: false,
-//   logoutModal: false,
-//   email: "",
-//   verifyTweet: false,
-//   loading: null,
-// };
-
-// const authenticationSlice = createSlice({
-//   name: "authentication",
-//   initialState,
-//   reducers: {
-//     setLoading(state, actions) {
-//       state.loading = actions.payload;
-//     },
-//     verifyTweeterAccount(state, actions) {
-//       state.verifyTweet = actions.payload;
-//     },
-//     setEmail(state, actions) {
-//       state.email = actions.payload;
-//     },
-//     loggin(state) {
-//       state.isLogedIn = true;
-//     },
-//     logoutModalMethod(state, actions) {
-//       state.logoutModal = actions.payload;
-//     },
-//     logout(state) {
-//       state.isLogedIn = false;
-//     },
-//     onOpen(state) {
-//       state.isOpen = true;
-//     },
-//     onclose(state) {
-//       state.isOpen = false;
-//     },
-//   },
-// });
-
-// export const authAction = authenticationSlice.actions;
+import spaceSlice from "./spaceSlice";
 
 const store = configureStore({
   reducer: {
     authentication: authenticationSlice.reducer,
+    space: spaceSlice.reducer,
   },
 });
 
