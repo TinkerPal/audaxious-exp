@@ -74,7 +74,7 @@ const EngagePortals = () => {
     navigation: false,
     modules: [Autoplay, Navigation],
     autoplay: {
-      delay: 500,
+      delay: 0,
       disableOnInteraction: false,
     },
   };
@@ -297,8 +297,12 @@ const EngagePortals = () => {
                       speed={1000}
                       {...swiperProps}
                       ref={swiperRefLocal}
+                      loop={true}
+                      slidesPerView="auto"
+                      centeredSlides={true}
                       autoplay={{
-                        delay: 1000,
+                        // delay: 100,
+                        delay: 0,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                       }}
@@ -317,15 +321,15 @@ const EngagePortals = () => {
                         },
                         1240: {
                           slidesPerView: 2,
-                          spaceBetween: 3,
+                          spaceBetween: 0,
                         },
                         1340: {
                           slidesPerView: 3,
-                          spaceBetween: 3,
+                          spaceBetween: 0,
                         },
                         1700: {
                           slidesPerView: 5,
-                          spaceBetween: 4,
+                          spaceBetween: 0,
                         },
                       }}
                     >
