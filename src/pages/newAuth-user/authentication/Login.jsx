@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginWithEmail } from "../../../store/authActions";
 import { toast } from "react-toastify";
 import { authAction } from "../../../store/authorizationSlice";
+import Loading from "../../Homes/Loading";
 
 const validEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,9 +55,9 @@ const Login = ({ onVerifyEmail }) => {
         <div>
           <div className="container py-[4rem]">
             {loading && (
-              <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
-                {"Loading..."}
-              </p>
+              <div>
+                <Loading text={"Loading"} />
+              </div>
             )}
             <div className="text-white font-Poppins flex flex-col justify-center items-center">
               <h3 className="text-[22px] leading-[28px] font-light font-Bricolage_Grotesque">

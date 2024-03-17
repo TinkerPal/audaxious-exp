@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
+const authenticationInitialState = {
   isLogedIn: false,
   isOpen: false,
   logoutModal: false,
@@ -11,7 +11,7 @@ const initialState = {
 
 const authenticationSlice = createSlice({
   name: "authentication",
-  initialState,
+  initialState: authenticationInitialState,
   reducers: {
     setUserName(state, actions) {
       state.userName = actions.payload;

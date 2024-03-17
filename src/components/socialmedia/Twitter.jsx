@@ -17,7 +17,7 @@ const Twitter = () => {
   return (
     <div className="md:container">
       <div className="flex flex-col items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[1.25rem] gap-x-[2rem] pt-[1rem] pl-[0rem]">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem] pt-[1rem] pl-[0rem]">
           {POST.map((post) => (
             <NavLink key={post.id} to={`/engage-portal/${post.id}`}>
               <div
@@ -25,7 +25,7 @@ const Twitter = () => {
                 id={post.id}
                 // id={props.id}
                 className={clsx(
-                  "min-w-[17rem] max-w-[28rem] border-[1px] border-gray-700 border-opacity-50 cursor-pointer bg-[#080e16] rounded-[16px]"
+                  "min-w-[18rem] max-w-[28rem] border-[1px] border-gray-700 border-opacity-50 cursor-pointer bg-[#080e16] rounded-[16px]"
                   // post.id
                   //   ? "bg-selectedBg bg-no-repeat bg-cover"
                   //   : "bg-[#080e16]"
@@ -84,8 +84,8 @@ const Twitter = () => {
                     <p className="text-[#E8E8E8] uppercase font-Poppins font-[400] leading-[150%]">
                       {post.title.slice(0, 10) + "..."}
                     </p>
-                    <p className="text-[0.75rem] xl:text-[0.75rem] text-[#A5A5A5] font-[300] leading-[150%]">
-                      {post.tweet?.description.slice(0, 80)}
+                    <p className="text-[0.75rem] 2xl:text-[1rem] text-[#A5A5A5] font-[300] leading-[150%]">
+                      {post.tweet?.description.slice(0, 60) + "..."}
                     </p>
                   </div>
                 </div>

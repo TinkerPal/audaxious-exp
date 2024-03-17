@@ -1,11 +1,11 @@
 export default function Loading({ text }) {
   return (
-    <div className="flex flex-col items-center justify-center  ">
+    <div className="flex flex-col items-center justify-center ">
       {/* Card container */}
 
       <div className="flex  items-center justify-center   ">
         <svg
-          className="animate-spin  w-8 text-white"
+          className="animate-spin  w-8 text-[#3b1b5d]"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
