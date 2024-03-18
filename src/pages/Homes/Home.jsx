@@ -1,4 +1,5 @@
 import Blockchains from "./Blockchains";
+import Campaigns from "./Campaigns";
 import Features from "./Features";
 import Footer2 from "./Footer2";
 import Hero from "./Hero";
@@ -13,6 +14,7 @@ const Home = () => {
       <Hero />
       <Features />
       <Spaces />
+      <Campaigns />
       {/* <Web3Projects />
         <Web3Projects2 /> */}
       {/* <Web3Users /> */}
