@@ -29,6 +29,7 @@ const checkWebsiteValidity = (url) => {
 const CreateSpace = () => {
   const {
     onChangeValueHandler: nameOnchange,
+    reset: resetName,
     value: name,
     onBlurHandler: nameOnBlur,
     valueIsInvalid: nameInvalid,
@@ -43,6 +44,7 @@ const CreateSpace = () => {
   const {
     onChangeValueHandler: descriptionOnchange,
     value: description,
+    reset: descriptionReset,
     onBlurHandler: descriptionOnBlur,
     valueIsInvalid: descriptionInvalid,
   } = useInput(checkDescriptionValidity);
@@ -114,6 +116,11 @@ const CreateSpace = () => {
       const result = await dispatch(createSpace(data));
       dispatch(spaceActions.setLoading(false));
       console.log(result);
+      toast.success(result.message);
+      resetName();
+      descriptionReset();
+      setSelectedCategories([]);
+      setSelectedWebsite([]);
     } catch (error) {
       console.log("CREATE SPACE PAGE ERROR", error);
       dispatch(spaceActions.setLoading(false));
