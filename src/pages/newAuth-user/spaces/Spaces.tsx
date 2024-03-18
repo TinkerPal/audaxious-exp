@@ -25,7 +25,7 @@ const Spaces = () => {
         <div className="container">
           <Dialog
             as="div"
-            className={`relative z-[900]`}
+            className={`relative z-[800]`}
             open={open}
             onClose={cancelHandler}
           >
