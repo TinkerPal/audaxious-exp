@@ -11,33 +11,53 @@ import useMeasure from "react-use-measure";
 const Spaces = () => {
   const [ref, { width }] = useMeasure();
   const xTranslation = useMotionValue(0);
+  const controls = useAnimation();
 
   useEffect(() => {
-    const controls = animate(xTranslation, [0, -width / 2 - 8], {
-      type: "decay",
-      ease: "linear",
-      duration: 40, // Adjust the duration as needed
-      repeat: Infinity,
-      repeatType: "loop", // Change from "loop" to "reverse"
-      repeatDelay: 0,
+    const finalPosition = -width / 2 - 8;
+    controls.start({
+      x: [0, finalPosition],
+      transition: {
+        type: "tween",
+        ease: "linear",
+        duration: 25,
+        repeat: Infinity,
+        repeatType: "loop",
+      },
     });
+  }, [controls, width]);
 
-    return () => controls.stop();
-    // let controls;
-    // let finalPosition = -width;
-  }, [xTranslation, width]);
+  const handleHoverStart = () => {
+    controls.stop();
+  };
+
+  const handleHoverEnd = () => {
+    controls.start({
+      x: [0, -width / 2 - 8],
+      transition: {
+        type: "tween",
+        ease: "linear",
+        duration: 40,
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    });
+  };
 
   return (
-    <div className="">
+    <div className="pb-[15rem] overflow-hidden relative">
       <motion.div
-        className="py-[1.47rem] flex flex-col items-center cursor-grabbing overflow-hidden"
+        className="py-[1.47rem] flex flex-col items-center cursor-grabbing"
         whileTap={{ cursor: "grabbing" }}
       >
         <motion.div
-          className="flex gap-8"
+          className="flex gap-8 left-0 overflow-x-hidden absolute"
           drag="x"
           style={{ x: xTranslation }}
           ref={ref}
+          animate={controls}
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
         >
           {SPACES &&
             [...SPACES, ...SPACES].map((space, index) => (
