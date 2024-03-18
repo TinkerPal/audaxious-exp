@@ -18,9 +18,9 @@ const Spaces = () => {
     controls.start({
       x: [0, finalPosition],
       transition: {
-        type: "tween",
+        // type: "tween",
         ease: "linear",
-        duration: 25,
+        duration: 70,
         repeat: Infinity,
         repeatType: "loop",
       },
@@ -35,9 +35,9 @@ const Spaces = () => {
     controls.start({
       x: [0, -width / 2 - 8],
       transition: {
-        type: "tween",
+        // type: "tween",
         ease: "linear",
-        duration: 40,
+        duration: 70,
         repeat: Infinity,
         repeatType: "loop",
       },
