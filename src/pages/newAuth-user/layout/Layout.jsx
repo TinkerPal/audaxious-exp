@@ -38,7 +38,7 @@ const DashboardLayout = () => {
           <div className="container">
             <Dialog
               as="div"
-              className={`relative z-[900]`}
+              className={`relative z-[806]`}
               open={open}
               onClose={cancelHandler}
             >
