@@ -475,7 +475,7 @@ const SingleTweetById = () => {
                     <div className="flex flex-col gap-[1rem]">
                       <div
                         onClick={handleLike}
-                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -503,7 +503,7 @@ const SingleTweetById = () => {
 
                       <div
                         onClick={handleRetweet}
-                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -530,7 +530,7 @@ const SingleTweetById = () => {
 
                       <div
                         onClick={handleFollow}
-                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -557,7 +557,7 @@ const SingleTweetById = () => {
 
                       <div
                         onClick={handleComment}
-                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-3">
                           <span>
@@ -579,22 +579,6 @@ const SingleTweetById = () => {
                         )}
                       </div>
                     </div>
-
-                    {/* <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
-                      <div>
-                        <p className="text-[#FFF] whitespace-nowrap font-Poppins text-[1rem] md:text-[0.9rem] lg:text-[1.2rem] normal font-normal">
-                          Participants:{" "}
-                          <span className="text-[#1FDF00] font-[600]">
-                            +{post.participants}
-                          </span>
-                        </p>
-                      </div>
-                      <button className="border-[1.5px] border-[#4C5656] bg-[#B6B9B9] px-[1rem] py-[0.5rem] rounded-md">
-                        <span className="whitespace-nowrap font-Poppins text-[#000] text-[0.8rem] lg:text-[1rem] font-normal text-center">
-                          Redeem reward
-                        </span>
-                      </button>
-                    </div> */}
                   </div>
                 </div>
               </main>
