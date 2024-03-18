@@ -57,8 +57,8 @@ const Campaigns = () => {
           onHoverStart={handleHoverStart}
           onHoverEnd={handleHoverEnd}
         >
-          {[...POST, ...POST].map((post) => (
-            <NavLink key={post.id} to={`/engage-portal/${post.id}`}>
+          {[...POST, ...POST].map((post, index) => (
+            <NavLink key={index} to={`/engage-portal/${post.id}`}>
               <div
                 id={post.id}
                 className={clsx(
