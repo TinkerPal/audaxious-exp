@@ -45,7 +45,12 @@ function App() {
   }, [isAuthenticated]);
 
   // return <Wagmi>{authUser?.token ? <AppProtected /> : <AppPublic />}</Wagmi>;
-  return <AppProtectedNew />;
+  return (
+    <Wagmi>
+      <AppProtectedNew />
+    </Wagmi>
+  );
+  // return <AppProtectedNew />;
 }
 
 export default App;

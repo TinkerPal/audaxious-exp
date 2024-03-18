@@ -3,13 +3,26 @@ import { ReactComponent as Cancel } from "../../../assets/svg/dashboardSvg/cance
 import { ReactComponent as Metamask } from "../../../assets/svg/dashboardSvg/metamask.svg";
 import { ReactComponent as Wallet } from "../../../assets/svg/dashboardSvg/walletConnect.svg";
 import { ReactComponent as Coinbase } from "../../../assets/svg/dashboardSvg/coinbase.svg";
+// import { ReactComponent as WalletConnect } from "../assets/svg/WalletConnect.svg";
+
+import { useConnect, useAccount, useDisconnect } from "wagmi";
+import { useEffect } from "react";
+import axios from "axios";
 
 const SignInWithWallet = ({ open, onClose }) => {
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect();
+  const { isConnected, address } = useAccount();
+
+  useEffect(() => {
+    console.log(address);
+  }, [address]);
+
   return (
-    <div className="container">
+    <div className="container ">
       <Dialog
         as="div"
-        className={`relative z-[807]`}
+        className={`relative z-20`}
         open={open}
         onClose={onClose}
       >
@@ -27,30 +40,28 @@ const SignInWithWallet = ({ open, onClose }) => {
                   </span>
                 </div>
                 <div className="flex items-center flex-col mt-[1.88rem] gap-[1.25rem]">
-                  <button className="border border-[#8AADC2] hover:bg-[#162530] hover:border-[2px] px-[1.81rem] py-[0.75rem] rounded-[16px] w-[90%] md:w-[26rem] flex items-center gap-[1rem]">
-                    <span>
-                      <Metamask />
-                    </span>
-                    <span className="text-[#E8E8E8] font-Poppins text-[1.125rem] font-[300]">
-                      Metamask
-                    </span>
-                  </button>
-                  <button className="border border-[#8AADC2] hover:bg-[#162530] hover:border-[2px] px-[1.81rem] py-[0.75rem] rounded-[16px] w-[90%] md:w-[26rem] flex items-center gap-[1rem]">
-                    <span>
-                      <Wallet />
-                    </span>
-                    <span className="text-[#E8E8E8] font-Poppins text-[1.125rem] font-[300]">
-                      walletconnect
-                    </span>
-                  </button>
-                  <button className="border border-[#8AADC2] hover:bg-[#162530] hover:border-[2px] px-[1.81rem] py-[0.75rem] rounded-[16px] w-[90%] md:w-[26rem] flex items-center gap-[1rem]">
-                    <span>
-                      <Coinbase />
-                    </span>
-                    <span className="text-[#E8E8E8] font-Poppins text-[1.125rem] font-[300]">
-                      Coinbase
-                    </span>
-                  </button>
+                  {connectors.map((connector) => (
+                    <button
+                      key={connector.id}
+                      disabled={!connector.ready}
+                      onClick={() => connect({ connector })}
+                      // className="rounded-[16px] bg-wallet border-solid border-[2px] custom-border w-full p-4"
+                      className="border border-[#8AADC2] hover:bg-[#162530] hover:border-[2px] px-[1.81rem] py-[0.75rem] rounded-[16px] w-[90%] md:w-[26rem] flex items-center gap-[1rem] "
+                    >
+                      <div className="flex items-center gap-4">
+                        {connector.name === "MetaMask" && <Metamask />}
+                        {connector.name === "WalletConnect" && <Wallet />}
+                        {connector.name === "Coinbase Wallet" && <Coinbase />}
+                        <p className="text-[#E8E8E8] font-Poppins text-[18px] font-normal leading-[25px]">
+                          {connector.name}
+                          {!connector.ready && " (Unavailable)"}
+                          {isLoading &&
+                            connector.id === pendingConnector?.id &&
+                            " (connecting)"}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
                 </div>
                 <div className="mt-[1.88rem]">
                   <p className="text-[0.75rem] font-Poppins font-[300] leading-[150%]">

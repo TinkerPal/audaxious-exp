@@ -30,7 +30,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="">
+    <div className=" ">
       <Header />
       <main className="flex my-[1.25rem] mt-[7rem] ml-[3rem] md:ml-[6rem] lg:ml-[4rem] xl:ml-[15rem]">
         <Sidebar onOpen={openLogoutModal} />
@@ -38,12 +38,12 @@ const DashboardLayout = () => {
           <div className="container">
             <Dialog
               as="div"
-              className={`relative z-[806]`}
+              className={`relative z-10`}
               open={open}
               onClose={cancelHandler}
             >
               <div
-                className="fixed inset-0 bg-black bg-opacity-75"
+                className="fixed inset-0 bg-black bg-opacity-75 "
                 // onClick={cancelHandler}
               />
               <div className="fixed inset-0 z-[300] overflow-y-auto">

@@ -5,7 +5,7 @@ const LogOutModal = ({ isOpen, onClose, onClick }) => {
   return (
     <Modal open={isOpen} onClose={onClose} heading="Logout Confirmation">
       <div className="space-y-3">
-        <p className="text-white font-Bricolage_Grotesque text-[17px]">
+        <p className="text-white  text-[14px]">
           Are you sure you want to log out?
         </p>
         <div className="flex items-center gap-6 pt-8">

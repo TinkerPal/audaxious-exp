@@ -12,7 +12,7 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 
 import { alchemyProvider } from "wagmi/providers/alchemy";
-// import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
@@ -33,7 +33,7 @@ const config = createConfig({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
-    // new CoinbaseWalletConnector({ chains, options: { appName: "AudaXious" } }),
+    new CoinbaseWalletConnector({ chains, options: { appName: "AudaXious" } }),
     new WalletConnectConnector({
       chains,
       options: {
