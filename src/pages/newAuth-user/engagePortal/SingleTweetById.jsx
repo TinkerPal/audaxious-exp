@@ -20,7 +20,6 @@ import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { ReactComponent as Earn } from "../../../assets/svg/dashboardSvg/earn.svg";
-import { ReactComponent as TwitterVerification } from "../../../assets/svg/dashboardSvg/twitterVerification.svg";
 import { POST, getTweetById } from "../../../utils/postApi";
 import { TOPEARNERS } from "../../../utils/postApi";
 import {
@@ -28,38 +27,27 @@ import {
   FollowIntent,
   LikeIntent,
   RepostIntent,
-  VerifyIntent,
 } from "./TweeterIntent";
 // import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
-import VerifyTweeterModal from "../../../components/socialmedia/VerifyTweetModal";
 import useInput from "../../../hooks/useInput";
-import {
-  getTwitterUserName,
-  getUserId,
-  verifyTweeterAccount,
-} from "../../../store/authActions";
-import { toast } from "react-toastify";
 import { authAction } from "../../../store/authorizationSlice";
+import VerifyTweeter from "../authentication/VerifyTweeter";
 
 const checkWebsiteValidity = (url) => {
   const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
   return urlPattern.test(url);
 };
 
-const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
+const SingleTweetById = () => {
   const checkTweetId = useParams();
   const tweet = getTweetById(checkTweetId.postId);
   const [post, setPost] = useState(tweet);
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
-  const [open, setOpen] = useState(false);
-  const [openIntent, setOpenIntent] = useState(true);
-  const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState();
 
   const {
     onChangeValueHandler: websiteOnchange,
@@ -69,48 +57,13 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     valueIsValid: websiteIsValid,
   } = useInput(checkWebsiteValidity);
 
-  // const loadTweetByIdHandler = (id) => {
-  //   props.onLoadTweet(id);
-  // };
-  // console.log(navigation(".."));
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.authentication.loading);
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
-  const getUserIdFunction = async () => {
-    try {
-      const result = await dispatch(getUserId());
-      setUserId(result.user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      getUserIdFunction();
-    }
-  }, [isAuthenticated]);
-
-  // const getTwetterVerifiedUserName = async () => {
-  //   try {
-  //     const result = await dispatch(getTwitterUserName());
-  //     console.log(result.data.username);
-  //     dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     getTwetterVerifiedUserName();
-  //   }
-  // }, [isAuthenticated]);
 
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -125,17 +78,6 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     setToggle(id);
   };
 
-  const tweetText = `Verifying my Twitter account for my #Audaxious aud-id=${userId}`;
-  const tweetUrl = `https://galxe.com/${userId}`;
-
-  // console.log(userId);
-
-  // console.log("VERIFYTWEETACCOUT", verifyTweeter);
-
-  const VerifyTweeterHandler = () => {
-    VerifyIntent(tweetText, tweetUrl);
-  };
-
   const handleLike = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -143,7 +85,8 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
       return;
     }
     if (!verifyTweeter) {
-      setOpen(true);
+      // setOpen(true);
+      dispatch(authAction.onOpenTweeterModal(true));
       // VerifyIntent(tweetText, tweetUrl);
       document.activeElement.blur();
       return;
@@ -163,7 +106,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     if (!verifyTweeter) {
       document.activeElement.blur();
-      setOpen(true);
+      dispatch(authAction.onOpenTweeterModal(true));
       return;
     }
     if (!post.repost) {
@@ -181,7 +124,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     if (!verifyTweeter) {
       document.activeElement.blur();
-      setOpen(true);
+      dispatch(authAction.onOpenTweeterModal(true));
       return;
     }
     if (!post.follow) {
@@ -199,7 +142,7 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     }
     if (!verifyTweeter) {
       document.activeElement.blur();
-      setOpen(true);
+      dispatch(authAction.onOpenTweeterModal(true));
       return;
     }
     if (!post.comment) {
@@ -229,51 +172,15 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
     setPost(nextTweet);
   };
 
-  const verifyTweeterHandler = async (event) => {
-    event.preventDefault();
-    dispatch(authAction.setLoading(true));
-    // if (loading) {
-    //   toast.loading("Please wait");
-    // }
-    let formattedWebsite = website;
-    // Check if the original URL contains "x.com" and replace it with "twitter.com"
-    if (website.includes("x.com")) {
-      formattedWebsite = website.replace("x.com", "twitter.com");
-    }
-    // Check if the original URL contains "twitter.com", if not keep it unchanged
-    else if (website.includes("twitter.com")) {
-      formattedWebsite = website;
-    }
-    // console.log("WEBSITE", formattedWebsite);
-    try {
-      const result = await dispatch(
-        verifyTweeterAccount({ url: formattedWebsite })
-      );
-      // console.log(result.response.data);
-      dispatch(authAction.setLoading(false));
-      toast.success(result.message);
-      setOpen(false);
-      dispatch(authAction.verifyTweeterAccount(true));
-    } catch (error) {
-      dispatch(authAction.setLoading(false));
-      toast.error(error.response.data.error);
-      dispatch(authAction.verifyTweeterAccount(false));
-      setOpen(true);
-    }
-    // console.log(website);
-  };
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
     navigate(-1);
   };
 
-  const closeModalHandler = () => {
-    setOpen(false);
-  };
-
   return (
     <>
-      <VerifyTweeterModal onClose={closeModalHandler} open={open}>
+      <VerifyTweeter />
+      {/* <VerifyTweeterModal onClose={closeModalHandler} open={open}>
         <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="container">
             {loading && (
@@ -349,9 +256,9 @@ const SingleTweetById = ({ onCancel, tweetId, setSelectedPostId }) => {
             </div>
           </div>
         </section>
-      </VerifyTweeterModal>
+      </VerifyTweeterModal> */}
 
-      <Modal onClose={closeIntentModalHandler} open={openIntent}>
+      <Modal onClose={closeIntentModalHandler} open={true}>
         <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="text-neutral-300 top-[15px] absolute right-2">
             <span className="cursor-pointer" onClick={closeIntentModalHandler}>
