@@ -4,23 +4,65 @@ import { POST } from "../../utils/postApi";
 import { ReactComponent as Clock } from "../../assets/svg/dashboardSvg/clock.svg";
 import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
-
+import { animate, motion, useAnimation, useMotionValue } from "framer-motion";
+import { useEffect } from "react";
+import useMeasure from "react-use-measure";
 const Campaigns = () => {
+  const [ref, { width }] = useMeasure();
+  const xTranslation = useMotionValue(0);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const finalPosition = -width / 2 - 8;
+    controls.start({
+      x: [finalPosition, 0],
+      transition: {
+        // type: "tween",
+        ease: "linear",
+        duration: 70,
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    });
+  }, [controls, width]);
+
+  const handleHoverStart = () => {
+    controls.stop();
+  };
+
+  const handleHoverEnd = () => {
+    controls.start({
+      x: [-width / 2 - 8, 0],
+      transition: {
+        // type: "tween",
+        ease: "linear",
+        duration: 70,
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    });
+  };
   return (
-    <div className="pb-[15rem] overflow-hidden relative">
-      <div className="flex flex-col items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem] pt-[1rem] pl-[0rem]">
-          {POST.map((post) => (
+    <div className="pb-[11rem] md:pb-[15rem] overflow-hidden relative">
+      <motion.div
+        className="py-[1.47rem] flex flex-col items-center cursor-grabbing"
+        whileTap={{ cursor: "grabbing" }}
+      >
+        <motion.div
+          className="flex gap-8 left-0 overflow-x-hidden absolute"
+          drag="x"
+          style={{ x: xTranslation }}
+          ref={ref}
+          animate={controls}
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
+        >
+          {[...POST, ...POST].map((post) => (
             <NavLink key={post.id} to={`/engage-portal/${post.id}`}>
               <div
-                // onClick={() => loadTweetByIdHandler(post.id)}
                 id={post.id}
-                // id={props.id}
                 className={clsx(
                   "min-w-[18rem] max-w-[28rem] border-[1px] border-gray-700 border-opacity-50 cursor-pointer bg-[#080e16] rounded-[16px]"
-                  // post.id
-                  //   ? "bg-selectedBg bg-no-repeat bg-cover"
-                  //   : "bg-[#080e16]"
                 )}
               >
                 <div className="flex justify-between px-[0.94rem] pt-[0.62rem]">
@@ -49,9 +91,6 @@ const Campaigns = () => {
                       </span>
                       <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
                     </button>
-                    {/* <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
-            {"12 Days left"}
-          </span> */}
                   </div>
                 </div>
                 <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
@@ -98,8 +137,8 @@ const Campaigns = () => {
               </div>
             </NavLink>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
