@@ -209,7 +209,7 @@ const SingleTweetById = () => {
               </div>
             </header>
             <div className="relative">
-              <div className="absolute top-[50%] left-[-42px] z-[100] hidden md:block">
+              <div className="absolute top-[50%] left-[-42px] hidden md:block">
                 <span className="cursor-pointer" onClick={handlePreviousTweet}>
                   <Previous />
                 </span>
@@ -462,7 +462,7 @@ const SingleTweetById = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem] z-50">
+                <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
                   <div className="p-[0.5rem] flex justify-between items-center">
                     <span className="whitespace-nowrap font-Poppins text-[1rem] lg:text-[1.25rem] normal-case font-[300] text-[#E8E8E8]">
                       To complete this task

@@ -22,12 +22,12 @@ const SignInWithWallet = ({ open, onClose }) => {
     <div className="container ">
       <Dialog
         as="div"
-        className={`relative z-20`}
+        className={`relative z-[6]`}
         open={open}
         onClose={onClose}
       >
         <div className="fixed inset-0 bg-black bg-opacity-75" />
-        <div className="fixed inset-0 z-[300] overflow-y-auto">
+        <div className="fixed inset-0 z-[7] overflow-y-auto">
           <div className="flex items-center justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
             <Dialog.Panel className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[37rem] rounded-lg">
               <div className="p-[0.62rem] md:p-[1rem]">

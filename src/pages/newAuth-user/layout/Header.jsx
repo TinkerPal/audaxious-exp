@@ -82,7 +82,7 @@ const Header = () => {
   }
   return (
     <div className="relative max-w-[1920px]">
-      <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="fixed top-0 left-0 right-0 z-[2]">
         <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
           <div className="flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
             <div className="hidden xl:block">

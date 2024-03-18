@@ -38,7 +38,7 @@ const DashboardLayout = () => {
           <div className="container">
             <Dialog
               as="div"
-              className={`relative z-10`}
+              className={`relative z-[5]`}
               open={open}
               onClose={cancelHandler}
             >
@@ -46,7 +46,7 @@ const DashboardLayout = () => {
                 className="fixed inset-0 bg-black bg-opacity-75 "
                 // onClick={cancelHandler}
               />
-              <div className="fixed inset-0 z-[300] overflow-y-auto">
+              <div className="fixed inset-0 z-[6] overflow-y-auto">
                 {/* className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0" */}
                 <div className="flex items-center justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
                   <Dialog.Panel className="">

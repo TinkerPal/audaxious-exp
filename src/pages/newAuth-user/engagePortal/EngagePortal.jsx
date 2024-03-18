@@ -85,11 +85,11 @@ const EngagePortals = () => {
     >
       <div>
         <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
-          <div className="absolute top-0 left-0 z-5 hidden md:block">
+          <div className="absolute top-0 left-0 z-1 hidden md:block">
             <Brick1 />
           </div>
           <div className="flex items-center gap-[1rem] relative">
-            <div className="hidden md:block z-10">
+            <div className="hidden md:block z-1">
               <Friends />
             </div>
             <div className="font-Poppins font-normal">
@@ -102,10 +102,10 @@ const EngagePortals = () => {
             </div>
           </div>
 
-          <div className="hidden md:block z-10">
+          <div className="hidden md:block z-1">
             <Activities />
           </div>
-          <div className="absolute right-0 -bottom-0 z-5 hidden md:block">
+          <div className="absolute right-0 bottom-0 z-[-1] hidden md:block">
             <Brick2 />
           </div>
         </div>
