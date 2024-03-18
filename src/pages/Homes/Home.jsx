@@ -4,6 +4,7 @@ import Footer2 from "./Footer2";
 import Hero from "./Hero";
 import MobileApp from "./MobileApp";
 import Navigation from "./Navigation";
+import Spaces from "./Spaces";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <Navigation />
       <Hero />
       <Features />
-
+      <Spaces />
       {/* <Web3Projects />
         <Web3Projects2 /> */}
       {/* <Web3Users /> */}
