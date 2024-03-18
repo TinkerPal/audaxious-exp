@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 
 import { ReactComponent as ProfilePicture } from "../../../assets/svg/dashboardSvg/profilePic.svg";
@@ -33,14 +33,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
-import useInput from "../../../hooks/useInput";
 import { authAction } from "../../../store/authorizationSlice";
 import VerifyTweeter from "../authentication/VerifyTweeter";
-
-const checkWebsiteValidity = (url) => {
-  const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
-  return urlPattern.test(url);
-};
 
 const SingleTweetById = () => {
   const checkTweetId = useParams();
@@ -48,14 +42,6 @@ const SingleTweetById = () => {
   const [post, setPost] = useState(tweet);
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
-
-  const {
-    onChangeValueHandler: websiteOnchange,
-    value: website,
-    onBlurHandler: websiteOnBlur,
-    valueIsInvalid: websiteInvalid,
-    valueIsValid: websiteIsValid,
-  } = useInput(checkWebsiteValidity);
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
@@ -180,83 +166,6 @@ const SingleTweetById = () => {
   return (
     <>
       <VerifyTweeter />
-      {/* <VerifyTweeterModal onClose={closeModalHandler} open={open}>
-        <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem]">
-          <div className="container">
-            {loading && (
-              <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">
-                {"Loading..."}
-              </p>
-            )}
-            <h2 className="text-[#A5A5A5] font-Poppins font-normal text-[1.25rem] md:[2rem]">
-              AudaXious Engage
-            </h2>
-            <div className="flex flex-col items-center gap-[1rem] md:gap-[1.6rem] mt-[3rem]">
-              <span>
-                <TwitterVerification />
-              </span>
-              <div>
-                <h2 className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem] md:text-[2rem]">
-                  Twitter Verification
-                </h2>
-                <div className="mt-[0.5rem]">
-                  <p className="text-[#A5A5A5] text-center text-[0.875rem] md:text-[1.2rem] font-Poppins leading-[140%] font-[300]">
-                    In order to continue, you need to verify your twitter
-                    account
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col gap-[1.5rem] md:gap-[2.3rem] mt-[2.3rem]">
-              <div className="flex items-center justify-between">
-                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
-                <span className="text-[#A5A5A5] px-[1.5rem]">1</span>
-                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
-              </div>
-              <div className="flex items-center justify-center">
-                <button
-                  onClick={VerifyTweeterHandler}
-                  // type="submit"
-                  className="bg-[#E8E8E8] hover:bg-[#FFF] flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
-                >
-                  <span className="text-[#060B12] font-Poppins font-[600]">
-                    Tweet authentication post
-                  </span>
-                </button>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
-                <span className="text-[#A5A5A5] px-[1.5rem]">2</span>
-                <span className="bg-[#24343D] w-[100%] h-[2px]"></span>
-              </div>
-              <form onSubmit={verifyTweeterHandler}>
-                <input
-                  required
-                  type="text"
-                  value={website}
-                  onChange={websiteOnchange}
-                  onBlur={websiteOnBlur}
-                  name="website"
-                  id="website"
-                  placeholder="Copy and paste the link to the tweet"
-                  className="text-[#FFF] font-Poppins font-[500] bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] md:py-[1rem] text-[0.75rem]"
-                />
-                <div className="flex items-center justify-center mt-[1.6rem]">
-                  <button
-                    type="submit"
-                    disabled={!websiteIsValid}
-                    className="bg-[#E8E8E8] disabled:cursor-not-allowed flex items-center justify-center rounded-[8px] border-[1.5px] border-[#4C5656] border-opacity-[10%] p-3.5 w-[100%] md:w-[17rem]"
-                  >
-                    <span className="text-[#060B12] font-Poppins font-[600]">
-                      Verify Twitter Acount
-                    </span>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </VerifyTweeterModal> */}
 
       <Modal onClose={closeIntentModalHandler} open={true}>
         <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
@@ -282,20 +191,20 @@ const SingleTweetById = () => {
               </div>
               <div>
                 {!isAuthenticated && (
-                  <button
+                  <div
                     onClick={joinSpaceHandler}
-                    className="px-[1rem] py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
+                    className="cursor-pointer px-[1rem] py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
                   >
                     Join space
-                  </button>
+                  </div>
                 )}
                 {isAuthenticated && (
-                  <button
+                  <div
                     // onClick={joinSpaceHandler}
-                    className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                    className="cursor-pointer whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
                   >
                     Joined
-                  </button>
+                  </div>
                 )}
               </div>
             </header>
@@ -564,9 +473,9 @@ const SingleTweetById = () => {
                   </div>
                   <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                     <div className="flex flex-col gap-[1rem]">
-                      <button
+                      <div
                         onClick={handleLike}
-                        className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -578,7 +487,7 @@ const SingleTweetById = () => {
                         </div>
 
                         {!post.like && (
-                          <span>
+                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
                             <Actions />
                           </span>
                         )}
@@ -587,14 +496,14 @@ const SingleTweetById = () => {
                             <Check />
                           </span>
                         )}
-                      </button>
+                      </div>
                       <span>
                         <FlexLine />
                       </span>
 
-                      <button
+                      <div
                         onClick={handleRetweet}
-                        className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -614,14 +523,14 @@ const SingleTweetById = () => {
                             <Check />
                           </span>
                         )}
-                      </button>
+                      </div>
                       <span>
                         <FlexLine />
                       </span>
 
-                      <button
+                      <div
                         onClick={handleFollow}
-                        className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-4">
                           <span>
@@ -641,14 +550,14 @@ const SingleTweetById = () => {
                             <Check />
                           </span>
                         )}
-                      </button>
+                      </div>
                       <span>
                         <FlexLine />
                       </span>
 
-                      <button
+                      <div
                         onClick={handleComment}
-                        className="flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                        className="cursor-pointer flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
                         <div className="flex items-center gap-3">
                           <span>
@@ -668,7 +577,7 @@ const SingleTweetById = () => {
                             <Check />
                           </span>
                         )}
-                      </button>
+                      </div>
                     </div>
 
                     {/* <div className="flex items-center justify-between pt-[2rem] pb-[1rem]">
