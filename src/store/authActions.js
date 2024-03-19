@@ -27,6 +27,32 @@ export const loginWithEmail = (email) => {
   };
 };
 
+export const loginWithWallet = (address) => {
+  return async (dispatch) => {
+    const sendLoginRequest = async () => {
+      const request = authInstance();
+      try {
+        const requestData = await request.post(`/user/onboard`, {
+          address,
+        });
+        return requestData.data;
+      } catch (error) {
+        console.error("An error occurred", error);
+        throw error;
+      }
+    };
+    try {
+      const data = await sendLoginRequest();
+      console.log("CHECK EMAIL", data.data.email);
+      dispatch(authAction.setEmail(data.data.email));
+      return data;
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+      throw error;
+    }
+  };
+};
+
 export const verifyEmailWithOtp = (data) => {
   return async () => {
     const sendVerifyEmailRequest = async () => {
