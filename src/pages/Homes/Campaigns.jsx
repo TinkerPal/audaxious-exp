@@ -64,13 +64,13 @@ const Campaigns = () => {
               <div
                 id={post.id}
                 className={clsx(
-                  "w-[20rem] border-[1px] border-gray-700 border-opacity-50 cursor-pointer  rounded-[16px] py-[2px]"
+                  "w-[20rem] border-[1px] border-[#2A3C46] border-opacity-80 cursor-pointer bg-ElipseBg   rounded-[16px] py-[2px]"
                 )}
               >
                 <div className="flex justify-between px-[0.94rem] pt-[0.62rem]">
                   <div className="flex items-center justify-between w-full">
                     <div className="flex flex-row space-x-2">
-                      <button className=" flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
+                      <button className=" flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem]  text-[#87cece] rounded-[26px]">
                         <span>
                           <Task />
                         </span>
@@ -78,10 +78,10 @@ const Campaigns = () => {
                       </button>
                       <button
                         className={clsx(
-                          "flex items-center mt-[0px] gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
+                          "flex items-center mt-[0px] gap-1 border-[1px] border-opacity-[20%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-full",
                           post.coin.eth
                             ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
-                            : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
+                            : "bg-[#EEEFA2] bg-opacity-[5%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
                         )}
                       >
                         <span className="whitespace-nowrap flex">
@@ -100,7 +100,7 @@ const Campaigns = () => {
 
                 <div className="text-neutral-400 flex gap-[1.25rem] px-[1rem] justify-between items-center">
                   <div className="flex flex-col gap-[0.3rem]">
-                    <p className="text-[#E8E8E8] uppercase font-Poppins font-[400] leading-[150%]">
+                    <p className="text-[1rem] text-[#FFF] ">
                       {post.title.slice(0, 20)}
                     </p>
                   </div>

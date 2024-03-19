@@ -74,7 +74,7 @@ export default function Navigation() {
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
               {" "}
-              Features{" "}
+              Campaigns
             </a>
             <a
               href="#"
@@ -82,7 +82,7 @@ export default function Navigation() {
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
               {" "}
-              Tokenomics
+              Spaces
             </a>
             <a
               href="#"
@@ -90,7 +90,7 @@ export default function Navigation() {
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
               {" "}
-              Docs
+              Documentation
             </a>
           </div>
 
@@ -110,7 +110,7 @@ export default function Navigation() {
               className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-gray-600 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
               role="button"
             >
-              Engagement App
+              Launch App
             </Link>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function Navigation() {
                 className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 "
               >
                 {" "}
-                Features{" "}
+                Campaigns
               </a>
               <a
                 href="#"
@@ -133,7 +133,7 @@ export default function Navigation() {
                 className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 font-pj focus:ring-1 "
               >
                 {" "}
-                Pricing{" "}
+                Spaces
               </a>
               <a
                 href="#"
@@ -141,16 +141,9 @@ export default function Navigation() {
                 className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
               >
                 {" "}
-                Automation{" "}
+                Documentation
               </a>
-              <a
-                href="#"
-                title=""
-                className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
-              >
-                {" "}
-                Customer Login{" "}
-              </a>
+
               <a
                 href="#"
                 title=""
@@ -165,7 +158,7 @@ export default function Navigation() {
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-gray-600 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 role="button"
               >
-                Engagement App
+                Launch App
               </a>
             </div>
           </div>

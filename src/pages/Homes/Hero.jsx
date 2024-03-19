@@ -17,7 +17,7 @@ const Hero = () => {
               Welcome to the future of engagement
             </h1>
 
-            <p className="mt-5 text-4xl font-bold leading-tight  sm:leading-tight sm:text-4xl lg:text-5xl lg:leading-tight font-pj   bg-gradient-to-b from-[#0C74F1] to-[#28EDDB] bg-clip-text text-transparent ">
+            <p className="mt-5 text-4xl font-bold leading-tight  sm:leading-tight sm:text-4xl lg:text-5xl lg:leading-tight font-pj  bg-gradient-to-b from-[#4D5CDD] to-[#79C4EC] bg-clip-text text-transparent ">
               {/* Grok Alien is Here to Take Over */}
               AI Enhanced Decentralized Engagement Protocol
               <span className="relative inline-flex sm:inline">
