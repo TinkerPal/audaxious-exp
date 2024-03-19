@@ -27,13 +27,13 @@ export const loginWithEmail = (email) => {
   };
 };
 
-export const loginWithWallet = (address) => {
+export const loginWithWallet = (walletId) => {
   return async (dispatch) => {
     const sendLoginRequest = async () => {
       const request = authInstance();
       try {
-        const requestData = await request.post(`/user/onboard`, {
-          address,
+        const requestData = await request.post(`/user/wallet/login`, {
+          walletId,
         });
         return requestData.data;
       } catch (error) {
@@ -43,8 +43,8 @@ export const loginWithWallet = (address) => {
     };
     try {
       const data = await sendLoginRequest();
-      console.log("CHECK EMAIL", data.data.email);
-      dispatch(authAction.setEmail(data.data.email));
+      console.log("CHECK EMAIL", data.data.walletId);
+      dispatch(authAction.setEmail(data.data.walletId));
       return data;
     } catch (error) {
       console.error("An error occurred during login:", error);

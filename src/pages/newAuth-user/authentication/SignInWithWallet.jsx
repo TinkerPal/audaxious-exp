@@ -8,14 +8,43 @@ import { ReactComponent as Coinbase } from "../../../assets/svg/dashboardSvg/coi
 import { useConnect, useAccount, useDisconnect } from "wagmi";
 import { useEffect } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authAction } from "../../../store/authorizationSlice";
+import { toast } from "react-toastify";
+import { loginWithWallet } from "../../../store/authActions";
 
 const SignInWithWallet = ({ open, onClose }) => {
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect();
   const { isConnected, address } = useAccount();
 
+  const dispatch = useDispatch();
+
+  const submitHandler = async (value) => {
+    dispatch(authAction.setLoading(true));
+    // toast.loading("Please wait");
+    try {
+      const result = await dispatch(loginWithWallet(value));
+      dispatch(authAction.setLoading(false));
+      toast.success(result.message);
+      console.log(result);
+    } catch (error) {
+      console.log("LOGIN EMAIL ERROR: ", error.response.data.error);
+      dispatch(authAction.setLoading(false));
+      toast.error(error.response.data.error);
+    }
+    // if (valueIsInvalid) {
+    //   return;
+    // } else if (valueIsValid) {
+    //   dispatch(loginWithEmail(value));
+    //   onVerifyEmail(true);
+    // }
+  };
+
   useEffect(() => {
-    console.log(address);
+    if (address) {
+      submitHandler(address);
+    }
   }, [address]);
 
   return (
