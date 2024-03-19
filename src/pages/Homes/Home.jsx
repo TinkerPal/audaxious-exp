@@ -1,7 +1,7 @@
 import Blockchains from "./Blockchains";
 import Campaigns from "./Campaigns";
 import Features from "./Features";
-import Footer2 from "./Footer2";
+import Footer from "./Footer";
 import Hero from "./Hero";
 import MobileApp from "./MobileApp";
 import Navigation from "./Navigation";
@@ -15,13 +15,11 @@ const Home = () => {
       <Features />
       <Spaces />
       <Campaigns />
-      {/* <Web3Projects />
-        <Web3Projects2 /> */}
-      {/* <Web3Users /> */}
+
       <MobileApp />
       <Blockchains />
 
-      <Footer2 />
+      <Footer />
     </div>
   );
 };

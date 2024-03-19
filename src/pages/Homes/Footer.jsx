@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 import Audaxious from "../../assets/svg/assets/AudaxiousLogofinal.svg";
 
-const Footer2 = () => {
+const Footer = () => {
   return (
     <section className="py-10  sm:pt-16 lg:pt-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -25,9 +25,11 @@ const Footer2 = () => {
             <ul className="flex items-center space-x-3 mt-9">
               <li>
                 <a
-                  href="#"
-                  title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  href="https://twitter.com/AudaXious3"
+                  title="x"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 "
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     className="w-4 h-4"
@@ -42,17 +44,53 @@ const Footer2 = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://t.me/audaxious"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 "
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
-                    className="w-4 h-4"
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-[14px] h-auto"
                     viewBox="0 0 24 24"
-                    fill="currentColor"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
+                    <g clipPath="url(#clip0_4621_12711)">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M7.6343 13.0634C10.1077 15.1879 11.9627 16.7812 13.1994 17.8435C14.1148 18.6297 15.4877 19.809 17.3184 21.3814C17.5463 21.582 17.863 21.6478 18.152 21.5546C18.441 21.4614 18.6596 21.223 18.7274 20.927L22.7784 3.45397C22.8498 3.1425 22.7429 2.8171 22.5008 2.6086C22.2586 2.4001 21.9209 2.34274 21.6235 2.45958L1.74677 10.2683C1.39097 10.4081 1.16981 10.7656 1.20359 11.1464C1.23736 11.5271 1.51799 11.8401 1.89284 11.9151L7.6343 13.0634Z"
+                        stroke="white"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M7.63379 13.0633L22.2931 2.47607"
+                        stroke="white"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M12.4703 17.3196L9.10463 20.6852C8.85822 20.9316 8.48763 21.0054 8.16567 20.872C7.84371 20.7386 7.63379 20.4245 7.63379 20.076V13.0635"
+                        stroke="white"
+                        stroke-width="2.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4621_12711">
+                        <rect
+                          width="24"
+                          height="21.6"
+                          fill="white"
+                          transform="translate(0 1.19995)"
+                        />
+                      </clipPath>
+                    </defs>
                   </svg>
                 </a>
               </li>
@@ -244,4 +282,4 @@ const Footer2 = () => {
     </section>
   );
 };
-export default Footer2;
+export default Footer;

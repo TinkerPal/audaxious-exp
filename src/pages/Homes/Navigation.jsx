@@ -85,9 +85,11 @@ export default function Navigation() {
               Spaces
             </a>
             <a
-              href="#"
-              title=""
+              href="https://docs.audaxious.com/"
+              title="Documentation"
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
+              target="_blank"
+              rel="noreferrer"
             >
               {" "}
               Documentation
