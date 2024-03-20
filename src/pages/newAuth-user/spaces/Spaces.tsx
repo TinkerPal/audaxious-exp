@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as SeachIcon } from "../../../assets/svg/dashboardSvg/searchIcon.svg";
 
 import Query from "./Query";
@@ -8,13 +8,37 @@ import MySpace from "./MySpace";
 import JoinedSpace from "./JoinedSpace";
 import { Dialog } from "@headlessui/react";
 import CreateSpace from "./CreateSpace";
+import { useDispatch } from "react-redux";
+import { getAllMySpaces } from "../../../store/spaceActions";
+import { spaceActions } from "../../../store/spaceSlice";
 
 const Spaces = () => {
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
+  const [createdSpace, setCreatedSpace] = useState([]);
   const toggleHandler = (id) => {
     setToggle(id);
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const mySpaces = async () => {
+      dispatch(spaceActions.setLoading(true));
+      try {
+        const result = await dispatch(getAllMySpaces());
+        dispatch(spaceActions.setLoading(false));
+        setCreatedSpace(result.data);
+
+        // console.log("My SPACES", result.data);
+      } catch (error) {
+        dispatch(spaceActions.setLoading(false));
+        console.log(error);
+      }
+    };
+    if (toggle === 2) {
+      mySpaces();
+    }
+  }, [toggle, dispatch]);
 
   const cancelHandler = () => {
     setOpen(false);
@@ -25,7 +49,7 @@ const Spaces = () => {
         <div className="container">
           <Dialog
             as="div"
-            className={`relative z-[800]`}
+            className={`relative z-[3]`}
             open={open}
             onClose={cancelHandler}
           >
@@ -33,7 +57,7 @@ const Spaces = () => {
               className="fixed inset-0 bg-black bg-opacity-75"
               onClick={cancelHandler}
             />
-            <div className="fixed inset-0 z-[300] overflow-y-auto">
+            <div className="fixed inset-0 z-[4] overflow-y-auto">
               <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
                 <Dialog.Panel className="">
                   <CreateSpace />
@@ -96,7 +120,7 @@ const Spaces = () => {
             <AllSpaces onCreateSpace={setOpen} />
           </div>
           <div className={clsx(toggle === 2 ? "block" : "hidden")}>
-            <MySpace onCreateSpace={setOpen} />
+            <MySpace onCreateSpace={setOpen} mySpaces={createdSpace} />
           </div>
           <div className={clsx(toggle === 3 ? "block" : "hidden")}>
             <JoinedSpace />
