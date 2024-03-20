@@ -9,6 +9,8 @@ import { getToken } from "./utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "./store/authorizationSlice";
 import { getTwitterUserName } from "./store/authActions";
+import { getAllSpaces } from "./store/spaceActions";
+import { spaceActions } from "./store/spaceSlice";
 
 function App() {
   // let authUser = useAuthUser();
@@ -43,6 +45,21 @@ function App() {
       getTwetterVerifiedUserName();
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    const getSpaces = async () => {
+      try {
+        const result = await dispatch(getAllSpaces());
+        dispatch(spaceActions.replaceSpace(result.data));
+        // console.log(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (isAuthenticated) {
+      getSpaces();
+    }
+  }, [dispatch, isAuthenticated]);
 
   // return <Wagmi>{authUser?.token ? <AppProtected /> : <AppPublic />}</Wagmi>;
   return (
