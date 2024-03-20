@@ -58,7 +58,7 @@ const AllSpaces = ({ onCreateSpace }) => {
             {spaceArray &&
               spaceArray.map((space) => (
                 <NavLink to={`/spaces/${space.uuid}`} key={space.uuid}>
-                  <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[1.25rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
+                  <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                     <div className="flex flex-col gap-[0.75rem]">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-[0.5rem]">
@@ -104,29 +104,31 @@ const AllSpaces = ({ onCreateSpace }) => {
                       </div>
                       <div className="py-[0.62rem]">
                         <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
-                          {space.description}
+                          {space.description.length > 40
+                            ? space.description.slice(0, 40) + " ..."
+                            : space.description}
                         </p>
                       </div>
                       <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-[0.3rem] px-[0.3rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
+                        <div className="flex items-center gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
                           <span>
                             <Group />
                           </span>
-                          <span className="h-[1.5rem] w-[1px] bg-[#314048]"></span>
+                          <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
                           <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
-                            {space.engagement}k
+                            {space.engagement || 0}
                           </span>
                         </div>
                         <div className="flex gap-[0.3rem] items-center">
                           <span>
                             <World />
                           </span>
-                          <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
+                          <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
                           <span>
                             <Retweets />
                           </span>
-                          <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
-                          <span>
+                          <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
+                          <span className="">
                             <Discords />
                           </span>
                         </div>

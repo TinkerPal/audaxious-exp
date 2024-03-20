@@ -19,7 +19,7 @@ const Query = ({ onCreateSpace }) => {
           All
         </span>
       </div>
-      <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
+      {/* <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
         <span>
           <Recent />
         </span>
@@ -34,7 +34,7 @@ const Query = ({ onCreateSpace }) => {
         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
           Oldest
         </span>
-      </div>
+      </div> */}
 
       <span className="w-[1px] h-[2rem] bg-[#19242D]"></span>
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -42,7 +42,7 @@ const Query = ({ onCreateSpace }) => {
           <Defi />
         </span>
         <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-          De-Fi
+          DeFi
         </span>
       </div>
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -50,7 +50,7 @@ const Query = ({ onCreateSpace }) => {
           <Gaming />
         </span>
         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-          Gaming
+          GameFi
         </span>
       </div>
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -58,7 +58,7 @@ const Query = ({ onCreateSpace }) => {
           <Startups />
         </span>
         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-          Startups
+          NFT
         </span>
       </div>
       <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -66,7 +66,7 @@ const Query = ({ onCreateSpace }) => {
           <Music />
         </span>
         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-          Music
+          Metaverse
         </span>
       </div>
       <span className="w-[1px] h-[2rem] bg-[#19242D]"></span>
