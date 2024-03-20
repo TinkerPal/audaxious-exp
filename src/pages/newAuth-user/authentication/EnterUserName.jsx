@@ -42,7 +42,7 @@ const EnterUserName = () => {
     const message = messageRaw.prepareMessage();
 
     //GET SIGNATURE
-    // signMessage({ message });
+
     const signature = await signMessageAsync({ message });
 
     //Send to server
