@@ -68,22 +68,22 @@ export default function Navigation() {
 
           <div className="hidden lg:flex lg:ml-16 lg:items-center lg:justify-center lg:space-x-10 xl:space-x-16 ">
             {/* Menu items */}
-            <a
-              href={"#features"}
+            <Link
+              to={"/engage-portal"}
               title=""
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
               {" "}
               Campaigns
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to={"/spaces"}
               title=""
               className="text-base font-medium text-gray-100 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
             >
               {" "}
               Spaces
-            </a>
+            </Link>
             <a
               href="https://docs.audaxious.com/"
               title="Documentation"
@@ -104,7 +104,7 @@ export default function Navigation() {
               className="inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75  "
               role="button"
             >
-              Buy ADX token
+              ADX token
             </a>
             <Link
               to={"/engage-portal"}
@@ -121,22 +121,22 @@ export default function Navigation() {
           <div className="px-1 py-8 ">
             <div className="grid gap-y-7 z-10">
               {/* Expanded navigation links */}
-              <a
-                href="#"
+              <Link
+                to={"/engage-portal"}
                 title=""
                 className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 "
               >
                 {" "}
                 Campaigns
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to={"/spaces"}
                 title=""
                 className="flex items-center p-3 -m-3 text-base font-medium text-gray-100 transition-all duration-200 rounded-xl hover:bg-gray-50 font-pj focus:ring-1 "
               >
                 {" "}
                 Spaces
-              </a>
+              </Link>
               <a
                 href="#"
                 title=""
@@ -152,7 +152,7 @@ export default function Navigation() {
                 className="inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75  "
                 role="button"
               >
-                Buy ADX token
+                ADX token
               </a>
               <Link
                 to={"/engage-portal"}
