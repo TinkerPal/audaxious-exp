@@ -12,6 +12,7 @@ const EnterUserName = () => {
   const { onBlurHandler, value, onChangeValueHandler, valueIsInvalid } =
     useInput(validUserName);
   const loading = useSelector((state) => state.authentication.loading);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(authAction.setLoading(true));

@@ -11,7 +11,10 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authAction } from "../../../store/authorizationSlice";
 import { toast } from "react-toastify";
-import { loginWithWallet } from "../../../store/authActions";
+import {
+  loginWithWallet,
+  getTwitterUserName,
+} from "../../../store/authActions";
 
 const SignInWithWallet = ({
   open,
@@ -37,8 +40,11 @@ const SignInWithWallet = ({
       dispatch(authAction.loggin());
 
       console.log("sign in wallet result", result);
+      const profRes = await dispatch(getTwitterUserName(result.data.token));
 
-      if (!result.data.username) {
+      console.log("profile data", profRes);
+
+      if (!profRes.data.username) {
         onEnterUserName(true);
         onVerifyEmail(false);
         return;
