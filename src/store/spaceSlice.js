@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const spaceInitialState = {
-  space: "",
+  space: [],
   loading: null,
 };
 
@@ -12,9 +12,12 @@ const spaceSlice = createSlice({
     setLoading(state, actions) {
       state.loading = actions.payload;
     },
+    replaceSpace(state, actions) {
+      state.space = actions.payload;
+    },
   },
 });
 
-export const spaceActions = spaceSlice.actions
+export const spaceActions = spaceSlice.actions;
 
 export default spaceSlice;
