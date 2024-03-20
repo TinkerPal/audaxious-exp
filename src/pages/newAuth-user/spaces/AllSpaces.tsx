@@ -9,11 +9,19 @@ import Query from "./Query";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authorizationSlice";
+import { joinSpace } from "../../../store/spaceActions";
+import { toast } from "react-toastify";
+import Loading from "../../Homes/Loading";
+import { spaceActions } from "../../../store/spaceSlice";
 
 const AllSpaces = ({ onCreateSpace }) => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
+
+  const spaceArray = useSelector((state) => state.space.space);
+  const loading = useSelector((state) => state.space.loading);
+
   const dispatch = useDispatch();
   const createSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -23,33 +31,76 @@ const AllSpaces = ({ onCreateSpace }) => {
     onCreateSpace(true);
     // console.log("AllSpace");
   };
+
+  const joinSpaceHandler = async (id) => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      return;
+    }
+    dispatch(spaceActions.setLoading(true));
+    try {
+      const result = await dispatch(joinSpace(id));
+      dispatch(spaceActions.setLoading(false));
+      toast.success(result.message);
+
+      console.log("JOINSPACE", result);
+    } catch (error) {
+      dispatch(spaceActions.setLoading(false));
+      toast.error(error.response.data.error);
+    }
+  };
   return (
     <div>
       <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
         <div className="py-[1.47rem] flex flex-col items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem]">
-            {SPACES &&
-              SPACES.map((space) => (
-                <NavLink to={`/spaces/${space.id}`} key={space.id}>
+            {spaceArray &&
+              spaceArray.map((space) => (
+                <NavLink to={`/spaces/${space.uuid}`} key={space.uuid}>
                   <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[1.25rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                     <div className="flex flex-col gap-[0.75rem]">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-[0.5rem]">
-                          <img
-                            src={space.src}
-                            alt={space.userName.slice(0, 7)}
-                            width="100"
-                            height={"100"}
-                            className="w-[4rem] h-[4rem] object-cover rounded-full"
-                          />
+                          {!space.src && (
+                            <div className="w-[3rem] h-[3rem] rounded-full bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46]">
+                              {space.title.slice(0, 1)}
+                            </div>
+                          )}
+                          {space.src && (
+                            <img
+                              src={space.src}
+                              alt={space.title.slice(0, 7)}
+                              width="100"
+                              height={"100"}
+                              className="w-[4rem] h-[4rem] object-cover rounded-full"
+                            />
+                          )}
                           <span className="text-[1rem] text-[#FFF] font-[400]">
-                            {space.userName}
+                            {space.title}
                           </span>{" "}
                         </div>
-                        <button className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                          Join
-                        </button>
+                        {loading && (
+                          <div className="">
+                            <Loading />
+                          </div>
+                        )}
+                        {!loading && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              if (e.target.tagName.toLowerCase() !== "button") {
+                                e.stopPropagation();
+                              }
+                              joinSpaceHandler(space.uuid);
+                              // console.log("E WORK", space.uuid);
+                            }}
+                            className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+                          >
+                            Join
+                          </button>
+                        )}
                       </div>
                       <div className="py-[0.62rem]">
                         <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
