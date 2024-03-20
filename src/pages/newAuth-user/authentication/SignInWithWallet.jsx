@@ -39,12 +39,7 @@ const SignInWithWallet = ({
 
       dispatch(authAction.loggin());
 
-      console.log("sign in wallet result", result);
-      const profRes = await dispatch(getTwitterUserName(result.data.token));
-
-      console.log("profile data", profRes);
-
-      if (!profRes.data.username) {
+      if (!result.data.username) {
         onEnterUserName(true);
         onVerifyEmail(false);
         return;
