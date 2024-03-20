@@ -37,3 +37,16 @@ export const createAxiousInstance = (token) => {
   });
   return auth;
 };
+export const createAxiosPublicInstance = () => {
+  const auth = axios.create({
+    baseURL: baseUrl,
+    headers: {
+      Accept: "application/json",
+      "Access-Control-Allow-Credentials": true,
+      "Content-Type": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+      // Authorization: `Bearer ${token}`,
+    },
+  });
+  return auth;
+};
