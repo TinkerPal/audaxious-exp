@@ -15,7 +15,7 @@ const Twitter = () => {
   //   props.onLoadTweet(id);
   // };
   return (
-    <div className="md:container">
+    <div>
       <div className="flex flex-col items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[2.5rem] pt-[1rem] pl-[0rem]">
           {POST.map((post) => (

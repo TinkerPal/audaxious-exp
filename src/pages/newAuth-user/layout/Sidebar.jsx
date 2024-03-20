@@ -40,7 +40,7 @@ const Sidebar = () => {
   // };
 
   return (
-    <div className="flex flex-col gap-3 pl-[1rem] md:pl-[3.74rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
+    <div className="flex flex-col gap-3 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
       <NavLink
         to={"/dashboard"}
         className="font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
