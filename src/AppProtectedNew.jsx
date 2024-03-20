@@ -26,6 +26,8 @@ const AppProtectedNew = () => {
   const EngagementDetail = lazy(() =>
     import("./pages/newAuth-user/engagePortal/SingleTweetById")
   );
+
+  const SEO = lazy(() => import("./assets/SEO/Meta"));
   return (
     <>
       <Layout>
@@ -39,6 +41,7 @@ const AppProtectedNew = () => {
             <Route path="spaces/:spaceId" element={<SpaceDetail />} /> */}
             <Route />
           </Route>
+          <Route path="/seo" element={<SEO />} />
           <Route path="/engage-portal" element={<DashboardLayout />}>
             <Route index={true} element={<EngagePortals />} />
             <Route path=":postId" element={<EngagementDetail />} />

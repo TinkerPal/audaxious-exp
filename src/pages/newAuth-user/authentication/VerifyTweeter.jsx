@@ -29,7 +29,7 @@ const VerifyTweeter = () => {
     (state) => state.authentication.isLogedIn
   );
   const tweetText = `Verifying my Twitter account for my #Audaxious aud-id=${userId}`;
-  const tweetUrl = `https://galxe.com/${userId}`;
+  const tweetUrl = `https://frontendadxupdate.vercel.app`;
 
   const getUserIdFunction = async () => {
     try {
