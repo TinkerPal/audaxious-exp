@@ -13,7 +13,12 @@ import { authAction } from "../../../store/authorizationSlice";
 import { toast } from "react-toastify";
 import { loginWithWallet } from "../../../store/authActions";
 
-const SignInWithWallet = ({ open, onClose }) => {
+const SignInWithWallet = ({
+  open,
+  onClose,
+  onVerifyEmail,
+  onEnterUserName,
+}) => {
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect();
   const { isConnected, address } = useAccount();
@@ -27,6 +32,20 @@ const SignInWithWallet = ({ open, onClose }) => {
       const result = await dispatch(loginWithWallet(value));
       dispatch(authAction.setLoading(false));
       toast.success(result.message);
+      localStorage.setItem("audaxiousAccessToken", result.data.token); // token storage
+
+      dispatch(authAction.loggin());
+
+      console.log("sign in wallet result", result);
+
+      if (!result.data.username) {
+        onEnterUserName(true);
+        onVerifyEmail(false);
+        return;
+      } else {
+        dispatch(authAction.onclose());
+      }
+
       console.log(result);
     } catch (error) {
       console.log("LOGIN EMAIL ERROR: ", error.response.data.error);
@@ -40,6 +59,24 @@ const SignInWithWallet = ({ open, onClose }) => {
     //   onVerifyEmail(true);
     // }
   };
+
+  // {
+  // const result = await dispatch(
+  //   verifyEmailWithOtp({ email: email, otp: otpValue })
+  // );
+  // dispatch(authAction.setLoading(false));
+  // toast.success(result.message);
+  // localStorage.setItem("audaxiousAccessToken", result.data.token);
+
+  // dispatch(authAction.loggin());
+
+  // if (!result.data.username) {
+  //   onEnterUserName(true);
+  //   onVerifyEmail(false);
+  //   return;
+  // } else {
+  //   dispatch(authAction.onclose());
+  // }
 
   useEffect(() => {
     if (address) {

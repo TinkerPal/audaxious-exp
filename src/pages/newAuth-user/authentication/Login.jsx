@@ -17,7 +17,7 @@ const validEmail = (email) => {
   return emailRegex.test(email);
 };
 
-const Login = ({ onVerifyEmail }) => {
+const Login = ({ onVerifyEmail, onEnterUserName }) => {
   const [open, setOpen] = useState(false);
   const {
     onChangeValueHandler,
@@ -65,7 +65,12 @@ const Login = ({ onVerifyEmail }) => {
   };
   return (
     <>
-      <SignInWithWallet open={open} onClose={onClose} />
+      <SignInWithWallet
+        open={open}
+        onClose={onClose}
+        onVerifyEmail={onVerifyEmail}
+        onEnterUserName={onEnterUserName}
+      />
       <div className="text-[#FFF] bg-[#060B12] w-screen min-w-[15rem] md:w-[35rem] xl:w-[50rem] rounded-lg container">
         <div className="container py-[4rem]">
           {loading && (

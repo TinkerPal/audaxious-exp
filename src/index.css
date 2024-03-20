@@ -105,8 +105,8 @@ body {
   height: 45px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid #3b1b5d;
-  border-color: #3b1b5d transparent #3b1b5d transparent;
+  border: 5px solid #44bcff;
+  border-color: #44bcff transparent #44bcff transparent;
   animation: loader 1.2s linear infinite;
 }
 

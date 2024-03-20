@@ -84,6 +84,7 @@ const VerifyEmail = ({ onEnterUserName, onVerifyEmail }) => {
       localStorage.setItem("audaxiousAccessToken", result.data.token);
 
       dispatch(authAction.loggin());
+      console.log("the result is", result);
 
       if (!result.data.username) {
         onEnterUserName(true);

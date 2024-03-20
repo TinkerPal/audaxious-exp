@@ -5,7 +5,7 @@ export default function Loading() {
 
       <div className="flex  items-center justify-center   ">
         <svg
-          className="animate-spin  w-8 text-[#3b1b5d]"
+          className="animate-spin  w-8 text-[#44BCFF]"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

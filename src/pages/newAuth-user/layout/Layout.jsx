@@ -7,10 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import VerifyTweeterModal from "../../../components/socialmedia/VerifyTweetModal";
 import { authAction } from "../../../store/authorizationSlice";
 
+import { useDisconnect } from "wagmi";
+
 const DashboardLayout = () => {
   const openLogout = useSelector((state) => state.authentication.logoutModal);
   const open = useSelector((state) => state.authentication.isOpen);
   const dispatch = useDispatch();
+  const { disconnect } = useDisconnect();
+
   const cancelHandler = () => {
     dispatch(authAction.onclose());
   };
@@ -24,6 +28,7 @@ const DashboardLayout = () => {
   };
 
   const logoutHandler = () => {
+    disconnect();
     localStorage.removeItem("audaxiousAccessToken");
     dispatch(authAction.logout());
     dispatch(authAction.logoutModalMethod(false));
