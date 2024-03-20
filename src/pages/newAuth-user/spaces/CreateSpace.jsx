@@ -110,7 +110,7 @@ const CreateSpace = () => {
       links: selectedWebsite,
     };
 
-    console.log(data);
+    // console.log(data);
 
     try {
       const result = await dispatch(createSpace(data));
