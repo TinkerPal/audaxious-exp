@@ -47,8 +47,8 @@ const Twitter = () => {
                       className={clsx(
                         "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
                         post.coin.eth
-                          ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
-                          : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
+                          ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]/30"
+                          : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925]/30 border-opacity-[50%]"
                       )}
                     >
                       <span className="whitespace-nowrap flex">
@@ -64,7 +64,7 @@ const Twitter = () => {
               </span> */}
                   </div>
                 </div>
-                <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
+                <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.25rem] mx-[0.94rem]"></div>
 
                 <div className="text-neutral-400 flex items-center gap-[1.25rem] px-[1rem]">
                   <div className="flex items-center flex-col gap-[0.3rem]">
@@ -92,9 +92,9 @@ const Twitter = () => {
                   </div>
                 </div>
 
-                <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.62rem] mx-[0.94rem]"></div>
+                <div className="h-[2px] bg-gray-800 bg-opacity-50 my-[0.25rem] mx-[0.94rem]"></div>
 
-                <div className="my-[0.62rem] mx-[0.94rem] flex justify-between items-center">
+                <div className="my-[0.25rem] mx-[0.94rem] flex justify-between items-center">
                   <div className="flex items-center gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
                     <span>
                       <Group />
