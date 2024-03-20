@@ -6,8 +6,56 @@ import { enterUserName } from "../../../store/authActions";
 import { toast } from "react-toastify";
 import { authAction } from "../../../store/authorizationSlice";
 import Loading from "../../Homes/Loading";
+
+//Wallet import
+import { useAccount, useSignMessage, useNetwork } from "wagmi";
+import axios from "axios";
+import { SiweMessage } from "siwe";
+const BACKEND_URL = "https://web3-siwe-auth.audaxious.com";
+
+//Wallet connect import
+
 const validUserName = (name) => name.trim() !== "";
 const EnterUserName = () => {
+  const { address } = useAccount();
+
+  const { signMessageAsync } = useSignMessage();
+
+  const { chain } = useNetwork();
+  //SIWE Function
+
+  async function Signin() {
+    //GET NONCE
+    const res = await axios.get(`${BACKEND_URL}/api/nonce`);
+
+    //CREATE MESSAGE
+    const messageRaw = new SiweMessage({
+      domain: window.location.host,
+      address,
+      statement: "Verify Username Update",
+      uri: window.location.origin,
+      version: "1",
+      chainId: chain.id,
+      nonce: await res.data,
+    });
+
+    const message = messageRaw.prepareMessage();
+
+    //GET SIGNATURE
+    // signMessage({ message });
+    const signature = await signMessageAsync({ message });
+
+    //Send to server
+
+    const resVerify = await axios.post(`${BACKEND_URL}/api/verify`, {
+      message,
+      signature,
+    });
+    console.log(resVerify.data);
+  }
+
+  //===============================================
+
   const dispatch = useDispatch();
   const { onBlurHandler, value, onChangeValueHandler, valueIsInvalid } =
     useInput(validUserName);
@@ -15,6 +63,11 @@ const EnterUserName = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (address) {
+      await Signin();
+    }
+
     dispatch(authAction.setLoading(true));
     try {
       const result = await dispatch(enterUserName(value));
