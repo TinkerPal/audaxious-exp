@@ -9,6 +9,7 @@ import Loading from "../../Homes/Loading";
 
 //Wallet import
 import { useAccount, useSignMessage, useNetwork } from "wagmi";
+
 import axios from "axios";
 import { SiweMessage } from "siwe";
 const BACKEND_URL = "https://web3-siwe-auth.audaxious.com";
