@@ -193,7 +193,7 @@ const SingleTweetById = () => {
                 {!isAuthenticated && (
                   <div
                     onClick={joinSpaceHandler}
-                    className="cursor-pointer px-[1rem] py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
+                    className="cursor-pointer px-[1rem]  py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
                   >
                     Join space
                   </div>
