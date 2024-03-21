@@ -11,6 +11,8 @@ import { authAction } from "./store/authorizationSlice";
 import { getTwitterUserName } from "./store/authActions";
 import { getAllSpaces } from "./store/spaceActions";
 import { spaceActions } from "./store/spaceSlice";
+import { getAllCampaigns } from "./store/campaignActions";
+import { campaignActions } from "./store/campaignSlice";
 
 function App() {
   // let authUser = useAuthUser();
@@ -20,6 +22,9 @@ function App() {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
+  // const campaigns = useSelector((state) => state.campaign.campaign);
+
+  // console.log("Capaings ", campaigns);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,16 +55,28 @@ function App() {
     const getSpaces = async () => {
       try {
         const result = await dispatch(getAllSpaces());
+        console.log(result);
         dispatch(spaceActions.replaceSpace(result.data));
         // console.log(result.data);
       } catch (error) {
         console.log(error);
       }
     };
-    if (isAuthenticated) {
-      getSpaces();
-    }
-  }, [dispatch, isAuthenticated]);
+    getSpaces();
+  }, [dispatch]);
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getAllCampaigns());
+        // console.log("CAPAIGNS", result);
+        dispatch(campaignActions.replaceCampaign(result.data));
+        // console.log(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCampaigns();
+  }, [dispatch]);
 
   // return <Wagmi>{authUser?.token ? <AppProtected /> : <AppPublic />}</Wagmi>;
   return (
