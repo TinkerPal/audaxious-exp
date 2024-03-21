@@ -73,9 +73,8 @@ export const joinSpace = (id) => {
 
 export const getAllSpaces = () => {
   return async () => {
-    const token = localStorage.getItem("audaxiousAccessToken") || null;
     const getSpace = async () => {
-      const response = createAxiousInstance(token);
+      const response = createAxiosPublicInstance();
       try {
         const responseData = await response.get("/spaces/all");
         return responseData.data;
@@ -94,9 +93,8 @@ export const getAllSpaces = () => {
 };
 export const getSpaceById = (id) => {
   return async () => {
-    const token = localStorage.getItem("audaxiousAccessToken") || null;
     const getSingleSpace = async () => {
-      const response = createAxiousInstance(token);
+      const response = createAxiosPublicInstance();
       try {
         const responseData = await response.get(`/spaces/s/${id}`);
         return responseData.data;
