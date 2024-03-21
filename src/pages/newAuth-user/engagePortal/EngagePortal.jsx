@@ -24,6 +24,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import SingleTweetById from "./SingleTweetById";
 import { TOPEARNERS } from "../../../utils/postApi";
+import Campaigns from "./Campaignss";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
@@ -353,7 +354,7 @@ const EngagePortals = () => {
               </section>
 
               <div className="mt-[1rem]">
-                <Twitter />
+                <Campaigns />
               </div>
             </div>
 
