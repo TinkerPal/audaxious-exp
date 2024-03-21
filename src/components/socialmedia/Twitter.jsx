@@ -1,8 +1,3 @@
-import { ReactComponent as ProfilePicture } from "../../assets/svg/dashboardSvg/profilePic.svg";
-import { ReactComponent as MessageIcon } from "../../assets/svg/dashboardSvg/message.svg";
-import { ReactComponent as RetweenIcon } from "../../assets/svg/dashboardSvg/retweet.svg";
-import { ReactComponent as Like } from "../../assets/svg/dashboardSvg/like.svg";
-import { ReactComponent as Friends } from "../../assets/svg/dashboardSvg/friendsPlus.svg";
 import { ReactComponent as Clock } from "../../assets/svg/dashboardSvg/clock.svg";
 import { ReactComponent as Bnb } from "../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Eth } from "../../assets/svg/dashboardSvg/eth.svg";
