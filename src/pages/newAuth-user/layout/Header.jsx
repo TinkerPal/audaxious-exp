@@ -1,4 +1,6 @@
 import { ReactComponent as Logo } from "../../../assets/svg/logo.svg";
+// import Audaxious from "../../assets/svg/assets/AudaxiousLogofinal.svg";
+import AudaxiousLogo from "../../../assets/svg/assets/AudaxiousLogofinal.svg";
 import { ReactComponent as EngagePortalIcon } from "../../../assets/svg/dashboardSvg/portal.svg";
 import { ReactComponent as Search } from "../../../assets/svg/dashboardSvg/search.svg";
 import { ReactComponent as Bell } from "../../../assets/svg/dashboardSvg/bell.svg";
@@ -49,7 +51,7 @@ const Header = () => {
   let butons = (
     <button
       onClick={openLoginModal}
-      className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70"
+      className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#79C4EC] shadow shadow-[#181E24] opacity-70"
     >
       Log In
     </button>
@@ -87,7 +89,7 @@ const Header = () => {
           <div className="flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
             <div className="hidden xl:block">
               <Link to={"/"}>
-                <Logo />
+                <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
               </Link>
             </div>
             <div className="block xl:hidden">
