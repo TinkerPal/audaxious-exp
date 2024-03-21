@@ -43,19 +43,18 @@ const Sidebar = () => {
     <div className="flex flex-col gap-3 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
       <NavLink
         to={"/dashboard"}
-        className="font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
+        className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          path === "/dashboard" && "bg-[#79C4EC]/10"
+        }`}
       >
-        <div>
-          <DashBoardIcon
-            style={{
-              fill: path === "/dashboard" ? "#FFF" : "none",
-            }}
-          />
+        {/* from-[#4D5CDD] to-[#79C4EC] */}
+        <div className={`${path === "/dashboard" ? "text-[#79C4EC]" : "none"}`}>
+          <DashBoardIcon />
         </div>
         <div
           className={clsx(
             "hidden xl:block",
-            path === "/dashboard" ? "text-[#FFF]" : "text-[#818282]"
+            path === "/dashboard" ? "text-[#79C4EC]" : "text-[#818282]"
           )}
         >
           Dashboard
@@ -68,57 +67,66 @@ const Sidebar = () => {
         <MdLineIcon />
       </div>
       <div className="flex flex-col gap-[0.5rem]">
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
-          <span>
-            <MultiSenderIcon />
-          </span>
-          <span className="hidden xl:block">Multisender</span>
-        </NavLink>
         <NavLink
           to={"/engage-portal"}
-          className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10  items-center    ${
+            path === "/engage-portal" && "bg-[#79C4EC]/10"
+          }`}
         >
-          <span>
-            <EngagePortalIcon
-              style={{
-                fill: path === "/engage-portal" ? "#FFF" : "#818282",
-              }}
-            />
-          </span>
+          <div
+            className={`${
+              path === "/engage-portal" ? "text-[#79C4EC]" : "none"
+            }`}
+          >
+            <EngagePortalIcon />
+          </div>
           <span
             className={clsx(
               "hidden xl:block",
-              path === "/engage-portal" ? "text-[#FFF]" : "text-[#818282]"
+              path === "/engage-portal" ? "text-[#79C4EC]" : "text-[#818282]"
             )}
           >
             Engage Portal
           </span>
         </NavLink>
         <NavLink
-          className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]"
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "/spaces" && "bg-[#79C4EC]/10"
+          }`}
           to={"/spaces"}
         >
-          <span>
-            <CommunityIcon
-              style={{
-                fill: path.startsWith("/spaces") ? "#FFF" : "none",
-              }}
-            />
-          </span>
+          <div className={`${path === "/spaces" ? "text-[#79C4EC]" : "none"}`}>
+            <CommunityIcon />
+          </div>
           <span
             className={clsx(
               "hidden xl:block",
-              path.startsWith("/spaces") ? "text-[#FFF]" : "text-[#818282]"
+              path === "/spaces" ? "text-[#79C4EC]" : "text-[#818282]"
             )}
           >
             Spaces
           </span>
         </NavLink>
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap">
+        <NavLink
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "" && "bg-[#79C4EC]/10"
+          }`}
+        >
           <span>
             <PostIcon />
           </span>
-          <span className="hidden xl:block">Post Mangagement</span>
+          <span className="hidden xl:block">AI Creatives</span>
+        </NavLink>
+
+        <NavLink
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "" && "bg-[#79C4EC]/10"
+          }`}
+        >
+          <span>
+            <MultiSenderIcon />
+          </span>
+          <span className="hidden xl:block">Multisender</span>
         </NavLink>
       </div>
 
@@ -130,19 +138,31 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col gap-[0.5rem]">
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
+        <NavLink
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "" && "bg-[#79C4EC]/10"
+          }`}
+        >
           <span>
             <ProfileIcon />
           </span>
           <span className="hidden xl:block">Profile</span>
         </NavLink>
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
+        <NavLink
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "" && "bg-[#79C4EC]/10"
+          }`}
+        >
           <span>
             <SettingsIcon />
           </span>
           <span className="hidden xl:block">Settings</span>
         </NavLink>
-        <NavLink className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42]">
+        <NavLink
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            path === "" && "bg-[#79C4EC]/10"
+          }`}
+        >
           <span>
             <HelpIcon />
           </span>
@@ -151,7 +171,9 @@ const Sidebar = () => {
         {isAuthenticated && (
           <button
             onClick={onOpenHandler}
-            className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
+            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+              path === "" && "bg-[#79C4EC]/10"
+            }`}
           >
             <span>
               <LogoutIcon />
