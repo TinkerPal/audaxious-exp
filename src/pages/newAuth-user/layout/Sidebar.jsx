@@ -184,7 +184,9 @@ const Sidebar = () => {
         {!isAuthenticated && (
           <button
             onClick={openLoginModal}
-            className="font-Poppins text-[1rem] font-[300] text-[#818282] flex py-[0.48rem] px-[1rem] gap-[1rem] rounded-md hover:bg-[#2C2D30] hover:border-t-[1.5px] hover:border-[#383B42] whitespace-nowrap"
+            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+              path === "" && "bg-[#79C4EC]/10"
+            }`}
           >
             <span>
               <LogoutIcon />
