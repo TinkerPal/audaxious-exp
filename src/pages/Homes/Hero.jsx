@@ -3,6 +3,7 @@
 // import Audaxious from "../assets/AudaxiousLogofinal.svg";
 import Engagement from "../../assets/svg/assets/EngagementPortal.svg";
 import background from "../../assets/svg/assets/background.png";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="overflow-x-hidden pt-16 2xl:pt-32 ">
@@ -26,22 +27,25 @@ const Hero = () => {
             </p>
 
             <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
-              <a
-                href="#"
-                title=""
-                className="inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold text-[#060B12] transition-all duration-200 bg-[#79C4EC] border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-opacity-75 "
+              <Link
+                to={"/engage-portal"}
+                title="App"
+                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all duration-200 bg-[#79C4EC] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 role="button"
               >
+                {" "}
                 Get Started
-              </a>
+              </Link>
 
               <a
-                href="#"
+                href="https://docs.audaxious.com/"
                 title=""
-                className="inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75  "
+                className="relative inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75   "
                 role="button"
+                target="_blank"
+                rel="noreferrer"
               >
-                Buy ADX token
+                Learn more
               </a>
             </div>
 

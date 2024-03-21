@@ -10,18 +10,22 @@ const MobileApp = () => {
             <div className="h-full pt-12 sm:pt-16 lg:py-20 xl:py-32">
               <div className="flex flex-col justify-between flex-1 h-full max-w-md mx-auto text-center lg:text-left lg:max-w-none">
                 <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  Manage your projects from your mobile ⚡️
+                  ADX Engagement App
                 </h2>
                 <p className="mt-4 text-base font-normal leading-7 text-gray-400 lg:text-lg lg:mt-6 lg:leading-8">
-                  Download the app to manage your projects, keep track of the
-                  progress, and complete tasks without procrastinating. Stay on
-                  track and complete on time!
+                  Download the AudaXious Engage-to-Earn app, where members can
+                  seamlessly participate in airdrops, competitions, and
+                  contribute to Web3 communities. With the AudaXious app, you
+                  will never miss earning opportunities on the platform.
+                </p>
+                <p className="text-white mt-4 font-normal text-xl">
+                  Coming soon on Android and IOS.
                 </p>
                 <div className="relative w-full px-0 mt-12 -ml-4 sm:-ml-6 lg:hidden">
                   <img className="w-full max-w-xl " src={phoneImage2} alt="" />
                 </div>
 
-                <div className="flex flex-col items-center mt-12 space-y-5 sm:space-y-0 sm:space-x-5 sm:flex-row sm:justify-center lg:justify-start sm:mt-16">
+                <div className="flex flex-col items-center mt-8 space-y-5 sm:space-y-0 sm:space-x-5 sm:flex-row sm:justify-center lg:justify-start sm:mt-8">
                   <a
                     href="#"
                     title=""
@@ -52,7 +56,7 @@ const MobileApp = () => {
                 </div>
 
                 <div className="mt-12 sm:mt-16">
-                  <p className="text-base font-semibold text-gray-50">
+                  {/* <p className="text-base font-semibold text-gray-50">
                     Trusted by 50k+ customers
                   </p>
                   <div className="flex items-center justify-center mt-3 space-x-2 lg:justify-start">
@@ -103,7 +107,7 @@ const MobileApp = () => {
                     <p className="text-base font-normal text-gray-300">
                       3,841 Reviews
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
