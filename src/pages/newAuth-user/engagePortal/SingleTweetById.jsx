@@ -14,7 +14,8 @@ import { ReactComponent as Cancel } from "../../../assets/svg/dashboardSvg/cance
 import { ReactComponent as Next } from "../../../assets/svg/dashboardSvg/next.svg";
 import { ReactComponent as Previous } from "../../../assets/svg/dashboardSvg/previous.svg";
 import { ReactComponent as Actions } from "../../../assets/svg/dashboardSvg/actions.svg";
-import { ReactComponent as Check } from "../../../assets/svg/dashboardSvg/check.svg";
+// import { ReactComponent as Check } from "../../../assets/svg/dashboardSvg/check.svg";
+import { ReactComponent as Check } from "../../../assets/svg/dashboardSvg/checkMark.svg";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
@@ -304,7 +305,7 @@ const SingleTweetById = () => {
                           </div>
                           <div className="flex flex-col gap-[1rem]">
                             <div className="w-[100%] flex flex-col gap-[1rem]">
-                              <p className="text-[0.95rem] text-[#E8E8E8] text-start">
+                              <p className="text-[0.95rem] font-Poppins text-[#cecece] text-start">
                                 {post.tweet?.description}
                               </p>
                               {post &&
@@ -326,11 +327,8 @@ const SingleTweetById = () => {
                                 )}
                             </div>
                             <div>
-                              <p className="text-[#FFF] font-Poppins text-[1rem] normal font-normal text-start">
-                                Participants:{" "}
-                                <span className="text-[#1FDF00] font-[600]">
-                                  +{post.participants}
-                                </span>
+                              <p className="text-[#A5A5A5] font-Poppins text-[1rem] normal font-normal text-start">
+                                {post.participants} Participants
                               </p>
                             </div>
                           </div>
@@ -471,8 +469,8 @@ const SingleTweetById = () => {
                       {count}/4
                     </span>
                   </div>
-                  <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
-                    <div className="flex flex-col gap-[1rem]">
+                  <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[1.5rem] lg:py-[0.7rem] xl:py-[1.16rem]">
+                    <div className="flex flex-col gap-[0.5rem]">
                       <div
                         onClick={handleLike}
                         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
@@ -582,8 +580,8 @@ const SingleTweetById = () => {
                   </div>
                 </div>
               </main>
-              <div className="flex items-center justify-between mt-[1rem] pt-[1rem] pb-[1rem] bg-[#070C13] rounded-xl px-[0.38rem]">
-                <button className="bg-[#0E161D] px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]">
+              <div className="flex bg-[#0E161D] items-center justify-between mt-[1rem] py-[0.75rem]  rounded-2xl px-[1rem]">
+                <button className=" px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]">
                   <span>
                     <Earn />
                   </span>
@@ -592,10 +590,10 @@ const SingleTweetById = () => {
                   </span>
                 </button>
                 <div className="flex items-center gap-[0.6rem] md:gap-[1.5rem]">
-                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#E1D356]">
-                    5 USDIT
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#E1D356]/75">
+                    5 USDT
                   </span>
-                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#7ABB81]">
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#7ABB81]/75">
                     50 XP
                   </span>
                 </div>
