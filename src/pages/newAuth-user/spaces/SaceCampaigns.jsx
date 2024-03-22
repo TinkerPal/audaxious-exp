@@ -5,9 +5,10 @@ import { ReactComponent as Clock } from "../../../assets/svg/dashboardSvg/clock.
 import { ReactComponent as Task } from "../../../assets/svg/task.svg";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import Card from "../../../components/socialmedia/Card";
+import { useSelector } from "react-redux";
 
-const SpaceCampaigns = ({ campaigns }) => {
-  //   const campaigns = useSelector((state) => state.campaign.campaign);
+const SpaceCampaigns = ({ spaceId }) => {
+  const campaigns = useSelector((state) => state.space.spaceCampaigns);
 
   //   console.log("CAMPAIGNS", campaigns);
   return (
@@ -15,7 +16,7 @@ const SpaceCampaigns = ({ campaigns }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4  gap-x-4 2xl:gap-x-[2.4rem] gap-y-[2.5rem]  pt-[1rem] pl-[0rem] ">
         {campaigns &&
           campaigns.map((post) => (
-            <NavLink key={post.uuid} to={`/engage-portal/${post.title}`}>
+            <NavLink key={post.uuid} to={`/spaces/${spaceId}/${post.uuid}`}>
               <Card>
                 <div className="flex justify-between px-[0.94rem] pt-[0.62rem] ">
                   <div className="flex items-center gap-[0.75rem] overflow-x-auto ">
