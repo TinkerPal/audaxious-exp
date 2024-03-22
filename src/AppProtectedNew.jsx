@@ -24,7 +24,7 @@ const AppProtectedNew = () => {
     import("./pages/newAuth-user/spaces/SpaceDetail")
   );
   const EngagementDetail = lazy(() =>
-    import("./pages/newAuth-user/engagePortal/SingleTweetById")
+    import("./pages/newAuth-user/engagePortal/CampaignDetail")
   );
 
   const SEO = lazy(() => import("./assets/SEO/Meta"));
