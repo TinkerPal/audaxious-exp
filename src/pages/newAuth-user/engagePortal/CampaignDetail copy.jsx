@@ -31,7 +31,7 @@ import {
 } from "./TweeterIntent";
 // import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import { authAction } from "../../../store/authorizationSlice";
@@ -46,7 +46,6 @@ const SingleTweetById = () => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
-  const urlPath = useLocation().pathname;
 
   const POST = useSelector((state) => state.campaign.campaign);
 
@@ -60,8 +59,6 @@ const SingleTweetById = () => {
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
-
-  console.log(urlPath.slice(1, 7));
 
   // useEffect(() => {
   //   const getCampaigns = async () => {
@@ -171,7 +168,6 @@ const SingleTweetById = () => {
     const nextIndex = (currentIndex + 1) % POST.length;
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-
     navigate(`/engage-portal/${nextTweet.title}`);
   };
   const handlePreviousTweet = () => {
@@ -180,20 +176,14 @@ const SingleTweetById = () => {
     if (nextIndex < 0) {
       nextIndex = POST.length - 1;
     }
-
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-
     navigate(`/engage-portal/${nextTweet.title}`);
   };
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
-    if (urlPath.slice(1, 7) === "engage") {
-      navigate(`/engage-portal`);
-    } else if (urlPath.slice(1, 7) === "spaces") {
-      navigate(`/spaces`);
-    }
+    navigate(-1);
   };
 
   useEffect(() => {
@@ -283,7 +273,7 @@ const SingleTweetById = () => {
                           : "text-[#D3D3D3] border-r border-[#19242D]"
                       )}
                     >
-                      Campaigns
+                      Post
                     </span>
                     <span
                       onClick={() => toggleTabHandler(2)}
@@ -322,8 +312,7 @@ const SingleTweetById = () => {
                                 <Clock />
                               </span>
                               <span className="whitespace-nowrap">
-                                {/* Tasks | {post.tasks}/10 */}
-                                Tasks | 0/10
+                                Tasks | {post.tasks}/10
                               </span>
                             </button>
                             <button
