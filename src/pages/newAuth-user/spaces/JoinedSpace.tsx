@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as NoSpace } from "../../../assets/svg/dashboardSvg/noSpace.svg";
+import { useDispatch, useSelector } from "react-redux";
 
 const JoinedSpace = () => {
+  const isAuthenticated = useSelector(
+    (state) => state.authentication.isLogedIn
+  );
+  const loading = useSelector((state) => state.space.loading);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("JOINED SPACE");
+  // }, []);
   return (
     <div className="flex flex-col justify-center mt-[5rem] items-center gap-[1rem]">
       <span>
