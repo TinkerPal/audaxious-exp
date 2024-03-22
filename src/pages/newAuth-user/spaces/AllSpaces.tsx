@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { SPACES } from "../../../utils/postApi";
 import { SPACES } from "../../../utils/postApi";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
@@ -21,7 +21,7 @@ const AllSpaces = ({ onCreateSpace }) => {
 
   const spaceArray = useSelector((state) => state.space.space);
   const loading = useSelector((state) => state.space.loading);
-
+  const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
   const createSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -37,16 +37,19 @@ const AllSpaces = ({ onCreateSpace }) => {
       dispatch(authAction.onOpen());
       return;
     }
-    dispatch(spaceActions.setLoading(true));
+    // dispatch(spaceActions.setLoading(true));
     try {
+      setSelectedId(id);
       const result = await dispatch(joinSpace(id));
       dispatch(spaceActions.setLoading(false));
       toast.success(result.message);
+      setSelectedId(null);
 
       console.log("JOINSPACE", result);
     } catch (error) {
       dispatch(spaceActions.setLoading(false));
       toast.error(error.response.data.error);
+      setSelectedId(null);
     }
   };
   return (
@@ -80,12 +83,12 @@ const AllSpaces = ({ onCreateSpace }) => {
                             {space.title}
                           </span>{" "}
                         </div>
-                        {loading && (
-                          <div className="">
+                        {selectedId === space.uuid && (
+                          <div key={space.uuid} className="">
                             <Loading />
                           </div>
                         )}
-                        {!loading && (
+                        {selectedId !== space.uuid && (
                           <button
                             type="button"
                             onClick={(e) => {
