@@ -180,7 +180,7 @@ const SpaceCampaignDetails = () => {
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
 
-    navigate(`/spaces/space11/${nextTweet.uuid}`);
+    navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
   };
   const handlePreviousTweet = () => {
     const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
@@ -192,7 +192,7 @@ const SpaceCampaignDetails = () => {
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
 
-    navigate(`/spaces/space11/${nextTweet.uuid}`);
+    navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
   };
 
   const navigate = useNavigate();
