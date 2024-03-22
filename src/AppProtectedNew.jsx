@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 // import Landing from "./pages/landing/Landing";
 import Layout from "./layout/Layout";
+// import SpaceCampaignDetails from "./pages/newAuth-user/spaces/SpaceCampaignDetails";
 // import Home from "./pages/Homes/Home";
 
 const AppProtectedNew = () => {
@@ -26,7 +27,9 @@ const AppProtectedNew = () => {
   const EngagementDetail = lazy(() =>
     import("./pages/newAuth-user/engagePortal/CampaignDetail")
   );
-
+  const SpaceCampaignDetails = lazy(() =>
+    import("./pages/newAuth-user/spaces/SpaceCampaignDetails")
+  );
   const SEO = lazy(() => import("./assets/SEO/Meta"));
   return (
     <>
@@ -49,7 +52,10 @@ const AppProtectedNew = () => {
           </Route>
           <Route path="/spaces" element={<DashboardLayout />}>
             <Route index={true} element={<Spaces />} />
-            <Route path=":spaceId" element={<SpaceDetail />} />
+            <Route path=":spaceId">
+              <Route index={true} element={<SpaceDetail />} />
+              <Route path=":campaignId" element={<SpaceCampaignDetails />} />
+            </Route>
             <Route />
           </Route>
         </Routes>
