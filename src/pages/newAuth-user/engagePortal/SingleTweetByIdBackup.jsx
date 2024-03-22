@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 
 import { ReactComponent as ProfilePicture } from "../../../assets/svg/dashboardSvg/profilePic.svg";
@@ -36,21 +36,13 @@ import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import { authAction } from "../../../store/authorizationSlice";
 import VerifyTweeter from "../authentication/VerifyTweeter";
-import { getCampaignById } from "../../../store/campaignActions";
-import Loading from "../../Homes/Loading";
 
 const SingleTweetById = () => {
   const checkTweetId = useParams();
   const tweet = getTweetById(checkTweetId.postId);
-  // const [post, setPost] = useState(tweet);
+  const [post, setPost] = useState(tweet);
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
-  const [post, setPost] = useState({});
-
-  const POST = useSelector((state) => state.campaign.campaign);
-
-  const params = useParams();
-  const campaignId = params.postId;
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
@@ -59,18 +51,6 @@ const SingleTweetById = () => {
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
-
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCampaigns();
-  // }, [dispatch, campaignId]);
 
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -164,46 +144,25 @@ const SingleTweetById = () => {
   };
 
   const handleNextTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.title === post.title);
+    const currentIndex = POST.findIndex((item) => item.id === post.id);
     const nextIndex = (currentIndex + 1) % POST.length;
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-    navigate(`/engage-portal/${nextTweet.title}`);
   };
   const handlePreviousTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.title === post.title);
+    const currentIndex = POST.findIndex((item) => item.id === post.id);
     let nextIndex = (currentIndex - 1) % POST.length;
     if (nextIndex < 0) {
       nextIndex = POST.length - 1;
     }
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-    navigate(`/engage-portal/${nextTweet.title}`);
   };
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
     navigate(-1);
   };
-
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getCampaignById(campaignId));
-        setPost(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCampaigns();
-  }, [dispatch, campaignId]);
-
-  if (!post) {
-    return <Loading />;
-  }
-
-  console.log(campaignId);
-  console.log(post);
 
   return (
     <>
@@ -227,7 +186,7 @@ const SingleTweetById = () => {
                     Cadabra Finance
                   </span>
                   <span className="text-[#D3D3D3] font-[275] text-[0.8125rem] font-Poppins normal-case">
-                    @{post.title}
+                    @{post.userName}
                   </span>
                 </div>
               </div>
@@ -300,35 +259,35 @@ const SingleTweetById = () => {
                   </div>
                   <div className={clsx(toggle === 1 ? "block" : "hidden")}>
                     <div
-                      key={"post.id"}
+                      key={post.id}
                       className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
                     >
                       <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
-                        <div className="flex flex-row items-center justify-between gap-[0.75rem]  w-full overflow-x-auto">
-                          <div className="flex gap-2">
-                            {" "}
-                            <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
-                              <span>
-                                <Clock />
-                              </span>
-                              <span className="whitespace-nowrap">
-                                Tasks | {post.tasks}/10
-                              </span>
-                            </button>
-                            <button
-                              className={clsx(
-                                "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px] bg-[#C556E1]/5  border-[#C556E1]/25"
-                              )}
-                            >
-                              <span className="whitespace-nowrap flex">
-                                Earn | {post.points} XP
-                                {/* {post.coin.eth
+                        <div className="flex items-center gap-[0.75rem] overflow-x-auto">
+                          <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
+                            <span>
+                              <Clock />
+                            </span>
+                            <span className="whitespace-nowrap">
+                              Tasks | {post.tasks}/10
+                            </span>
+                          </button>
+                          <button
+                            className={clsx(
+                              "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]",
+                              post.coin.eth
+                                ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
+                                : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
+                            )}
+                          >
+                            <span className="whitespace-nowrap flex">
+                              Earn |{" "}
+                              {post.coin.eth
                                 ? `${post.coin.eth} ETH`
-                                : `${post.coin.bnb} BNB`} */}
-                              </span>
-                            </button>
-                          </div>
-
+                                : `${post.coin.bnb} BNB`}
+                            </span>
+                            <span>{post.coin.eth ? <Eth /> : <Bnb />}</span>
+                          </button>
                           <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
                             {"12 Days left"}
                           </span>
@@ -337,31 +296,19 @@ const SingleTweetById = () => {
                       <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
                       <div className="relative pb-[13px] px-[1rem]">
                         <div className="text-neutral-400 flex flex-col gap-[13px]">
-                          <div className="flex items-center gap-3 text-gray-200 text-lg">
+                          <div className="flex items-center gap-3">
                             <div>
-                              {post.profilePicture && (
-                                <img
-                                  src={post?.profilePicture}
-                                  width="100"
-                                  height={"100"}
-                                  className="w-[4rem] h-[3rem] object-cover rounded-[4px]"
-                                />
-                              )}
-                              {!post.profilePicture && (
-                                <div className="w-[4rem] h-[3rem] rounded-[4px] bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46] uppercase font-Poppins font-[600]">
-                                  {post.title && post.title.slice(0, 1)}
-                                </div>
-                              )}
+                              <ProfilePicture />
                             </div>
 
-                            <span>{post.title}</span>
+                            <span>@{post.userName}</span>
                           </div>
                           <div className="flex flex-col gap-[1rem]">
                             <div className="w-[100%] flex flex-col gap-[1rem]">
-                              <p className="text-[0.95rem] text-gray-300 text-start">
-                                {post.description}
+                              <p className="text-[0.95rem] font-Poppins text-[#cecece] text-start">
+                                {post.tweet?.description}
                               </p>
-                              {/* {post &&
+                              {post &&
                                 post.tweet &&
                                 post.tweet.images.length > 0 && (
                                   <div className="flex gap-[20px]">
@@ -377,11 +324,11 @@ const SingleTweetById = () => {
                                       </div>
                                     ))}
                                   </div>
-                                )} */}
+                                )}
                             </div>
                             <div>
                               <p className="text-[#A5A5A5] font-Poppins text-[1rem] normal font-normal text-start">
-                                {post.participants || 0} Participants
+                                {post.participants} Participants
                               </p>
                             </div>
                           </div>
@@ -395,24 +342,16 @@ const SingleTweetById = () => {
                       <div>
                         <div className="flex items-center justify-center gap-[1rem] border-[#314048] border-b-[0.5px] py-[1.19rem]">
                           <span>
-                            <div>
-                              {post.profilePicture && (
-                                <img
-                                  src={post?.profilePicture}
-                                  width="100"
-                                  height={"100"}
-                                  className="w-[4rem] h-[3rem] object-cover rounded-[4px]"
-                                />
-                              )}
-                              {!post.profilePicture && (
-                                <div className="w-[4rem] h-[3rem] rounded-[4px] bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46] uppercase font-Poppins font-[600]">
-                                  {post.title && post.title.slice(0, 1)}
-                                </div>
-                              )}
-                            </div>
+                            <img
+                              width={"48"}
+                              height={"48"}
+                              src={post.profilePicture}
+                              className="h-[48px] w-[48px] object-cover rounded-full"
+                              alt=""
+                            />
                           </span>
                           <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.4rem]">
-                            {post.title}
+                            {post.userName}
                           </p>
                         </div>
                         <div className="px-[1.25rem] py-[0.69rem]">
@@ -530,7 +469,7 @@ const SingleTweetById = () => {
                       {count}/4
                     </span>
                   </div>
-                  <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
+                  <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[1.5rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                     <div className="flex flex-col gap-[0.5rem]">
                       <div
                         onClick={handleLike}
