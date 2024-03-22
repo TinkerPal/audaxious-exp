@@ -52,12 +52,15 @@ const SpaceDetail = () => {
     getSpaces();
   }, [dispatch, spaceId]);
 
+  console.log(spaceDetail.uuid);
+
   useEffect(() => {
     const getCampaigns = async () => {
       try {
         const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
 
-        setCampaigns(result.data);
+        // setCampaigns(result.data);
+        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
       } catch (error) {
         console.log(error);
       }
@@ -258,7 +261,7 @@ const SpaceDetail = () => {
           </div>
           <div className="ml-[-1rem] lg:ml-[-2rem] xl:[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
           <div className={clsx("mt-[1rem]", toggle === 1 ? "block" : "hidden")}>
-            <SpaceCampaigns campaigns={campaigns} />
+            <SpaceCampaigns spaceId={spaceId} />
           </div>
           <div className={clsx("mt-[1rem]", toggle === 2 ? "block" : "hidden")}>
             <div className="flex gap-[2rem] xl:gap-[5rem] flex-wrap md:flex-nowrap">
