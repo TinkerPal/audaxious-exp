@@ -50,6 +50,8 @@ const SingleTweetById = () => {
 
   const POST = useSelector((state) => state.campaign.campaign);
 
+  console.log("second", POST);
+
   const params = useParams();
   const campaignId = params.postId;
 
@@ -67,7 +69,7 @@ const SingleTweetById = () => {
   //   const getCampaigns = async () => {
   //     try {
   //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
+  //       setPost(result.data );
   //     } catch (error) {
   //       console.log(error);
   //     }
@@ -167,15 +169,15 @@ const SingleTweetById = () => {
   };
 
   const handleNextTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.title === post.title);
+    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
     const nextIndex = (currentIndex + 1) % POST.length;
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
 
-    navigate(`/engage-portal/${nextTweet.title}`);
+    navigate(`/engage-portal/${nextTweet.uuid}`);
   };
   const handlePreviousTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.title === post.title);
+    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
     let nextIndex = (currentIndex - 1) % POST.length;
     if (nextIndex < 0) {
       nextIndex = POST.length - 1;
@@ -184,7 +186,7 @@ const SingleTweetById = () => {
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
 
-    navigate(`/engage-portal/${nextTweet.title}`);
+    navigate(`/engage-portal/${nextTweet.uuid}`);
   };
 
   const navigate = useNavigate();
