@@ -3,6 +3,7 @@ import leftlogos from "../../assets/svg/assets/left-logos.png";
 import rightlogos from "../../assets/svg/assets/right-logos.png";
 import toplogos from "../../assets/svg/assets/top-logos.png";
 import bottomlogos from "../../assets/svg/assets/bottom-logos.png";
+import { Link } from "react-router-dom";
 
 const Blockchains = () => {
   return (
@@ -29,19 +30,20 @@ const Blockchains = () => {
               Support 10+ Blockchains
             </h2>
             <p className="mt-6 text-lg font-normal text-gray-200 font-pj">
-              With lots of unique blocks, you can easily build a page without
-              coding. Build your next landing page.
+              AudaXious currently supports over 10 blockchains and several
+              wallet integrations. As we continue to expand, more blockchains
+              will be integrated.
             </p>
             <div className="relative inline-flex mt-12 group">
-              <a
-                href="#"
-                title=""
+              <Link
+                to={"/engage-portal"}
+                title="App"
                 className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all duration-200 bg-[#79C4EC] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 role="button"
               >
                 {" "}
-                Get Started
-              </a>
+                Launch App
+              </Link>
             </div>
           </div>
 
