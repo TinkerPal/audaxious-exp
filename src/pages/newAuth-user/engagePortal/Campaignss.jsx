@@ -19,7 +19,7 @@ const Campaigns = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4  gap-x-4 2xl:gap-x-[2.4rem] gap-y-[2.5rem]  pt-[1rem] pl-[0rem] ">
         {campaigns &&
           campaigns.map((post) => (
-            <NavLink key={post._id} to={`/engage-portal/${post._id}`}>
+            <NavLink key={post.uuid} to={`/engage-portal/${post.title}`}>
               <Card>
                 <div className="flex justify-between px-[0.94rem] pt-[0.62rem] ">
                   <div className="flex items-center gap-[0.75rem] overflow-x-auto ">

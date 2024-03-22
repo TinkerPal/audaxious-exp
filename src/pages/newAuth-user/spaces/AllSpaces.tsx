@@ -57,7 +57,7 @@ const AllSpaces = ({ onCreateSpace }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-[2.5rem]">
             {spaceArray &&
               spaceArray.map((space) => (
-                <NavLink to={`/spaces/${space.uuid}`} key={space.uuid}>
+                <NavLink to={`/spaces/${space.title}`} key={space.uuid}>
                   <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                     <div className="flex flex-col gap-[0.75rem]">
                       <div className="flex items-center justify-between">
