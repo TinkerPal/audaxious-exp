@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const spaceInitialState = {
   space: [],
   loading: null,
+  spaceCampaigns: [],
 };
 
 const spaceSlice = createSlice({
@@ -14,6 +15,9 @@ const spaceSlice = createSlice({
     },
     replaceSpace(state, actions) {
       state.space = actions.payload;
+    },
+    replaceSpaceCampaigns(state, actions) {
+      state.spaceCampaigns = actions.payload;
     },
   },
 });
