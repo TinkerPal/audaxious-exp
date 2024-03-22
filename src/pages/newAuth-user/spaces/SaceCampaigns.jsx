@@ -1,19 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { POST } from "../../../utils/postApi";
 import clsx from "clsx";
 import { ReactComponent as Clock } from "../../../assets/svg/dashboardSvg/clock.svg";
-import { ReactComponent as Bnb } from "../../../assets/svg/dashboardSvg/bnb.svg";
-import { ReactComponent as Eth } from "../../../assets/svg/dashboardSvg/eth.svg";
 import { ReactComponent as Task } from "../../../assets/svg/task.svg";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import Card from "../../../components/socialmedia/Card";
 
-const Campaigns = () => {
-  const campaigns = useSelector((state) => state.campaign.campaign);
+const SpaceCampaigns = ({ campaigns }) => {
+  //   const campaigns = useSelector((state) => state.campaign.campaign);
 
-  console.log("Capaings ", campaigns);
+  //   console.log("CAMPAIGNS", campaigns);
   return (
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4  gap-x-4 2xl:gap-x-[2.4rem] gap-y-[2.5rem]  pt-[1rem] pl-[0rem] ">
@@ -28,7 +24,7 @@ const Campaigns = () => {
                         <Clock />
                       </span>
                       <span className="whitespace-nowrap">
-                        Tasks | {post.taskCount}/{post.tasks.length}
+                        {/* Tasks | {post.taskCount}/{post.tasks.length} */}
                       </span>
                     </button>
                     <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
@@ -65,15 +61,16 @@ const Campaigns = () => {
                       )}
                       {!post.profilePicture && (
                         <div className="w-[4rem] h-[3rem] rounded-[4px] bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46] uppercase font-Poppins font-[600]">
-                          {post.space_title.slice(0, 1)}
+                          {/* {post.space_title.slice(0, 1)} */}
+                          {post.title.slice(0, 1)}
                         </div>
                       )}
                     </div>
 
                     <span className="text-[0.75rem] text-[#FFF] font-[400]">
-                      {post.space_title.length > 10
+                      {/* {post.space_title.length > 10
                         ? post.space_title.slice(0, 10) + "..."
-                        : post.space_title}
+                        : post.space_title} */}
                     </span>
                   </div>
 
@@ -113,4 +110,4 @@ const Campaigns = () => {
   );
 };
 
-export default Campaigns;
+export default SpaceCampaigns;

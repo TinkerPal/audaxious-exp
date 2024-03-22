@@ -20,10 +20,14 @@ import { getSpaceById, joinSpace } from "../../../store/spaceActions";
 import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
 import { toast } from "react-toastify";
+import Layout from "../../../layout/Layout";
+import { getAllCampaignsBySpace } from "../../../store/campaignActions";
+import SpaceCampaigns from "./SaceCampaigns";
 
 const SpaceDetail = () => {
   const [toggle, setToggle] = useState(1);
   const [spaceDetail, setSpaceDetail] = useState({});
+  const [campaigns, setCampaigns] = useState([]);
   //   const [selectedPostId, setSelectedPostId] = useState(null);
   const dispatch = useDispatch();
   // const token = getToken();
@@ -39,6 +43,7 @@ const SpaceDetail = () => {
     const getSpaces = async () => {
       try {
         const result = await dispatch(getSpaceById(spaceId));
+        console.log(result.data);
         setSpaceDetail(result.data);
       } catch (error) {
         console.log(error);
@@ -46,6 +51,21 @@ const SpaceDetail = () => {
     };
     getSpaces();
   }, [dispatch, spaceId]);
+
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
+
+        setCampaigns(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (spaceDetail.uuid && toggle === 1) {
+      getCampaigns();
+    }
+  }, [dispatch, toggle, spaceDetail]);
 
   const joinSpaceHandler = async () => {
     if (!isAuthenticated) {
@@ -74,7 +94,7 @@ const SpaceDetail = () => {
   //   };
 
   if (!spaceDetail) {
-    return <Loading />;
+    return <Layout />;
   }
   return (
     <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] md:border-l border-opacity-[80%] ml-[0.7rem] md:ml-[2rem] xl:ml-[0.7rem]">
@@ -238,10 +258,7 @@ const SpaceDetail = () => {
           </div>
           <div className="ml-[-1rem] lg:ml-[-2rem] xl:[-2rem] w-[100%] h-[1px] bg-[#19242D]"></div>
           <div className={clsx("mt-[1rem]", toggle === 1 ? "block" : "hidden")}>
-            <Twitter
-            //   onLoadTweet={loadTweetByIdHandler}
-            //   selectedPostId={selectedPostId}
-            />
+            <SpaceCampaigns campaigns={campaigns} />
           </div>
           <div className={clsx("mt-[1rem]", toggle === 2 ? "block" : "hidden")}>
             <div className="flex gap-[2rem] xl:gap-[5rem] flex-wrap md:flex-nowrap">

@@ -9,7 +9,10 @@ import JoinedSpace from "./JoinedSpace";
 import { Dialog } from "@headlessui/react";
 import CreateSpace from "./CreateSpace";
 import { useDispatch } from "react-redux";
-import { getAllMySpaces } from "../../../store/spaceActions";
+import {
+  getAllJoinedSpaces,
+  getAllMySpaces,
+} from "../../../store/spaceActions";
 import { spaceActions } from "../../../store/spaceSlice";
 
 const Spaces = () => {
@@ -37,6 +40,24 @@ const Spaces = () => {
     };
     if (toggle === 2) {
       mySpaces();
+    }
+  }, [toggle, dispatch]);
+  useEffect(() => {
+    const joinedSpaces = async () => {
+      dispatch(spaceActions.setLoading(true));
+      try {
+        const result = await dispatch(getAllJoinedSpaces());
+        dispatch(spaceActions.setLoading(false));
+        console.log(result.data);
+
+        // console.log("My SPACES", result.data);
+      } catch (error) {
+        dispatch(spaceActions.setLoading(false));
+        console.log(error);
+      }
+    };
+    if (toggle === 3) {
+      joinedSpaces();
     }
   }, [toggle, dispatch]);
 
