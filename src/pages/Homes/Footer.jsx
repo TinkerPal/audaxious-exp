@@ -97,9 +97,11 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
+                  href="https://discord.gg/MAXzr3Za"
                   title="Discord"
                   className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     className="w-[15px] h-auto"
@@ -117,9 +119,11 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="#"
-                  title=""
+                  href="https://github.com/AudaXious"
+                  title="github"
                   className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     className="w-4 h-4"
