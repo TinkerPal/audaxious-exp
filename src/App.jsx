@@ -1,7 +1,7 @@
-import useAuthUser from "./hooks/useAuthUser";
+// import useAuthUser from "./hooks/useAuthUser";
 
-import AppProtected from "./AppProtected";
-import AppPublic from "./AppPublic";
+// import AppProtected from "./AppProtected";
+// import AppPublic from "./AppPublic";
 import Wagmi from "./config/wagmi/Wagmi";
 import AppProtectedNew from "./AppProtectedNew";
 import { useEffect } from "react";
@@ -55,7 +55,7 @@ function App() {
     const getSpaces = async () => {
       try {
         const result = await dispatch(getAllSpaces());
-        console.log(result);
+        // console.log(result);
         dispatch(spaceActions.replaceSpace(result.data));
         // console.log(result.data);
       } catch (error) {
@@ -70,7 +70,7 @@ function App() {
         const result = await dispatch(getAllCampaigns());
         // console.log("CAPAIGNS", result);
         dispatch(campaignActions.replaceCampaign(result.data));
-        // console.log(result.data);
+        // console.log("FIRST LEVEL CAMPAIGNS", result.data);
       } catch (error) {
         console.log(error);
       }
