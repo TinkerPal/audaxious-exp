@@ -411,7 +411,7 @@ const SingleTweetById = () => {
                               )}
                             </div>
                           </span>
-                          <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.4rem]">
+                          <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.2rem]">
                             {post.title}
                           </p>
                         </div>
@@ -465,8 +465,8 @@ const SingleTweetById = () => {
                   <div className={clsx(toggle === 3 ? "block" : "hidden")}>
                     <div className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover">
                       <div className="border-[#314048] border-b-[0.5px] py-[1rem]">
-                        <p className="text-[#FFF] font-Poppins text-[1.4rem] font-normal">
-                          Top Earners
+                        <p className="text-[#FFF] font-Poppins text-[1.2rem] font-normal">
+                          Leaderboard
                         </p>
                       </div>
                       <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
@@ -521,11 +521,11 @@ const SingleTweetById = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
-                  <div className="p-[0.5rem] flex justify-between items-center">
-                    <span className="whitespace-nowrap font-Poppins text-[1rem] lg:text-[1.25rem] normal-case font-[300] text-[#E8E8E8]">
-                      To complete this task
-                    </span>
+                <div className="flex flex-col gap-[2rem]  w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
+                  <div className="p-[0.5rem] flex justify-between text-center  ">
+                    <div className="whitespace-nowrap flex flex-row font-Poppins text-[1rem] lg:text-[1.25rem]  normal-case font-[300] text-[#E8E8E8]">
+                      Complete the tasks
+                    </div>
                     <span className="font-Poppins text-[1.25rem] font-[300] text-[#E8E8E8]">
                       {count}/4
                     </span>
