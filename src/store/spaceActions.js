@@ -132,3 +132,24 @@ export const getAllMySpaces = () => {
     }
   };
 };
+export const getAllJoinedSpaces = () => {
+  return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const getJoinedSpace = async () => {
+      const response = createAxiousInstance(token);
+      try {
+        const responseData = await response.get(`/spaces/user/joined/all`);
+        return responseData.data;
+      } catch (error) {
+        console.log("throw Error", error);
+        throw error;
+      }
+    };
+    try {
+      return await getJoinedSpace();
+    } catch (error) {
+      console.log("throw Error", error);
+      throw error;
+    }
+  };
+};
