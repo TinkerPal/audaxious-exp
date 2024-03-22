@@ -31,7 +31,7 @@ import {
 } from "./TweeterIntent";
 // import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import { authAction } from "../../../store/authorizationSlice";
@@ -46,7 +46,6 @@ const SingleTweetById = () => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
-  const urlPath = useLocation().pathname;
 
   const POST = useSelector((state) => state.campaign.campaign);
 
@@ -60,8 +59,6 @@ const SingleTweetById = () => {
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
-
-  console.log(urlPath.slice(1, 7));
 
   // useEffect(() => {
   //   const getCampaigns = async () => {
@@ -171,7 +168,6 @@ const SingleTweetById = () => {
     const nextIndex = (currentIndex + 1) % POST.length;
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-
     navigate(`/engage-portal/${nextTweet.title}`);
   };
   const handlePreviousTweet = () => {
@@ -180,20 +176,14 @@ const SingleTweetById = () => {
     if (nextIndex < 0) {
       nextIndex = POST.length - 1;
     }
-
     const nextTweet = POST[nextIndex];
     setPost(nextTweet);
-
     navigate(`/engage-portal/${nextTweet.title}`);
   };
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
-    if (urlPath.slice(1, 7) === "engage") {
-      navigate(`/engage-portal`);
-    } else if (urlPath.slice(1, 7) === "spaces") {
-      navigate(`/spaces`);
-    }
+    navigate(-1);
   };
 
   useEffect(() => {
@@ -283,7 +273,7 @@ const SingleTweetById = () => {
                           : "text-[#D3D3D3] border-r border-[#19242D]"
                       )}
                     >
-                      Campaigns
+                      Post
                     </span>
                     <span
                       onClick={() => toggleTabHandler(2)}
@@ -314,32 +304,31 @@ const SingleTweetById = () => {
                       className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover"
                     >
                       <div className="flex justify-between mx-[0.81rem] mt-[0.9rem]">
-                        <div className="flex flex-row items-center justify-between gap-[0.75rem]  w-full overflow-x-auto">
-                          <div className="flex gap-2">
-                            {" "}
-                            <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
-                              <span>
-                                <Clock />
-                              </span>
-                              <span className="whitespace-nowrap">
-                                {/* Tasks | {post.tasks}/10 */}
-                                Tasks | 0/10
-                              </span>
-                            </button>
-                            <button
-                              className={clsx(
-                                "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px] bg-[#C556E1]/5  border-[#C556E1]/25"
-                              )}
-                            >
-                              <span className="whitespace-nowrap flex">
-                                Earn | {post.points} XP
-                                {/* {post.coin.eth
+                        <div className="flex items-center gap-[0.75rem] overflow-x-auto">
+                          <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
+                            <span>
+                              <Clock />
+                            </span>
+                            <span className="whitespace-nowrap">
+                              Tasks | {"post.tasks"}/10
+                            </span>
+                          </button>
+                          <button
+                            className={clsx(
+                              "flex items-center gap-1 border-[1px] border-opacity-[50%] px-[9px] py-[6px] font-Poppins text-[0.8rem] font-[300] text-[#C556E1] rounded-[26px]"
+                              // post.coin.eth
+                              //   ? "bg-[#1F2030] text-[#C556E1] border-[#C556E1]"
+                              //   : "bg-[#EEEFA2] bg-opacity-[10%] text-[#E1D356] border-[#C0D925] border-opacity-[50%]"
+                            )}
+                          >
+                            <span className="whitespace-nowrap flex">
+                              Earn | {post.points}
+                              {/* {post.coin.eth
                                 ? `${post.coin.eth} ETH`
                                 : `${post.coin.bnb} BNB`} */}
-                              </span>
-                            </button>
-                          </div>
-
+                            </span>
+                            {/* <span>{post.coin.eth ? <Eth /> : <Bnb />}</span> */}
+                          </button>
                           <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
                             {"12 Days left"}
                           </span>
@@ -348,7 +337,7 @@ const SingleTweetById = () => {
                       <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
                       <div className="relative pb-[13px] px-[1rem]">
                         <div className="text-neutral-400 flex flex-col gap-[13px]">
-                          <div className="flex items-center gap-3 text-gray-200 text-lg">
+                          <div className="flex items-center gap-3">
                             <div>
                               {post.profilePicture && (
                                 <img
@@ -365,11 +354,11 @@ const SingleTweetById = () => {
                               )}
                             </div>
 
-                            <span>{post.title}</span>
+                            <span>@{post.title}</span>
                           </div>
                           <div className="flex flex-col gap-[1rem]">
                             <div className="w-[100%] flex flex-col gap-[1rem]">
-                              <p className="text-[0.95rem] text-gray-300 text-start">
+                              <p className="text-[0.95rem] text-[#E8E8E8] text-start">
                                 {post.description}
                               </p>
                               {/* {post &&
@@ -391,8 +380,11 @@ const SingleTweetById = () => {
                                 )} */}
                             </div>
                             <div>
-                              <p className="text-[#A5A5A5] font-Poppins text-[1rem] normal font-normal text-start">
-                                {post.participants || 0} Participants
+                              <p className="text-[#FFF] font-Poppins text-[1rem] normal font-normal text-start">
+                                Participants:{" "}
+                                <span className="text-[#1FDF00] font-[600]">
+                                  +{"post.participants"}
+                                </span>
                               </p>
                             </div>
                           </div>
@@ -422,7 +414,7 @@ const SingleTweetById = () => {
                               )}
                             </div>
                           </span>
-                          <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.2rem]">
+                          <p className="text-[#FFF] font-Poppins normal-case font-normal text-[1.4rem]">
                             {post.title}
                           </p>
                         </div>
@@ -476,8 +468,8 @@ const SingleTweetById = () => {
                   <div className={clsx(toggle === 3 ? "block" : "hidden")}>
                     <div className="border-[#314048] border-[0.5px] rounded-[20px] bg-heroCustom bg-no-repeat bg-cover">
                       <div className="border-[#314048] border-b-[0.5px] py-[1rem]">
-                        <p className="text-[#FFF] font-Poppins text-[1.2rem] font-normal">
-                          Leaderboard
+                        <p className="text-[#FFF] font-Poppins text-[1.4rem] font-normal">
+                          Top Earners
                         </p>
                       </div>
                       <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
@@ -532,17 +524,17 @@ const SingleTweetById = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-[2rem]  w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
-                  <div className="p-[0.5rem] flex justify-between text-center  ">
-                    <div className="whitespace-nowrap flex flex-row font-Poppins text-[1rem] lg:text-[1.25rem]  normal-case font-[300] text-[#E8E8E8]">
-                      Complete the tasks
-                    </div>
+                <div className="flex flex-col gap-[2rem] w-[100%] md:w-[19.5rem] lg:w-[25rem] xl:w-[30rem]">
+                  <div className="p-[0.5rem] flex justify-between items-center">
+                    <span className="whitespace-nowrap font-Poppins text-[1rem] lg:text-[1.25rem] normal-case font-[300] text-[#E8E8E8]">
+                      To complete this task
+                    </span>
                     <span className="font-Poppins text-[1.25rem] font-[300] text-[#E8E8E8]">
                       {count}/4
                     </span>
                   </div>
                   <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
-                    <div className="flex flex-col gap-[0.5rem]">
+                    <div className="flex flex-col gap-[1rem]">
                       <div
                         onClick={handleLike}
                         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
@@ -652,8 +644,8 @@ const SingleTweetById = () => {
                   </div>
                 </div>
               </main>
-              <div className="flex bg-[#0E161D] items-center justify-between mt-[1rem] py-[0.75rem]  rounded-2xl px-[1rem]">
-                <button className=" px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]">
+              <div className="flex items-center justify-between mt-[1rem] pt-[1rem] pb-[1rem] bg-[#070C13] rounded-xl px-[0.38rem]">
+                <button className="bg-[#0E161D] px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]">
                   <span>
                     <Earn />
                   </span>
@@ -662,10 +654,10 @@ const SingleTweetById = () => {
                   </span>
                 </button>
                 <div className="flex items-center gap-[0.6rem] md:gap-[1.5rem]">
-                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#E1D356]/75">
-                    5 USDT
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#E1D356]">
+                    5 USDIT
                   </span>
-                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#7ABB81]/75">
+                  <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.5rem] border border-[#7ABB81]">
                     50 XP
                   </span>
                 </div>
