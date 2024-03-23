@@ -13,7 +13,7 @@ import Card from "../../../components/socialmedia/Card";
 const Campaigns = () => {
   const campaigns = useSelector((state) => state.campaign.campaign);
 
-  console.log("Capaings ", campaigns);
+  // console.log("Capaings ", campaigns);
   return (
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4  gap-x-4 2xl:gap-x-[2.4rem] gap-y-[2.5rem]  pt-[1rem] pl-[0rem] ">

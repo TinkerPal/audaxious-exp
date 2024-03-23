@@ -22,7 +22,7 @@ import { spaceActions } from "../../../store/spaceSlice";
 import { toast } from "react-toastify";
 import Layout from "../../../layout/Layout";
 import { getAllCampaignsBySpace } from "../../../store/campaignActions";
-import SpaceCampaigns from "./SaceCampaigns";
+import SpaceCampaigns from "./SpaceCampaigns";
 import LeadershipBoard from "./LeadershipBoard";
 import Modal from "../../../components/socialmedia/Modal";
 import CreateCampaign from "./CreateCampaign";
