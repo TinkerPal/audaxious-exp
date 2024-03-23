@@ -66,7 +66,7 @@ const Sidebar = () => {
       <div className="block xl:hidden">
         <MdLineIcon />
       </div>
-      <div className="flex flex-col gap-[0.5rem]">
+      <div className="flex flex-col gap-[0.2rem]">
         <NavLink
           to={"/engage-portal"}
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10  items-center    ${
