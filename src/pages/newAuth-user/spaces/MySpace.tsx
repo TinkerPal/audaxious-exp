@@ -48,7 +48,7 @@ const MySpace = ({ onCreateSpace, mySpaces }) => {
     <div>
       <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
-        <div className="py-[1.47rem] flex flex-col items-center">
+        <div className="py-[1.47rem] flex flex-col ">
           {loading && (
             <div className="">
               <Loading />
@@ -61,6 +61,7 @@ const MySpace = ({ onCreateSpace, mySpaces }) => {
                   space={space}
                   joinSpaceHandler={() => {}}
                   selectedId={null}
+                  display="owner"
                 />
               ))}
           </div>

@@ -57,7 +57,7 @@ const AllSpaces = ({ onCreateSpace }) => {
     <div>
       <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
-        <div className="py-[1.47rem] flex flex-col =">
+        <div className="py-[1.47rem] flex flex-col ">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-[2.5rem]">
             {spaceArray &&
               spaceArray.map((space) => (

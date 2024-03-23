@@ -31,6 +31,7 @@ const SpaceDetail = () => {
   const [toggle, setToggle] = useState(1);
   const [spaceDetail, setSpaceDetail] = useState({});
   const [openCampaignModal, setOpenCampaignModal] = useState(false);
+  const campaigns = useSelector((state) => state.space.spaceCampaigns);
   //   const [selectedPostId, setSelectedPostId] = useState(null);
   const dispatch = useDispatch();
   // const token = getToken();
@@ -197,7 +198,7 @@ const SpaceDetail = () => {
                 {spaceDetail.title}
               </p>
               <p className="text-[#6DE6AE] text-[0.7rem] md:text-[1rem] font-normal font-Poppins">
-                20 Active campaigns
+                {campaigns.length} Active campaigns
               </p>
             </div>
             <div className="w-[100%] md:w-[90%]">

@@ -7,7 +7,8 @@ import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/ret
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { useSelector } from "react-redux";
 
-const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
+//display can either be owner or member
+const SpaceCard = ({ space, selectedId, joinSpaceHandler, display = "" }) => {
   const userId = useSelector((state) => state.authentication.userId);
 
   console.log("USERID", userId);
@@ -65,11 +66,21 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                 )}
               </div>
             )}
+            {display === "owner" && (
+              <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                Owner
+              </span>
+            )}
+            {display === "member" && (
+              <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                Member
+              </span>
+            )}
           </div>
           <div className="py-[0.62rem]">
             <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
-              {space.description.length > 40
-                ? space.description.slice(0, 40) + " ..."
+              {space.description.length > 35
+                ? space.description.slice(0, 35) + " ..."
                 : space.description}
             </p>
           </div>
