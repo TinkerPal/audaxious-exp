@@ -50,7 +50,7 @@ const SingleTweetById = () => {
 
   const POST = useSelector((state) => state.campaign.campaign);
 
-  console.log("second", POST);
+  // console.log("second", POST);
 
   const params = useParams();
   const campaignId = params.postId;
@@ -63,7 +63,7 @@ const SingleTweetById = () => {
     (state) => state.authentication.verifyTweet
   );
 
-  console.log(urlPath.slice(1, 7));
+  // console.log(urlPath.slice(1, 7));
 
   // useEffect(() => {
   //   const getCampaigns = async () => {
@@ -214,14 +214,14 @@ const SingleTweetById = () => {
     return <Loading />;
   }
 
-  console.log(campaignId);
-  console.log(post);
+  // console.log(campaignId);
+  // console.log(post);
 
   return (
     <>
       <VerifyTweeter />
 
-      <Modal onClose={closeIntentModalHandler} open={true}>
+      <Modal onClose={() => {}} open={true}>
         <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
           <div className="text-neutral-300 top-[15px] absolute right-2">
             <span className="cursor-pointer" onClick={closeIntentModalHandler}>
