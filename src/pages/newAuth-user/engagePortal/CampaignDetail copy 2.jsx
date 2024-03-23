@@ -47,7 +47,6 @@ const SingleTweetById = () => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
-  const [processing, setProcessing] = useState(false);
   const urlPath = useLocation().pathname;
 
   const POST = useSelector((state) => state.campaign.campaign);
@@ -124,19 +123,12 @@ const SingleTweetById = () => {
       return;
     }
     if (!post.repost) {
-      setProcessing(true);
       RepostIntent("1763151012615925766");
       const updatedPost = { ...post, repost: true };
-      setTimeout(() => {
-        // After 60 seconds, set processing back to false
-        setProcessing(false);
-        setPost(updatedPost);
-      }, 20000); // 60 seconds in milliseconds
-
+      setPost(updatedPost);
       // setCount((prev) => prev + 1);
     }
   };
-
   const handleFollow = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -554,14 +546,7 @@ const SingleTweetById = () => {
                   </div>
                   <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                     <div className="flex flex-col gap-[0.5rem]">
-                      {/* <SingleAction
-                        handleAction={handleRetweet}
-                        post={post}
-                        processing={processing}
-                        type="repost"
-                      >
-                        Repost this Tweet
-                      </SingleAction> */}
+                      {/* <SingleAction handleAction={handleComment} post={post} /> */}
                       <div
                         onClick={handleLike}
                         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
