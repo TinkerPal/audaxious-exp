@@ -41,6 +41,12 @@ const SpaceDetail = () => {
   );
 
   const loading = useSelector((state) => state.space.loading);
+  const userId = useSelector((state) => state.authentication.userId);
+
+  let showJoinButton = false;
+  if (userId === spaceDetail.creator_uuid) {
+    showJoinButton = true;
+  }
 
   useEffect(() => {
     const getSpaces = async () => {
@@ -165,21 +171,23 @@ const SpaceDetail = () => {
                   </span>
                 </div>
               </div>
-              <div>
-                {loading && (
-                  <div className="">
-                    <Loading />
-                  </div>
-                )}
-                {!loading && (
-                  <button
-                    onClick={joinSpaceHandler}
-                    className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
-                  >
-                    Join space
-                  </button>
-                )}
-              </div>
+              {!showJoinButton && (
+                <div>
+                  {loading && (
+                    <div className="">
+                      <Loading />
+                    </div>
+                  )}
+                  {!loading && (
+                    <button
+                      onClick={joinSpaceHandler}
+                      className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                    >
+                      Join space
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -192,8 +200,11 @@ const SpaceDetail = () => {
                 20 Active campaigns
               </p>
             </div>
-            <div className="w-[100%] md:w-[90%] max-w-[35rem]">
-              <p className="text-[#A5A5A5] text-[0.875rem] md:text-[1.25rem] leading-[140%] font-Poppins">
+            <div className="w-[100%] md:w-[90%]">
+              <p
+                className="text-[#A5A5A5] text-[0.875rem] md:text-[1.25rem] leading-[140%] font-Poppins"
+                style={{ wordBreak: "break-all" }}
+              >
                 {spaceDetail.description}
               </p>
             </div>
@@ -214,14 +225,16 @@ const SpaceDetail = () => {
                 ))}
             </div>
           </div>
-          <div className="mt-[1rem]">
-            <button
-              onClick={openCreateCampaignModal}
-              className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
-            >
-              Create campaign
-            </button>
-          </div>
+          {showJoinButton && (
+            <div className="mt-[1rem]">
+              <button
+                onClick={openCreateCampaignModal}
+                className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+              >
+                Create campaign
+              </button>
+            </div>
+          )}
           <div className="mt-[2rem]">
             <div className="flex text-[1rem] font-Poppins font-[300]">
               <div
