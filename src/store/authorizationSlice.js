@@ -8,12 +8,16 @@ const authenticationInitialState = {
   loading: null,
   userName: "",
   tweeterModal: false,
+  userId: "",
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState: authenticationInitialState,
   reducers: {
+    setUserId(state, actions) {
+      state.userId = actions.payload;
+    },
     onOpenTweeterModal(state, actions) {
       state.tweeterModal = actions.payload;
     },
