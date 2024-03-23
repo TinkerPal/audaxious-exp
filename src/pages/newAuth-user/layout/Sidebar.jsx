@@ -40,10 +40,10 @@ const Sidebar = () => {
   // };
 
   return (
-    <div className="flex flex-col gap-3 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
+    <div className="flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
       <NavLink
         to={"/dashboard"}
-        className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+        className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
           path === "/dashboard" && "bg-[#79C4EC]/10"
         }`}
       >
@@ -57,7 +57,7 @@ const Sidebar = () => {
             path === "/dashboard" ? "text-[#79C4EC]" : "text-[#818282]"
           )}
         >
-          Dashboard
+          Discover
         </div>
       </NavLink>
       <div className="hidden xl:block">
@@ -69,7 +69,7 @@ const Sidebar = () => {
       <div className="flex flex-col gap-[0.2rem]">
         <NavLink
           to={"/engage-portal"}
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10  items-center    ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10  items-center    ${
             path === "/engage-portal" && "bg-[#79C4EC]/10"
           }`}
         >
@@ -90,7 +90,7 @@ const Sidebar = () => {
           </span>
         </NavLink>
         <NavLink
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "/spaces" && "bg-[#79C4EC]/10"
           }`}
           to={"/spaces"}
@@ -108,7 +108,7 @@ const Sidebar = () => {
           </span>
         </NavLink>
         <NavLink
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
         >
@@ -119,7 +119,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
         >
@@ -137,9 +137,9 @@ const Sidebar = () => {
         <MdLineIcon />
       </div>
 
-      <div className="flex flex-col gap-[0.5rem]">
+      <div className="flex flex-col gap-[0.2rem]">
         <NavLink
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
         >
@@ -148,7 +148,7 @@ const Sidebar = () => {
           </span>
           <span className="hidden xl:block">Profile</span>
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
@@ -157,9 +157,9 @@ const Sidebar = () => {
             <SettingsIcon />
           </span>
           <span className="hidden xl:block">Settings</span>
-        </NavLink>
+        </NavLink> */}
         <NavLink
-          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
         >
@@ -171,7 +171,7 @@ const Sidebar = () => {
         {isAuthenticated && (
           <button
             onClick={onOpenHandler}
-            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
               path === "" && "bg-[#79C4EC]/10"
             }`}
           >
@@ -184,7 +184,7 @@ const Sidebar = () => {
         {!isAuthenticated && (
           <button
             onClick={openLoginModal}
-            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+            className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
               path === "" && "bg-[#79C4EC]/10"
             }`}
           >
@@ -201,7 +201,7 @@ const Sidebar = () => {
             <LogoMd fill={"#818282"} />
           </span>
           <span className="hidden xl:block font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
-            audaXious version 1.1.0
+            AudaXious Platform
           </span>
           <span className="block xl:hidden font-Poppins text-[#818282] text-[0.8rem] normal-case font-[400] leading-[150%]">
             V 1.1.0
