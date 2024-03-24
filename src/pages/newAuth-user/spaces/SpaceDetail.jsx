@@ -16,7 +16,11 @@ import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authorizationSlice";
 import { useParams } from "react-router-dom";
-import { getSpaceById, joinSpace } from "../../../store/spaceActions";
+import {
+  getAllJoinedSpaces,
+  getSpaceById,
+  joinSpace,
+} from "../../../store/spaceActions";
 import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
 import { toast } from "react-toastify";
@@ -43,11 +47,34 @@ const SpaceDetail = () => {
 
   const loading = useSelector((state) => state.space.loading);
   const userId = useSelector((state) => state.authentication.userId);
+  const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
+  const memberState = useSelector((state) => state.space.isMember);
+  const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+
+  // console.log(joinedSpacesArray);
 
   let showJoinButton = false;
   if (userId === spaceDetail.creator_uuid) {
     showJoinButton = true;
   }
+
+  useEffect(() => {
+    const joinedSpaces = async () => {
+      // dispatch(spaceActions.setLoading(true));
+      try {
+        const result = await dispatch(getAllJoinedSpaces());
+        // dispatch(spaceActions.setLoading(false));
+        dispatch(spaceActions.replaceJoinSpace(result.data));
+        // console.log(result.data);
+
+        // console.log("My SPACES", result.data);
+      } catch (error) {
+        // dispatch(spaceActions.setLoading(false));
+        console.log(error);
+      }
+    };
+    joinedSpaces();
+  }, [dispatch]);
 
   useEffect(() => {
     const getSpaces = async () => {
@@ -97,6 +124,9 @@ const SpaceDetail = () => {
       toast.error(error.response.data.error);
     }
   };
+
+  let isMember = joinedSpaceIds.includes(spaceDetail.uuid) || memberState;
+
   const toggleHandler = (id) => {
     setToggle(id);
   };
@@ -179,13 +209,18 @@ const SpaceDetail = () => {
                       <Loading />
                     </div>
                   )}
-                  {!loading && (
+                  {!loading && !isMember && (
                     <button
                       onClick={joinSpaceHandler}
                       className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
                     >
                       Join space
                     </button>
+                  )}
+                  {isMember && (
+                    <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                      Member
+                    </span>
                   )}
                 </div>
               )}
