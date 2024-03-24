@@ -21,7 +21,8 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
 
   // console.log("JOINEDSPACEID", joinedSpaceIds);
 
-  const { creator_uuid, title, uuid, src, description, engagement } = space;
+  const { creator_uuid, title, uuid, src, description, spaceMembersCount } =
+    space;
   // console.log("UUID", uuid);
 
   let isMember = joinedSpaceIds.includes(uuid) || memberState;
@@ -108,7 +109,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
               </span>
               <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
               <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
-                {engagement || 0}
+                {spaceMembersCount || 0}
               </span>
             </div>
             <div className="flex gap-[0.3rem] items-center">
