@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 // import { SPACES } from "../../../utils/postApi";
-import { SPACES } from "../../../utils/postApi";
-import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
-import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
-import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
-import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import Query from "./Query";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
