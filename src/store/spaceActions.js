@@ -1,13 +1,14 @@
 import {
   createAxiosPublicInstance,
   createAxiousInstance,
+  createSpaceInstance,
 } from "../hooks/authInstance";
 
 export const createSpace = (spaceData) => {
   return async () => {
     const token = localStorage.getItem("audaxiousAccessToken") || null;
     const postSpace = async () => {
-      const request = createAxiousInstance(token);
+      const request = createSpaceInstance(token);
       try {
         const response = await request.post("/spaces/create", spaceData);
         return response.data;
