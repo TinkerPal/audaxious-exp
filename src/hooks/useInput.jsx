@@ -39,8 +39,14 @@ export const useImage = () => {
     setImage(e.target.files[0]);
   };
 
+  const reset = () => {
+    setImage("");
+    // setIsTouch(false);
+  };
+
   return {
     image,
     onChangeHandler,
+    reset,
   };
 };
