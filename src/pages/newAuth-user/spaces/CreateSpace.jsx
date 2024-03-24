@@ -52,9 +52,16 @@ const CreateSpace = () => {
   const [selectedCategoriesError, setSelectedCategoriesError] = useState(null);
   const [selectedWebsiteError, setSelectedWebsiteError] = useState(null);
   const [selectedWebsite, setSelectedWebsite] = useState([]);
-  const { image: cover, onChangeHandler: onChangeCover } = useImage();
-  const { image: profilePicture, onChangeHandler: onChangeProfilePicture } =
-    useImage();
+  const {
+    image: cover,
+    onChangeHandler: onChangeCover,
+    reset: resetCover,
+  } = useImage();
+  const {
+    image: profilePicture,
+    onChangeHandler: onChangeProfilePicture,
+    reset: resetProfilePicture,
+  } = useImage();
 
   const selectWebsiteHandler = (website) => {
     setSelectedWebsite((prev) => {
@@ -84,6 +91,8 @@ const CreateSpace = () => {
     },
     [selectedCategories]
   );
+
+  // console.log(cover);
   const submitFormHandler = async (event) => {
     event.preventDefault();
     if (!verifyTweeter) {
@@ -103,20 +112,26 @@ const CreateSpace = () => {
       setSelectedWebsiteError(false);
     }
     dispatch(spaceActions.setLoading(true));
-    const data = {
-      title: name,
-      description: description,
-      tags: selectedCategories,
-      links: selectedWebsite,
-    };
 
-    // console.log(data);
+    const formData = new FormData();
+    formData.append("banner", cover);
+    formData.append("icon", profilePicture);
+    formData.append("title", name);
+    selectedWebsite.forEach((link, index) => {
+      formData.append(`links[${index}]`, link);
+    });
+    selectedCategories.forEach((tag, index) => {
+      formData.append(`tags[${index}]`, tag);
+    });
+    formData.append("description", description);
 
     try {
-      const result = await dispatch(createSpace(data));
+      const result = await dispatch(createSpace(formData));
       dispatch(spaceActions.setLoading(false));
       console.log(result);
       toast.success(result.message);
+      resetCover();
+      resetProfilePicture();
       resetName();
       descriptionReset();
       setSelectedCategories([]);
@@ -126,25 +141,6 @@ const CreateSpace = () => {
       dispatch(spaceActions.setLoading(false));
       toast.error(error.response.data.error);
     }
-    // const data = {
-    //   cover,
-    //   profilePicture,
-    //   name,
-    //   website,
-    //   description,
-    //   selectedCategories,
-    // };
-    // console.log(data);
-    // const formData = new FormData();
-    // formData.append("image", data.cover);
-    // formData.append("userName", data.name);
-    // formData.append("userName", data.profilePicture);
-    // formData.append("website", data.website);
-    // formData.append("categories", [data.selectedCategories]);
-    // formData.append("description", data.description);
-    // const newFormData = Object.fromEntries(formData);
-    // console.log(newFormData);
-    // console.log("TYPEOF", typeof newFormData.categories);
   };
   return (
     <>
@@ -173,7 +169,7 @@ const CreateSpace = () => {
                     // value={cover}
                     // onBlur={coverImageOnBlur}
                     onChange={onChangeCover}
-                    // required
+                    required
                     type="file"
                     name="coverImage"
                     id="coverImage"
@@ -209,6 +205,7 @@ const CreateSpace = () => {
                     </div>
                     <input
                       // required
+                      // value={profilePicture}
                       type="file"
                       name="profilePicture"
                       id="profilePicture"
