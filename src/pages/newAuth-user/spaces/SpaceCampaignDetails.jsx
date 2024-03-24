@@ -220,7 +220,7 @@ const SpaceCampaignDetails = () => {
   //     }
   //   }, [dispatch, toggle, spaceDetail]);
 
-  console.log("POSTINGS", POST);
+  // console.log("POSTINGS", POST);
 
   useEffect(() => {
     const getCampaigns = async () => {
@@ -241,7 +241,7 @@ const SpaceCampaignDetails = () => {
 
         // setCampaigns(result.data);
         dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-        console.log("REAL DEAL", result.data);
+        // console.log("REAL DEAL", result.data);
       } catch (error) {
         console.log(error);
       }
@@ -257,7 +257,7 @@ const SpaceCampaignDetails = () => {
   }
 
   //   console.log(campaignId);
-  console.log(post);
+  // console.log(post);
 
   return (
     <>
