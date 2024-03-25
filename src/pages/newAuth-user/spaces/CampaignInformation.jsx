@@ -9,8 +9,9 @@ import Input from "../../../widget/Input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DateInput from "../../../widget/DateInput";
+import Button from "../../../widget/Button";
 
-const CampaignInformation = () => {
+const CampaignInformation = ({ setShowCampaignTask }) => {
   const { image: profilePicture, onChangeHandler: onChangeProfilePicture } =
     useImage();
   const [startDate, setStartDate] = useState(null);
@@ -40,7 +41,7 @@ const CampaignInformation = () => {
             <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
               <label
                 htmlFor="title"
-                className="font-Poppins text-[#E8E8E8] text-[1rem] font-[300] flex gap-[0.4rem]"
+                className="font-Poppins text-[#E8E8E8] text-[0.875rem] font-[275] flex gap-[0.4rem]"
               >
                 <p>Title</p>
                 <span>
@@ -73,7 +74,7 @@ const CampaignInformation = () => {
               <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
                 <label
                   htmlFor="startDate"
-                  className="font-Poppins text-[#E8E8E8] text-[0.875rem] font-[300] flex gap-[0.4rem]"
+                  className="font-Poppins text-[#E8E8E8] text-[0.875rem] font-[275] flex gap-[0.4rem]"
                 >
                   <p>{"Start date"}</p>
                   <span>
@@ -99,7 +100,7 @@ const CampaignInformation = () => {
               <div className="flex flex-col gap-[0.6rem] w-[100%]">
                 <label
                   htmlFor="title"
-                  className="font-Poppins text-[#EBEDED] text-[0.875rem] font-[300] flex gap-[0.4rem]"
+                  className="font-Poppins text-[#EBEDED] text-[0.875rem] font-[275] flex gap-[0.4rem]"
                 >
                   <p>{"End date"}</p>
                   <span>
@@ -124,7 +125,7 @@ const CampaignInformation = () => {
                 htmlFor="campaignDescription"
                 className="flex gap-[0.4rem]"
               >
-                <p className="font-Poppins text-[#E8E8E8] text-[1rem] font-[300]">
+                <p className="font-Poppins text-[#E8E8E8] text-[0.875rem] font-[275]">
                   Campaign description
                 </p>
                 <span>
@@ -194,18 +195,10 @@ const CampaignInformation = () => {
           </div>
         </div>
         <div className="flex flex-row items-center justify-center md:items-end md:justify-end gap-4">
-          <button
-            type="submit"
-            className="whitespace-nowrap py-[0.5rem] w-[11rem] px-[1rem] font-Poppins border-[#436C82] border-[0.75px] border-opacity-[80%] hover:text-[#060B12] text-[1rem] font-normal rounded-md bg-transparent hover:bg-[#EBEDED]"
-          >
-            Save Draft
-          </button>
-          <button
-            type="submit"
-            className="whitespace-nowrap py-[0.5rem] w-[11rem] px-[1rem] font-Poppins border-[#436C82] border-[0.75px] border-opacity-[80%] hover:text-[#060B12] text-[1rem] font-normal rounded-md bg-transparent hover:bg-[#EBEDED]"
-          >
+          <Button type={"button"}>Save Draft</Button>
+          <Button type={"submit"} onClick={() => setShowCampaignTask(true)}>
             Next
-          </button>
+          </Button>
         </div>
       </div>
     </div>
