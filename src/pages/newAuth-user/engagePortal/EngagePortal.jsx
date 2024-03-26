@@ -111,7 +111,101 @@ const EngagePortals = () => {
           </div>
         </div>
 
-        <div className="mt-[1rem] bg-[#060B12]">
+        <section className="">
+          <div className="mt-[1rem] border-[#314048] border-[1px]">
+            <div className="flex">
+              <div className="px-[0.5rem] md:px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px] flex items-center">
+                <p className="whitespace-nowrap font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
+                  Top Earners
+                </p>
+              </div>
+              <Swiper
+                grabCursor
+                effect="slide"
+                speed={1000}
+                {...swiperProps}
+                ref={swiperRefLocal}
+                loop={true}
+                slidesPerView="auto"
+                centeredSlides={true}
+                autoplay={{
+                  // delay: 100,
+                  delay: 0,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                  },
+                  580: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                  },
+                  1020: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                  },
+                  1240: {
+                    slidesPerView: 2,
+                    spaceBetween: 0,
+                  },
+                  1340: {
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                  },
+                  1700: {
+                    slidesPerView: 5,
+                    spaceBetween: 0,
+                  },
+                }}
+              >
+                {TOPEARNERS.map((earners) => (
+                  <SwiperSlide
+                    key={earners.id}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div
+                      className="flex gap-[0.3rem] pl-[0.7rem] md:pl-[1.62rem] py-[0.6rem] items-center"
+                      key={earners.id}
+                    >
+                      <div className="border rounded-full overflow-hidden">
+                        <img
+                          src={earners.src}
+                          width={"100"}
+                          height={"100"}
+                          alt=""
+                          className="w-[30px] h-[30px] object-cover"
+                        />
+                      </div>
+                      <span className="text-[#E8E8E8] text-[0.5rem] md:text-[0.85rem] font-Poppins font-[300]">
+                        {earners.name}
+                      </span>
+                      <span className="text-neutral-500 font-Poppins font-[300] text-[0.5rem] md:text-[0.75rem]">
+                        earned
+                      </span>
+                      <span
+                        className={clsx(
+                          "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
+                          earners.coin.eth ? "text-[#F04086]" : "text-[#E1D356]"
+                        )}
+                      >
+                        {earners.coin.eth
+                          ? `${earners.coin.eth} ETH`
+                          : `${earners.coin.btc} BNB`}
+                      </span>
+                      <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-[1.6rem] bg-[#060B12]">
           <div className="px-[0.8rem] md:px-[1.5rem] gap-[2rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1670px] overflow-x-auto justify-between rounded-t-md">
             <div className="flex gap-2 xl:gap-5 items-center cursor-pointer">
               <span>
@@ -257,103 +351,7 @@ const EngagePortals = () => {
           <div className="">
             {/* twitter post */}
             <div className={clsx(toggle === 1 ? "block" : "hidden")}>
-              <section className="">
-                <div className="mt-[1rem] border-[#314048] border-[1px]">
-                  <div className="flex">
-                    <div className="px-[0.5rem] md:px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px] flex items-center">
-                      <p className="whitespace-nowrap font-Poppins text-[0.87rem] font-[400] text-[#E8E8E8]">
-                        Top Earners
-                      </p>
-                    </div>
-                    <Swiper
-                      grabCursor
-                      effect="slide"
-                      speed={1000}
-                      {...swiperProps}
-                      ref={swiperRefLocal}
-                      loop={true}
-                      slidesPerView="auto"
-                      centeredSlides={true}
-                      autoplay={{
-                        // delay: 100,
-                        delay: 0,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
-                      }}
-                      breakpoints={{
-                        320: {
-                          slidesPerView: 1,
-                          spaceBetween: 0,
-                        },
-                        580: {
-                          slidesPerView: 1,
-                          spaceBetween: 0,
-                        },
-                        1020: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        1240: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        1340: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                        1700: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                    >
-                      {TOPEARNERS.map((earners) => (
-                        <SwiperSlide
-                          key={earners.id}
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          <div
-                            className="flex gap-[0.3rem] pl-[0.7rem] md:pl-[1.62rem] py-[0.6rem] items-center"
-                            key={earners.id}
-                          >
-                            <div className="border rounded-full overflow-hidden">
-                              <img
-                                src={earners.src}
-                                width={"100"}
-                                height={"100"}
-                                alt=""
-                                className="w-[30px] h-[30px] object-cover"
-                              />
-                            </div>
-                            <span className="text-[#E8E8E8] text-[0.5rem] md:text-[0.85rem] font-Poppins font-[300]">
-                              {earners.name}
-                            </span>
-                            <span className="text-neutral-500 font-Poppins font-[300] text-[0.5rem] md:text-[0.75rem]">
-                              earned
-                            </span>
-                            <span
-                              className={clsx(
-                                "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
-                                earners.coin.eth
-                                  ? "text-[#F04086]"
-                                  : "text-[#E1D356]"
-                              )}
-                            >
-                              {earners.coin.eth
-                                ? `${earners.coin.eth} ETH`
-                                : `${earners.coin.btc} BNB`}
-                            </span>
-                            <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
-                </div>
-              </section>
-
-              <div className="mt-[1rem]">
+              <div className="">
                 <Campaigns />
               </div>
             </div>
