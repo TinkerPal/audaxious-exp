@@ -174,57 +174,6 @@ const CampaignTasks = ({ spaceDetail }) => {
               </div>
             )}
             {selectedTask.map((task, index) => {
-              // console.log(task);
-              // return (
-              //   <div className="flex gap-2 md:gap-5 my-5" key={index}>
-              //     <div
-              //       onClick={() =>
-              //         addTaskClickHandler(task.actions, url, index)
-              //       }
-              //       className="cursor-pointer py-[0.56rem] w-[15rem] px-[1rem] rounded-md border-[1px] border-[#295D7C4D] border-opacity-[30%] flex items-center justify-between"
-              //     >
-              //       <span>
-              //         <img
-              //           src={task.image}
-              //           alt=""
-              //           className="w-[1rem] h-[1rem]"
-              //         />
-              //       </span>
-              //       <p className="text-[0.7rem] md:text-[0.9rem] font-Poppins font-[300] text-[#D3D3D3] whitespace-nowrap">
-              //         {task.actions}
-              //       </p>
-              //       {!isTaskAdded[index] ? (
-              //         <span>
-              //           <AddIcon />
-              //         </span>
-              //       ) : (
-              //         <span>
-              //           <Checked />
-              //         </span>
-              //       )}
-              //     </div>
-              //     <div className="relative w-[100%]">
-              //       <input
-              //         required
-              //         type="text"
-              //         name="name"
-              //         id="name"
-              //         onChange={(e) => handleInputChange(index, e)}
-              //         //   value={title}
-              //         //   onChange={titleOnchange}
-              //         //   onBlur={titleOnBlur}
-              //         placeholder="Enter your campaign title"
-              //         className="bg-transparent text-[#FFF] outline-none md:pr-[3rem] placeholder:text-[#A5A5A5] w-[100%] font-[275] bg-[#081017] border-[#436C82] border-[0.75px] border-opacity-[80%] rounded-md px-[1rem] py-[0.62rem] text-[0.75rem] font-Poppins"
-              //       />
-              //       <span
-              //         onClick={() => removeTaskClickHandler(index)}
-              //         className="absolute right-3 top-3 md:top-3 text-[0.7rem] md:text-[0.875rem] font-Poppins font-[300] text-[#79C4EC]"
-              //       >
-              //         <Cancel />
-              //       </span>
-              //     </div>
-              //   </div>
-              // );
               if (task.actions === "Follow Space") {
                 return (
                   <div className="flex gap-2 md:gap-5 my-5" key={index}>
