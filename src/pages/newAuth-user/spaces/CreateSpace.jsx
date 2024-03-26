@@ -1,5 +1,3 @@
-import { ReactComponent as ImageSelector } from "../../../assets/svg/dashboardSvg/selectImage.svg";
-import { ReactComponent as AddIcon } from "../../../assets/svg/dashboardSvg/addIcon.svg";
 import { ReactComponent as X } from "../../../assets/svg/dashboardSvg/smX.svg";
 import { ReactComponent as Discord } from "../../../assets/svg/dashboardSvg/smDiscord.svg";
 import { ReactComponent as Defi } from "../../../assets/svg/dashboardSvg/defi.svg";
@@ -18,6 +16,8 @@ import { createSpace } from "../../../store/spaceActions";
 import { toast } from "react-toastify";
 import VerifyTweeter from "../authentication/VerifyTweeter";
 import { authAction } from "../../../store/authorizationSlice";
+import ImageInput from "../../../widget/ImageInput";
+import CoverImageInput from "../../../widget/CoverImageInput";
 
 const checkNameValidity = (name) => name.trim() !== "";
 // const checkcoverImageValidity = (name) => name.trim() !== "";
@@ -149,75 +149,24 @@ const CreateSpace = () => {
         <div className="text-[#FFF] bg-[#060B12] w-[100%] min-w-[15rem] md:w-[43rem] lg:w-[58rem] xl:w-[70rem]">
           <div className="border-[#2A3C46] border border-opacity-[80%] rounded-sm">
             <div>
-              <div className="bg-ElipseBg bg-cover">
-                <label
-                  htmlFor="coverImage"
-                  className="block border-[#2A3C46] border-b border-opacity-[80%] h-[10rem] relative overflow-hidden"
-                >
-                  <img
-                    src={cover ? URL.createObjectURL(cover) : ""}
-                    alt=""
-                    className="w-[100%]"
-                  />
-                  <div className="absolute top-[30%] left-[50%] flex items-center flex-col gap-[0.5rem]">
-                    <ImageSelector />
-                    <p className="text-[1rem] text-[#2A3C46] text-opacity-[80%] font-Poppins font-[300] leading-[150%] normal">
-                      Select Banner Image
-                    </p>
-                  </div>
-                  <input
-                    // value={cover}
-                    // onBlur={coverImageOnBlur}
-                    onChange={onChangeCover}
-                    required
-                    type="file"
-                    name="coverImage"
-                    id="coverImage"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      opacity: "0",
-                      cursor: "pointer",
-                    }}
-                  />
-                </label>
-              </div>
+              <CoverImageInput
+                val={cover}
+                name={"coverImage"}
+                onChange={(e) => {
+                  e.preventDefault();
+                  onChangeCover(e);
+                }}
+              />
               <div className="container">
                 <div className="mt-[-3.5rem]">
-                  <label
-                    htmlFor="profilePicture"
-                    className="block bg-[#13161E] border-[#2A3C46] border border-opacity-[80%] h-[7rem] w-[7rem] rounded-full relative overflow-hidden z-[10]"
-                  >
-                    <img
-                      src={
-                        profilePicture
-                          ? URL.createObjectURL(profilePicture)
-                          : ""
-                      }
-                      alt=""
-                      className="w-[100%]"
-                    />
-                    <div className="absolute top-[28%] left-[33%] flex items-center flex-col gap-[0.5rem]">
-                      <AddIcon />
-                      <p className="text-[0.6rem] text-[#A5A5A5] font-Poppins font-[400] leading-[150%] normal">
-                        Add Icon
-                      </p>
-                    </div>
-                    <input
-                      // required
-                      // value={profilePicture}
-                      type="file"
-                      name="profilePicture"
-                      id="profilePicture"
-                      onChange={onChangeProfilePicture}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        opacity: "0",
-                        cursor: "pointer",
-                      }}
-                    />
-                  </label>
+                  <ImageInput
+                    val={profilePicture}
+                    name="profilePicture"
+                    onChange={(e) => {
+                      e.preventDefault();
+                      onChangeProfilePicture(e);
+                    }}
+                  />
                   <p className="text-[#A5A5A5] text-[1rem] text-start mt-[0.58rem] font-[275] font-Poppins">
                     JPG,PNG Max 1mb
                   </p>
