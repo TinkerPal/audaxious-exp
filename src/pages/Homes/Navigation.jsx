@@ -98,14 +98,14 @@ export default function Navigation() {
 
           <div className="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
             {/* Other menu items */}
-            <a
+            {/* <a
               href="#"
               title=""
               className="inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75  "
               role="button"
             >
               ADX token
-            </a>
+            </a> */}
             <Link
               to={"/engage-portal"}
               title="Engagement portal"
@@ -146,14 +146,14 @@ export default function Navigation() {
                 Documentation
               </a>
 
-              <a
+              {/* <a
                 href="#"
                 title=""
                 className="inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-gray-200 transition-all duration-200 border-2 border-[#79C4EC] sm:w-auto sm:mt-0 rounded-xl font-pj  hover:text-opacity-75 hover:border-opacity-75  "
                 role="button"
               >
                 ADX token
-              </a>
+              </a> */}
               <Link
                 to={"/engage-portal"}
                 href="#"
