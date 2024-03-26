@@ -109,7 +109,7 @@ export default function Navigation() {
             <Link
               to={"/engage-portal"}
               title="Engagement portal"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-gray-600 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-opacity-80 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
               role="button"
             >
               Launch App
@@ -158,7 +158,7 @@ export default function Navigation() {
                 to={"/engage-portal"}
                 href="#"
                 title=""
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-gray-600 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-black transition-all duration-200 bg-[#79C4EC] border border-transparent rounded-xl hover:bg-opacity-80 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                 role="button"
               >
                 Launch App
