@@ -31,7 +31,7 @@ const Campaigns = () => {
                         Tasks | {post.taskCount}/{post.tasks.length}
                       </span>
                     </button>
-                    <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
+                    <button className="bg-[#13161E] flex items-center gap-1 border-[1px] text-[#C556E1] rounded-[26px] bg-[#C556E1]/5  border-[#C556E1]/25 px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] ">
                       <span className="whitespace-nowrap flex">
                         Earn |{" "}
                         {
@@ -41,9 +41,9 @@ const Campaigns = () => {
                           // : `${post.coin.bnb} BNB`
                         }
                       </span>
-                      <span>
+                      {/* <span>
                         <Task />
-                      </span>
+                      </span> */}
                     </button>
                     {/* <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
           {"12 Days left"}
