@@ -148,7 +148,7 @@ const SpaceDetail = () => {
   return (
     <>
       <Modal open={openCampaignModal} onClose={closeCreateCampaignModal}>
-        <CreateCampaign />
+        <CreateCampaign spaceDetail={spaceDetail} />
       </Modal>
       <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] md:border-l border-opacity-[80%] ml-[0.7rem] md:ml-[2rem] xl:ml-[0.7rem]">
         <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:max-h-[10.5rem] mr-[-0.8rem] lg:mr-[-1.9rem]">
