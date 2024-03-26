@@ -27,6 +27,58 @@ export const createSpace = (spaceData) => {
     }
   };
 };
+export const createCampaign = (spaceId, campaignData) => {
+  return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const postCampaign = async () => {
+      const request = createSpaceInstance(token);
+      try {
+        const response = await request.post(
+          `/campaign/create/${spaceId}`,
+          campaignData
+        );
+        return response.data;
+      } catch (error) {
+        console.log("INITIAL POST CAMPAIGN ERROR");
+        throw error;
+      }
+    };
+
+    try {
+      const data = await postCampaign();
+      return data;
+    } catch (error) {
+      console.log("HANDLE ALL RELATED CAMPAIGN ERROR", error);
+      throw error;
+    }
+  };
+};
+export const createTask = (campaignId, campaignTask) => {
+  return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
+    const postTask = async () => {
+      const request = createAxiousInstance(token);
+      try {
+        const response = await request.post(
+          `/task/${campaignId}/create`,
+          campaignTask 
+        );
+        return response.data;
+      } catch (error) {
+        console.log("INITIAL POST Task ERROR");
+        throw error;
+      }
+    };
+
+    try {
+      const data = await postTask();
+      return data;
+    } catch (error) {
+      console.log("HANDLE ALL RELATED TASK ERROR", error);
+      throw error;
+    }
+  };
+};
 export const joinSpace = (id) => {
   return async () => {
     const token = localStorage.getItem("audaxiousAccessToken") || null;
