@@ -245,10 +245,7 @@ const SingleTweetById = () => {
             </span> */}
                 <div className="flex flex-col">
                   <span className="font-Poppins text-[1.45rem] normal-case font-[400] text-[#FFF]">
-                    Cadabra Finance
-                  </span>
-                  <span className="text-[#D3D3D3] font-[275] text-[0.8125rem] font-Poppins normal-case">
-                    @{post.title}
+                    {post.space_title}
                   </span>
                 </div>
               </div>
