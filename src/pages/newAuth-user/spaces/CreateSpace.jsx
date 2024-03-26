@@ -304,7 +304,7 @@ const CreateSpace = () => {
                           )}
                         </span>
                         <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          De-Fi
+                          DeFi
                         </span>
                       </div>
                       <div
@@ -322,7 +322,7 @@ const CreateSpace = () => {
                           )}
                         </span>
                         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          Gaming
+                          GameFi
                         </span>
                       </div>
                       <div
@@ -340,7 +340,7 @@ const CreateSpace = () => {
                           )}
                         </span>
                         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          Startups
+                          Meme
                         </span>
                       </div>
                       <div
@@ -358,7 +358,7 @@ const CreateSpace = () => {
                           )}
                         </span>
                         <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          Music
+                          NFT
                         </span>
                       </div>
                       {/* <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
@@ -396,7 +396,7 @@ const CreateSpace = () => {
                     </div>
                     {selectedCategoriesError && (
                       <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
-                        Selecte category
+                        Select category
                       </p>
                     )}
                   </div>
