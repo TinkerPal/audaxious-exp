@@ -2,7 +2,7 @@ import React from "react";
 import { ReactComponent as Calender } from "../../src/assets/svg/dashboardSvg/calender.svg";
 // import DatePicker from "react-datepicker";
 
-const DateInput = ({ value, onClick, placeholder }) => {
+const DateInput = ({ value, onClick, placeholder, errorMsg, isInvalid }) => {
   return (
     <div className="relative">
       <input
@@ -20,6 +20,12 @@ const DateInput = ({ value, onClick, placeholder }) => {
       <span className="absolute right-3 top-1 cursor-pointer">
         <Calender />
       </span>
+
+      {isInvalid && (
+        <p className="text-[#b40e0e] text-end text-[0.75rem] font-[600] font-Poppins">
+          {errorMsg}
+        </p>
+      )}
     </div>
   );
 };
