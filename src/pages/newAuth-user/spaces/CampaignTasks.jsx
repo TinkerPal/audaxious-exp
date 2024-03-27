@@ -116,22 +116,20 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     // Check if the URL already exists in any of the tasks
     const urlExists = tasks.some((task) => task.url === url);
 
-    if (!urlExists) {
-      const newTask = {
-        action: task,
-        media,
-        url: url,
-      };
-      setTasks([...tasks, newTask]);
-      setIsTaskAdded((prev) => {
-        const updatedIsTaskAdded = [...prev];
-        updatedIsTaskAdded[index] = true;
-        return updatedIsTaskAdded;
-      });
-    } else {
-      toast.error("URL already exists in tasks array");
-    }
+    const newTask = {
+      action: task,
+      media,
+      url: url,
+    };
+    setTasks([...tasks, newTask]);
+    setIsTaskAdded((prev) => {
+      const updatedIsTaskAdded = [...prev];
+      updatedIsTaskAdded[index] = true;
+      return updatedIsTaskAdded;
+    });
   };
+  // if (!urlExists) {
+  //   const newTask
 
   // console.log(selectedTask);
   const handleTaskClick = (task) => {
@@ -264,6 +262,14 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                 return (
                   <div className="flex gap-2 md:gap-5 my-5" key={index}>
                     <div
+                      // onBlur={() =>
+                      //   addTaskClickHandler(
+                      //     task.actions,
+                      //     task.media,
+                      //     url[index],
+                      //     index
+                      //   )
+                      // }
                       onClick={() =>
                         addTaskClickHandler(
                           task.actions,

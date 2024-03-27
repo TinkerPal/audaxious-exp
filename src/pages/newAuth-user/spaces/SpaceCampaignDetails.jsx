@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
 
 import { ReactComponent as ProfilePicture } from "../../../assets/svg/dashboardSvg/profilePic.svg";
@@ -172,7 +172,25 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  //   console.log("PST", POST);
+  const handleAction = (actionType) => {
+    switch (actionType) {
+      case "Like":
+        handleLike();
+        break;
+      case "Retweet":
+        handleRetweet();
+        break;
+      case "Follow":
+        handleFollow();
+        break;
+      case "Comment":
+        handleComment();
+        break;
+      default:
+        // Handle default case if needed
+        break;
+    }
+  };
 
   const handleNextTweet = () => {
     const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
@@ -257,7 +275,7 @@ const SpaceCampaignDetails = () => {
   }
 
   //   console.log(campaignId);
-  // console.log(post);
+  console.log("TASKS", post.task);
 
   return (
     <>
@@ -379,7 +397,8 @@ const SpaceCampaignDetails = () => {
                               </span>
                               <span className="whitespace-nowrap">
                                 {/* Tasks | {post.tasks}/10 */}
-                                Tasks | 0/10
+                                Tasks | {`${post.taskParticipantCount || 0}`}/
+                                {`${post.taskCount || 10}`}
                               </span>
                             </button>
                             <button
@@ -388,7 +407,7 @@ const SpaceCampaignDetails = () => {
                               )}
                             >
                               <span className="whitespace-nowrap flex">
-                                Earn | {post.points} XP
+                                Earn | {post.points} Point
                                 {/* {post.coin.eth
                                 ? `${post.coin.eth} ETH`
                                 : `${post.coin.bnb} BNB`} */}
@@ -599,7 +618,7 @@ const SpaceCampaignDetails = () => {
                   </div>
                   <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                     <div className="flex flex-col gap-[0.5rem]">
-                      <div
+                      {/* <div
                         onClick={handleLike}
                         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
                       >
@@ -625,85 +644,40 @@ const SpaceCampaignDetails = () => {
                       </div>
                       <span>
                         <FlexLine />
-                      </span>
+                      </span> */}
+                      {post.tasks &&
+                        post.tasks.map((task, index) => (
+                          <Fragment key={index}>
+                            <div
+                              key={index}
+                              onClick={() => handleAction(task.action)}
+                              className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
+                            >
+                              <div className="flex items-center gap-4">
+                                <span>
+                                  <Love />
+                                </span>
+                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
+                                  {task.action}
+                                </span>
+                              </div>
 
-                      <div
-                        onClick={handleRetweet}
-                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span>
-                            <Retweet />
-                          </span>
-                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                            Re-tweet Post
-                          </span>
-                        </div>
-                        {!post.repost && (
-                          <span>
-                            <Actions />
-                          </span>
-                        )}
-                        {post.repost && (
-                          <span>
-                            <Check />
-                          </span>
-                        )}
-                      </div>
-                      <span>
-                        <FlexLine />
-                      </span>
-
-                      <div
-                        onClick={handleFollow}
-                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span>
-                            <Tweet />
-                          </span>
-                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                            {"Follow account"}
-                          </span>
-                        </div>
-                        {!post.follow && (
-                          <span>
-                            <Actions />
-                          </span>
-                        )}
-                        {post.follow && (
-                          <span>
-                            <Check />
-                          </span>
-                        )}
-                      </div>
-                      <span>
-                        <FlexLine />
-                      </span>
-
-                      <div
-                        onClick={handleComment}
-                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span>
-                            <Infinity />
-                          </span>
-                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                            {"Comment"}
-                          </span>
-                        </div>
-                        {!post.comment && (
-                          <span>
-                            <Actions />
-                          </span>
-                        )}
-                        {post.comment && (
-                          <span>
-                            <Check />
-                          </span>
-                        )}
-                      </div>
+                              {!post.like && (
+                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
+                                  <Actions />
+                                </span>
+                              )}
+                              {post.like && (
+                                <span>
+                                  <Check />
+                                </span>
+                              )}
+                            </div>
+                            <span>
+                              <FlexLine />
+                            </span>
+                          </Fragment>
+                        ))}
                     </div>
                   </div>
                 </div>
