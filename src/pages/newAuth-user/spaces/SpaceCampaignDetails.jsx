@@ -75,20 +75,6 @@ const SpaceCampaignDetails = () => {
     (state) => state.authentication.verifyTweet
   );
 
-  //   console.log(urlPath.slice(1, 7));
-
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCampaigns();
-  // }, [dispatch, campaignId]);
-
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -102,7 +88,8 @@ const SpaceCampaignDetails = () => {
     setToggle(id);
   };
 
-  const handleLike = () => {
+  const handleLike = (taskId) => {
+    console.log("taskId", taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -122,6 +109,7 @@ const SpaceCampaignDetails = () => {
       // setCount((prev) => prev + 1);
     }
   };
+
   // const handleRetweet = () => {
   //   if (!isAuthenticated) {
   //     dispatch(authAction.onOpen());
@@ -141,7 +129,7 @@ const SpaceCampaignDetails = () => {
   //   }
   // };
 
-  const handleRetweet = () => {
+  const handleRetweet = (taskId) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -171,7 +159,8 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  const handleFollow = () => {
+  const handleFollow = (taskId) => {
+    console.log("taskId", taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -189,7 +178,8 @@ const SpaceCampaignDetails = () => {
       // setCount((prev) => prev + 1);
     }
   };
-  const handleComment = () => {
+  const handleComment = (taskId) => {
+    console.log(taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -211,23 +201,26 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  const handleAction = (actionType) => {
+  // `join follow like repost share post`;
+
+  const handleAction = (actionType, taskId) => {
     switch (actionType) {
-      case "Like":
-        handleLike();
+      case "like":
+        handleLike(taskId);
         break;
-      case "Retweet":
-        handleRetweet();
+      case "repost":
+        handleRetweet(taskId);
         break;
-      case "Follow":
-        handleFollow();
+      case "follow":
+        handleFollow(taskId);
         break;
-      case "Comment":
-        handleComment();
+      case "post":
+        handleComment(taskId);
         break;
-      default:
-        // Handle default case if needed
-        break;
+      // default:
+      //   // Handle default case if needed
+      //   () => {};
+      //   break;
     }
   };
 
@@ -254,30 +247,8 @@ const SpaceCampaignDetails = () => {
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
-    // if (urlPath.slice(1, 7) === "engage") {
-    //   navigate(`/engage-portal`);
-    // } else if (urlPath.slice(1, 7) === "spaces") {
     navigate(`/spaces/${spaceId}`);
-    // }
   };
-
-  //   useEffect(() => {
-  //     const getCampaigns = async () => {
-  //       try {
-  //         const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
-
-  //         // setCampaigns(result.data);
-  //         dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     if (spaceDetail.uuid && toggle === 1) {
-  //       getCampaigns();
-  //     }
-  //   }, [dispatch, toggle, spaceDetail]);
-
-  // console.log("POSTINGS", POST);
 
   useEffect(() => {
     const getCampaigns = async () => {
@@ -314,7 +285,7 @@ const SpaceCampaignDetails = () => {
   }
 
   //   console.log(campaignId);
-  console.log("TASKS", post.task);
+  console.log("TASKS", post.tasks);
 
   return (
     <>
@@ -686,45 +657,13 @@ const SpaceCampaignDetails = () => {
                       </span> */}
                       {post.tasks &&
                         post.tasks.map((task, index) => (
-                          <Fragment key={index}>
-                            <div
-                              key={index}
-                              onClick={() => handleAction(task.action)}
-                              className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                            >
-                              <div className="flex items-center gap-4">
-                                <span>
-                                  <Love />
-                                </span>
-                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                                  {task.action}
-                                </span>
-                              </div>
-
-                              {!post.like && (
-                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                                  <Actions />
-                                </span>
-                              )}
-                              {post.like && (
-                                <span>
-                                  <Check />
-                                </span>
-                              )}
-                            </div>
-                            <span>
-                              <FlexLine />
-                            </span>
-                          </Fragment>
-                        ))}
-
-                      {post.tasks &&
-                        post.tasks.map((task, index) => (
                           <SingleAction
+                            taskId={task._id}
                             key={index}
                             task={task}
+                            action={task.action}
                             processing={processing}
-                            handleAction={handleRetweet}
+                            handleAction={handleAction}
                             taskStatus={taskStatus}
                           >
                             {task.action}
