@@ -53,12 +53,10 @@ const SpaceCampaignDetails = () => {
   const [post, setPost] = useState({});
   const [processing, setProcessing] = useState(false);
 
-  const [action, setAction] = useState("");
-  const [actionState, setActionState] = useState({
-    follow: "incomplete",
-    repost: "incomplete",
-    join: "incomplete",
-    like: "incomplete",
+  const [taskStatus, setTaskStatus] = useState({
+    like: false,
+    repost: false,
+    follow: false,
   });
   //   const [postArray, setPostArray] = useState();
   const urlPath = useLocation().pathname;
@@ -77,20 +75,6 @@ const SpaceCampaignDetails = () => {
     (state) => state.authentication.verifyTweet
   );
 
-  //   console.log(urlPath.slice(1, 7));
-
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCampaigns();
-  // }, [dispatch, campaignId]);
-
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -104,7 +88,8 @@ const SpaceCampaignDetails = () => {
     setToggle(id);
   };
 
-  const handleLike = () => {
+  const handleLike = (task) => {
+    // console.log("tweet ID", tweetId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -118,28 +103,14 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.like) {
-      setAction("like");
-      setProcessing(true);
-      LikeIntent("1763151012615925766");
+      const tweetId = extractHandle(task.url);
+      LikeIntent(tweetId);
       const updatedPost = { ...post, like: true };
-
-      // setCount((prev) => prev + 1);
-      setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        // setAction("");
-        setActionState((prevState) => ({
-          ...prevState,
-          like: "complete",
-        }));
-
-        setProcessing(false);
-        setPost(updatedPost);
-      }, 10000); // 60 seconds in milliseconds
-
+      setPost(updatedPost);
       // setCount((prev) => prev + 1);
     }
   };
+
   // const handleRetweet = () => {
   //   if (!isAuthenticated) {
   //     dispatch(authAction.onOpen());
@@ -159,7 +130,7 @@ const SpaceCampaignDetails = () => {
   //   }
   // };
 
-  const handleRetweet = () => {
+  const handleRetweet = (task) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -171,20 +142,17 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.repost) {
-      setAction("repost");
+      const tweetId = extractHandle(task.url);
       setProcessing(true);
-      // setAction("repost");
-      RepostIntent("1763151012615925766");
+      RepostIntent(tweetId);
       const updatedPost = { ...post, repost: true };
       setTimeout(() => {
         // After 60 seconds, set processing back to false
 
-        // setAction("");
-        setActionState((prevState) => ({
+        setTaskStatus((prevState) => ({
           ...prevState,
-          repost: "complete",
+          repost: true,
         }));
-
         setProcessing(false);
         setPost(updatedPost);
       }, 10000); // 60 seconds in milliseconds
@@ -193,7 +161,28 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  const handleFollow = () => {
+  function extractHandle(url) {
+    if (typeof url !== "string") {
+      return null; // Handle invalid input
+    }
+
+    // Regular expression to match "amazonluna" after the last "/"
+    const regex = /\/([^/]+)$/i; // i flag for case insensitivity
+    const match = url.match(regex);
+
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      return null; // Handle not found
+    }
+  }
+
+  const handleFollow = (task) => {
+    console.log(task.url);
+
+    const username = extractHandle(task.url);
+    console.log(username);
+
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -205,26 +194,14 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.follow) {
-      setAction("follow");
-      setProcessing(true);
-      FollowIntent("AudaXious3");
+      FollowIntent(username);
       const updatedPost = { ...post, follow: true };
-
-      setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        // setAction("");
-        setActionState((prevState) => ({
-          ...prevState,
-          follow: "complete",
-        }));
-
-        setProcessing(false);
-        setPost(updatedPost);
-      }, 10000); // 60 seconds in milliseconds
+      setPost(updatedPost);
+      // setCount((prev) => prev + 1);
     }
   };
-  const handleComment = () => {
+  const handleComment = (taskId) => {
+    console.log(taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -246,23 +223,26 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  const handleAction = (actionType) => {
+  // `join follow like repost share post`;
+
+  const handleAction = (actionType, task) => {
     switch (actionType) {
-      case "Like":
-        handleLike();
+      case "like":
+        handleLike(task);
         break;
-      case "Retweet":
-        handleRetweet();
+      case "repost":
+        handleRetweet(task);
         break;
-      case "Follow":
-        handleFollow();
+      case "follow":
+        handleFollow(task);
         break;
-      case "Comment":
-        handleComment();
+      case "post":
+        handleComment(task);
         break;
-      default:
-        // Handle default case if needed
-        break;
+      // default:
+      //   // Handle default case if needed
+      //   () => {};
+      //   break;
     }
   };
 
@@ -289,30 +269,8 @@ const SpaceCampaignDetails = () => {
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
-    // if (urlPath.slice(1, 7) === "engage") {
-    //   navigate(`/engage-portal`);
-    // } else if (urlPath.slice(1, 7) === "spaces") {
     navigate(`/spaces/${spaceId}`);
-    // }
   };
-
-  //   useEffect(() => {
-  //     const getCampaigns = async () => {
-  //       try {
-  //         const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
-
-  //         // setCampaigns(result.data);
-  //         dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     if (spaceDetail.uuid && toggle === 1) {
-  //       getCampaigns();
-  //     }
-  //   }, [dispatch, toggle, spaceDetail]);
-
-  // console.log("POSTINGS", POST);
 
   useEffect(() => {
     const getCampaigns = async () => {
@@ -349,7 +307,7 @@ const SpaceCampaignDetails = () => {
   }
 
   //   console.log(campaignId);
-  console.log("TASKS", post.task);
+  console.log("TASKS", post.tasks);
 
   return (
     <>
@@ -719,24 +677,15 @@ const SpaceCampaignDetails = () => {
                       <span>
                         <FlexLine />
                       </span> */}
-
                       {post.tasks &&
                         post.tasks.map((task, index) => (
                           <SingleAction
                             key={index}
                             task={task}
+                            action={task.action}
                             processing={processing}
-                            handleAction={
-                              task.action === "repost"
-                                ? handleRetweet
-                                : task.action === "follow"
-                                ? handleFollow
-                                : task.action === "like"
-                                ? handleLike
-                                : null // or a default handler if needed
-                            }
-                            action={action}
-                            actionState={actionState}
+                            handleAction={handleAction}
+                            taskStatus={taskStatus}
                           >
                             {task.action}
                           </SingleAction>
