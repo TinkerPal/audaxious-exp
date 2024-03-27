@@ -20,31 +20,46 @@ const checkPointValidity = (point) => {
 const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   const TASKSBAR = [
     {
+      title: "Join Space",
       actions: "join",
-      media: `${spaceDetail.title}`,
+      media: `audaxious`,
       image: "/tweetImages/audaxious.svg",
     },
     {
+      title: "Follow tweeter",
       actions: "follow",
-      media: "tweeter",
+      media: "twitter",
       image: "/tweetImages/tweeter.svg",
     },
-    { actions: "like", media: "tweeter", image: "/tweetImages/like.svg" },
     {
+      title: "Like tweet",
+      actions: "like",
+      media: "twitter",
+      image: "/tweetImages/like.svg",
+    },
+    {
+      title: "Repost tweet",
       actions: "repost",
-      media: "tweeter",
+      media: "twitter",
       image: "/tweetImages/tweeter.svg",
     },
     {
+      title: "Share tweet",
+      actions: "share",
+      media: "twitter",
+      image: "/tweetImages/tweeter.svg",
+    },
+    {
+      title: "Like tweet",
       actions: "post",
-      media: "tweeter",
+      media: "twitter",
       image: "/tweetImages/tweeter.svg",
     },
-    {
-      actions: "join",
-      media: "telegram",
-      image: "/tweetImages/telegram.svg",
-    },
+    // {
+    //   actions: "join",
+    //   media: "telegram",
+    //   image: "/tweetImages/telegram.svg",
+    // },
   ];
   const [tasks, setTasks] = useState([]);
   const [taskError, setTaskError] = useState(null);
@@ -121,7 +136,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   // console.log(selectedTask);
   const handleTaskClick = (task) => {
     // Check if the task is "Join Space"
-    if (task.actions === "Join Space") {
+    if (task.actions === "join") {
       const taskExists = selectedTask.some((t) => t.actions === task.actions);
       if (taskExists) {
         toast.error("Join Space task already selected");
@@ -147,6 +162,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       tasks,
       points: +point,
     };
+    console.log(data);
     dispatch(spaceActions.setLoading(true));
 
     // createTask = (campaignId, campaignTask)
@@ -244,7 +260,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
             )}
 
             {selectedTask.map((task, index) => {
-              if (task.actions === "Join Space") {
+              if (task.actions === "join") {
                 return (
                   <div className="flex gap-2 md:gap-5 my-5" key={index}>
                     <div
