@@ -52,12 +52,14 @@ const SpaceCampaignDetails = () => {
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
   const [processing, setProcessing] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState([]);
 
-  const [taskStatus, setTaskStatus] = useState({
-    like: false,
-    repost: false,
-    follow: false,
-  });
+  // let initialStatus = new Array(post.task.length).fill("incomplete");
+
+  // console.log(post?.task?.length);
+
+  // const [actionStatus, setActionStatus]=useState(post.tasks.map((index)=>))
+
   //   const [postArray, setPostArray] = useState();
   const urlPath = useLocation().pathname;
 
@@ -75,6 +77,46 @@ const SpaceCampaignDetails = () => {
     (state) => state.authentication.verifyTweet
   );
 
+  // console.log("and here are the posts", post?.tasks?.length);
+
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getCampaignById(campaignId));
+        setPost(result.data);
+        console.log("result", result.data.tasks);
+        setTaskStatus((cur) =>
+          Array(result.data.tasks.length).fill("incomplete")
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCampaigns();
+  }, [dispatch, campaignId]);
+
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
+
+        // setCampaigns(result.data);
+        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // if (spaceDetail.uuid && toggle === 1) {
+    //   getCampaigns();
+    // }
+    getCampaigns();
+  }, [dispatch, post.space_uuid]);
+
+  const initStatus = new Array(post?.tasks?.length).fill("incomplete");
+
+  const [taskStatus, setTaskStatus] = useState([]);
+  console.log("hello world", taskStatus);
+
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -88,8 +130,9 @@ const SpaceCampaignDetails = () => {
     setToggle(id);
   };
 
-  const handleLike = (task) => {
-    // console.log("tweet ID", tweetId);
+  const handleLike = (task, index) => {
+    setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -103,11 +146,22 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.like) {
+      setProcessing(true);
       const tweetId = extractHandle(task.url);
       LikeIntent(tweetId);
       const updatedPost = { ...post, like: true };
-      setPost(updatedPost);
-      // setCount((prev) => prev + 1);
+
+      setTimeout(() => {
+        // After 60 seconds, set processing back to false
+
+        setProcessing(false);
+        setPost(updatedPost);
+        const updatedTaskStatus = [...taskStatus];
+        updatedTaskStatus[index] = "complete";
+
+        // Update the state with the modified array
+        setTaskStatus(updatedTaskStatus);
+      }, 10000); // 60 seconds in milliseconds
     }
   };
 
@@ -130,7 +184,7 @@ const SpaceCampaignDetails = () => {
   //   }
   // };
 
-  const handleRetweet = (task) => {
+  const handleRetweet = (task, index) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -142,6 +196,8 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.repost) {
+      setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
       const tweetId = extractHandle(task.url);
       setProcessing(true);
       RepostIntent(tweetId);
@@ -149,12 +205,13 @@ const SpaceCampaignDetails = () => {
       setTimeout(() => {
         // After 60 seconds, set processing back to false
 
-        setTaskStatus((prevState) => ({
-          ...prevState,
-          repost: true,
-        }));
         setProcessing(false);
         setPost(updatedPost);
+        const updatedTaskStatus = [...taskStatus];
+        updatedTaskStatus[index] = "complete";
+
+        // Update the state with the modified array
+        setTaskStatus(updatedTaskStatus);
       }, 10000); // 60 seconds in milliseconds
 
       // setCount((prev) => prev + 1);
@@ -177,8 +234,8 @@ const SpaceCampaignDetails = () => {
     }
   }
 
-  const handleFollow = (task) => {
-    console.log(task.url);
+  const handleFollow = (task, index) => {
+    setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
 
     const username = extractHandle(task.url);
     console.log(username);
@@ -194,9 +251,20 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.follow) {
+      setProcessing(true);
       FollowIntent(username);
       const updatedPost = { ...post, follow: true };
-      setPost(updatedPost);
+      setTimeout(() => {
+        // After 60 seconds, set processing back to false
+
+        setProcessing(false);
+        setPost(updatedPost);
+        const updatedTaskStatus = [...taskStatus];
+        updatedTaskStatus[index] = "complete";
+
+        // Update the state with the modified array
+        setTaskStatus(updatedTaskStatus);
+      }, 10000); // 60 seconds in milliseconds
       // setCount((prev) => prev + 1);
     }
   };
@@ -225,19 +293,19 @@ const SpaceCampaignDetails = () => {
 
   // `join follow like repost share post`;
 
-  const handleAction = (actionType, task) => {
+  const handleAction = (actionType, task, index) => {
     switch (actionType) {
       case "like":
-        handleLike(task);
+        handleLike(task, index);
         break;
       case "repost":
-        handleRetweet(task);
+        handleRetweet(task, index);
         break;
       case "follow":
-        handleFollow(task);
+        handleFollow(task, index);
         break;
       case "post":
-        handleComment(task);
+        handleComment(task, index);
         break;
       // default:
       //   // Handle default case if needed
@@ -272,42 +340,13 @@ const SpaceCampaignDetails = () => {
     navigate(`/spaces/${spaceId}`);
   };
 
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getCampaignById(campaignId));
-        setPost(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCampaigns();
-  }, [dispatch, campaignId]);
-
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
-
-        // setCampaigns(result.data);
-        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-        // console.log("REAL DEAL", result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // if (spaceDetail.uuid && toggle === 1) {
-    //   getCampaigns();
-    // }
-    getCampaigns();
-  }, [dispatch, post.space_uuid]);
-
   if (!post) {
     return <Loading />;
   }
 
   //   console.log(campaignId);
-  console.log("TASKS", post.tasks);
+  console.log("TASKS", post.tasks?.length);
+  console.log("the states are", taskStatus);
 
   return (
     <>
@@ -686,6 +725,8 @@ const SpaceCampaignDetails = () => {
                             processing={processing}
                             handleAction={handleAction}
                             taskStatus={taskStatus}
+                            index={index}
+                            selectedIndex={selectedIndex}
                           >
                             {task.action}
                           </SingleAction>

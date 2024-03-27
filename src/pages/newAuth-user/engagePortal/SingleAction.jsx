@@ -15,11 +15,13 @@ export default function SingleAction({
   handleAction,
   processing = false,
   taskStatus,
+  index,
+  selectedIndex,
 }) {
   return (
     <>
       <div
-        onClick={() => handleAction(action, task)}
+        onClick={() => handleAction(action, task, index)}
         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
       >
         <div className="flex items-center gap-4">
@@ -33,7 +35,7 @@ export default function SingleAction({
             {children}
           </span>
         </div>
-        {!taskStatus.repost && (
+        {taskStatus[index] === "incomplete" && (
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +44,9 @@ export default function SingleAction({
               viewBox="0 0 28 28"
               fill="none"
               className={
-                processing && task.action == "repost" ? "animate-spin" : ""
+                processing && selectedIndex.includes(index)
+                  ? "animate-spin"
+                  : ""
               }
             >
               <path
@@ -62,7 +66,8 @@ export default function SingleAction({
             </svg>
           </span>
         )}
-        {taskStatus[`${task.action}`] && task.action === "repost" && (
+
+        {taskStatus[index] === "complete" && (
           <span>
             <Check />
           </span>
