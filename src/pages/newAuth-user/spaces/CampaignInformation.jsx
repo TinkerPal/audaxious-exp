@@ -11,11 +11,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import DateInput from "../../../widget/DateInput";
 import Button from "../../../widget/Button";
 import ImageInput from "../../../widget/ImageInput";
+import { useDispatch, useSelector } from "react-redux";
+import { createCampaign } from "../../../store/spaceActions";
+import { toast } from "react-toastify";
+import Loading from "../../Homes/Loading";
+import { spaceActions } from "../../../store/spaceSlice";
 
 const checkTitleValidity = (name) => name.trim() !== "";
 const checkDescriptionValidity = (description) => description.trim() !== "";
 
-const CampaignInformation = ({ setShowCampaignTask }) => {
+const CampaignInformation = ({ setShowCampaignTask, spaceDetail }) => {
   const { image: profilePicture, onChangeHandler: onChangeProfilePicture } =
     useImage();
   const {
@@ -36,6 +41,8 @@ const CampaignInformation = ({ setShowCampaignTask }) => {
   const [originalEndDate, setOriginalEndDate] = useState(null);
   const [startDateError, setStartDateError] = useState(null);
   const [endDateError, setEndDateError] = useState(null);
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.space.loading);
 
   const convertEndDateToString = new Date(originalEndDate);
   const endDate = convertEndDateToString.toISOString();
@@ -49,7 +56,12 @@ const CampaignInformation = ({ setShowCampaignTask }) => {
     setOriginalEndDate(e);
   };
 
-  const submitHandler = (e) => {
+  const closeCreateCampaignModal = () => {
+    // setOpenCampaignModal(false);
+    dispatch(spaceActions.setOpenCampaignModal(false));
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (!originalEndDate) {
       setEndDateError(true);
@@ -59,13 +71,32 @@ const CampaignInformation = ({ setShowCampaignTask }) => {
       setStartDateError(true);
       return;
     }
-    const data = { title, description, endDate, startDate, profilePicture };
+    dispatch(spaceActions.setLoading(true));
 
-    console.log(data);
-    setShowCampaignTask(true);
+    const data = { title, description, endDate, startDate };
+
+    try {
+      const result = await dispatch(createCampaign(spaceDetail.uuid, data));
+      console.log(result);
+      toast.success(result.message);
+      dispatch(spaceActions.setLoading(false));
+      dispatch(spaceActions.setCampaignId(result.data.uuid));
+      setShowCampaignTask(true);
+    } catch (error) {
+      dispatch(spaceActions.setLoading(false));
+      toast.error(error.response.data.error);
+      setShowCampaignTask(false);
+    }
+
+    // console.log(data);
   };
   return (
     <div className="bg-[#060B12] relative py-[2rem] rounded-md w-[100%] min-w-[15rem] md:w-[43rem] xl:w-[55rem] px-[1rem] lg:px-[3rem] text-[#E8E8E8]">
+      {loading && (
+        <div className="">
+          <Loading />
+        </div>
+      )}
       <div className="flex flex-col gap-[1.5rem] md:gap-[3rem]">
         <div className="flex items-center gap-[0.75rem]">
           <span title="Create Campaign">
@@ -226,7 +257,9 @@ const CampaignInformation = ({ setShowCampaignTask }) => {
             </div>
           </div>
           <div className="flex flex-row items-center justify-center md:items-end md:justify-end gap-4">
-            <Button type={"button"}>Save Draft</Button>
+            <Button type={"button"} onClick={closeCreateCampaignModal}>
+              Cancel
+            </Button>
             <Button type={"submit"}>Next</Button>
           </div>
         </form>

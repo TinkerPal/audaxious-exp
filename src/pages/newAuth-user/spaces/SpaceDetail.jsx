@@ -34,8 +34,11 @@ import CreateCampaign from "./CreateCampaign";
 const SpaceDetail = () => {
   const [toggle, setToggle] = useState(1);
   const [spaceDetail, setSpaceDetail] = useState({});
-  const [openCampaignModal, setOpenCampaignModal] = useState(false);
+  // const [openCampaignModal, setOpenCampaignModal] = useState(false);
   const campaigns = useSelector((state) => state.space.spaceCampaigns);
+  const openCampaignModal = useSelector(
+    (state) => state.space.openCampaignModal
+  );
   //   const [selectedPostId, setSelectedPostId] = useState(null);
   const dispatch = useDispatch();
   // const token = getToken();
@@ -136,10 +139,12 @@ const SpaceDetail = () => {
   //     setSingleTweet(id);
   //   };
   const closeCreateCampaignModal = () => {
-    setOpenCampaignModal(false);
+    // setOpenCampaignModal(false);
+    dispatch(spaceActions.setOpenCampaignModal(false));
   };
   const openCreateCampaignModal = () => {
-    setOpenCampaignModal(true);
+    // setOpenCampaignModal(true);
+    dispatch(spaceActions.setOpenCampaignModal(true));
   };
 
   if (!spaceDetail) {

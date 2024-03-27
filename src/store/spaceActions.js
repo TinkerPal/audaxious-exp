@@ -31,7 +31,7 @@ export const createCampaign = (spaceId, campaignData) => {
   return async () => {
     const token = localStorage.getItem("audaxiousAccessToken") || null;
     const postCampaign = async () => {
-      const request = createSpaceInstance(token);
+      const request = createAxiousInstance(token);
       try {
         const response = await request.post(
           `/campaign/create/${spaceId}`,
@@ -61,7 +61,7 @@ export const createTask = (campaignId, campaignTask) => {
       try {
         const response = await request.post(
           `/task/${campaignId}/create`,
-          campaignTask 
+          campaignTask
         );
         return response.data;
       } catch (error) {

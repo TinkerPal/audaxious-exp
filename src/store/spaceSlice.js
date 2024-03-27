@@ -6,12 +6,20 @@ const spaceInitialState = {
   spaceCampaigns: [],
   joinedSpace: [],
   isMember: false,
+  openCampaignModal: false,
+  campaignId: "",
 };
 
 const spaceSlice = createSlice({
   name: "space",
   initialState: spaceInitialState,
   reducers: {
+    setCampaignId(state, actions) {
+      state.campaignId = actions.payload;
+    },
+    setOpenCampaignModal(state, actions) {
+      state.openCampaignModal = actions.payload;
+    },
     setIsMember(state, actions) {
       state.isMember = actions.payload;
     },

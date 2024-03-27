@@ -7,9 +7,17 @@ const CreateCampaign = ({ spaceDetail }) => {
   return (
     <div>
       {!showCampaignTask && (
-        <CampaignInformation setShowCampaignTask={setShowCampaignTask} />
+        <CampaignInformation
+          setShowCampaignTask={setShowCampaignTask}
+          spaceDetail={spaceDetail}
+        />
       )}
-      {showCampaignTask && <CampaignTasks spaceDetail={spaceDetail} />}
+      {showCampaignTask && (
+        <CampaignTasks
+          setShowCampaignTask={setShowCampaignTask}
+          spaceDetail={spaceDetail}
+        />
+      )}
     </div>
   );
 };

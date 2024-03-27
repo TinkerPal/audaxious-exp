@@ -8,25 +8,54 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import clsx from "clsx";
 import { useInputNumber } from "../../../hooks/useInput";
+import { spaceActions } from "../../../store/spaceSlice";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../Homes/Loading";
+import { createTask } from "../../../store/spaceActions";
 
 const checkPointValidity = (point) => {
   return point > 0;
 };
-
-const CampaignTasks = ({ spaceDetail }) => {
+// share, post, like, repost, follow, join
+const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   const TASKSBAR = [
-    { actions: "Follow Space", image: "/tweetImages/audaxious.svg" },
-    { actions: "Follow twitter", image: "/tweetImages/tweeter.svg" },
-    { actions: "Like tweet", image: "/tweetImages/like.svg" },
-    { actions: "Repost tweet", image: "/tweetImages/tweeter.svg" },
-    { actions: "Quote tweet", image: "/tweetImages/tweeter.svg" },
-    { actions: "Join telegram", image: "/tweetImages/telegram.svg" },
+    {
+      actions: "join",
+      media: `${spaceDetail.title}`,
+      image: "/tweetImages/audaxious.svg",
+    },
+    {
+      actions: "follow",
+      media: "tweeter",
+      image: "/tweetImages/tweeter.svg",
+    },
+    { actions: "like", media: "tweeter", image: "/tweetImages/like.svg" },
+    {
+      actions: "repost",
+      media: "tweeter",
+      image: "/tweetImages/tweeter.svg",
+    },
+    {
+      actions: "post",
+      media: "tweeter",
+      image: "/tweetImages/tweeter.svg",
+    },
+    {
+      actions: "join",
+      media: "telegram",
+      image: "/tweetImages/telegram.svg",
+    },
   ];
   const [tasks, setTasks] = useState([]);
+  const [taskError, setTaskError] = useState(null);
   const [selectedTask, setSelectedTask] = useState([]);
-  const [url, setUrl] = useState("");
+  const [selectedTaskError, setSelectedTaskError] = useState(null);
+  const [url, setUrl] = useState([]);
   const [isTaskAdded, setIsTaskAdded] = useState([]);
-
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.space.loading);
+  const campaignId = useSelector((state) => state.space.campaignId);
+  // console.log(spaceDetail);
   const {
     onChangeValueHandler: pointOnchange,
     reset: resetPoint,
@@ -35,18 +64,24 @@ const CampaignTasks = ({ spaceDetail }) => {
     valueIsInvalid: pointInvalid,
   } = useInputNumber(checkPointValidity);
 
-  const taskss = {
-    tasks: tasks,
-  };
+  // const taskss = {
+  //   tasks: tasks,
+  // };
 
-  console.log(point);
-  console.log(taskss);
+  // console.log(point);
+  // console.log(taskss);
 
   // console.log(url);
 
+  // const handleInputChange = (index, e) => {
+  //   console.log(e.target.value);
+  //   setUrl(e.target.value);
+  // };
+
   const handleInputChange = (index, e) => {
-    console.log(e.target.value);
-    setUrl(e.target.value);
+    const newTaskUrls = [...url];
+    newTaskUrls[index] = e.target.value;
+    setUrl(newTaskUrls);
   };
   const removeTaskClickHandler = (index) => {
     const updatedTasks = [...tasks];
@@ -62,13 +97,14 @@ const CampaignTasks = ({ spaceDetail }) => {
     });
   };
 
-  const addTaskClickHandler = (task, url, index) => {
+  const addTaskClickHandler = (task, media, url, index) => {
     // Check if the URL already exists in any of the tasks
     const urlExists = tasks.some((task) => task.url === url);
 
     if (!urlExists) {
       const newTask = {
         action: task,
+        media,
         url: url,
       };
       setTasks([...tasks, newTask]);
@@ -84,29 +120,57 @@ const CampaignTasks = ({ spaceDetail }) => {
 
   // console.log(selectedTask);
   const handleTaskClick = (task) => {
-    // Check if the task is "Follow Space"
-    if (task.actions === "Follow Space") {
+    // Check if the task is "Join Space"
+    if (task.actions === "Join Space") {
       const taskExists = selectedTask.some((t) => t.actions === task.actions);
       if (taskExists) {
-        toast.error("Follow Space task already selected");
+        toast.error("Join Space task already selected");
         return;
       }
     }
 
-    // If the task is not "Follow Space" or it's the first time "Follow Space" is being added, proceed to add it
+    // If the task is not "Join Space" or it's the first time "Follow Space" is being added, proceed to add it
     setSelectedTask((prev) => [...prev, task]);
   };
-  const submitTaskHandler = (e) => {
+  const submitTaskHandler = async (e) => {
     e.preventDefault();
+    if (selectedTask.length < 1) {
+      setSelectedTaskError(true);
+      return;
+    }
+
+    if (tasks.length < 1) {
+      setTaskError(true);
+      return;
+    }
     const data = {
       tasks,
-      point: +point,
+      points: +point,
     };
+    dispatch(spaceActions.setLoading(true));
 
-    console.log(data);
+    // createTask = (campaignId, campaignTask)
+    try {
+      const result = await dispatch(createTask(campaignId, data));
+      console.log(result);
+      toast.success(result.message);
+      dispatch(spaceActions.setLoading(false));
+      dispatch(spaceActions.setOpenCampaignModal(false));
+    } catch (error) {
+      dispatch(spaceActions.setLoading(false));
+      toast.error(error.response.data.error);
+      setShowCampaignTask(true);
+    }
+
+    // console.log(data);
   };
   return (
     <div className="bg-[#060B12] relative py-[2rem] rounded-md w-[100%] min-w-[15rem] lg:w-[50rem] xl:w-[50rem] 2xl:w-[65rem] px-[1rem] lg:px-[3rem] text-[#E8E8E8]r">
+      {loading && (
+        <div className="">
+          <Loading />
+        </div>
+      )}
       <div className="flex flex-col gap-[1.5rem] md:gap-[2.56rem]">
         <div className="flex items-center gap-[1rem] px-[1rem]">
           <span title="Create Campaign">
@@ -149,6 +213,11 @@ const CampaignTasks = ({ spaceDetail }) => {
           <div>
             {selectedTask.length < 1 && (
               <div>
+                {selectedTaskError && (
+                  <p className="text-[#b40e0e] text-center text-[0.75rem] font-[600] font-Poppins">
+                    {"Please select task"}
+                  </p>
+                )}
                 <p className=" font-Poppins text-[1.02rem] text-[#707171]">
                   No Tasks Selected
                 </p>
@@ -173,14 +242,16 @@ const CampaignTasks = ({ spaceDetail }) => {
                 </div>
               </div>
             )}
+
             {selectedTask.map((task, index) => {
-              if (task.actions === "Follow Space") {
+              if (task.actions === "Join Space") {
                 return (
                   <div className="flex gap-2 md:gap-5 my-5" key={index}>
                     <div
                       onClick={() =>
                         addTaskClickHandler(
                           task.actions,
+                          task.media,
                           `${spaceDetail.uuid}`,
                           index
                         )
@@ -236,7 +307,12 @@ const CampaignTasks = ({ spaceDetail }) => {
                   <div className="flex gap-2 md:gap-5 my-5" key={index}>
                     <div
                       onClick={() =>
-                        addTaskClickHandler(task.actions, url, index)
+                        addTaskClickHandler(
+                          task.actions,
+                          task.media,
+                          url[index],
+                          index
+                        )
                       }
                       className={clsx(
                         "cursor-pointer py-[0.56rem] w-[15rem] px-[1rem] rounded-md flex items-center justify-between",
@@ -289,6 +365,11 @@ const CampaignTasks = ({ spaceDetail }) => {
                 );
               }
             })}
+            {taskError && (
+              <p className="text-[#b40e0e] text-center text-[0.75rem] font-[600] font-Poppins">
+                {"Please add task"}
+              </p>
+            )}
           </div>
           <div className="flex flex-col md:flex-row">
             <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
