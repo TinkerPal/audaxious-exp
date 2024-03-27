@@ -42,6 +42,7 @@ import {
 } from "../../../store/campaignActions";
 import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
+import SingleAction from "../engagePortal/SingleAction";
 
 const SpaceCampaignDetails = () => {
   const checkTweetId = useParams();
@@ -50,6 +51,15 @@ const SpaceCampaignDetails = () => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
+  const [processing, setProcessing] = useState(false);
+
+  const [action, setAction] = useState("");
+  const [actionState, setActionState] = useState({
+    follow: "incomplete",
+    repost: "incomplete",
+    join: "incomplete",
+    like: "incomplete",
+  });
   //   const [postArray, setPostArray] = useState();
   const urlPath = useLocation().pathname;
 
@@ -108,12 +118,47 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.like) {
+      setAction("like");
+      setProcessing(true);
       LikeIntent("1763151012615925766");
       const updatedPost = { ...post, like: true };
-      setPost(updatedPost);
+
+      // setCount((prev) => prev + 1);
+      setTimeout(() => {
+        // After 60 seconds, set processing back to false
+
+        // setAction("");
+        setActionState((prevState) => ({
+          ...prevState,
+          like: "complete",
+        }));
+
+        setProcessing(false);
+        setPost(updatedPost);
+      }, 10000); // 60 seconds in milliseconds
+
       // setCount((prev) => prev + 1);
     }
   };
+  // const handleRetweet = () => {
+  //   if (!isAuthenticated) {
+  //     dispatch(authAction.onOpen());
+  //     document.activeElement.blur();
+  //     return;
+  //   }
+  //   if (!verifyTweeter) {
+  //     document.activeElement.blur();
+  //     dispatch(authAction.onOpenTweeterModal(true));
+  //     return;
+  //   }
+  //   if (!post.repost) {
+  //     RepostIntent("1763151012615925766");
+  //     const updatedPost = { ...post, repost: true };
+  //     setPost(updatedPost);
+  //     // setCount((prev) => prev + 1);
+  //   }
+  // };
+
   const handleRetweet = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -126,12 +171,28 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.repost) {
+      setAction("repost");
+      setProcessing(true);
+      // setAction("repost");
       RepostIntent("1763151012615925766");
       const updatedPost = { ...post, repost: true };
-      setPost(updatedPost);
+      setTimeout(() => {
+        // After 60 seconds, set processing back to false
+
+        // setAction("");
+        setActionState((prevState) => ({
+          ...prevState,
+          repost: "complete",
+        }));
+
+        setProcessing(false);
+        setPost(updatedPost);
+      }, 10000); // 60 seconds in milliseconds
+
       // setCount((prev) => prev + 1);
     }
   };
+
   const handleFollow = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -144,10 +205,23 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.follow) {
+      setAction("follow");
+      setProcessing(true);
       FollowIntent("AudaXious3");
       const updatedPost = { ...post, follow: true };
-      setPost(updatedPost);
-      // setCount((prev) => prev + 1);
+
+      setTimeout(() => {
+        // After 60 seconds, set processing back to false
+
+        // setAction("");
+        setActionState((prevState) => ({
+          ...prevState,
+          follow: "complete",
+        }));
+
+        setProcessing(false);
+        setPost(updatedPost);
+      }, 10000); // 60 seconds in milliseconds
     }
   };
   const handleComment = () => {
@@ -645,38 +719,27 @@ const SpaceCampaignDetails = () => {
                       <span>
                         <FlexLine />
                       </span> */}
+
                       {post.tasks &&
                         post.tasks.map((task, index) => (
-                          <Fragment key={index}>
-                            <div
-                              key={index}
-                              onClick={() => handleAction(task.action)}
-                              className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                            >
-                              <div className="flex items-center gap-4">
-                                <span>
-                                  <Love />
-                                </span>
-                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                                  {task.action}
-                                </span>
-                              </div>
-
-                              {!post.like && (
-                                <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                                  <Actions />
-                                </span>
-                              )}
-                              {post.like && (
-                                <span>
-                                  <Check />
-                                </span>
-                              )}
-                            </div>
-                            <span>
-                              <FlexLine />
-                            </span>
-                          </Fragment>
+                          <SingleAction
+                            key={index}
+                            task={task}
+                            processing={processing}
+                            handleAction={
+                              task.action === "repost"
+                                ? handleRetweet
+                                : task.action === "follow"
+                                ? handleFollow
+                                : task.action === "like"
+                                ? handleLike
+                                : null // or a default handler if needed
+                            }
+                            action={action}
+                            actionState={actionState}
+                          >
+                            {task.action}
+                          </SingleAction>
                         ))}
                     </div>
                   </div>
