@@ -42,7 +42,6 @@ import {
 } from "../../../store/campaignActions";
 import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
-import SingleAction from "../engagePortal/SingleAction";
 
 const SpaceCampaignDetails = () => {
   const checkTweetId = useParams();
@@ -51,13 +50,6 @@ const SpaceCampaignDetails = () => {
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
-  const [processing, setProcessing] = useState(false);
-
-  const [taskStatus, setTaskStatus] = useState({
-    like: false,
-    repost: false,
-    follow: false,
-  });
   //   const [postArray, setPostArray] = useState();
   const urlPath = useLocation().pathname;
 
@@ -122,25 +114,6 @@ const SpaceCampaignDetails = () => {
       // setCount((prev) => prev + 1);
     }
   };
-  // const handleRetweet = () => {
-  //   if (!isAuthenticated) {
-  //     dispatch(authAction.onOpen());
-  //     document.activeElement.blur();
-  //     return;
-  //   }
-  //   if (!verifyTweeter) {
-  //     document.activeElement.blur();
-  //     dispatch(authAction.onOpenTweeterModal(true));
-  //     return;
-  //   }
-  //   if (!post.repost) {
-  //     RepostIntent("1763151012615925766");
-  //     const updatedPost = { ...post, repost: true };
-  //     setPost(updatedPost);
-  //     // setCount((prev) => prev + 1);
-  //   }
-  // };
-
   const handleRetweet = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -153,24 +126,12 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.repost) {
-      setProcessing(true);
       RepostIntent("1763151012615925766");
       const updatedPost = { ...post, repost: true };
-      setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        setTaskStatus((prevState) => ({
-          ...prevState,
-          repost: true,
-        }));
-        setProcessing(false);
-        setPost(updatedPost);
-      }, 10000); // 60 seconds in milliseconds
-
+      setPost(updatedPost);
       // setCount((prev) => prev + 1);
     }
   };
-
   const handleFollow = () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -716,19 +677,6 @@ const SpaceCampaignDetails = () => {
                               <FlexLine />
                             </span>
                           </Fragment>
-                        ))}
-
-                      {post.tasks &&
-                        post.tasks.map((task, index) => (
-                          <SingleAction
-                            key={index}
-                            task={task}
-                            processing={processing}
-                            handleAction={handleRetweet}
-                            taskStatus={taskStatus}
-                          >
-                            {task.action}
-                          </SingleAction>
                         ))}
                     </div>
                   </div>

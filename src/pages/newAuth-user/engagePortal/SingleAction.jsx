@@ -7,11 +7,12 @@ import { ReactComponent as FlexLine } from "../../../assets/svg/dashboardSvg/fle
 //Types can be repost, like, qoute, follow
 
 export default function SingleAction({
-  handleAction,
-  post,
+  // handleAction,
+  task,
   children,
-  type,
-  processing,
+  handleAction,
+  processing = false,
+  taskStatus,
 }) {
   return (
     <>
@@ -21,16 +22,16 @@ export default function SingleAction({
       >
         <div className="flex items-center gap-4">
           <span>
-            {type === "follow" && <Tweet />}
-            {type === "like" && <Love />}
-            {type === "repost" && <Retweet />}
-            {type === "quote" && <Retweet />}
+            {task.action === "follow" && <Tweet />}
+            {task.action === "like" && <Love />}
+            {task.action === "repost" && <Retweet />}
+            {task.action === "join" && <Retweet />}
           </span>
           <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
             {children}
           </span>
         </div>
-        {!post.repost && (
+        {!taskStatus.repost && (
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +39,9 @@ export default function SingleAction({
               height="16"
               viewBox="0 0 28 28"
               fill="none"
-              className={processing ? "animate-spin" : ""}
+              className={
+                processing && task.action == "repost" ? "animate-spin" : ""
+              }
             >
               <path
                 d="M25.866 15.8C24.9974 21.5736 20.0156 26 14 26C7.37258 26 2 20.6274 2 14C2 7.37258 7.37258 2 14 2C18.9207 2 23.1498 4.96183 25.0015 9.2"
@@ -57,7 +60,7 @@ export default function SingleAction({
             </svg>
           </span>
         )}
-        {post.repost && (
+        {taskStatus[`${task.action}`] && task.action === "repost" && (
           <span>
             <Check />
           </span>
