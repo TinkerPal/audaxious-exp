@@ -8,6 +8,8 @@ import { ReactComponent as FlexLine } from "../../../assets/svg/dashboardSvg/fle
 
 export default function SingleAction({
   // handleAction,
+  taskId,
+  action,
   task,
   children,
   handleAction,
@@ -17,7 +19,7 @@ export default function SingleAction({
   return (
     <>
       <div
-        onClick={handleAction}
+        onClick={() => handleAction(action, taskId)}
         className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
       >
         <div className="flex items-center gap-4">
