@@ -140,7 +140,7 @@ const SpaceDetail = () => {
   //   };
   const closeCreateCampaignModal = () => {
     // setOpenCampaignModal(false);
-    dispatch(spaceActions.setOpenCampaignModal(false));
+    // dispatch(spaceActions.setOpenCampaignModal(false));
   };
   const openCreateCampaignModal = () => {
     // setOpenCampaignModal(true);
