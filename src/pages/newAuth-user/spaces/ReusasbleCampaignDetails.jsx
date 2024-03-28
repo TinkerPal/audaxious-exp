@@ -57,6 +57,7 @@ const ReusasbleCampaignDetails = ({
   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
   const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
   const memberState = useSelector((state) => state.space.isMember);
+  const [completedTask, setCompletedTask] = useState([]);
 
   //   const POST = useSelector((state) => state.space.spaceCampaigns);
 
@@ -117,25 +118,6 @@ const ReusasbleCampaignDetails = ({
     getCampaigns();
   }, [dispatch, campaignId, isMember]);
 
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
-
-  //       // setCampaigns(result.data);
-  //       dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   // if (spaceDetail.uuid && toggle === 1) {
-  //   //   getCampaigns();
-  //   // }
-  //   getCampaigns();
-  // }, [dispatch, post.space_uuid]);
-
-  console.log("hello world", taskStatus);
-
   const joinSpaceHandler = async () => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
@@ -161,6 +143,7 @@ const ReusasbleCampaignDetails = ({
   };
 
   const handleLike = (task, index) => {
+    console.log(task.uuid);
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
 
     if (!isAuthenticated) {
