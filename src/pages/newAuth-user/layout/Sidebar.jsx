@@ -118,7 +118,7 @@ const Sidebar = () => {
           <span className="hidden xl:block">AI Creatives</span>
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
@@ -127,7 +127,7 @@ const Sidebar = () => {
             <MultiSenderIcon />
           </span>
           <span className="hidden xl:block">Multisender</span>
-        </NavLink>
+        </NavLink> */}
       </div>
 
       <div className="hidden xl:block">
@@ -158,7 +158,7 @@ const Sidebar = () => {
           </span>
           <span className="hidden xl:block">Settings</span>
         </NavLink> */}
-        <NavLink
+        {/* <NavLink
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
@@ -167,7 +167,7 @@ const Sidebar = () => {
             <HelpIcon />
           </span>
           <span className="hidden xl:block">Help</span>
-        </NavLink>
+        </NavLink> */}
         {isAuthenticated && (
           <button
             onClick={onOpenHandler}
