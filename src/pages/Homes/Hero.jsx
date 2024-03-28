@@ -6,7 +6,7 @@ import background from "../../assets/svg/assets/background.png";
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
-    <div className="overflow-x-hidden pt-16 2xl:pt-32 ">
+    <div className="overflow-x-hidden pt-16 2xl:pt-32  ">
       <div className="absolute inset-0 z-0">
         <img className="object-cover w-full h-full " src={background} alt="" />
       </div>
