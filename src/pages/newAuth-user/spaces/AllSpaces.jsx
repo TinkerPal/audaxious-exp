@@ -35,7 +35,9 @@ const AllSpaces = ({ onCreateSpace }) => {
     }
     // dispatch(spaceActions.setLoading(true));
     try {
-      setSelectedId(id);
+      setSelectedId((id) => id);
+      console.log("checking id", id);
+
       const result = await dispatch(joinSpace(id));
       dispatch(spaceActions.setLoading(false));
       dispatch(spaceActions.setIsMember(true));

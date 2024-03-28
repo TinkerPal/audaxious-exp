@@ -1,28 +1,20 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 
-import { ReactComponent as ProfilePicture } from "../../../assets/svg/dashboardSvg/profilePic.svg";
 import { ReactComponent as Clock } from "../../../assets/svg/dashboardSvg/clock.svg";
 import { ReactComponent as Bnb } from "../../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Eth } from "../../../assets/svg/dashboardSvg/eth.svg";
-import { ReactComponent as Tweet } from "../../../assets/svg/dashboardSvg/tweeter.svg";
-import { ReactComponent as Infinity } from "../../../assets/svg/dashboardSvg/infinity.svg";
-import { ReactComponent as Retweet } from "../../../assets/svg/dashboardSvg/secondRetweet.svg";
-import { ReactComponent as Love } from "../../../assets/svg/dashboardSvg/love.svg";
-import { ReactComponent as FlexLine } from "../../../assets/svg/dashboardSvg/flexLine.svg";
 import { ReactComponent as Cancel } from "../../../assets/svg/dashboardSvg/cancel.svg";
 import { ReactComponent as Next } from "../../../assets/svg/dashboardSvg/next.svg";
 import { ReactComponent as Previous } from "../../../assets/svg/dashboardSvg/previous.svg";
-import { ReactComponent as Actions } from "../../../assets/svg/dashboardSvg/actions.svg";
-// import { ReactComponent as Check } from "../../../assets/svg/dashboardSvg/check.svg";
-import { ReactComponent as Check } from "../../../assets/svg/dashboardSvg/checkMark.svg";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { ReactComponent as Earn } from "../../../assets/svg/dashboardSvg/earn.svg";
-import { POST, getTweetById } from "../../../utils/postApi";
+
 import { TOPEARNERS } from "../../../utils/postApi";
+
 import {
   CommentIntent,
   FollowIntent,
@@ -45,29 +37,24 @@ import { spaceActions } from "../../../store/spaceSlice";
 import SingleAction from "../engagePortal/SingleAction";
 
 const SpaceCampaignDetails = () => {
-  const checkTweetId = useParams();
-  const tweet = getTweetById(checkTweetId.postId);
   // const [post, setPost] = useState(tweet);
   const [count, setCount] = useState(0);
   const [toggle, setToggle] = useState(1);
   const [post, setPost] = useState({});
-  const [processing, setProcessing] = useState(false);
-
-  const [action, setAction] = useState("");
-  const [actionState, setActionState] = useState({
-    follow: "incomplete",
-    repost: "incomplete",
-    join: "incomplete",
-    like: "incomplete",
-  });
-  //   const [postArray, setPostArray] = useState();
-  const urlPath = useLocation().pathname;
+  // const [processing, setProcessing] = useState(false);
+  const [taskStatus, setTaskStatus] = useState([]);
+  const [processingStates, setProcessingStates] = useState([]); //for animation
+  const [selectedIndex, setSelectedIndex] = useState([]);
+  const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
+  const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+  const memberState = useSelector((state) => state.space.isMember);
 
   const POST = useSelector((state) => state.space.spaceCampaigns);
 
   const params = useParams();
   const campaignId = params.campaignId;
   const spaceId = params.spaceId;
+  let isMember = joinedSpaceIds.includes(post.space_uuid) || memberState;
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
@@ -77,19 +64,55 @@ const SpaceCampaignDetails = () => {
     (state) => state.authentication.verifyTweet
   );
 
-  //   console.log(urlPath.slice(1, 7));
+  // console.log("and here are the posts", post?.tasks?.length);
 
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCampaigns();
-  // }, [dispatch, campaignId]);
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getCampaignById(campaignId));
+        setPost(result.data);
+        console.log("result", result.data.tasks);
+        console.log("Actions", result.data.tasks[0].action);
+        const joinIndex = result.data.tasks.findIndex(
+          (task) => task.action === "join"
+        );
+        setTaskStatus((cur) =>
+          Array(result.data.tasks.length).fill("incomplete")
+        );
+        setProcessingStates((cur) =>
+          Array(result.data.tasks.length).fill(false)
+        );
+
+        setTaskStatus((prevTaskStatus) => {
+          const updatedTaskStatus = [...prevTaskStatus];
+          updatedTaskStatus[joinIndex] = isMember ? "complete" : "incomplete";
+          return updatedTaskStatus;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCampaigns();
+  }, [dispatch, campaignId, isMember]);
+
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
+
+        // setCampaigns(result.data);
+        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // if (spaceDetail.uuid && toggle === 1) {
+    //   getCampaigns();
+    // }
+    getCampaigns();
+  }, [dispatch, post.space_uuid]);
+
+  console.log("hello world", taskStatus);
 
   const joinSpaceHandler = () => {
     if (!isAuthenticated) {
@@ -104,96 +127,104 @@ const SpaceCampaignDetails = () => {
     setToggle(id);
   };
 
-  const handleLike = () => {
+  const handleLike = (task, index) => {
+    setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
       return;
     }
     if (!verifyTweeter) {
-      // setOpen(true);
       dispatch(authAction.onOpenTweeterModal(true));
-      // VerifyIntent(tweetText, tweetUrl);
       document.activeElement.blur();
       return;
     }
     if (!post.like) {
-      setAction("like");
-      setProcessing(true);
-      LikeIntent("1763151012615925766");
+      setProcessingStates((prevStates) => {
+        const updatedStates = [...prevStates];
+        updatedStates[index] = true;
+        return updatedStates;
+      });
+      const tweetId = extractHandle(task.url);
+      LikeIntent(tweetId);
       const updatedPost = { ...post, like: true };
 
-      // setCount((prev) => prev + 1);
       setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        // setAction("");
-        setActionState((prevState) => ({
-          ...prevState,
-          like: "complete",
-        }));
-
-        setProcessing(false);
+        setProcessingStates((prevStates) => {
+          const updatedStates = [...prevStates];
+          updatedStates[index] = false;
+          return updatedStates;
+        });
         setPost(updatedPost);
+        setTaskStatus((prevTaskStatus) => {
+          const updatedTaskStatus = [...prevTaskStatus];
+          updatedTaskStatus[index] = "complete";
+          return updatedTaskStatus;
+        });
       }, 10000); // 60 seconds in milliseconds
-
-      // setCount((prev) => prev + 1);
     }
   };
-  // const handleRetweet = () => {
-  //   if (!isAuthenticated) {
-  //     dispatch(authAction.onOpen());
-  //     document.activeElement.blur();
-  //     return;
-  //   }
-  //   if (!verifyTweeter) {
-  //     document.activeElement.blur();
-  //     dispatch(authAction.onOpenTweeterModal(true));
-  //     return;
-  //   }
-  //   if (!post.repost) {
-  //     RepostIntent("1763151012615925766");
-  //     const updatedPost = { ...post, repost: true };
-  //     setPost(updatedPost);
-  //     // setCount((prev) => prev + 1);
-  //   }
-  // };
 
-  const handleRetweet = () => {
+  const handleRetweet = (task, index) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
       return;
     }
     if (!verifyTweeter) {
-      document.activeElement.blur();
       dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
       return;
     }
     if (!post.repost) {
-      setAction("repost");
-      setProcessing(true);
-      // setAction("repost");
-      RepostIntent("1763151012615925766");
+      setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
+      const tweetId = extractHandle(task.url);
+      setProcessingStates((prevStates) => {
+        const updatedStates = [...prevStates];
+        updatedStates[index] = true;
+        return updatedStates;
+      });
+      RepostIntent(tweetId);
       const updatedPost = { ...post, repost: true };
       setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        // setAction("");
-        setActionState((prevState) => ({
-          ...prevState,
-          repost: "complete",
-        }));
-
-        setProcessing(false);
+        setProcessingStates((prevStates) => {
+          const updatedStates = [...prevStates];
+          updatedStates[index] = false;
+          return updatedStates;
+        });
         setPost(updatedPost);
+        setTaskStatus((prevTaskStatus) => {
+          const updatedTaskStatus = [...prevTaskStatus];
+          updatedTaskStatus[index] = "complete";
+          return updatedTaskStatus;
+        });
       }, 10000); // 60 seconds in milliseconds
-
-      // setCount((prev) => prev + 1);
     }
   };
 
-  const handleFollow = () => {
+  function extractHandle(url) {
+    if (typeof url !== "string") {
+      return null; // Handle invalid input
+    }
+
+    // Regular expression to match "amazonluna" after the last "/"
+    const regex = /\/([^/]+)$/i; // i flag for case insensitivity
+    const match = url.match(regex);
+
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      return null; // Handle not found
+    }
+  }
+
+  const handleFollow = (task, index) => {
+    setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
+    const username = extractHandle(task.url);
+
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -205,26 +236,31 @@ const SpaceCampaignDetails = () => {
       return;
     }
     if (!post.follow) {
-      setAction("follow");
-      setProcessing(true);
-      FollowIntent("AudaXious3");
+      setProcessingStates((prevStates) => {
+        const updatedStates = [...prevStates];
+        updatedStates[index] = true;
+        return updatedStates;
+      });
+      FollowIntent(username);
       const updatedPost = { ...post, follow: true };
-
       setTimeout(() => {
-        // After 60 seconds, set processing back to false
-
-        // setAction("");
-        setActionState((prevState) => ({
-          ...prevState,
-          follow: "complete",
-        }));
-
-        setProcessing(false);
+        setProcessingStates((prevStates) => {
+          const updatedStates = [...prevStates];
+          updatedStates[index] = true;
+          return updatedStates;
+        });
         setPost(updatedPost);
-      }, 10000); // 60 seconds in milliseconds
+        setTaskStatus((prevTaskStatus) => {
+          const updatedTaskStatus = [...prevTaskStatus];
+          updatedTaskStatus[index] = "complete";
+          return updatedTaskStatus;
+        });
+      }, 10000); // 10 seconds in milliseconds
     }
   };
-  const handleComment = () => {
+
+  const handleComment = (taskId) => {
+    console.log(taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -246,23 +282,26 @@ const SpaceCampaignDetails = () => {
     }
   };
 
-  const handleAction = (actionType) => {
+  // `join follow like repost share post`;
+
+  const handleAction = (actionType, task, index) => {
     switch (actionType) {
-      case "Like":
-        handleLike();
+      case "like":
+        handleLike(task, index);
         break;
-      case "Retweet":
-        handleRetweet();
+      case "repost":
+        handleRetweet(task, index);
         break;
-      case "Follow":
-        handleFollow();
+      case "follow":
+        handleFollow(task, index);
         break;
-      case "Comment":
-        handleComment();
+      case "post":
+        handleComment(task, index);
         break;
-      default:
-        // Handle default case if needed
-        break;
+      // default:
+      //   // Handle default case if needed
+      //   () => {};
+      //   break;
     }
   };
 
@@ -289,67 +328,16 @@ const SpaceCampaignDetails = () => {
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
-    // if (urlPath.slice(1, 7) === "engage") {
-    //   navigate(`/engage-portal`);
-    // } else if (urlPath.slice(1, 7) === "spaces") {
     navigate(`/spaces/${spaceId}`);
-    // }
   };
-
-  //   useEffect(() => {
-  //     const getCampaigns = async () => {
-  //       try {
-  //         const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
-
-  //         // setCampaigns(result.data);
-  //         dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     if (spaceDetail.uuid && toggle === 1) {
-  //       getCampaigns();
-  //     }
-  //   }, [dispatch, toggle, spaceDetail]);
-
-  // console.log("POSTINGS", POST);
-
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getCampaignById(campaignId));
-        setPost(result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCampaigns();
-  }, [dispatch, campaignId]);
-
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
-
-        // setCampaigns(result.data);
-        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-        // console.log("REAL DEAL", result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // if (spaceDetail.uuid && toggle === 1) {
-    //   getCampaigns();
-    // }
-    getCampaigns();
-  }, [dispatch, post.space_uuid]);
 
   if (!post) {
     return <Loading />;
   }
 
   //   console.log(campaignId);
-  console.log("TASKS", post.task);
+  console.log("TASKS", post.tasks?.length);
+  console.log("the states are", taskStatus);
 
   return (
     <>
@@ -390,22 +378,28 @@ const SpaceCampaignDetails = () => {
                 </div>
               </div>
               <div>
-                {!isAuthenticated && (
-                  <div
-                    onClick={joinSpaceHandler}
-                    className="cursor-pointer px-[1rem]  py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
-                  >
-                    Join space
-                  </div>
+                {!isAuthenticated ||
+                  (!isMember && (
+                    <div
+                      onClick={joinSpaceHandler}
+                      className="cursor-pointer px-[1rem]  py-[0.5rem] font-Poppins text-[1rem] text-[#060B12] font-[400] bg-[#79C4EC] rounded-sm"
+                    >
+                      Join space
+                    </div>
+                  ))}
+                {isAuthenticated && isMember && (
+                  <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                    Member
+                  </span>
                 )}
-                {isAuthenticated && (
+                {/* {isAuthenticated && (
                   <div
                     // onClick={joinSpaceHandler}
                     className="cursor-pointer whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
                   >
                     Joined
                   </div>
-                )}
+                )} */}
               </div>
             </header>
             <div className="relative">
@@ -521,23 +515,6 @@ const SpaceCampaignDetails = () => {
                               <p className="text-[0.95rem] text-gray-300 text-start">
                                 {post.description}
                               </p>
-                              {/* {post &&
-                                post.tweet &&
-                                post.tweet.images.length > 0 && (
-                                  <div className="flex gap-[20px]">
-                                    {post.tweet.images.map((image) => (
-                                      <div key={image} className="">
-                                        <img
-                                          src={image}
-                                          width={"400"}
-                                          height={"400"}
-                                          className="w-[100%] h-[7rem] lg:h-[5rem] xl:h-[12rem] object-cover rounded-[10px]"
-                                          alt={post.userName}
-                                        />
-                                      </div>
-                                    ))}
-                                  </div>
-                                )} */}
                             </div>
                             <div>
                               <p className="text-[#A5A5A5] font-Poppins text-[1rem] normal font-normal text-start">
@@ -652,12 +629,6 @@ const SpaceCampaignDetails = () => {
                               </span>
                             </div>
                             <div className="flex items-center gap-[1rem]">
-                              {/* <span className="text-[#FFF] text-[0.8rem] normal font-Poppins font-[300]">
-                            10 BNB
-                          </span>
-                          <span className="text-[#FFF]">
-                            <Bnb />
-                          </span> */}
                               <span
                                 className={clsx(
                                   "whitespace-nowrap text-[0.5rem] md:text-[0.96rem]",
@@ -692,51 +663,17 @@ const SpaceCampaignDetails = () => {
                   </div>
                   <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
                     <div className="flex flex-col gap-[0.5rem]">
-                      {/* <div
-                        onClick={handleLike}
-                        className="cursor-pointer select-none flex justify-between py-[0.5rem] px-[1.3rem] items-center bg-[#0C131B] rounded-[8px]"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span>
-                            <Love />
-                          </span>
-                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                            Like this post
-                          </span>
-                        </div>
-
-                        {!post.like && (
-                          <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
-                            <Actions />
-                          </span>
-                        )}
-                        {post.like && (
-                          <span>
-                            <Check />
-                          </span>
-                        )}
-                      </div>
-                      <span>
-                        <FlexLine />
-                      </span> */}
-
                       {post.tasks &&
                         post.tasks.map((task, index) => (
                           <SingleAction
                             key={index}
                             task={task}
-                            processing={processing}
-                            handleAction={
-                              task.action === "repost"
-                                ? handleRetweet
-                                : task.action === "follow"
-                                ? handleFollow
-                                : task.action === "like"
-                                ? handleLike
-                                : null // or a default handler if needed
-                            }
-                            action={action}
-                            actionState={actionState}
+                            action={task.action}
+                            processing={processingStates}
+                            handleAction={handleAction}
+                            taskStatus={taskStatus}
+                            index={index}
+                            selectedIndex={selectedIndex}
                           >
                             {task.action}
                           </SingleAction>

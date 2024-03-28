@@ -13,7 +13,7 @@ export default function SingleAction({
   task,
   children,
   handleAction,
-  processing = false,
+  processing,
   taskStatus,
   index,
   selectedIndex,
@@ -44,7 +44,7 @@ export default function SingleAction({
               viewBox="0 0 28 28"
               fill="none"
               className={
-                processing && selectedIndex.includes(index)
+                processing[index] && selectedIndex.includes(index)
                   ? "animate-spin"
                   : ""
               }

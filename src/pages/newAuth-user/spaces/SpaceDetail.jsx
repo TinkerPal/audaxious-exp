@@ -117,7 +117,9 @@ const SpaceDetail = () => {
     }
     dispatch(spaceActions.setLoading(true));
     try {
-      const result = await dispatch(joinSpace(spaceId));
+      // console.log("hello id space", spaceId);
+
+      const result = await dispatch(joinSpace(spaceDetail.uuid));
       dispatch(spaceActions.setLoading(false));
       toast.success(result.message);
 
