@@ -77,8 +77,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     value: point,
     onBlurHandler: pointOnBlur,
     valueIsInvalid: pointInvalid,
-  } = useInputNumber(checkPointValidity);
-
+  } = useInputNumber(checkPointValidity, 50);
   // const taskss = {
   //   tasks: tasks,
   // };
