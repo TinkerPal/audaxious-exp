@@ -415,9 +415,15 @@ const ReusasbleCampaignDetails = ({
     return <Loading />;
   }
 
+  const taskCompleted = checkCompletedTask?.length === post?.tasks?.length;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const data = { tasks: completedTask };
+    console.log(
+      "TASK HAS BEEN COMPLETED",
+      checkCompletedTask.length === post.tasks.length
+    );
     try {
       if (checkCompletedTask.length < post.tasks.length) {
         const result = await dispatch(participateInTask(campaignId, data));
@@ -787,6 +793,7 @@ const ReusasbleCampaignDetails = ({
                               index={index}
                               selectedIndex={selectedIndex}
                               checkFuntion={checkFuntion}
+                              taskCompleted={taskCompleted}
                             >
                               {task.action}
                             </SingleAction>

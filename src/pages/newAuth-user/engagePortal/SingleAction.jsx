@@ -17,6 +17,7 @@ export default function SingleAction({
   taskStatus,
   index,
   selectedIndex,
+  taskCompleted,
 }) {
   console.log(checkFuntion("1071eab4-ef5e-440b-bbc5-ed2dd1e1289b"));
   return (
@@ -36,7 +37,7 @@ export default function SingleAction({
             {children}
           </span>
         </div>
-        {taskStatus[index] === "incomplete" && (
+        {(taskStatus[index] === "incomplete" || !taskCompleted) && (
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +69,7 @@ export default function SingleAction({
           </span>
         )}
 
-        {taskStatus[index] === "complete" && (
+        {(taskStatus[index] === "complete" || taskCompleted) && (
           <span>
             <Check />
           </span>
