@@ -17,69 +17,17 @@ import { ReactComponent as Bnb } from "../../../assets/svg/dashboardSvg/bnb.svg"
 import { ReactComponent as Brick2 } from "../../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../../assets/svg/brick-line.svg";
 import { ReactComponent as SeachIcon } from "../../../assets/svg/dashboardSvg/searchIcon.svg";
-// import { Dialog } from "@headlessui/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-// import SingleTweetById from "./SingleTweetById";
 import { TOPEARNERS } from "../../../utils/postApi";
 import Campaigns from "./Campaignss";
 import TopEarners from "./TopEarners";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
-  // const [open, setOpen] = useState(false);
-  // const [singleTweet, setSingleTweet] = useState();
-  // const [selectedPostId, setSelectedPostId] = useState(null);
-  // const singleTweetContainerRef = useRef(null);
-  // const scrollRef = useRef(null);
-  // const overlayRef = useRef(null);
-
-  // const loadTweetByIdHandler = (id) => {
-  //   setOpen(true);
-  //   setSelectedPostId(id);
-  //   setSingleTweet(id);
-  // };
-
-  // useEffect(() => {
-  //   if (scrollRef.current) {
-  //     scrollRef.current.style.overflowY = "auto";
-  //   }
-  // }, [selectedPostId]);
-
-  // const overlayCancelHandler = () => {
-  //   if (overlayRef.current && event.target === overlayRef.current) {
-  //     setSingleTweet(null);
-  //     setSelectedPostId(null);
-  //   }
-  // };
-
-  // const cancelHandler = () => {
-  //   setOpen(false);
-  //   setSingleTweet(null);
-  //   setSelectedPostId(null);
-  // };
-  // const toggleTabHandler = useCallback((id) => {
-  //   setToggle(id);
-  // }, []);
   const swiperRefLocal = useRef();
 
-  const handleMouseEnter = () => {
-    swiperRefLocal?.current?.swiper?.autoplay?.stop();
-  };
-
-  const handleMouseLeave = () => {
-    swiperRefLocal?.current?.swiper?.autoplay?.start();
-  };
-  const swiperProps = {
-    navigation: false,
-    modules: [Autoplay, Navigation],
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-    },
-  };
   return (
     <div
       className="ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] max-w-[1670px]"
