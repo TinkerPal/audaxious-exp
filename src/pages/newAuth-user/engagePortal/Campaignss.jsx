@@ -31,7 +31,7 @@ const Campaigns = () => {
                         Tasks | {post.taskCount}/{post.tasks.length}
                       </span>
                     </button>
-                    <button className="bg-[#13161E] flex items-center gap-1 border-[1px] text-[#C556E1] rounded-[26px] bg-[#C556E1]/5  border-[#C556E1]/25 px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] ">
+                    <button className="bg-[#13161E] flex items-center gap-1 border-[1px] text-[#C556E1]/80 rounded-[26px] bg-[#C556E1]/5  border-[#C556E1]/20 px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] ">
                       <span className="whitespace-nowrap flex">
                         Earn |{" "}
                         {

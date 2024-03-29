@@ -37,7 +37,7 @@ export default function SingleAction({
             {children}
           </span>
         </div>
-        {(taskStatus[index] === "incomplete" || !taskCompleted) && (
+        {taskStatus[index] === "incomplete" && !taskCompleted && (
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

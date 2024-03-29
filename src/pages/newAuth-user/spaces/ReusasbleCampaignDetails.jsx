@@ -42,8 +42,6 @@ import { toast } from "react-toastify";
 import { getAllJoinedSpaces, joinSpace } from "../../../store/spaceActions";
 
 const ReusasbleCampaignDetails = ({
-  handleNextTweet,
-  handlePreviousTweet,
   closeIntentModalHandler,
   post,
   setPost,
@@ -59,10 +57,63 @@ const ReusasbleCampaignDetails = ({
   const [completedTask, setCompletedTask] = useState([]);
   const [checkCompletedTask, setCheckCompletedTask] = useState([]);
   const [joinUuid, setJoinUuid] = useState("");
+  const navigate = useNavigate();
+
+  const POST = useSelector((state) => state.campaign.campaign);
 
   //   const POST = useSelector((state) => state.space.spaceCampaigns);
 
-  console.log("COMPLETED TASK ARRAY", completedTask);
+  let nextIndex;
+  const handleNextTweet = () => {
+    setCompletedTask(() => []);
+    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
+    nextIndex = (currentIndex + 1) % POST.length;
+    const nextTweet = POST[nextIndex];
+    setPost(() => nextTweet);
+    console.log("next tweet", nextTweet);
+
+    // console.log("next tweet", nextTweet);
+    const joinIndex = nextTweet.tasks.findIndex(
+      (task) => task.action === "join"
+    );
+
+    const joinUUID = nextTweet.tasks[joinIndex].uuid;
+    console.log("the join uuid is fwefewfe", joinUUID);
+
+    if (!isTaskUuidInArray(joinUUID, completedTask) && isMember) {
+      const newTask = { uuid: joinUUID };
+      setCompletedTask((prev) => [...prev, newTask]);
+    }
+
+    navigate(`/engage-portal/${nextTweet.uuid}`);
+    // checkCompletedTaskFunction();
+  };
+  const handlePreviousTweet = () => {
+    setCompletedTask(() => []);
+    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
+    nextIndex = (currentIndex - 1) % POST.length;
+    if (nextIndex < 0) {
+      nextIndex = POST.length - 1;
+    }
+
+    const nextTweet = POST[nextIndex];
+    setPost(() => nextTweet);
+    // console.log("next tweet", nextTweet);
+    const joinIndex = nextTweet.tasks.findIndex(
+      (task) => task.action === "join"
+    );
+
+    const joinUUID = nextTweet.tasks[joinIndex].uuid;
+    console.log("the join uuid is wefwfewfewfwe", joinUUID);
+
+    if (!isTaskUuidInArray(joinUUID, completedTask) && isMember) {
+      const newTask = { uuid: joinUUID };
+      setCompletedTask((prev) => [...prev, newTask]);
+    }
+    navigate(`/engage-portal/${nextTweet.uuid}`);
+
+    // checkCompletedTaskFunction();
+  };
 
   // const params = useParams();
   // const campaignId = params.campaignId;
@@ -120,6 +171,9 @@ const ReusasbleCampaignDetails = ({
         const joinIndex = result.data.tasks.findIndex(
           (task) => task.action === "join"
         );
+
+        const joinUUID = result.data.tasks[joinIndex].uuid;
+
         setTaskStatus((cur) =>
           Array(result.data.tasks.length).fill("incomplete")
         );
@@ -130,14 +184,21 @@ const ReusasbleCampaignDetails = ({
         setTaskStatus((prevTaskStatus) => {
           const updatedTaskStatus = [...prevTaskStatus];
           updatedTaskStatus[joinIndex] = isMember ? "complete" : "incomplete";
+
           return updatedTaskStatus;
         });
+
+        if (!isTaskUuidInArray(joinUUID, completedTask) && isMember) {
+          const newTask = { uuid: joinUUID };
+          setCompletedTask((prev) => [...prev, newTask]);
+        }
       } catch (error) {
         console.log(error);
       }
     };
     getCampaigns();
-  }, [dispatch, campaignId, isMember]);
+    console.log("COMPLETED TASK ARRAY", completedTask);
+  }, [dispatch, campaignId, isMember, nextIndex]);
 
   const joinSpaceHandler = async () => {
     if (!isAuthenticated) {
@@ -805,7 +866,8 @@ const ReusasbleCampaignDetails = ({
                 <div className="flex bg-[#0E161D] items-center justify-between mt-[1rem] py-[0.75rem]  rounded-2xl px-[1rem]">
                   <button
                     type="submit"
-                    className=" px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem]"
+                    disabled={taskCompleted}
+                    className={`px-[1rem] py-[0.5rem] rounded-md md:w-2/3 flex justify-center items-center gap-[1rem] `}
                   >
                     <span>
                       <Earn />
