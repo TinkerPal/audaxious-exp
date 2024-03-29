@@ -8,7 +8,7 @@ import { ReactComponent as FlexLine } from "../../../assets/svg/dashboardSvg/fle
 
 export default function SingleAction({
   // handleAction,
-
+  checkFuntion,
   action,
   task,
   children,
@@ -18,6 +18,7 @@ export default function SingleAction({
   index,
   selectedIndex,
 }) {
+  console.log(checkFuntion("1071eab4-ef5e-440b-bbc5-ed2dd1e1289b"));
   return (
     <>
       <div
