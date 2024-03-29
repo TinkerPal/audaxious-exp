@@ -32,8 +32,9 @@ const useInput = (valid) => {
 
 export default useInput;
 
-export const useInputNumber = (valid) => {
-  const [value, setValue] = useState(0);
+export const useInputNumber = (valid, defaultValue) => {
+  // const defaultValue
+  const [value, setValue] = useState(defaultValue);
   const [isTouch, setIsTouch] = useState(null);
 
   const valueIsValid = valid(value);
@@ -59,6 +60,7 @@ export const useInputNumber = (valid) => {
     valueIsInvalid,
     onBlurHandler,
     reset,
+    defaultValue,
   };
 };
 
