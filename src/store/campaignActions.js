@@ -45,10 +45,11 @@ export const getAllCampaignsBySpace = (spaceId) => {
 };
 export const getAllCompletedTask = (id) => {
   return async () => {
+    const token = localStorage.getItem("audaxiousAccessToken") || null;
     const getCompletedTask = async () => {
-      const response = createAxiosPublicInstance();
+      const response = createAxiousInstance(token);
       try {
-        const responseData = await response.get(`task/completed/${id}`);
+        const responseData = await response.get(`/task/completed/${id}`);
         return responseData.data;
       } catch (error) {
         console.log("throw Error", error);
@@ -85,13 +86,16 @@ export const getCampaignById = (campaignId) => {
   };
 };
 
-export const participateInTask = (id) => {
+export const participateInTask = (id, data) => {
   return async () => {
     const token = localStorage.getItem("audaxiousAccessToken") || null;
     const postAllTask = async () => {
       const request = createAxiousInstance(token);
       try {
-        const response = await request.post(`/task/participate/all/${id}`);
+        const response = await request.post(
+          `/task/participate/all/${id}`,
+          data
+        );
         return response.data;
       } catch (error) {
         console.log("INITIAL PARTICIPATE IN TASK ERROR");
@@ -108,7 +112,7 @@ export const participateInTask = (id) => {
     }
   };
 };
-export const ClaimPointTask = (id) => {
+export const claimPointTask = (id) => {
   return async () => {
     const token = localStorage.getItem("audaxiousAccessToken") || null;
     const claimTask = async () => {
