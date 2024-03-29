@@ -25,6 +25,7 @@ import "swiper/css/pagination";
 // import SingleTweetById from "./SingleTweetById";
 import { TOPEARNERS } from "../../../utils/postApi";
 import Campaigns from "./Campaignss";
+import TopEarners from "./TopEarners";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
@@ -119,88 +120,7 @@ const EngagePortals = () => {
                   Top Earners
                 </p>
               </div>
-              <Swiper
-                grabCursor
-                effect="slide"
-                speed={1000}
-                {...swiperProps}
-                ref={swiperRefLocal}
-                loop={true}
-                slidesPerView="auto"
-                centeredSlides={true}
-                autoplay={{
-                  // delay: 100,
-                  delay: 0,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: true,
-                }}
-                breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                  },
-                  580: {
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                  },
-                  1020: {
-                    slidesPerView: 2,
-                    spaceBetween: 0,
-                  },
-                  1240: {
-                    slidesPerView: 2,
-                    spaceBetween: 0,
-                  },
-                  1340: {
-                    slidesPerView: 3,
-                    spaceBetween: 0,
-                  },
-                  1700: {
-                    slidesPerView: 5,
-                    spaceBetween: 0,
-                  },
-                }}
-              >
-                {TOPEARNERS.map((earners) => (
-                  <SwiperSlide
-                    key={earners.id}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div
-                      className="flex gap-[0.3rem] pl-[0.7rem] md:pl-[1.62rem] py-[0.6rem] items-center"
-                      key={earners.id}
-                    >
-                      <div className="border rounded-full overflow-hidden">
-                        <img
-                          src={earners.src}
-                          width={"100"}
-                          height={"100"}
-                          alt=""
-                          className="w-[30px] h-[30px] object-cover"
-                        />
-                      </div>
-                      <span className="text-[#E8E8E8] text-[0.5rem] md:text-[0.85rem] font-Poppins font-[300]">
-                        {earners.name}
-                      </span>
-                      <span className="text-neutral-500 font-Poppins font-[300] text-[0.5rem] md:text-[0.75rem]">
-                        earned
-                      </span>
-                      <span
-                        className={clsx(
-                          "whitespace-nowrap text-[0.5rem] md:text-[0.8rem]",
-                          earners.coin.eth ? "text-[#F04086]" : "text-[#E1D356]"
-                        )}
-                      >
-                        {earners.coin.eth
-                          ? `${earners.coin.eth} ETH`
-                          : `${earners.coin.btc} BNB`}
-                      </span>
-                      <span>{earners.coin.eth ? <Eth /> : <Bnb />}</span>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              <TopEarners />
             </div>
           </div>
         </section>
