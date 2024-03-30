@@ -28,6 +28,8 @@ const AllSpaces = ({ onCreateSpace }) => {
     // console.log("AllSpace");
   };
 
+  console.log("Space array", spaceArray);
+
   const joinSpaceHandler = async (id) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());

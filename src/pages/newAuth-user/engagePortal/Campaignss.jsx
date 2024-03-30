@@ -1,18 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { POST } from "../../../utils/postApi";
-import clsx from "clsx";
+
 import { ReactComponent as Clock } from "../../../assets/svg/dashboardSvg/clock.svg";
-import { ReactComponent as Bnb } from "../../../assets/svg/dashboardSvg/bnb.svg";
-import { ReactComponent as Eth } from "../../../assets/svg/dashboardSvg/eth.svg";
-import { ReactComponent as Task } from "../../../assets/svg/task.svg";
+
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import Card from "../../../components/socialmedia/Card";
 
 const Campaigns = () => {
   const campaigns = useSelector((state) => state.campaign.campaign);
-  console.log(campaigns);
+  // console.log(campaigns);
 
   // console.log("Capaings ", campaigns);
   return (
