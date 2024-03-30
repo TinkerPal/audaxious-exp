@@ -36,6 +36,7 @@ const CreateSpace = () => {
     onBlurHandler: nameOnBlur,
     valueIsInvalid: nameInvalid,
   } = useInput(checkNameValidity);
+
   const {
     onChangeValueHandler: websiteOnchange,
     value: website,

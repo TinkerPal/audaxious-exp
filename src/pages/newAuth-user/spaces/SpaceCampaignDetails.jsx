@@ -21,22 +21,22 @@ const SpaceCampaignDetails = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
+  // useEffect(() => {
+  //   const getCampaigns = async () => {
+  //     try {
+  //       const result = await dispatch(getAllCampaignsBySpace(post.space_uuid));
 
-        // setCampaigns(result.data);
-        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // if (spaceDetail.uuid && toggle === 1) {
-    //   getCampaigns();
-    // }
-    getCampaigns();
-  }, [dispatch, post.space_uuid]);
+  //       // setCampaigns(result.data);
+  //       dispatch(spaceActions.replaceSpaceCampaigns(result.data));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   // if (spaceDetail.uuid && toggle === 1) {
+  //   //   getCampaigns();
+  //   // }
+  //   getCampaigns();
+  // }, [dispatch, post.space_uuid]);
 
   // const handleNextTweet = () => {
   //   const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
@@ -67,10 +67,6 @@ const SpaceCampaignDetails = () => {
   if (!post) {
     return <Loading />;
   }
-
-  //   console.log(campaignId);
-  // console.log("TASKS", post.tasks?.length);
-  // console.log("the states are", taskStatus);
 
   return (
     <>

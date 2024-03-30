@@ -19,7 +19,6 @@ export default function SingleAction({
   selectedIndex,
   taskCompleted,
 }) {
-  console.log(checkFuntion("1071eab4-ef5e-440b-bbc5-ed2dd1e1289b"));
   return (
     <>
       <div

@@ -88,16 +88,12 @@ const ReusasbleCampaignDetails = ({
     nextIndex = (currentIndex + 1) % POST.length;
     const nextTweet = POST[nextIndex];
     setPost(() => nextTweet);
-    console.log("next tweet", nextTweet);
-    // console.log("location", urlPath.slice(1, 7));
 
-    // console.log("next tweet", nextTweet);
     const joinIndex = nextTweet.tasks.findIndex(
       (task) => task.action === "join"
     );
 
     const joinUUID = nextTweet.tasks[joinIndex].uuid;
-    console.log("the join uuid is fwefewfe", joinUUID);
 
     if (!isTaskUuidInArray(joinUUID, completedTask) && isMember) {
       const newTask = { uuid: joinUUID };
@@ -124,26 +120,20 @@ const ReusasbleCampaignDetails = ({
     );
 
     const joinUUID = nextTweet.tasks[joinIndex].uuid;
-    console.log("the join uuid is wefwfewfewfwe", joinUUID);
 
     if (!isTaskUuidInArray(joinUUID, completedTask) && isMember) {
       const newTask = { uuid: joinUUID };
       setCompletedTask((prev) => [...prev, newTask]);
     }
-    // navigate(`/engage-portal/${nextTweet.uuid}`);
+
     NavigationHandler(nextTweet.uuid);
 
     // checkCompletedTaskFunction();
   };
 
-  // const params = useParams();
-  // const campaignId = params.campaignId;
-  // const spaceId = params.spaceId;
   let isMember = joinedSpaceIds.includes(post.space_uuid) || memberState;
   const checkCompletedTaskIds = checkCompletedTask.map((task) => task.uuid);
   const checkFuntion = (id) => checkCompletedTask.includes(id);
-
-  console.log("checkCompletedTask", checkCompletedTaskIds);
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
@@ -159,21 +149,18 @@ const ReusasbleCampaignDetails = ({
         const result = await dispatch(getAllJoinedSpaces());
         dispatch(spaceActions.replaceJoinSpace(result.data));
       } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.error);
       }
     };
     joinedSpaces();
   }, [dispatch]);
 
-  // console.log("campaignId", campaignId);
   const checkCompletedTaskFunction = async () => {
-    console.log(campaignId);
     try {
       const result = await dispatch(getAllCompletedTask(campaignId));
-      console.log("COMPLETED TASK", result);
       setCheckCompletedTask(result.data);
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.error);
     }
   };
   useEffect(() => {
@@ -187,8 +174,7 @@ const ReusasbleCampaignDetails = ({
       try {
         const result = await dispatch(getCampaignById(campaignId));
         setPost(result.data);
-        // console.log("result", result.data.tasks);
-        // console.log("Actions", result.data.tasks[0].action);
+
         const joinIndex = result.data.tasks.findIndex(
           (task) => task.action === "join"
         );
@@ -214,11 +200,10 @@ const ReusasbleCampaignDetails = ({
           setCompletedTask((prev) => [...prev, newTask]);
         }
       } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.error);
       }
     };
     getCampaigns();
-    console.log("COMPLETED TASK ARRAY", completedTask);
   }, [dispatch, campaignId, isMember, nextIndex]);
 
   const joinSpaceHandler = async () => {
@@ -232,8 +217,6 @@ const ReusasbleCampaignDetails = ({
       dispatch(spaceActions.setLoading(false));
       toast.success(result.message);
       dispatch(spaceActions.setIsMember(true));
-
-      console.log("JOINSPACE", result);
     } catch (error) {
       dispatch(spaceActions.setLoading(false));
       dispatch(spaceActions.setIsMember(false));
@@ -248,13 +231,6 @@ const ReusasbleCampaignDetails = ({
   const isTaskUuidInArray = (taskUuid, array) =>
     array.some((item) => item.uuid === taskUuid);
 
-  console.log(post.tasks);
-  // console.log(post.space_uuid);
-  // useEffect(() => {
-  //   if (post && isMember) {
-  //     handleJoin(post.tasks);
-  //   }
-  // }, [isMember, post]);
   const handleJoin = async (task, index) => {
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
     if (!isAuthenticated) {
@@ -280,8 +256,6 @@ const ReusasbleCampaignDetails = ({
         dispatch(spaceActions.setLoading(false));
         toast.success(result.message);
         dispatch(spaceActions.setIsMember(true));
-
-        console.log("JOINSPACE", result);
       } catch (error) {
         dispatch(spaceActions.setLoading(false));
         dispatch(spaceActions.setIsMember(false));
@@ -306,7 +280,6 @@ const ReusasbleCampaignDetails = ({
     }
   };
   const handleLike = (task, index) => {
-    // console.log(task.uuid);
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
 
     if (!isAuthenticated) {
@@ -452,7 +425,6 @@ const ReusasbleCampaignDetails = ({
   };
 
   const handleComment = (taskId) => {
-    console.log(taskId);
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
@@ -504,25 +476,23 @@ const ReusasbleCampaignDetails = ({
 
   const taskCompleted = checkCompletedTask?.length === post?.tasks?.length;
 
+  const taskCompleteProgress = taskCompleted
+    ? checkCompletedTask.length
+    : completedTask.length;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const data = { tasks: completedTask };
-    console.log(
-      "TASK HAS BEEN COMPLETED",
-      checkCompletedTask.length === post.tasks.length
-    );
+
     try {
       if (checkCompletedTask.length < post.tasks.length) {
         const result = await dispatch(participateInTask(campaignId, data));
-        console.log("CHECK TASK RESULT", result);
 
         const claimPoint = await dispatch(claimPointTask(campaignId));
         toast.success(claimPoint.message);
-        console.log("CLAIM POINTS", claimPoint);
       } else if (checkCompletedTask.length === post.tasks.length) {
         const claimPoint = await dispatch(claimPointTask(campaignId));
         toast.success(claimPoint.message);
-        console.log("CLAIM POINTS", claimPoint);
       }
     } catch (error) {
       console.error(error);
@@ -666,8 +636,8 @@ const ReusasbleCampaignDetails = ({
                                 </span>
                                 <span className="whitespace-nowrap">
                                   {/* Tasks | {post.tasks}/10 */}
-                                  Tasks | {`${post.taskParticipantCount || 0}`}/
-                                  {`${post.taskCount || 10}`}
+                                  Tasks | {`${taskCompleteProgress}`}/
+                                  {`${post.tasks.length}`}
                                 </span>
                               </button>
                               <button
@@ -720,7 +690,7 @@ const ReusasbleCampaignDetails = ({
                               </div>
                               <div>
                                 <p className="text-[#A5A5A5] font-Poppins text-[1rem] normal font-normal text-start">
-                                  {post.participants || 0} Participants
+                                  {post.taskParticipantCount} Participants
                                 </p>
                               </div>
                             </div>
@@ -863,7 +833,7 @@ const ReusasbleCampaignDetails = ({
                         Complete the tasks
                       </div>
                       <span className="font-Poppins text-[1.25rem] font-[300] text-[#E8E8E8]">
-                        {isMember ? 1 : 0}/{post.tasks?.length}
+                        {taskCompleteProgress}/{post.tasks?.length}
                       </span>
                     </div>
                     <div className="border-[#314048] border-[0.5px] rounded-[20px] px-[0.8rem] py-[2rem] lg:py-[0.7rem] xl:py-[1.16rem]">
