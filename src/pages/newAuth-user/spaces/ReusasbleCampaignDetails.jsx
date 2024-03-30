@@ -384,6 +384,28 @@ const ReusasbleCampaignDetails = ({
   //   }
   // }
 
+  function extractHandle(url) {
+    if (typeof url !== "string") {
+      return null; // Handle invalid input
+    }
+
+    // Regular expression to match tweet ID after "/status/" or username after "twitter.com/"
+    const tweetIdRegex = /\/status\/(\d+)/i;
+    // const usernameRegex = /(?:twitter\.com|X\.com)\/([^/]+)/i; // Match both "twitter.com" and "X.com"
+    const usernameRegex = /(?:twitter\.com|X\.com)\/([^/?]+)/i;
+
+    const tweetIdMatch = url.match(tweetIdRegex);
+    const usernameMatch = url.match(usernameRegex);
+
+    if (tweetIdMatch && tweetIdMatch[1]) {
+      return tweetIdMatch[1]; // Return tweet ID if found
+    } else if (usernameMatch && usernameMatch[1]) {
+      return usernameMatch[1]; // Return username if found
+    } else {
+      return null; // Neither tweet ID nor username found
+    }
+  }
+
   const handleFollow = (task, index) => {
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
 
