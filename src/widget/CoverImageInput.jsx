@@ -22,7 +22,7 @@ const CoverImageInput = ({ onChange, val, name }) => {
           // value={cover}
           // onBlur={coverImageOnBlur}
 
-          required
+          // required
           type="file"
           name={name}
           id={name}

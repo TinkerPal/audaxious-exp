@@ -84,7 +84,7 @@ const SpaceDetail = () => {
       try {
         const result = await dispatch(getSpaceById(spaceId));
         // console.log(result.data);
-        setSpaceDetail(result.data);
+        setSpaceDetail(() => result.data);
       } catch (error) {
         console.log(error);
       }
@@ -159,92 +159,114 @@ const SpaceDetail = () => {
       </Modal>
       <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] md:border-l border-opacity-[80%] ml-[0.7rem] md:ml-[2rem] xl:ml-[0.7rem] gap-5">
         <div className="flex flex-col mb-10">
-          <div className="h-[3.5rem] md:h-[8rem] lg:h-[8.5rem] xl:max-h-[10.5rem] mr-[-0.8rem] lg:mr-[-1.9rem]">
+          <div className="h-[3.5rem] md:h-[8rem] lg:h-[12.5rem] xl:max-h-[15rem] mr-[-0.8rem] lg:mr-[-1.9rem]">
+            <img
+              src={
+                spaceDetail.bannerUrl
+                  ? spaceDetail.bannerUrl
+                  : "/tweetImages/AudaXiousBannerDefault.png"
+              }
+              alt=""
+              className="w-[100%] h-auto object-cover max-h-full"
+            />
+          </div>
+
+          {/* <div className="w-max-[1200px] h-max-[200px] w-full ">
+            {" "}
             <img
               // src="/tweetImages/header.svg"
-              src="/tweetImages/AudaXiousBannerDefault.png"
+              src={
+                spaceDetail.bannerUrl
+                  ? spaceDetail.bannerUrl
+                  : "/tweetImages/AudaXiousBannerDefault.png"
+              }
               alt=""
-              className="w-[100%] h-auto object-cover"
+              className="w-[100%] h-auto  object-cover"
+              // max-h-[100px] md:max-h-[250px]
             />
-            {/* Second div placed right after the image */}
-            <div className="flex flex-wrap  md:flex-nowrap  gap-[1rem] md:gap-[3rem] lg:gap-[17rem] items-center mt-[-2rem] md:mt-[-3.5rem]">
-              <div className="ml-[1rem] md:ml-[0rem]">
-                {!spaceDetail.src && (
-                  <div className="flex bg-slate-300 text-[3rem] font-[500] items-center justify-center xl:w-[10rem] w-[5rem] md:w-[9rem] xl:h-[10rem] md:h-[9rem] h-[5rem] rounded-full border text-[#2A3C46] border-[#2A3C46] border-opacity-[80%]">
-                    {spaceDetail.title && spaceDetail.title.slice(0, 1)}
-                  </div>
-                )}
-                {spaceDetail.src && (
+          </div> */}
+          {/* Second div placed right after the image */}
+          <div className="flex flex-wrap  md:flex-nowrap  gap-[1rem] md:gap-[3rem] lg:gap-[17rem] items-center mt-[-2rem] md:mt-[-3.5rem]">
+            <div className="ml-[1rem] md:ml-[0rem]">
+              {!spaceDetail.iconUrl && (
+                <div className="flex bg-slate-300 text-[3rem] font-[500] items-center justify-center xl:w-[10rem] w-[5rem] md:w-[9rem] xl:h-[10rem] md:h-[9rem] h-[5rem] rounded-full border text-[#2A3C46] border-[#2A3C46] border-opacity-[80%]">
+                  {spaceDetail.title && spaceDetail.title.slice(0, 1)}
+                </div>
+              )}
+              {spaceDetail.iconUrl && (
+                <div className="">
+                  {" "}
                   <img
-                    src="/tweetImages/audaxious.svg"
+                    src={spaceDetail.iconUrl}
                     width="100"
                     height="100"
                     alt=""
-                    className="xl:w-[10rem] w-[5rem] md:w-[9rem] xl:h-[10rem] md:h-[9rem] h-[5rem] object-cover rounded-full border border-[#2A3C46] border-opacity-[80%]"
+                    className="xl:w-[10rem] w-[5rem] md:w-[9rem] xl:h-[10rem] md:h-[9rem] h-[5rem]  rounded-full border border-[#2A3C46] border-opacity-[80%]"
                   />
-                )}
-              </div>
-              <div className="flex gap-[1.5rem] md:gap-[3rem] items-center flex-wrap md:flex-nowrap">
-                <div className="flex gap-[1rem] items-center">
-                  <div className="flex items-center gap-[0.63rem] px-[0.63rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
-                    <span>
-                      <Group />
-                    </span>
-                    <span className="h-[1.5rem] w-[1px] bg-[#314048]"></span>
-                    <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
-                      {200}k
-                    </span>
-                  </div>
-                  <div className="flex gap-[0.5rem] items-center">
-                    <span>
-                      <World />
-                    </span>
-                    <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
-                    <span>
-                      <Retweets />
-                    </span>
-                    <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
-                    <span>
-                      <Discords />
-                    </span>
-                  </div>
                 </div>
-                {!showJoinButton && (
-                  <div>
-                    {loading && (
-                      <div className="">
-                        <Loading />
-                      </div>
-                    )}
-                    {!loading && !isMember && (
-                      <button
-                        onClick={joinSpaceHandler}
-                        className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
-                      >
-                        Join space
-                      </button>
-                    )}
-                    {isMember && (
-                      <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                        Member
-                      </span>
-                    )}
-                  </div>
-                )}
-                {showJoinButton && (
-                  <button
-                    onClick={openCreateCampaignModal}
-                    className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
-                  >
-                    Create campaign
-                  </button>
-                )}
+              )}
+            </div>
+            <div className="flex gap-[1.5rem] md:gap-[3rem] items-center flex-wrap md:flex-nowrap">
+              <div className="flex gap-[1rem] items-center">
+                <div className="flex items-center gap-[0.63rem] px-[0.63rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
+                  <span>
+                    <Group />
+                  </span>
+                  <span className="h-[1.5rem] w-[1px] bg-[#314048]"></span>
+                  <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
+                    {200}k
+                  </span>
+                </div>
+                <div className="flex gap-[0.5rem] items-center">
+                  <span>
+                    <World />
+                  </span>
+                  <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
+                  <span>
+                    <Retweets />
+                  </span>
+                  <span className="h-[2.4rem] w-[1px] bg-[#314048]"></span>
+                  <span>
+                    <Discords />
+                  </span>
+                </div>
               </div>
+              {!showJoinButton && (
+                <div>
+                  {loading && (
+                    <div className="">
+                      <Loading />
+                    </div>
+                  )}
+                  {!loading && !isMember && (
+                    <button
+                      onClick={joinSpaceHandler}
+                      className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                    >
+                      Join space
+                    </button>
+                  )}
+                  {isMember && (
+                    <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                      Member
+                    </span>
+                  )}
+                </div>
+              )}
+              {showJoinButton && (
+                <button
+                  onClick={openCreateCampaignModal}
+                  className="whitespace-nowrap py-[0.5rem] px-[1rem] font-Poppins text-[#060B12] text-[1rem] font-normal rounded-md bg-[#79C4EC]"
+                >
+                  Create campaign
+                </button>
+              )}
             </div>
           </div>
+
           {/* Remaining content */}
         </div>
-        <div className="md:container  mt-32   xl:mt-40 2xl:mt-56 3xl:mt-64">
+        <div className="md:container ">
           <div className="font-Poppins mt-[1rem] flex flex-col gap-[0.6rem]">
             <div className="flex gap-[0.2rem] md:gap-[2rem] items-center flex-wrap md:flex-nowrap">
               <div className="flex flex-row space-x-2 items-center">

@@ -22,8 +22,15 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
 
   // console.log("JOINEDSPACEID", joinedSpaceIds);
 
-  const { creator_uuid, title, uuid, src, description, spaceMembersCount } =
-    space;
+  const {
+    creator_uuid,
+    title,
+    uuid,
+    src,
+    description,
+    spaceMembersCount,
+    iconUrl,
+  } = space;
   // console.log("UUID", uuid);
 
   let isMember = joinedSpaceIds.includes(uuid) || memberState;
@@ -57,14 +64,14 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
             </div> */}
 
             <div className="flex items-center gap-[0.5rem]">
-              {false && (
+              {!iconUrl && (
                 <div className="w-[3rem] h-[3rem] rounded-full bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46]">
                   {title.slice(0, 1)}
                 </div>
               )}
               {true && (
                 <img
-                  src={apeImage}
+                  src={iconUrl}
                   alt={title.slice(0, 7)}
                   width="100"
                   height={"100"}
