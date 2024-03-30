@@ -13,7 +13,7 @@ import ReusasbleCampaignDetails from "./ReusasbleCampaignDetails";
 
 const SpaceCampaignDetails = () => {
   const [post, setPost] = useState({});
-  // const POST = useSelector((state) => state.space.spaceCampaigns);
+  const POST = useSelector((state) => state.space.spaceCampaigns);
 
   const params = useParams();
   const spaceId = params.spaceId;
