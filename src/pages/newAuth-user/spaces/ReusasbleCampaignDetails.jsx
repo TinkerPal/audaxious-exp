@@ -62,7 +62,7 @@ const ReusasbleCampaignDetails = ({
   const spaceId = params.spaceId;
 
   const engagePOST = useSelector((state) => state.campaign.campaign);
-  const spacePOST = useSelector((state) => state.space.spaceCampaigns);
+  const spacePOST = useSelector((state) => state.space.spaceCampain);
 
   let POST;
   if (urlPath.slice(1, 7) === "engage") {

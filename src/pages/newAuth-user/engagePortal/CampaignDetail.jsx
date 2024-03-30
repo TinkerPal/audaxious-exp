@@ -36,10 +36,14 @@ import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import { authAction } from "../../../store/authorizationSlice";
 import VerifyTweeter from "../authentication/VerifyTweeter";
-import { getCampaignById } from "../../../store/campaignActions";
+import {
+  getAllCampaigns,
+  getCampaignById,
+} from "../../../store/campaignActions";
 import Loading from "../../Homes/Loading";
 import SingleAction from "./SingleAction";
 import ReusasbleCampaignDetails from "../spaces/ReusasbleCampaignDetails";
+import { campaignActions } from "../../../store/campaignSlice";
 
 const SingleTweetById = () => {
   const checkTweetId = useParams();
@@ -93,14 +97,19 @@ const SingleTweetById = () => {
   useEffect(() => {
     const getCampaigns = async () => {
       try {
-        const result = await dispatch(getCampaignById(campaignId));
-        setPost(result.data);
+        // const result = await dispatch(getCampaignById(campaignId));
+        const result = await dispatch(getAllCampaigns());
+
+        // campaignActions
+        dispatch(campaignActions.replaceSpaceCampaigns(result.data));
+
+        // setPost(result.data);
       } catch (error) {
         console.log(error);
       }
     };
     getCampaigns();
-  }, [dispatch, campaignId]);
+  }, [dispatch]);
 
   if (!post) {
     return <Loading />;
