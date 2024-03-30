@@ -55,7 +55,7 @@ const SingleTweetById = () => {
   // const [processing, setProcessing] = useState(false);
   const urlPath = useLocation().pathname;
 
-  const POST = useSelector((state) => state.campaign.campaign);
+  // const POST = useSelector((state) => state.campaign.campaign);
 
   // console.log("second", POST);
 
@@ -97,19 +97,19 @@ const SingleTweetById = () => {
   useEffect(() => {
     const getCampaigns = async () => {
       try {
-        // const result = await dispatch(getCampaignById(campaignId));
-        const result = await dispatch(getAllCampaigns());
+        const result = await dispatch(getCampaignById(campaignId));
+        // const result = await dispatch(getAllCampaigns());
 
         // campaignActions
-        dispatch(campaignActions.replaceSpaceCampaigns(result.data));
+        // dispatch(campaignActions.replaceSpaceCampaigns(result.data));
 
-        // setPost(result.data);
+        setPost(result.data);
       } catch (error) {
         console.log(error);
       }
     };
     getCampaigns();
-  }, [dispatch]);
+  }, [dispatch, campaignId]);
 
   if (!post) {
     return <Loading />;
