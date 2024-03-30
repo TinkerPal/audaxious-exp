@@ -477,8 +477,8 @@ const ReusasbleCampaignDetails = ({
   const taskCompleted = checkCompletedTask?.length === post?.tasks?.length;
 
   const taskCompleteProgress = taskCompleted
-    ? checkCompletedTask.length
-    : completedTask.length;
+    ? checkCompletedTask?.length
+    : completedTask?.length;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -637,7 +637,7 @@ const ReusasbleCampaignDetails = ({
                                 <span className="whitespace-nowrap">
                                   {/* Tasks | {post.tasks}/10 */}
                                   Tasks | {`${taskCompleteProgress}`}/
-                                  {`${post.tasks.length}`}
+                                  {`${post?.tasks?.length}`}
                                 </span>
                               </button>
                               <button

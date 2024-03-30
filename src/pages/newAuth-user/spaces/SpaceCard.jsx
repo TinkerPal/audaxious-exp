@@ -72,7 +72,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                 />
               )}
               <span className="text-[1rem] text-[#FFF] font-[400]">
-                {title.length > 10 ? title.slice(0, 10) + "..." : title}
+                {title?.length > 10 ? title.slice(0, 10) + "..." : title}
               </span>{" "}
             </div>
 
