@@ -5,6 +5,7 @@ import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
+import apeImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 import { useSelector } from "react-redux";
 
 //display can either be owner or member
@@ -32,10 +33,10 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
   }
   return (
     <NavLink to={`/spaces/${title}`} key={uuid}>
-      <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
+      <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem] border-[#2A3C46] hover:border-[#14435c]  border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
         <div className="flex flex-col gap-[0.75rem]">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[0.5rem]">
+            {/* <div className="flex items-center gap-[0.5rem]">
               {!src && (
                 <div className="w-[3rem] h-[3rem] rounded-full bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46]">
                   {title.slice(0, 1)}
@@ -43,7 +44,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
               )}
               {src && (
                 <img
-                  src={src}
+                  src={apeImage}
                   alt={title.slice(0, 7)}
                   width="100"
                   height={"100"}
@@ -53,7 +54,28 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
               <span className="text-[1rem] text-[#FFF] font-[400]">
                 {title}
               </span>{" "}
+            </div> */}
+
+            <div className="flex items-center gap-[0.5rem]">
+              {false && (
+                <div className="w-[3rem] h-[3rem] rounded-full bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46]">
+                  {title.slice(0, 1)}
+                </div>
+              )}
+              {true && (
+                <img
+                  src={apeImage}
+                  alt={title.slice(0, 7)}
+                  width="100"
+                  height={"100"}
+                  className="w-[3rem] h-[3rem] object-cover rounded-full"
+                />
+              )}
+              <span className="text-[1rem] text-[#FFF] font-[400]">
+                {title.length > 10 ? title.slice(0, 10) + "..." : title}
+              </span>{" "}
             </div>
+
             {!showJoinButton && (
               <div>
                 {selectedId === uuid && (
