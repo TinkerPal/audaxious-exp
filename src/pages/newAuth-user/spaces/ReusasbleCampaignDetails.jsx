@@ -368,21 +368,21 @@ const ReusasbleCampaignDetails = ({
     }
   };
 
-  function extractHandle(url) {
-    if (typeof url !== "string") {
-      return null; // Handle invalid input
-    }
+  // function extractHandle(url) {
+  //   if (typeof url !== "string") {
+  //     return null; // Handle invalid input
+  //   }
 
-    // Regular expression to match "amazonluna" after the last "/"
-    const regex = /\/([^/]+)$/i; // i flag for case insensitivity
-    const match = url.match(regex);
+  //   // Regular expression to match "amazonluna" after the last "/"
+  //   const regex = /\/([^/]+)$/i; // i flag for case insensitivity
+  //   const match = url.match(regex);
 
-    if (match && match[1]) {
-      return match[1];
-    } else {
-      return null; // Handle not found
-    }
-  }
+  //   if (match && match[1]) {
+  //     return match[1];
+  //   } else {
+  //     return null; // Handle not found
+  //   }
+  // }
 
   const handleFollow = (task, index) => {
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
