@@ -27,8 +27,6 @@ const checkWebsiteValidity = (url) => {
   return urlPattern.test(url);
 };
 const CreateSpace = () => {
-  const [inviteCode, setInviteCode] = useState("");
-
   const {
     onChangeValueHandler: nameOnchange,
     reset: resetName,
@@ -119,7 +117,6 @@ const CreateSpace = () => {
     formData.append("banner", cover);
     formData.append("icon", profilePicture);
     formData.append("title", name);
-    formData.append("inviteCode", inviteCode);
     selectedWebsite.forEach((link, index) => {
       formData.append(`links[${index}]`, link);
     });
@@ -402,13 +399,19 @@ const CreateSpace = () => {
                       <input
                         required
                         type="text"
-                        name="invite Code"
-                        id="inviteCode"
-                        value={inviteCode}
-                        onChange={(e) => setInviteCode(e.target.value)}
+                        name="name"
+                        id="name"
+                        value={name}
+                        onChange={nameOnchange}
+                        onBlur={nameOnBlur}
                         placeholder="Enter a valid invite code"
                         className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                       />
+                      {nameInvalid && (
+                        <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
+                          Name must not be empty
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
