@@ -57,6 +57,7 @@ const SingleTweetById = () => {
 
   const params = useParams();
   const campaignId = params.postId;
+  const dispatch = useDispatch();
 
   // let nextIndex;
   // const handleNextTweet = () => {
@@ -89,17 +90,17 @@ const SingleTweetById = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const getCampaigns = async () => {
-  //     try {
-  //       const result = await dispatch(getCampaignById(campaignId));
-  //       setPost(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCampaigns();
-  // }, [dispatch, campaignId]);
+  useEffect(() => {
+    const getCampaigns = async () => {
+      try {
+        const result = await dispatch(getCampaignById(campaignId));
+        setPost(result.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCampaigns();
+  }, [dispatch, campaignId]);
 
   if (!post) {
     return <Loading />;

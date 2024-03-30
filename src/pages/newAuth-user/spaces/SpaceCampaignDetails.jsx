@@ -13,7 +13,7 @@ import ReusasbleCampaignDetails from "./ReusasbleCampaignDetails";
 
 const SpaceCampaignDetails = () => {
   const [post, setPost] = useState({});
-  const POST = useSelector((state) => state.space.spaceCampaigns);
+  // const POST = useSelector((state) => state.space.spaceCampaigns);
 
   const params = useParams();
   const spaceId = params.spaceId;
@@ -38,26 +38,26 @@ const SpaceCampaignDetails = () => {
     getCampaigns();
   }, [dispatch, post.space_uuid]);
 
-  const handleNextTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
-    const nextIndex = (currentIndex + 1) % POST.length;
-    const nextTweet = POST[nextIndex];
-    setPost(nextTweet);
+  // const handleNextTweet = () => {
+  //   const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
+  //   const nextIndex = (currentIndex + 1) % POST.length;
+  //   const nextTweet = POST[nextIndex];
+  //   setPost(nextTweet);
 
-    navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
-  };
-  const handlePreviousTweet = () => {
-    const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
-    let nextIndex = (currentIndex - 1) % POST.length;
-    if (nextIndex < 0) {
-      nextIndex = POST.length - 1;
-    }
+  //   navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
+  // };
+  // const handlePreviousTweet = () => {
+  //   const currentIndex = POST.findIndex((item) => item.uuid === post.uuid);
+  //   let nextIndex = (currentIndex - 1) % POST.length;
+  //   if (nextIndex < 0) {
+  //     nextIndex = POST.length - 1;
+  //   }
 
-    const nextTweet = POST[nextIndex];
-    setPost(nextTweet);
+  //   const nextTweet = POST[nextIndex];
+  //   setPost(nextTweet);
 
-    navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
-  };
+  //   navigate(`/spaces/${spaceId}/${nextTweet.uuid}`);
+  // };
 
   const navigate = useNavigate();
   const closeIntentModalHandler = () => {
@@ -75,8 +75,6 @@ const SpaceCampaignDetails = () => {
   return (
     <>
       <ReusasbleCampaignDetails
-        handleNextTweet={handleNextTweet}
-        handlePreviousTweet={handlePreviousTweet}
         closeIntentModalHandler={closeIntentModalHandler}
         post={post}
         setPost={setPost}

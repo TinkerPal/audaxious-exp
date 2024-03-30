@@ -23,14 +23,13 @@ import {
 } from "../engagePortal/TweeterIntent";
 // import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import Modal from "../../../components/socialmedia/Modal";
 // import { Dialog } from "@headlessui/react";
 import { authAction } from "../../../store/authorizationSlice";
 import VerifyTweeter from "../authentication/VerifyTweeter";
 import {
   claimPointTask,
-  getAllCampaignsBySpace,
   getAllCompletedTask,
   getCampaignById,
   participateInTask,
@@ -58,10 +57,29 @@ const ReusasbleCampaignDetails = ({
   const [checkCompletedTask, setCheckCompletedTask] = useState([]);
   const [joinUuid, setJoinUuid] = useState("");
   const navigate = useNavigate();
+  const urlPath = useLocation().pathname;
+  const params = useParams();
+  const spaceId = params.spaceId;
 
-  const POST = useSelector((state) => state.campaign.campaign);
+  const engagePOST = useSelector((state) => state.campaign.campaign);
+  const spacePOST = useSelector((state) => state.space.spaceCampaigns);
+
+  let POST;
+  if (urlPath.slice(1, 7) === "engage") {
+    POST = engagePOST;
+  } else if (urlPath.slice(1, 7) === "spaces") {
+    POST = spacePOST;
+  }
 
   //   const POST = useSelector((state) => state.space.spaceCampaigns);
+
+  function NavigationHandler(id) {
+    if (urlPath.slice(1, 7) === "engage") {
+      navigate(`/engage-portal/${id}`);
+    } else if (urlPath.slice(1, 7) === "spaces") {
+      navigate(`/spaces/${spaceId}/${id}`);
+    }
+  }
 
   let nextIndex;
   const handleNextTweet = () => {
@@ -71,6 +89,7 @@ const ReusasbleCampaignDetails = ({
     const nextTweet = POST[nextIndex];
     setPost(() => nextTweet);
     console.log("next tweet", nextTweet);
+    // console.log("location", urlPath.slice(1, 7));
 
     // console.log("next tweet", nextTweet);
     const joinIndex = nextTweet.tasks.findIndex(
@@ -85,7 +104,8 @@ const ReusasbleCampaignDetails = ({
       setCompletedTask((prev) => [...prev, newTask]);
     }
 
-    navigate(`/engage-portal/${nextTweet.uuid}`);
+    // navigate(`/engage-portal/${nextTweet.uuid}`);
+    NavigationHandler(nextTweet.uuid);
     // checkCompletedTaskFunction();
   };
   const handlePreviousTweet = () => {
@@ -110,7 +130,8 @@ const ReusasbleCampaignDetails = ({
       const newTask = { uuid: joinUUID };
       setCompletedTask((prev) => [...prev, newTask]);
     }
-    navigate(`/engage-portal/${nextTweet.uuid}`);
+    // navigate(`/engage-portal/${nextTweet.uuid}`);
+    NavigationHandler(nextTweet.uuid);
 
     // checkCompletedTaskFunction();
   };
@@ -368,30 +389,13 @@ const ReusasbleCampaignDetails = ({
     }
   };
 
-  // function extractHandle(url) {
-  //   if (typeof url !== "string") {
-  //     return null; // Handle invalid input
-  //   }
-
-  //   // Regular expression to match "amazonluna" after the last "/"
-  //   const regex = /\/([^/]+)$/i; // i flag for case insensitivity
-  //   const match = url.match(regex);
-
-  //   if (match && match[1]) {
-  //     return match[1];
-  //   } else {
-  //     return null; // Handle not found
-  //   }
-  // }
-
   function extractHandle(url) {
     if (typeof url !== "string") {
       return null; // Handle invalid input
     }
 
-    // Regular expression to match tweet ID after "/status/" or username after "twitter.com/"
     const tweetIdRegex = /\/status\/(\d+)/i;
-    // const usernameRegex = /(?:twitter\.com|X\.com)\/([^/]+)/i; // Match both "twitter.com" and "X.com"
+
     const usernameRegex = /(?:twitter\.com|X\.com)\/([^/?]+)/i;
 
     const tweetIdMatch = url.match(tweetIdRegex);
