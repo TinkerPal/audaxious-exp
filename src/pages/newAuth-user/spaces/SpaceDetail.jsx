@@ -160,7 +160,7 @@ const SpaceDetail = () => {
       <div className="text-[#FFF] p-[0rem] mt-[-2rem] border-[#2A3C46] md:border-l border-opacity-[80%] ml-[0.7rem] md:ml-[2rem] xl:ml-[0.7rem] gap-5">
         <div className="flex flex-col mb-10">
           <div className="h-[3.5rem] md:h-[8rem] lg:h-[12.5rem] xl:max-h-[15rem] mr-[-0.8rem] lg:mr-[-1.9rem]">
-            <img
+            {/* <img
               src={
                 spaceDetail.bannerUrl
                   ? spaceDetail.bannerUrl
@@ -168,23 +168,14 @@ const SpaceDetail = () => {
               }
               alt=""
               className="w-[100%] h-auto object-cover max-h-full"
+            /> */}
+            <img
+              src={"/tweetImages/AudaXiousBannerDefault.png"}
+              alt=""
+              className="w-[100%] h-auto object-cover max-h-full"
             />
           </div>
 
-          {/* <div className="w-max-[1200px] h-max-[200px] w-full ">
-            {" "}
-            <img
-              // src="/tweetImages/header.svg"
-              src={
-                spaceDetail.bannerUrl
-                  ? spaceDetail.bannerUrl
-                  : "/tweetImages/AudaXiousBannerDefault.png"
-              }
-              alt=""
-              className="w-[100%] h-auto  object-cover"
-              // max-h-[100px] md:max-h-[250px]
-            />
-          </div> */}
           {/* Second div placed right after the image */}
           <div className="flex flex-wrap  md:flex-nowrap  gap-[1rem] md:gap-[3rem] lg:gap-[17rem] items-center mt-[-2rem] md:mt-[-3.5rem]">
             <div className="ml-[1rem] md:ml-[0rem]">

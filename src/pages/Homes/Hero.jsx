@@ -30,8 +30,8 @@ const Hero = () => {
               <Link
                 to={"/engage-portal"}
                 title="App"
-                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all duration-200 bg-[#79C4EC] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                role="button"
+                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all duration-200 bg-[#79C4EC] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-opacity-75"
+                role="button "
               >
                 {" "}
                 Get Started

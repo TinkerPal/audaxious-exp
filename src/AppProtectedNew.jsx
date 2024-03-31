@@ -37,7 +37,7 @@ const AppProtectedNew = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/discover" element={<DashboardLayout />}>
             <Route index={true} element={<Dashboard />} />
             {/* <Route path="/engage-portal" element={<EngagePortals />} />
             <Route path="spaces" element={<Spaces />} />

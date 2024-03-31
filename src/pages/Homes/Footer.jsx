@@ -1,11 +1,12 @@
 // import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Audaxious from "../../assets/svg/assets/AudaxiousLogofinal.svg";
 
 const Footer = () => {
   return (
     <section className="py-10  sm:pt-16 lg:pt-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
+        <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-5 gap-y-16 gap-x-12">
           <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
             <div className="flex-shrink-0 flex flex-row space-x-3 items-center">
               <a
@@ -144,19 +145,40 @@ const Footer = () => {
 
           <div>
             <p className="text-sm font-semibold tracking-widest text-[#79C4EC] uppercase">
-              Company
+              AudaXious
             </p>
 
             <ul className="mt-6 space-y-4">
               <li>
-                <a
-                  href="#"
-                  title=""
+                <Link
+                  to={"/discover"}
+                  title="discover"
                   className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  About{" "}
-                </a>
+                  Discover
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/spaces"}
+                  title="spaces"
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Spaces
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to={"/engage-portal"}
+                  title="Engage Portal"
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Campaigns
+                </Link>
               </li>
 
               <li>
@@ -166,29 +188,7 @@ const Footer = () => {
                   className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Features{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
-                >
-                  {" "}
-                  Works{" "}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#"
-                  title=""
-                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
-                >
-                  {" "}
-                  Career{" "}
+                  AI Creative
                 </a>
               </li>
             </ul>
@@ -196,7 +196,7 @@ const Footer = () => {
 
           <div>
             <p className="text-sm font-semibold tracking-widest text-[#79C4EC] uppercase">
-              Help
+              Documentation
             </p>
 
             <ul className="mt-6 space-y-4">
@@ -207,7 +207,7 @@ const Footer = () => {
                   className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Customer Support{" "}
+                  Getting Started
                 </a>
               </li>
 
@@ -218,7 +218,59 @@ const Footer = () => {
                   className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
-                  Delivery Details{" "}
+                  Creating Space
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  title=""
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Campaign Participation
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  title=""
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  FAQs
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold tracking-widest text-[#79C4EC] uppercase">
+              Support
+            </p>
+
+            <ul className="mt-6 space-y-4">
+              <li>
+                <a
+                  href="#"
+                  title=""
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Contact Us
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  title=""
+                  className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                >
+                  {" "}
+                  Invite Code Request
                 </a>
               </li>
 
@@ -234,19 +286,19 @@ const Footer = () => {
               </li>
 
               <li>
-                <a
+                <Link
                   href="#"
                   title=""
                   className="flex text-base text-gray-200 transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                 >
                   {" "}
                   Privacy Policy{" "}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
+          {/* <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
             <p className="text-sm font-semibold tracking-widest text-gray-200 uppercase">
               Subscribe to newsletter
             </p>
@@ -275,7 +327,7 @@ const Footer = () => {
                 </a>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
 
         <hr className="mt-16 mb-10 border-[#79C4EC]" />

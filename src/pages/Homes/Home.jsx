@@ -2,6 +2,7 @@ import Blockchains from "./Blockchains";
 import Campaigns from "./Campaigns";
 import Features from "./Features";
 import Footer from "./Footer";
+import Footer2 from "./Footer2";
 import Hero from "./Hero";
 import MobileApp from "./MobileApp";
 import Navigation from "./Navigation";
@@ -19,7 +20,7 @@ const Home = () => {
       <MobileApp />
       <Blockchains />
 
-      <Footer />
+      <Footer2 />
     </div>
   );
 };

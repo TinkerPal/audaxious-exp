@@ -42,19 +42,19 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
       <NavLink
-        to={"/dashboard"}
+        to={"/discover"}
         className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
           path === "/dashboard" && "bg-[#79C4EC]/10"
         }`}
       >
         {/* from-[#4D5CDD] to-[#79C4EC] */}
-        <div className={`${path === "/dashboard" ? "text-[#79C4EC]" : "none"}`}>
+        <div className={`${path === "/discover" ? "text-[#79C4EC]" : "none"}`}>
           <DashBoardIcon />
         </div>
         <div
           className={clsx(
             "hidden xl:block",
-            path === "/dashboard" ? "text-[#79C4EC]" : "text-[#818282]"
+            path === "/discover" ? "text-[#79C4EC]" : "text-[#818282]"
           )}
         >
           Discover
