@@ -19,7 +19,7 @@ export default function Navigation() {
               title=""
               className="flex rounded outline-none  focus:ring-gray-900 focus:ring-offset-2"
             >
-              <img className="w-auto h-4 z-10" src={Audaxious} alt="" />
+              <img className="w-auto h-5 z-10" src={Audaxious} alt="" />
             </a>{" "}
           </div>
 

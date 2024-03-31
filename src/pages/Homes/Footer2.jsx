@@ -8,13 +8,14 @@ import SocialMedia from "./SocialMedia";
 const Footer2 = () => {
   return (
     <footer className="py-4  sm:pt-4 lg:pt-4">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      {/* <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"> */}
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:justify-between mt-14 lg:mt-24">
           <div>
             <div className="flex-shrink-0 flex flex-row space-x-3 items-center">
               <div className="flex shrink-0 justify-center items-center gap-2">
                 <a href="#" title="" className="flex items-center">
-                  <img className="w-auto h-6" src={AudaXiousLogo} alt="" />
+                  <img className="w-auto h-5" src={AudaXiousLogo} alt="" />
                 </a>
               </div>
             </div>
