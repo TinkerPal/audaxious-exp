@@ -41,6 +41,7 @@ import { spaceActions } from "../../../store/spaceSlice";
 import SingleAction from "../engagePortal/SingleAction";
 import { toast } from "react-toastify";
 import { getAllJoinedSpaces, joinSpace } from "../../../store/spaceActions";
+import ExpiryDate from "../engagePortal/ExpiryDate";
 
 const ReusasbleCampaignDetails = ({
   closeIntentModalHandler,
@@ -57,7 +58,6 @@ const ReusasbleCampaignDetails = ({
   const memberState = useSelector((state) => state.space.isMember);
   const [completedTask, setCompletedTask] = useState([]);
   const [checkCompletedTask, setCheckCompletedTask] = useState([]);
-  const [joinUuid, setJoinUuid] = useState("");
   const navigate = useNavigate();
   const urlPath = useLocation().pathname;
   const params = useParams();
@@ -665,14 +665,7 @@ const ReusasbleCampaignDetails = ({
                               </button>
                             </div>
 
-                            <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
-                              {Math.floor(
-                                Math.abs(todayDate - new Date(post.endDate)) /
-                                  (1000 * 60 * 60 * 24)
-                              ) +
-                                " Days" +
-                                " left"}
-                            </span>
+                            <ExpiryDate expiryDate={post.endDate} />
                           </div>
                         </div>
                         <div className="h-[1px] bg-[#2A3C46] my-[1rem]"></div>
