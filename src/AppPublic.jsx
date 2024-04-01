@@ -8,6 +8,8 @@ import Ssoverify from "./pages/dashboard/Ssoverify";
 // import ErrorPage from './pages/error/ErrorPage';
 
 const Home = lazy(() => import("./pages/home/Home"));
+const About = lazy(() => import("./pages/about/About"));
+const Landing = lazy(() => import("./pages/landing/Landing"));
 const CreateAccount = lazy(() => import("./pages/register/CreateAccount"));
 const CreateAccountLink = lazy(() =>
   import("./pages/register/CreateAccountLink")
@@ -31,6 +33,8 @@ const AppPublic = () => {
       <Layout>
         <Routes>
           <Route path={PathConstant.HOME} element={<Home />} />
+          <Route path={PathConstant.ABOUT} element={<About />} />
+          <Route path={PathConstant.LANDING} element={<Landing />} />
           <Route
             path={PathConstant.CREATEACCOUNT}
             element={<CreateAccount />}

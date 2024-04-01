@@ -4,8 +4,13 @@ import Modal from "./Modal";
 const LogOutModal = ({ isOpen, onClose, onClick }) => {
   return (
     <Modal open={isOpen} onClose={onClose} heading="Logout Confirmation">
+<<<<<<< HEAD
       <div className="space-y-6 py-6">
         <p className="text-[#808080] font-Poppins text-[15px]">
+=======
+      <div className="space-y-3">
+        <p className="text-white  text-[14px]">
+>>>>>>> 2f92983fe1681b0941691038167e1eb1ef248002
           Are you sure you want to log out?
         </p>
         <div className="flex items-center gap-6 pt-8">

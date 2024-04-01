@@ -7,6 +7,7 @@ import pathConstant from "../routes/pathConstant";
 
 import { ReactComponent as Logo } from "../assets/svg/logo.svg";
 import { ReactComponent as Menu } from "../assets/svg/menu.svg";
+import { ReactComponent as Line } from "../assets/svg/saying.svg";
 
 const links = [
   {
@@ -49,20 +50,90 @@ function Navbar() {
 
   return (
     <>
-      <div className={`sticky top-0 transition-transform duration-500 z-30`}>
-        <div className="container ">
+      <div
+        className={`sticky top-0 transition-transform duration-500 z-30 bg-[#060B12]`}
+      >
+        <div className="container">
           <div className="flex items-center justify-between py-6 transition-transform duration-500 md:py-8">
             <div
-              className={`${
-                isScrolled ? "md:opacity-0" : "md:opacity-100 ease-out"
-              }`}
+            // className={`${
+            //   isScrolled ? "md:opacity-0" : "md:opacity-100 ease-out"
+            // }`}
             >
               <Link to="/">
                 <Logo />
               </Link>
             </div>
-            <div className="items-center hidden lg:flex border-[0.25px] bg-[#060b12] h-[40px] border-[#24343D] rounded-[48px]">
-              {links.map((link, i) => (
+            <div className="items-center hidden lg:flex bg-[#060b12] h-[40px]">
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"/"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Home"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"/about"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"About"}
+                </span>
+              </Link>
+              <ScrollLink
+                smooth={true}
+                offset={-100}
+                duration={500}
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Download app"}
+                </span>
+              </ScrollLink>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Blog"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Engage portal"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Airdrops"}
+                </span>
+              </Link>
+              <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 lg:px-2 xl:px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Multisender"}
+                </span>
+              </Link>
+              {/* <Link
+                className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                to={"#"}
+              >
+                <span className="text-[15px] font-light font-Poppins">
+                  {"Company"}
+                </span>
+              </Link> */}
+
+              {/* {links.map((link, i) => (
                 <ScrollLink
                   smooth={true}
                   offset={-100}
@@ -75,30 +146,31 @@ function Navbar() {
                     {link.name}
                   </span>
                 </ScrollLink>
-              ))}
-              <a
+              ))} */}
+              {/* <a
                 href="https://docs.audaxious.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex text-[15px] font-light font-Poppins items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
               >
                 Resources
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://blog.audaxious.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex text-[15px] font-light font-Poppins items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
               >
                 Blog
-              </a>
+              </a> */}
             </div>
             <div
-              className={`font-medium transition-transform duration-500 ${
-                isScrolled ? "opacity-0" : "opacity-100 ease-out"
-              }`}
+              // className={`font-medium transition-transform duration-500 ${
+              //   isScrolled ? "opacity-0" : "opacity-100 ease-out"
+              // }`}
+              className={`font-medium`}
             >
-              <Link to={pathConstant.CREATEACCOUNT} target="_blank">
+              <Link to={"/dashboard"}>
                 <button className="hidden lg:inline-block px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70">
                   Log In
                 </button>
@@ -134,7 +206,7 @@ function Navbar() {
                 </Link>
 
                 <div className="flex flex-col flex-1 gap-2 mt-12">
-                  {links.map((link, i) => (
+                  {/* {links.map((link, i) => (
                     <ScrollLink
                       smooth={true}
                       offset={-100}
@@ -148,8 +220,67 @@ function Navbar() {
                         {link.name}
                       </span>
                     </ScrollLink>
-                  ))}
-                  <a
+                  ))} */}
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"/"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Home"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Company"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Engagement portal"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Airdrops"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Multisender"}
+                    </span>
+                  </Link>
+                  <Link
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"/about"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"About"}
+                    </span>
+                  </Link>
+                  <ScrollLink
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                    className={`flex items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-4 rounded-full transition-colors hover:text-white`}
+                    to={"#"}
+                  >
+                    <span className="text-[15px] font-light font-Poppins">
+                      {"Download app"}
+                    </span>
+                  </ScrollLink>
+                  {/* <a
                     href="https://docs.audaxious.com/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -166,11 +297,11 @@ function Navbar() {
                     className={`flex text-[15px] font-light font-Poppins items-center cursor-pointer text-[#D1CBCB] gap-2 py-2 px-2 rounded-full transition-colors hover:text-white`}
                   >
                     Blog
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className="p-2 mt-6 font-medium">
-                  <Link to={pathConstant.CREATEACCOUNT} target="_blank">
+                  <Link to={"/dashboard"} target="_blank">
                     <button className="md:hidden inline-block w-full text-center px-12 py-2 rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#FEFEFF] shadow shadow-[#181E24] opacity-70">
                       Log In
                     </button>
@@ -219,6 +350,7 @@ function Navbar() {
             className="absolute inset-0 h-screen bg-black/20 lg:hidden"
             onClick={navCloseHandler}
           ></Transition>
+          <Line />
         </div>
       </div>
     </>

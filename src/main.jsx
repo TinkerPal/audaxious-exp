@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 
 import "./config/HttpInterceptorConfig";
-import store from "./config/StoreConfig";
+// import store from "./config/StoreConfig";
 import App from "./App.jsx";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +16,7 @@ import "./index.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
+import store from "./store/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

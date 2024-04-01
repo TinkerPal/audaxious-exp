@@ -3,12 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
   .border-text {
     -webkit-text-stroke: 2px #cbcdcd; /* WebKit browsers (Chrome, Safari) */
     -webkit-text-stroke: 4px #cbcdcd; /* Standard syntax */
   }
 }
-
+/* @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+} */
 @layer utilities {
   .bg-rgba-blue-alpha-04 {
     background-color: rgba(116, 195, 240, 0.04);
@@ -57,6 +64,21 @@
   }
 }
 
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+/* @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+} */
+
+.gradient-border {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #000, #79c4ec, #000);
+  border-image-slice: 1;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
@@ -83,8 +105,8 @@ body {
   height: 45px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid #3b1b5d;
-  border-color: #3b1b5d transparent #3b1b5d transparent;
+  border: 5px solid #44bcff;
+  border-color: #44bcff transparent #44bcff transparent;
   animation: loader 1.2s linear infinite;
 }
 
