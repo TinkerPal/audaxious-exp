@@ -9,8 +9,7 @@ import axios from "axios";
 //         })
 //         return axiosInstance
 // }
-const baseUrl =
-  "https://audaxious-light-api-1a66249f6914.herokuapp.com/api/v1/";
+const baseUrl = "https://api.audaxious.com/api/v1/";
 
 export const authInstance = () => {
   const auth = axios.create({

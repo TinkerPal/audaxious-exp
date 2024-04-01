@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Points = () => {
+  const points = useSelector((state) => state.authentication.points);
   return (
     <div className="flex flex-wrap justify-center md:justify-between gap-4 md:gap-[1.25rem]">
       <div className="flex flex-col items-center gap-[0.5rem] border-[1.8px] px-[0.5rem] md:px-0 border-[#18232C] w-[7rem] md:w-[16rem] py-[1.25rem] rounded-[0.23081rem]">
@@ -11,7 +13,7 @@ const Points = () => {
               Loyalty Point
             </p>
             <p className="text-[1rem] font-[400] text-[#D3D3D3] font-Poppins">
-              {0} XP
+              {points} XP
             </p>
           </div>
         </div>

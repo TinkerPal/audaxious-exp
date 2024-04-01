@@ -149,7 +149,7 @@ const ReusasbleCampaignDetails = ({
         const result = await dispatch(getAllJoinedSpaces());
         dispatch(spaceActions.replaceJoinSpace(result.data));
       } catch (error) {
-        toast.error(error.response.data.error);
+        // toast.error(error.response.data.error);
       }
     };
     joinedSpaces();
@@ -222,7 +222,7 @@ const ReusasbleCampaignDetails = ({
     } catch (error) {
       dispatch(spaceActions.setLoading(false));
       dispatch(spaceActions.setIsMember(false));
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
     }
   };
 
@@ -261,7 +261,7 @@ const ReusasbleCampaignDetails = ({
       } catch (error) {
         dispatch(spaceActions.setLoading(false));
         dispatch(spaceActions.setIsMember(false));
-        toast.error(error.response.data.error);
+        // toast.error(error.response.data.error);
       }
       // const tweetId = extractHandle(task.url);
       // LikeIntent(tweetId);
@@ -498,7 +498,7 @@ const ReusasbleCampaignDetails = ({
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
     }
   };
 
@@ -506,7 +506,7 @@ const ReusasbleCampaignDetails = ({
     <>
       <VerifyTweeter />
 
-      <Modal onClose={closeIntentModalHandler} open={true}>
+      <Modal onClose={() => {}} open={true}>
         <form onSubmit={submitHandler}>
           <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
             <div className="text-neutral-300 top-[15px] absolute right-2">

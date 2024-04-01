@@ -3,6 +3,7 @@ import Tokens from "./Tokens";
 import WalletDetails from "./WalletDetails";
 
 const Profile = () => {
+  
   return (
     <div
       className="text-[#FFF] mt-[-1.6rem] ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] container"

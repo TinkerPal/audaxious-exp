@@ -94,7 +94,7 @@ const VerifyTweeter = () => {
   };
   return (
     <VerifyTweeterModal onClose={onClose} open={open}>
-      <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem]">
+      <section className="bg-[#060B12] py-[2.5rem] rounded-md max-w-[1300px] px-[1rem] z-50">
         <div className="container">
           {loading && (
             <p className="text-[#dfdfdf] font-Poppins font-[700] text-[1.25rem]">

@@ -41,6 +41,7 @@ function App() {
       console.log(result);
 
       dispatch(authAction.setUserId(result.data.uuid));
+      dispatch(authAction.setPoints(result.data.points));
       dispatch(authAction.setWalletId(result.data.walletId));
       dispatch(authAction.setUserName(result.data.username));
       dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
