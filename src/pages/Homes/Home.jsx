@@ -14,8 +14,8 @@ const Home = () => {
       <Navigation />
       <Hero />
       <Features />
-      <Spaces />
-      <Campaigns />
+      {/* <Spaces /> */}
+      {/* <Campaigns /> */}
 
       <MobileApp />
       <Blockchains />
