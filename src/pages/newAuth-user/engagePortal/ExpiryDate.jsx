@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 
 const ExpiryDate = ({ expiryDate }) => {
@@ -25,7 +25,7 @@ const ExpiryDate = ({ expiryDate }) => {
     calculateTimeLeft();
     const timer = setInterval(() => {
       calculateTimeLeft();
-    }, 1000 * 60);
+    }, 1000 * 60); // Update every minute
 
     return () => clearInterval(timer);
   }, [expiryDate]);
