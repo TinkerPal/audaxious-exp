@@ -9,12 +9,16 @@ const authenticationInitialState = {
   userName: "",
   tweeterModal: false,
   userId: "",
+  walletId: "",
 };
 
 const authenticationSlice = createSlice({
   name: "authentication",
   initialState: authenticationInitialState,
   reducers: {
+    setWalletId(state, actions) {
+      state.walletId = actions.payload;
+    },
     setUserId(state, actions) {
       state.userId = actions.payload;
     },

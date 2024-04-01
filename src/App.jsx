@@ -38,7 +38,10 @@ function App() {
   const getTwetterVerifiedUserName = async () => {
     try {
       const result = await dispatch(getTwitterUserName());
+      console.log(result);
+
       dispatch(authAction.setUserId(result.data.uuid));
+      dispatch(authAction.setWalletId(result.data.walletId));
       dispatch(authAction.setUserName(result.data.username));
       dispatch(authAction.verifyTweeterAccount(result.data.twitterUsername));
     } catch (error) {

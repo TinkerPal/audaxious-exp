@@ -11,7 +11,7 @@ import Card from "../../../components/socialmedia/Card";
 
 const Campaigns = () => {
   const campaigns = useSelector((state) => state.campaign.campaign);
-  // console.log(campaigns);
+  console.log(campaigns);
 
   // console.log("Capaings ", campaigns);
   return (

@@ -159,8 +159,10 @@ const ReusasbleCampaignDetails = ({
     try {
       const result = await dispatch(getAllCompletedTask(campaignId));
       setCheckCompletedTask(result.data);
+      // console.log(result);
     } catch (error) {
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
+      console.log(error);
     }
   };
   useEffect(() => {
@@ -200,7 +202,7 @@ const ReusasbleCampaignDetails = ({
           setCompletedTask((prev) => [...prev, newTask]);
         }
       } catch (error) {
-        toast.error(error.response.data.error);
+        // toast.error(error.response.data.error);
       }
     };
     getCampaigns();

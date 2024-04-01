@@ -5,13 +5,11 @@ import { ReactComponent as Plus } from "../../../assets/svg/dashboardSvg/walletP
 import { ReactComponent as Stroke } from "../../../assets/svg/dashboardSvg/strokes.svg";
 import { ReactComponent as Copy } from "../../../assets/svg/dashboardSvg/copy.svg";
 import { ReactComponent as Delete } from "../../../assets/svg/dashboardSvg/delete.svg";
+import { useSelector } from "react-redux";
 
 const WalletDetails = () => {
-  const WALLET = [
-    "0x7442bfe...db1a9",
-    "0x7442bfe...db1a9",
-    "0x7442bfe...db1a9",
-  ];
+  const walletId = useSelector((state) => state.authentication.walletId);
+  const WALLET = [walletId];
   return (
     <div className="border-[1.8px] border-[#18232C] my-[3rem] py-[1rem] md:py-[3rem] px-[0.6rem] md:px-[3rem] lg:px-[6rem] rounded-lg">
       <div className="flex justify-between gap-5 md:gap-0">
@@ -39,7 +37,7 @@ const WalletDetails = () => {
             className="flex items-center gap-5 border-[1.8px] border-[#18232C] py-[0.5rem] px-[1rem] rounded-[0.23081rem]"
           >
             <p className=" whitespace-nowrap text-[1rem] font-[400] font-Poppins text-[#808080]">
-              {wallet}
+              {wallet.slice(0, 10) + "..." + wallet.slice(30, wallet.length)}
             </p>
             <div className="flex items-center gap-2">
               <span>
