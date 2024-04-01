@@ -45,8 +45,10 @@ const CampaignInformation = ({ setShowCampaignTask, spaceDetail }) => {
   const loading = useSelector((state) => state.space.loading);
 
   const convertEndDateToString = new Date(originalEndDate);
+  convertEndDateToString.setHours(23, 59, 59, 999);
   const endDate = convertEndDateToString.toISOString();
   const convertStartDateToString = new Date(originalStartDate);
+  convertStartDateToString.setHours(23, 59, 59, 999);
   const startDate = convertStartDateToString.toISOString();
 
   const startDateOnchange = (e) => {
@@ -60,6 +62,9 @@ const CampaignInformation = ({ setShowCampaignTask, spaceDetail }) => {
     // setOpenCampaignModal(false);
     dispatch(spaceActions.setOpenCampaignModal(false));
   };
+
+  console.log("endDate", endDate);
+  console.log("startDate", startDate);
 
   const submitHandler = async (e) => {
     e.preventDefault();
