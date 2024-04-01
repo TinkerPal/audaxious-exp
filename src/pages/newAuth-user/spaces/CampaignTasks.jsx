@@ -167,6 +167,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       const result = await dispatch(createTask(campaignId, data));
       console.log(result);
       toast.success(result.message);
+      dispatch(spaceActions.setCampaignCreated(result.success));
       dispatch(spaceActions.setLoading(false));
       dispatch(spaceActions.setOpenCampaignModal(false));
     } catch (error) {
