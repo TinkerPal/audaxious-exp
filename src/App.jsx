@@ -22,7 +22,7 @@ function App() {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
-  // const campaigns = useSelector((state) => state.campaign.campaign);
+  const spaceCreated = useSelector((state) => state.space.spaceCreated);
 
   // console.log("Capaings ", campaigns);
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function App() {
   const getTwetterVerifiedUserName = async () => {
     try {
       const result = await dispatch(getTwitterUserName());
-      console.log(result);
+      // console.log(result);
 
       dispatch(authAction.setUserId(result.data.uuid));
       dispatch(authAction.setPoints(result.data.points));
@@ -67,8 +67,12 @@ function App() {
         console.log(error);
       }
     };
+
+    // if(spaceCreated) {
+    //   getSpaces();
+    // }
     getSpaces();
-  }, [dispatch]);
+  }, [dispatch, spaceCreated]);
   useEffect(() => {
     const getCampaigns = async () => {
       try {
