@@ -252,9 +252,10 @@ const ReusasbleCampaignDetails = ({
         return updatedStates;
       });
       const newTask = { uuid: task.uuid };
-      setCompletedTask((prev) => [...prev, newTask]);
+
       try {
         const result = await dispatch(joinSpace(task.url));
+        setCompletedTask((prev) => [...prev, newTask]);
         dispatch(spaceActions.setLoading(false));
         toast.success(result.message);
         dispatch(spaceActions.setIsMember(true));
@@ -304,11 +305,12 @@ const ReusasbleCampaignDetails = ({
         return updatedStates;
       });
       const newTask = { uuid: task.uuid };
-      setCompletedTask((prev) => [...prev, newTask]);
+
       const tweetId = extractHandle(task.url);
       LikeIntent(tweetId);
       const updatedPost = { ...post, like: true };
       setTimeout(() => {
+        setCompletedTask((prev) => [...prev, newTask]);
         setProcessingStates((prevStates) => {
           const updatedStates = [...prevStates];
           updatedStates[index] = false;
@@ -345,10 +347,11 @@ const ReusasbleCampaignDetails = ({
         return updatedStates;
       });
       const newTask = { uuid: task.uuid };
-      setCompletedTask((prev) => [...prev, newTask]);
+
       RepostIntent(tweetId);
       const updatedPost = { ...post, repost: true };
       setTimeout(() => {
+        setCompletedTask((prev) => [...prev, newTask]);
         setProcessingStates((prevStates) => {
           const updatedStates = [...prevStates];
           updatedStates[index] = false;
@@ -407,7 +410,7 @@ const ReusasbleCampaignDetails = ({
         return updatedStates;
       });
       const newTask = { uuid: task.uuid };
-      setCompletedTask((prev) => [...prev, newTask]);
+
       FollowIntent(username);
       const updatedPost = { ...post, follow: true };
       setTimeout(() => {
@@ -417,6 +420,7 @@ const ReusasbleCampaignDetails = ({
           return updatedStates;
         });
         setPost(updatedPost);
+        setCompletedTask((prev) => [...prev, newTask]);
         setTaskStatus((prevTaskStatus) => {
           const updatedTaskStatus = [...prevTaskStatus];
           updatedTaskStatus[index] = "complete";
@@ -501,6 +505,8 @@ const ReusasbleCampaignDetails = ({
       // toast.error(error.response.data.error);
     }
   };
+
+  const todayDate = new Date();
 
   return (
     <>
@@ -658,7 +664,12 @@ const ReusasbleCampaignDetails = ({
                             </div>
 
                             <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
-                              {"12 Days left"}
+                              {Math.floor(
+                                Math.abs(todayDate - new Date(post.endDate)) /
+                                  (1000 * 60 * 60 * 24)
+                              ) +
+                                " Days" +
+                                " left"}
                             </span>
                           </div>
                         </div>
@@ -861,7 +872,13 @@ const ReusasbleCampaignDetails = ({
                     </div>
                   </div>
                 </main>
-                <div className="flex bg-[#0E161D] items-center justify-between mt-[1rem] py-[0.75rem]  rounded-2xl px-[1rem]">
+                <div
+                  className={`flex bg-[#0E161D] items-center ${
+                    completedTask.length !== post?.tasks?.length &&
+                    !taskCompleted &&
+                    "opacity-50 "
+                  } justify-between mt-[1rem] py-[0.75rem]  rounded-2xl px-[1rem] `}
+                >
                   <button
                     type="submit"
                     disabled={taskCompleted}
@@ -875,11 +892,11 @@ const ReusasbleCampaignDetails = ({
                     </span>
                   </button>
                   <div className="flex items-center gap-[0.6rem] md:gap-[1.5rem]">
-                    <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#E1D356]/75">
+                    {/* <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#E1D356] bg-[#1E2321] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#E1D356]/75">
                       5 USDT
-                    </span>
+                    </span> */}
                     <span className="font-Poppins text-[0.5rem] md:text-[0.9rem] text-[#7ABB81] bg-[#061812] rounded-[2.638rem] px-[0.8rem] py-[0.3rem] border border-[#7ABB81]/75">
-                      50 XP
+                      {post.points} XP
                     </span>
                   </div>
                 </div>

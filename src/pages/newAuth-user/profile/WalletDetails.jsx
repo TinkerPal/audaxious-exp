@@ -31,27 +31,34 @@ const WalletDetails = () => {
         </button>
       </div>
       <div className="flex justify-center gap-5 md:gap-0 md:justify-between mt-[1.5rem] flex-wrap">
-        {WALLET.map((wallet, index) => (
-          <button
-            key={index}
-            className="flex items-center gap-5 border-[1.8px] border-[#18232C] py-[0.5rem] px-[1rem] rounded-[0.23081rem]"
-          >
-            <p className=" whitespace-nowrap text-[1rem] font-[400] font-Poppins text-[#808080]">
-              {wallet.slice(0, 10) + "..." + wallet.slice(30, wallet.length)}
-            </p>
-            <div className="flex items-center gap-2">
-              <span>
-                <Copy />
-              </span>
-              <span>
-                <Stroke />
-              </span>
-              <span>
-                <Delete />
-              </span>
-            </div>
-          </button>
-        ))}
+        {WALLET.length > 0 &&
+          WALLET.map((wallet, index) => {
+            if (wallet) {
+              return (
+                <button
+                  key={index}
+                  className="flex items-center gap-5 border-[1.8px] border-[#18232C] py-[0.5rem] px-[1rem] rounded-[0.23081rem]"
+                >
+                  <p className=" whitespace-nowrap text-[1rem] font-[400] font-Poppins text-[#808080]">
+                    {wallet?.slice(0, 10) +
+                      "..." +
+                      wallet?.slice(30, wallet.length)}
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <span>
+                      <Copy />
+                    </span>
+                    <span>
+                      <Stroke />
+                    </span>
+                    <span>
+                      <Delete />
+                    </span>
+                  </div>
+                </button>
+              );
+            }
+          })}
       </div>
     </div>
   );

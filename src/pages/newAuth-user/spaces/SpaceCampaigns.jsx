@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 const SpaceCampaigns = ({ spaceId }) => {
   const campaigns = useSelector((state) => state.space.spaceCampaigns);
 
+  const todayDate = new Date();
   //   console.log("CAMPAIGNS", campaigns);
   return (
     <div className="flex flex-col items-center">
@@ -98,7 +99,12 @@ const SpaceCampaigns = ({ spaceId }) => {
                     </span>
                   </div>
                   <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
-                    {"12 Days left"}
+                    {Math.floor(
+                      Math.abs(todayDate - new Date(post.endDate)) /
+                        (1000 * 60 * 60 * 24)
+                    ) +
+                      " Days" +
+                      " left"}
                   </span>
                 </div>
               </Card>

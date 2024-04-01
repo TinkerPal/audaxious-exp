@@ -13,6 +13,14 @@ const Campaigns = () => {
   const campaigns = useSelector((state) => state.campaign.campaign);
   console.log(campaigns);
 
+  const todayDate = new Date();
+
+  // const differenceInMilliseconds = Math.abs(todayDate - expiryDate);
+
+  // Convert milliseconds to days
+
+  // console.log("today is", daysDifference);
+
   // console.log("Capaings ", campaigns);
   return (
     <div className="flex flex-col items-center  ">
@@ -118,7 +126,12 @@ const Campaigns = () => {
                     </span>
                   </div>
                   <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
-                    {"12 Days left"}
+                    {Math.floor(
+                      Math.abs(todayDate - new Date(post.endDate)) /
+                        (1000 * 60 * 60 * 24)
+                    ) +
+                      " Days" +
+                      " left"}
                   </span>
                 </div>
               </Card>
