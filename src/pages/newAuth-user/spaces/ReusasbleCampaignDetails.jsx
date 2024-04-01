@@ -12,6 +12,7 @@ import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { ReactComponent as Earn } from "../../../assets/svg/dashboardSvg/earn.svg";
+import AppImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 
 import { TOPEARNERS } from "../../../utils/postApi";
 
@@ -21,6 +22,7 @@ import {
   LikeIntent,
   RepostIntent,
 } from "../engagePortal/TweeterIntent";
+// import AppImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 // import { getToken } from "../../utils/accesstoken";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
@@ -678,15 +680,15 @@ const ReusasbleCampaignDetails = ({
                           <div className="text-neutral-400 flex flex-col gap-[13px]">
                             <div className="flex items-center gap-3 text-gray-200 text-lg">
                               <div>
-                                {post.profilePicture && (
+                                {true && (
                                   <img
-                                    src={post?.profilePicture}
+                                    src={AppImage}
                                     width="100"
                                     height={"100"}
                                     className="w-[4rem] h-[3rem] object-cover rounded-[4px]"
                                   />
                                 )}
-                                {!post.profilePicture && (
+                                {false && (
                                   <div className="w-[4rem] h-[3rem] rounded-[4px] bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46] uppercase font-Poppins font-[600]">
                                     {post.title && post.title.slice(0, 1)}
                                   </div>
@@ -794,7 +796,7 @@ const ReusasbleCampaignDetails = ({
                             Leaderboard
                           </p>
                         </div>
-                        <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
+                        {/* <div className="py-[1rem] flex flex-col items-stretch px-[3rem] gap-[1rem]">
                           {TOPEARNERS.slice(0, 7).map((earners, index) => (
                             <div
                               className="flex justify-between"
@@ -835,7 +837,7 @@ const ReusasbleCampaignDetails = ({
                               </div>
                             </div>
                           ))}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

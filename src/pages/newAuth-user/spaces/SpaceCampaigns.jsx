@@ -6,6 +6,7 @@ import { ReactComponent as Task } from "../../../assets/svg/task.svg";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import Card from "../../../components/socialmedia/Card";
 import { useSelector } from "react-redux";
+import AppImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 
 const SpaceCampaigns = ({ spaceId }) => {
   const campaigns = useSelector((state) => state.space.spaceCampaigns);
@@ -51,15 +52,16 @@ const SpaceCampaigns = ({ spaceId }) => {
                 <div className="text-neutral-400 flex items-center gap-[1.25rem] px-[1rem]">
                   <div className="flex items-center flex-col gap-[0.3rem]">
                     <div>
-                      {post.profilePicture && (
+                      {true && (
                         <img
-                          src={post?.profilePicture}
+                          src={AppImage}
                           width="100"
                           height={"100"}
                           className="w-[4rem] h-[3rem] object-cover rounded-[4px]"
                         />
                       )}
-                      {!post.profilePicture && (
+
+                      {false && (
                         <div className="w-[4rem] h-[3rem] rounded-[4px] bg-slate-200 flex items-center justify-center text-[2rem] text-[#2A3C46] uppercase font-Poppins font-[600]">
                           {/* {post.space_title.slice(0, 1)} */}
                           {post.title.slice(0, 1)}
@@ -95,7 +97,7 @@ const SpaceCampaigns = ({ spaceId }) => {
                     </span>
                     <span className="h-[1.1rem] w-[1px] bg-[#314048]"></span>
                     <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
-                      {12}
+                      {post.taskParticipantCount}
                     </span>
                   </div>
                   <span className="text-[#929192] font-[500] text-[0.625rem] whitespace-nowrap">
