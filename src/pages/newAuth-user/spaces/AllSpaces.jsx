@@ -28,7 +28,7 @@ const AllSpaces = ({ onCreateSpace }) => {
     // console.log("AllSpace");
   };
 
-  console.log("Space array", spaceArray);
+  // console.log("Space array", spaceArray);
 
   const joinSpaceHandler = async (id) => {
     if (!isAuthenticated) {
