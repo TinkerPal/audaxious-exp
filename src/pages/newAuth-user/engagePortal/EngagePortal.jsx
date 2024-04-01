@@ -48,7 +48,7 @@ const EngagePortals = () => {
           </div>
         </div>
 
-        <section className="">
+        {/* <section className="">
           <div className="mt-[1rem] border-[#314048] border-[1px]">
             <div className="flex">
               <div className="px-[0.5rem] md:px-[1.62rem] py-[0.6rem] border-[#314048] border-r-[1px] flex items-center">
@@ -59,7 +59,7 @@ const EngagePortals = () => {
               <TopEarners />
             </div>
           </div>
-        </section>
+        </section> */}
 
         <div className="mt-[1.6rem] bg-[#060B12]">
           <div className="px-[0.8rem] md:px-[1.5rem] gap-[2rem] xl:px-[3.16rem] pt-[0.5rem] border-[#314048] border-[0.5px] flex items-center max-w-[1670px] overflow-x-auto justify-between rounded-t-md">
