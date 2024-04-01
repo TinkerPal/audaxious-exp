@@ -40,7 +40,14 @@ const Sidebar = () => {
   // };
 
   return (
-    <div className="flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12]">
+    <div
+      className={clsx(
+        "flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12] pr-[0.4rem] md:pr-[1rem]",
+        path === "/spaces"
+          ? "border-r-none"
+          : "border-r-[1.8px] border-[#18232C]"
+      )}
+    >
       <NavLink
         to={"/discover"}
         className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
@@ -139,14 +146,25 @@ const Sidebar = () => {
 
       <div className="flex flex-col gap-[0.2rem]">
         <NavLink
+          to={`/profile`}
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
-            path === "" && "bg-[#79C4EC]/10"
+            path === "/profile" && "bg-[#79C4EC]/10"
           }`}
         >
-          <span>
+          {/* <span>
             <ProfileIcon />
+          </span> */}
+          <div className={`${path === "/profile" ? "text-[#79C4EC]" : "none"}`}>
+            <ProfileIcon />
+          </div>
+          <span
+            className={clsx(
+              "hidden xl:block",
+              path === "/profile" ? "text-[#79C4EC]" : "text-[#818282]"
+            )}
+          >
+            Profile
           </span>
-          <span className="hidden xl:block">Profile</span>
         </NavLink>
         {/* <NavLink
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.48rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${

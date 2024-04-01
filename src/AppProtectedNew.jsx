@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 // import Landing from "./pages/landing/Landing";
 import Layout from "./layout/Layout";
+import Profile from "./pages/newAuth-user/profile/Profile";
 // import SpaceCampaignDetails from "./pages/newAuth-user/spaces/SpaceCampaignDetails";
 // import Home from "./pages/Homes/Home";
 
@@ -57,6 +58,9 @@ const AppProtectedNew = () => {
               <Route path=":campaignId" element={<SpaceCampaignDetails />} />
             </Route>
             <Route />
+          </Route>
+          <Route path="/profile" element={<DashboardLayout />}>
+            <Route index={true} element={<Profile />} />
           </Route>
         </Routes>
       </Layout>

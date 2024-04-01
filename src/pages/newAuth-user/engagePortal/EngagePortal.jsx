@@ -2,31 +2,19 @@ import { ReactComponent as Friends } from "../../../assets/svg/dashboardSvg/frie
 import { ReactComponent as Activities } from "../../../assets/svg/dashboardSvg/activities.svg";
 import { ReactComponent as Hamburger } from "../../../assets/svg/dashboardSvg/hambuger.svg";
 import { ReactComponent as Dropdown } from "../../../assets/svg/dashboardSvg/dropdown.svg";
-// import { ReactComponent as X } from "../../../assets/svg/dashboardSvg/x.svg";
-// import { ReactComponent as Instagram } from "../../../assets/svg/dashboardSvg/instagram.svg";
-// import { ReactComponent as Telegram } from "../../../assets/svg/dashboardSvg/telegram.svg";
-// import { ReactComponent as Facebook } from "../../../assets/svg/dashboardSvg/facebook.svg";
-// import { ReactComponent as Discord } from "../../../assets/svg/dashboardSvg/discord.svg";
-import Twitter from "../../../components/socialmedia/Twitter";
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState } from "react";
 import clsx from "clsx";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
-import { ReactComponent as Eth } from "../../../assets/svg/dashboardSvg/eth.svg";
-import { ReactComponent as Bnb } from "../../../assets/svg/dashboardSvg/bnb.svg";
 import { ReactComponent as Brick2 } from "../../../assets/svg/brickline2.svg";
 import { ReactComponent as Brick1 } from "../../../assets/svg/brick-line.svg";
 import { ReactComponent as SeachIcon } from "../../../assets/svg/dashboardSvg/searchIcon.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { TOPEARNERS } from "../../../utils/postApi";
 import Campaigns from "./Campaignss";
 import TopEarners from "./TopEarners";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
-  const swiperRefLocal = useRef();
 
   return (
     <div

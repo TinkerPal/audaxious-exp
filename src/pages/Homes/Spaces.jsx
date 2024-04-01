@@ -1,50 +1,49 @@
 import { NavLink } from "react-router-dom";
-import { SPACES } from "../../utils/postApi";
-import { ReactComponent as Group } from "../../assets/svg/dashboardSvg/group.svg";
-import { ReactComponent as World } from "../../assets/svg/dashboardSvg/world.svg";
-import { ReactComponent as Retweets } from "../../assets/svg/dashboardSvg/retweets.svg";
-import { ReactComponent as Discords } from "../../assets/svg/dashboardSvg/discords.svg";
-import { useEffect, useRef, useState } from "react";
-import { animate, motion, useAnimation, useMotionValue } from "framer-motion";
+import { useEffect, useState } from "react";
+import { animate, motion, useMotionValue } from "framer-motion";
 import useMeasure from "react-use-measure";
 import { useSelector } from "react-redux";
 
 const Spaces = () => {
-  const [ref, { width }] = useMeasure();
-  const xTranslation = useMotionValue(0);
-  const controls = useAnimation();
   const spaceArray = useSelector((state) => state.space.space);
+  const FAST_DURATION = 25;
+  const SLOW_DURATION = 500;
+
+  const [duration, setDuration] = useState(FAST_DURATION);
+  let [ref, { width }] = useMeasure();
+
+  const xTranslation = useMotionValue(0);
+
+  const [mustFinish, setMustFinish] = useState(false);
+  const [rerender, setRerender] = useState(false);
 
   useEffect(() => {
-    const finalPosition = -width / 2 - 8;
-    controls.start({
-      x: [0, finalPosition],
-      transition: {
-        // type: "tween",
+    let controls;
+    let finalPosition = -width / 2 - 10;
+
+    console.log("Spaces", xTranslation.get());
+
+    if (mustFinish) {
+      controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
         ease: "linear",
-        duration: 70,
+        duration: duration * (1 - xTranslation.get() / finalPosition),
+        onComplete: () => {
+          setMustFinish(false);
+          setRerender(!rerender);
+        },
+      });
+    } else {
+      controls = animate(xTranslation, [0, finalPosition], {
+        ease: "linear",
+        duration: duration,
         repeat: Infinity,
         repeatType: "loop",
-      },
-    });
-  }, [controls, width]);
+        repeatDelay: 0,
+      });
+    }
 
-  const handleHoverStart = () => {
-    controls.stop();
-  };
-
-  const handleHoverEnd = () => {
-    controls.start({
-      x: [0, -width / 2 - 8],
-      transition: {
-        // type: "tween",
-        ease: "linear",
-        duration: 70,
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    });
-  };
+    return controls?.stop;
+  }, [rerender, xTranslation, duration, width, mustFinish]);
 
   return (
     <div className="pb-[5rem] overflow-hidden relative">
@@ -57,12 +56,28 @@ const Spaces = () => {
           drag="x"
           style={{ x: xTranslation }}
           ref={ref}
-          animate={controls}
-          onHoverStart={handleHoverStart}
-          onHoverEnd={handleHoverEnd}
+          onHoverStart={() => {
+            setMustFinish(true);
+            setDuration(SLOW_DURATION);
+          }}
+          onHoverEnd={() => {
+            setMustFinish(true);
+            setDuration(FAST_DURATION);
+          }}
         >
           {spaceArray &&
-            [...spaceArray, ...spaceArray].map((space, index) => (
+            [
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+              ...spaceArray,
+            ].map((space, index) => (
               <NavLink to={`/spaces/${space.uuid}`} key={index}>
                 <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] w-[20rem] hover:border-[3px] pb-[0.75rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
                   <div className="flex flex-col gap-[0.75rem]">
