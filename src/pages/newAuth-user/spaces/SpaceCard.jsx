@@ -42,7 +42,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
     <NavLink to={`/spaces/${title}`} key={uuid}>
       {/* min-w-[18rem]  max-w-[28rem] border-[1px] border-[#07111c] bg-[#060e16] hover:border-white/70  2xl:min-w-[22rem] border-opacity-50 cursor-pointer  rounded-[16px] */}
 
-      <div className="flex flex-col h-full justify-between border-[#07111c] bg-[#060e16] hover:border-white/70 px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem]  hover:border-[#14435c]  border border-opacity-[80%]  rounded-[16px] cursor-pointer ">
+      <div className="flex flex-col h-full justify-between border-white/20 border-[#07111c] bg-[#060e16] hover:border-white/70 px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem]  hover:border-[#14435c]  border border-opacity-[80%]  rounded-[16px] cursor-pointer ">
         <div className="flex flex-col h-full justify-between">
           <div className="flex items-center justify-between">
             {/* <div className="flex items-center gap-[0.5rem]">

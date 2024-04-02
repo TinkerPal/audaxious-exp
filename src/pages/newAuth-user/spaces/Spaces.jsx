@@ -146,7 +146,7 @@ const Spaces = () => {
               Create
             </button>
           </div>
-          <div className="border border-b-[1px] border-[#07111c] my-4"></div>
+          <div className="border border-b-[1px] border-[#07111c] "></div>
           <SearchSort />
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
             <AllSpaces onCreateSpace={setOpen} />
