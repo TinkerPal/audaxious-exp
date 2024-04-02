@@ -21,6 +21,7 @@ const Spaces = () => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
+  const spaceCreated = useSelector((state) => state.space.spaceCreated);
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
   const [createdSpace, setCreatedSpace] = useState([]);
@@ -43,10 +44,10 @@ const Spaces = () => {
         console.log(error);
       }
     };
-    if (toggle === 2) {
+    if (toggle === 2 || isAuthenticated || spaceCreated) {
       mySpaces();
     }
-  }, [toggle, dispatch]);
+  }, [toggle, dispatch, isAuthenticated, spaceCreated]);
   useEffect(() => {
     const joinedSpaces = async () => {
       dispatch(spaceActions.setLoading(true));
@@ -62,10 +63,10 @@ const Spaces = () => {
         console.log(error);
       }
     };
-    if (toggle === 3 || toggle === 1) {
+    if (toggle === 3 || toggle === 1 || isAuthenticated) {
       joinedSpaces();
     }
-  }, [toggle, dispatch]);
+  }, [toggle, dispatch, isAuthenticated]);
 
   const createSpaceHandler = () => {
     if (!isAuthenticated) {
