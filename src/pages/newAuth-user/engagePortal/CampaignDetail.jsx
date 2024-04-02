@@ -36,7 +36,7 @@ const SingleTweetById = () => {
       try {
         const result = await dispatch(getCampaignById(campaignId));
         // console.log(result);
-        console.log("result of campaign", result);
+        // console.log("result of campaign", result);
 
         setPost(result.data);
       } catch (error) {
