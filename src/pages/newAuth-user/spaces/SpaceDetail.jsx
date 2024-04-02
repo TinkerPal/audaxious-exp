@@ -93,24 +93,22 @@ const SpaceDetail = () => {
     getSpaces();
   }, [dispatch, spaceId]);
 
-  // console.log(spaceDetail.uuid);
-
   useEffect(() => {
-    const getCampaigns = async () => {
-      try {
-        const result = await dispatch(getAllCampaignsBySpace(spaceDetail.uuid));
-
-        // setCampaigns(result.data);
-        dispatch(spaceActions.replaceSpaceCampaigns(result.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // if (toggle === 1) {
-    //   getCampaigns();
-    // }
-    getCampaigns();
-  }, [dispatch, toggle, spaceDetail, campaignCreated]);
+    const timer = setTimeout(() => {
+      const getCampaigns = async () => {
+        try {
+          const result = await dispatch(
+            getAllCampaignsBySpace(spaceDetail.uuid)
+          );
+          dispatch(spaceActions.replaceSpaceCampaigns(result.data));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getCampaigns();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [dispatch, spaceDetail, campaignCreated]);
 
   const joinSpaceHandler = async () => {
     if (!isAuthenticated) {
