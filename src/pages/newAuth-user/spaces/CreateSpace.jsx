@@ -55,6 +55,27 @@ const CreateSpace = ({ cancelHandler }) => {
   const [selectedCategoriesError, setSelectedCategoriesError] = useState(null);
   const [selectedWebsiteError, setSelectedWebsiteError] = useState(null);
   const [selectedWebsite, setSelectedWebsite] = useState([]);
+
+  const categories = [
+    "DeFi",
+    "NFT",
+    "Metaverse",
+    "Staking",
+    "Meme",
+    "Oracle",
+    "DEX",
+    "CEX",
+    "DAO",
+    "GameFi",
+    "P2E",
+    "Community",
+    "DeSo",
+    "SocialFi",
+    "AI",
+    "AMM",
+    "ERC-20",
+    "SPL",
+  ];
   const {
     image: cover,
     onChangeHandler: onChangeCover,
@@ -95,7 +116,6 @@ const CreateSpace = ({ cancelHandler }) => {
     [selectedCategories]
   );
 
-  // console.log(cover);
   const submitFormHandler = async (event) => {
     event.preventDefault();
     if (!verifyTweeter) {
@@ -132,7 +152,6 @@ const CreateSpace = ({ cancelHandler }) => {
     try {
       const result = await dispatch(createSpace(formData));
       dispatch(spaceActions.setLoading(false));
-      // console.log("SPACE CREATED", result);
       dispatch(spaceActions.setSpaceCreated(result.success));
       cancelHandler();
       toast.success(result.message);
@@ -143,7 +162,6 @@ const CreateSpace = ({ cancelHandler }) => {
       setSelectedCategories([]);
       setSelectedWebsite([]);
     } catch (error) {
-      console.log("CREATE SPACE PAGE ERROR", error);
       dispatch(spaceActions.setLoading(false));
       toast.error(error.response.data.error);
     }
@@ -164,7 +182,7 @@ const CreateSpace = ({ cancelHandler }) => {
                 }}
               />
               <div className="container">
-                <div className="mt-[-3.5rem]">
+                <div className="mt-[-3.5rem] 2xl:mt-[-7rem]">
                   <ImageInput
                     val={profilePicture}
                     name="profilePicture"
@@ -178,7 +196,7 @@ const CreateSpace = ({ cancelHandler }) => {
                   </p>
                 </div>
               </div>
-              <div className="container mt-[2rem] md:mt-[2rem] flex flex-col gap-[1.5rem] md:gap-[1.5rem]">
+              <div className="container mt-[2rem] md:mt-[0.6rem] flex flex-col gap-[1.5rem] md:gap-[1.5rem]">
                 {loading && (
                   <div className="">
                     <Loading />
@@ -243,79 +261,30 @@ const CreateSpace = ({ cancelHandler }) => {
                         Select Category
                       </p>
                     </div>
-                    <div className="w-[100%] md:w-[18rem] lg:w-[25rem] flex flex-wrap items-center gap-[0.5rem]">
-                      <div
-                        onClick={() => handleCategoryClick("De-Fi")}
-                        className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
-                          selectedCategories.includes("De-Fi") &&
-                          "border-[#4F6C7B] bg-[#09141A]"
-                        }`}
-                      >
-                        <span>
-                          {selectedCategories.includes("De-Fi") ? (
-                            <Checked />
-                          ) : (
-                            <Defi />
-                          )}
-                        </span>
-                        <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          DeFi
-                        </span>
-                      </div>
-                      <div
-                        onClick={() => handleCategoryClick("Gaming")}
-                        className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
-                          selectedCategories.includes("Gaming") &&
-                          "border-[#4F6C7B] bg-[#09141A]"
-                        }`}
-                      >
-                        <span>
-                          {selectedCategories.includes("Gaming") ? (
-                            <Checked />
-                          ) : (
-                            <Gaming />
-                          )}
-                        </span>
-                        <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          GameFi
-                        </span>
-                      </div>
-                      <div
-                        onClick={() => handleCategoryClick("Startups")}
-                        className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
-                          selectedCategories.includes("Startups") &&
-                          "border-[#4F6C7B] bg-[#09141A]"
-                        }`}
-                      >
-                        <span>
-                          {selectedCategories.includes("Startups") ? (
-                            <Checked />
-                          ) : (
-                            <Startups />
-                          )}
-                        </span>
-                        <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          Meme
-                        </span>
-                      </div>
-                      <div
-                        onClick={() => handleCategoryClick("Music")}
-                        className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
-                          selectedCategories.includes("Music") &&
-                          "border-[#4F6C7B] bg-[#09141A]"
-                        }`}
-                      >
-                        <span>
-                          {selectedCategories.includes("Music") ? (
-                            <Checked />
-                          ) : (
-                            <Music />
-                          )}
-                        </span>
-                        <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                          NFT
-                        </span>
-                      </div>
+                    <div className="w-[100%] md:w-[18rem] lg:w-[25rem] 2xl:w-[33rem] flex flex-wrap items-center gap-[0.5rem]">
+                      {categories.map((category, index) => {
+                        return (
+                          <div
+                            key={index}
+                            onClick={() => handleCategoryClick(category)}
+                            className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
+                              selectedCategories.includes(category) &&
+                              "border-[#4F6C7B] bg-[#09141A]"
+                            }`}
+                          >
+                            <span>
+                              {selectedCategories.includes(category) ? (
+                                <Checked />
+                              ) : (
+                                ""
+                              )}
+                            </span>
+                            <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
+                              {category}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                     {selectedCategoriesError && (
                       <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
@@ -337,7 +306,7 @@ const CreateSpace = ({ cancelHandler }) => {
                         </span>
                       </label>
 
-                      <div>
+                      <div className="w-[100%] md:w-auto">
                         <textarea
                           required
                           name="spaceDescription"
@@ -382,7 +351,7 @@ const CreateSpace = ({ cancelHandler }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-between mt-[-2rem] mb-[2rem] gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
+                <div className="flex justify-between 2xl:mt-[-2.5rem] mb-[1rem] gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
                   <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
                     <label htmlFor="website" className="flex gap-[0.4rem]">
                       <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
