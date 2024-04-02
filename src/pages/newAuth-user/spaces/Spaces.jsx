@@ -82,7 +82,7 @@ const Spaces = () => {
             <div className="fixed inset-0 z-[4] overflow-y-auto">
               <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
                 <Dialog.Panel className="">
-                  <CreateSpace />
+                  <CreateSpace cancelHandler={cancelHandler} />
                 </Dialog.Panel>
               </div>
             </div>

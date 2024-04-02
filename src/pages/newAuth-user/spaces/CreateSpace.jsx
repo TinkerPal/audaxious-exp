@@ -26,7 +26,7 @@ const checkWebsiteValidity = (url) => {
   const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
   return urlPattern.test(url);
 };
-const CreateSpace = () => {
+const CreateSpace = ({ cancelHandler }) => {
   const [inviteCode, setInviteCode] = useState("");
 
   const {
@@ -132,7 +132,9 @@ const CreateSpace = () => {
     try {
       const result = await dispatch(createSpace(formData));
       dispatch(spaceActions.setLoading(false));
-      console.log(result);
+      // console.log("SPACE CREATED", result);
+      dispatch(spaceActions.setSpaceCreated(result.success));
+      cancelHandler();
       toast.success(result.message);
       resetCover();
       resetProfilePicture();
@@ -314,38 +316,6 @@ const CreateSpace = () => {
                           NFT
                         </span>
                       </div>
-                      {/* <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
-                    <span>
-                      <Defi />
-                    </span>
-                    <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                      De-Fi
-                    </span>
-                  </div>
-                  <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
-                    <span>
-                      <Gaming />
-                    </span>
-                    <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                      Gaming
-                    </span>
-                  </div>
-                  <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
-                    <span>
-                      <Startups />
-                    </span>
-                    <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                      Startups
-                    </span>
-                  </div>
-                  <div className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]">
-                    <span>
-                      <Music />
-                    </span>
-                    <span className="font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
-                      Music
-                    </span>
-                  </div> */}
                     </div>
                     {selectedCategoriesError && (
                       <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
@@ -353,7 +323,6 @@ const CreateSpace = () => {
                       </p>
                     )}
                   </div>
-
                   <div>
                     <div className="flex flex-col gap-[0.6rem] items-start w-[100%] md:w-[20rem] lg:w-[25rem]">
                       <label

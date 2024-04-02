@@ -43,7 +43,7 @@ const Sidebar = () => {
     <div
       className={clsx(
         "flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12] pr-[0.4rem] md:pr-[1rem]",
-        path === "/spaces"
+        path.startsWith("/spaces")
           ? "border-r-none"
           : "border-r-[1.8px] border-[#18232C]"
       )}

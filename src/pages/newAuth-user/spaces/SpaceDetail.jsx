@@ -53,6 +53,7 @@ const SpaceDetail = () => {
   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
   const memberState = useSelector((state) => state.space.isMember);
   const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+  const campaignCreated = useSelector((state) => state.space.campaignCreated);
 
   // console.log(joinedSpacesArray);
 
@@ -105,10 +106,11 @@ const SpaceDetail = () => {
         console.log(error);
       }
     };
-    if (spaceDetail.uuid && toggle === 1) {
-      getCampaigns();
-    }
-  }, [dispatch, toggle, spaceDetail]);
+    // if (toggle === 1) {
+    //   getCampaigns();
+    // }
+    getCampaigns();
+  }, [dispatch, toggle, spaceDetail, campaignCreated]);
 
   const joinSpaceHandler = async () => {
     if (!isAuthenticated) {
