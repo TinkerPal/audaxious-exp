@@ -1,5 +1,4 @@
 import { ReactComponent as Logo } from "../../../assets/svg/logo.svg";
-// import Audaxious from "../../assets/svg/assets/AudaxiousLogofinal.svg";
 import AudaxiousLogo from "../../../assets/svg/assets/AudaxiousLogofinal.svg";
 import { ReactComponent as EngagePortalIcon } from "../../../assets/svg/dashboardSvg/portal.svg";
 import { ReactComponent as Search } from "../../../assets/svg/dashboardSvg/search.svg";
@@ -31,8 +30,11 @@ const Header = () => {
   const path = location.pathname;
   const dispatch = useDispatch();
 
-  const toggleMenuHandler = () => {
-    setShowMenu((prev) => !prev);
+  const showMenuHandler = () => {
+    setShowMenu(true);
+  };
+  const hideMenuHandler = () => {
+    setShowMenu(false);
   };
 
   const openLogoutModal = () => {
@@ -59,73 +61,11 @@ const Header = () => {
 
   if (isAuthenticated) {
     butons = (
-      <div onClick={toggleMenuHandler}>
+      <div onMouseEnter={showMenuHandler}>
         <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
           <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
             {username ? username.slice(0, 1) : ""}
           </p>
-        </div>
-      </div>
-    );
-  }
-
-  if (path === "/engage-portal") {
-    title = "Engage portal";
-    specificIcon = (
-      <EngagePortalIcon
-        style={{
-          fill: path === "/engage-portal" ? "#FFF" : "#818282",
-        }}
-      />
-    );
-  } else if (path.startsWith("/spaces")) {
-    title = "Spaces";
-    specificIcon = (
-      <div className={`${path === "/profile" ? "text-[#79C4EC]" : "none"}`}>
-        <CommunityIcon />
-      </div>
-    );
-  } else if (path.startsWith("/profile")) {
-    title = "Profile";
-    specificIcon = (
-      <div className={`${path === "/profile" ? "text-[#79C4EC]" : "none"}`}>
-        <ProfileIcon />
-      </div>
-    );
-  }
-  return (
-    <div className="relative max-w-[1618px] bg-black">
-      <div className="fixed top-0 left-0 right-0 z-[2] bg-black">
-        <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem]  border-b bg-black border-b-[#18232C]">
-          <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
-            {/* <div className="hidden xl:block">
-              <Link to={"/"}>
-                <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
-              </Link>
-            </div> */}
-            {/* <div className="block xl:hidden">
-              <Link to={"/"}>
-                <LogoMd />
-              </Link>
-            </div> */}
-            <div
-              className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
-              style={{ fontStyle: "normal" }}
-            >
-              <span className="">{specificIcon}</span>{" "}
-              <span className="whitespace-nowrap">{title}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-[0.3rem] md:gap-[1rem]">
-            <div>
-              <Bell />
-            </div>
-            <div>
-              <Line />
-            </div>
-            {butons}
-          </div>
         </div>
         {showMenu && isAuthenticated && (
           <div className="absolute mt-2 right-5 md:right-10 bg-black">
@@ -181,6 +121,62 @@ const Header = () => {
             </div>
           </div>
         )}
+      </div>
+    );
+  }
+
+  if (path === "/engage-portal") {
+    title = "Engage portal";
+    specificIcon = (
+      <EngagePortalIcon
+        style={{
+          fill: path === "/engage-portal" ? "#FFF" : "#818282",
+        }}
+      />
+    );
+  } else if (path.startsWith("/spaces")) {
+    title = "Spaces";
+    specificIcon = (
+      <div className={`${path === "/profile" ? "text-[#79C4EC]" : "none"}`}>
+        <CommunityIcon />
+      </div>
+    );
+  } else if (path.startsWith("/profile")) {
+    title = "Profile";
+    specificIcon = (
+      <div className={`${path === "/profile" ? "text-[#79C4EC]" : "none"}`}>
+        <ProfileIcon />
+      </div>
+    );
+  }
+  return (
+    <div
+      className="relative max-w-[1618px] bg-black"
+      onMouseLeave={hideMenuHandler}
+      onMouseEnter={hideMenuHandler}
+    >
+      <div className="fixed top-0 left-0 right-0 z-[2] bg-black">
+        <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem]  border-b bg-black border-b-[#18232C]">
+          <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
+            <div
+              className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
+              style={{ fontStyle: "normal" }}
+            >
+              <span className="">{specificIcon}</span>{" "}
+              <span className="whitespace-nowrap">{title}</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-[0.3rem] md:gap-[1rem]">
+            <div onMouseEnter={hideMenuHandler}>
+              <Bell />
+            </div>
+            <div>
+              <Line />
+            </div>
+            {butons}
+          </div>
+        </div>
       </div>
     </div>
   );
