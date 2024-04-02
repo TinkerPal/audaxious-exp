@@ -28,7 +28,7 @@ const VerifyTweeter = () => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
-  const tweetText = `Verifying my Twitter username for my #AudaXious Account @AudaXious3 #AudaXious aud-id=${userId}`;
+  const tweetText = `Verifying my Twitter username for my #AudaXious Account @AudaXious3 #Airdrop aud-id=${userId}`;
   const tweetUrl = `https://www.audaxious.com/`;
 
   const getUserIdFunction = async () => {
