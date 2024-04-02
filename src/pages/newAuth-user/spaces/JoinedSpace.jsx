@@ -1,28 +1,9 @@
-// import React, { useEffect } from "react";
 import { ReactComponent as NoSpace } from "../../../assets/svg/dashboardSvg/noSpace.svg";
-// import { useDispatch, useSelector } from "react-redux";
-
-// const JoinedSpace = () => {
-//   const isAuthenticated = useSelector(
-//     (state) => state.authentication.isLogedIn
-//   );
-//   const loading = useSelector((state) => state.space.loading);
-//   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
-//   const dispatch = useDispatch();
-//   // useEffect(() => {
-//   //   console.log("JOINED SPACE");
-//   // }, []);
-
 import React, { useState } from "react";
-// import { SPACES } from "../../../utils/postApi";
-
-import Query from "./Query";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authorizationSlice";
 import { joinSpace } from "../../../store/spaceActions";
 import { toast } from "react-toastify";
-import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
 import SpaceCard from "./SpaceCard";
 
@@ -38,12 +19,15 @@ const JoinedSpace = () => {
   const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
 
+  const openLoginModal = () => {
+    dispatch(authAction.onOpen());
+  };
+
   const joinSpaceHandler = async (id) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       return;
     }
-    // dispatch(spaceActions.setLoading(true));
     try {
       setSelectedId(id);
       const result = await dispatch(joinSpace(id));
@@ -51,8 +35,6 @@ const JoinedSpace = () => {
       dispatch(spaceActions.setIsMember(true));
       toast.success(result.message);
       setSelectedId(null);
-
-      console.log("JOINSPACE", result);
     } catch (error) {
       dispatch(spaceActions.setLoading(false));
       toast.error(error.response.data.error);
@@ -61,7 +43,28 @@ const JoinedSpace = () => {
     }
   };
 
-  if (!joinedSpacesArray || !isAuthenticated) {
+  if (!isAuthenticated) {
+    return (
+      <div className="flex flex-col justify-center mt-[5rem] items-center gap-[1rem]">
+        <div className="font-Poppins gap-[0.5rem] text-[#707171] flex flex-col items-center">
+          <p className="font-[400] text-[1.2rem]">Please login</p>
+          <p className="text-center font-[300] text-[0.8rem] leading-normal">
+            Spaces you join will appear here
+            <br /> login to see{" "}
+            <span className="text-[#FFF]">“Joined spaces”</span>
+          </p>
+        </div>
+        <button
+          onClick={openLoginModal}
+          className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+        >
+          Login
+        </button>
+      </div>
+    );
+  }
+
+  if (!joinedSpacesArray || joinedSpacesArray.length <= 0) {
     return (
       <div className="flex flex-col justify-center mt-[5rem] items-center gap-[1rem]">
         <span>
