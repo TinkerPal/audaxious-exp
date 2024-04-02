@@ -5,9 +5,9 @@ const ImageInput = ({ onChange, val, name }) => {
   return (
     <label
       htmlFor={name}
-      className="block bg-transparent border-[#2A3C46] border border-opacity-[80%] h-[9rem] w-[9rem] xl:w-[14rem] xl:h-[14rem] rounded-full relative overflow-hidden z-[1]"
+      className="block bg-transparent border-[#2A3C46] border border-opacity-[80%] h-[9rem] w-[9rem] xl:w-[12rem] xl:h-[12rem] rounded-full relative overflow-hidden z-[1]"
     >
-      <div className="absolute top-[28%] left-[15%] xl:top-[35%] xl:left-[20%] flex items-center flex-col gap-[0.5rem] z-[3]">
+      <div className="absolute top-[28%] left-[15%] xl:top-[35%] xl:left-[15%] flex items-center flex-col gap-[0.5rem] z-[3]">
         <AddIcon />
         <p className="text-[0.6rem] xl:text-[0.8rem] text-[#A5A5A5] font-Poppins font-[400] leading-[150%] normal whitespace-nowrap">
           Add Campaign Photo
