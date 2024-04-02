@@ -13,21 +13,8 @@ import { joinSpace } from "../../../store/spaceActions";
 import { toast } from "react-toastify";
 import SpaceCard from "./SpaceCard";
 
-const MySpace = ({ onCreateSpace, mySpaces }) => {
-  const isAuthenticated = useSelector(
-    (state) => state.authentication.isLogedIn
-  );
+const MySpace = ({ mySpaces }) => {
   const loading = useSelector((state) => state.space.loading);
-  const dispatch = useDispatch();
-
-  const createSpaceHandler = () => {
-    if (!isAuthenticated) {
-      dispatch(authAction.onOpen());
-      return;
-    }
-    onCreateSpace(true);
-    // console.log("AllSpace");
-  };
 
   // console.log("MYSPACEUUID", mySpaces);
 
@@ -46,7 +33,6 @@ const MySpace = ({ onCreateSpace, mySpaces }) => {
 
   return (
     <div>
-      <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
         <div className="py-[1.47rem] flex flex-col ">
           {loading && (

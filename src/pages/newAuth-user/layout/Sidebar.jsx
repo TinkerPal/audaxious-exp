@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import clsx from "clsx";
 import { ReactComponent as DashBoardIcon } from "../../../assets/svg/dashboardSvg/dasboardIcon.svg";
 import { ReactComponent as MultiSenderIcon } from "../../../assets/svg/dashboardSvg/multisender.svg";
@@ -14,6 +14,7 @@ import { ReactComponent as MdLineIcon } from "../../../assets/svg/dashboardSvg/m
 import { ReactComponent as LogoMd } from "../../../assets/svg/dashboardSvg/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authorizationSlice";
+import AudaxiousLogo from "../../../assets/svg/assets/AudaxiousLogofinal.svg";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -42,12 +43,25 @@ const Sidebar = () => {
   return (
     <div
       className={clsx(
-        "flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed top-[82px] left-0 bottom-0 z-[1] bg-[#060B12] pr-[0.4rem] md:pr-[1rem]",
-        path.startsWith("/spaces")
-          ? "border-r-none"
-          : "border-r-[1.8px] border-[#18232C]"
+        "flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed pt-[0px] left-0 bottom-0 z-[3] xl:bg-[#07111c]  pr-[0.4rem] md:pr-[1rem] border-[#18232C]/50"
       )}
     >
+      {/* <div className="hidden py-[2rem]  xl:flex w-full justify-center items-center">
+        <Link to={"/"}>
+          <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
+        </Link>
+      </div> */}
+      <NavLink
+        to={"/"}
+        className={` opacity-0 xl:opacity-100 font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.8rem] px-[1.5rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+          path === "/" && "bg-[#79C4EC]/10"
+        }`}
+      >
+        <div>
+          <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
+        </div>
+      </NavLink>
+
       <NavLink
         to={"/discover"}
         className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
@@ -118,11 +132,19 @@ const Sidebar = () => {
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
+          to={""}
         >
-          <span>
+          <div className={`${path === "/spaces" ? "text-[#79C4EC]" : "none"}`}>
             <PostIcon />
+          </div>
+          <span
+            className={clsx(
+              "hidden xl:block",
+              path === "/ai-creatives" ? "text-[#79C4EC]" : "text-[#818282] "
+            )}
+          >
+            AI Creatives
           </span>
-          <span className="hidden xl:block">AI Creatives</span>
         </NavLink>
 
         {/* <NavLink

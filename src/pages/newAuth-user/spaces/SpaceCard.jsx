@@ -40,8 +40,10 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
   }
   return (
     <NavLink to={`/spaces/${title}`} key={uuid}>
-      <div className="px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem] border-[#2A3C46] hover:border-[#14435c]  border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-[16px] cursor-pointer">
-        <div className="flex flex-col gap-[0.75rem]">
+      {/* min-w-[18rem]  max-w-[28rem] border-[1px] border-[#07111c] bg-[#060e16] hover:border-white/70  2xl:min-w-[22rem] border-opacity-50 cursor-pointer  rounded-[16px] */}
+
+      <div className="flex flex-col h-full justify-between border-[#07111c] bg-[#060e16] hover:border-white/70 px-[0.5rem] md:px-[1.5rem] pt-[0.75rem] min-w-[18rem] max-w-[28rem] pb-[0.75rem]  hover:border-[#14435c]  border border-opacity-[80%]  rounded-[16px] cursor-pointer min-h-[200px]">
+        <div className="flex flex-col h-full justify-between">
           <div className="flex items-center justify-between">
             {/* <div className="flex items-center gap-[0.5rem]">
               {!src && (
@@ -127,7 +129,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
           <div className="py-[0.62rem]">
             <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
               {description.length > 35
-                ? description.slice(0, 35) + " ..."
+                ? description.slice(0, 50) + " ..."
                 : description}
             </p>
           </div>

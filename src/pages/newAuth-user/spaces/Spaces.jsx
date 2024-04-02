@@ -8,14 +8,19 @@ import MySpace from "./MySpace";
 import JoinedSpace from "./JoinedSpace";
 import { Dialog } from "@headlessui/react";
 import CreateSpace from "./CreateSpace";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../../store/authorizationSlice";
 import {
   getAllJoinedSpaces,
   getAllMySpaces,
 } from "../../../store/spaceActions";
 import { spaceActions } from "../../../store/spaceSlice";
+import SearchSort from "../engagePortal/SearchSort";
 
 const Spaces = () => {
+  const isAuthenticated = useSelector(
+    (state) => state.authentication.isLogedIn
+  );
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
   const [createdSpace, setCreatedSpace] = useState([]);
@@ -62,11 +67,20 @@ const Spaces = () => {
     }
   }, [toggle, dispatch]);
 
+  const createSpaceHandler = () => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      return;
+    }
+    setOpen(true);
+    // console.log("AllSpace");
+  };
+
   const cancelHandler = () => {
     setOpen(false);
   };
   return (
-    <div className="text-[#FFF] max-w-[1670px] ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] mt-[-2rem]">
+    <div className="text-[#FFF] max-w-[1670px] ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem]  mt-5">
       <div className="">
         <div className="container">
           <Dialog
@@ -88,8 +102,8 @@ const Spaces = () => {
             </div>
           </Dialog>
         </div>
-        <div className="border-[#2A3C46] border-l-0 md:border-l border-opacity-[80%]">
-          <div className="flex flex-col-reverse md:flex-row items-center md:items-end justify-between gap-[0.5rem] md:gap-[0rem] pt-[1rem] md:pt-[0rem] border border-[#19242D] border-r-0">
+        <div className=" flex flex-col justify-center">
+          <div className="flex  flex-row items-center  justify-between gap-[0.5rem] md:gap-[0rem] pt-[1rem] md:pt-[0rem] ">
             <div className="flex justify-between items-center text-[0.7rem] md:text-[1rem] font-Poppins font-[300]">
               <div
                 onClick={() => toggleHandler(1)}
@@ -124,20 +138,16 @@ const Spaces = () => {
               >
                 Joined Spaces
               </div>
-            </div>
-            <div className="flex items-center py-[0.6rem]">
-              <div className="border-[1px] border-r-0 rounded-l-[2.5rem] border-[#2A3C46] border-opacity-[80%] py-[0.71rem] md:py-[0.7rem] px-[1rem] cursor-pointer">
-                <SeachIcon />
-              </div>
-              <input
-                type="search"
-                name="search"
-                id="search"
-                placeholder="search spaces.."
-                className="rounded-[2.5rem] placeholder:font-Poppins placeholder:font-[300] placeholder:text-[#536169] rounded-l-none w-[100%] md:w-[11rem] lg:w-[22.6rem] py-[0.5rem] border-[1px] border-[#2A3C46] border-opacity-[80%] bg-transparent outline-none px-[0.5rem]"
-              />
-            </div>
+            </div>{" "}
+            <button
+              onClick={createSpaceHandler}
+              className="whitespace-nowrap py-[0.25rem] px-[1rem] font-Poppins text-white text-[1rem] font-normal rounded-md  border border-[#79C4EC] opacity-70"
+            >
+              Create
+            </button>
           </div>
+          <div className="border border-b-[1px] border-[#07111c] my-4"></div>
+          <SearchSort />
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
             <AllSpaces onCreateSpace={setOpen} />
           </div>

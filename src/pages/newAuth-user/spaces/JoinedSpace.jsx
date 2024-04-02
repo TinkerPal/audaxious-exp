@@ -26,7 +26,7 @@ import Loading from "../../Homes/Loading";
 import { spaceActions } from "../../../store/spaceSlice";
 import SpaceCard from "./SpaceCard";
 
-const JoinedSpace = ({ onCreateSpace }) => {
+const JoinedSpace = () => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
@@ -34,17 +34,9 @@ const JoinedSpace = ({ onCreateSpace }) => {
   const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
 
   const spaceArray = useSelector((state) => state.space.space);
-  const loading = useSelector((state) => state.space.loading);
+
   const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
-  const createSpaceHandler = () => {
-    if (!isAuthenticated) {
-      dispatch(authAction.onOpen());
-      return;
-    }
-    onCreateSpace(true);
-    // console.log("AllSpace");
-  };
 
   const joinSpaceHandler = async (id) => {
     if (!isAuthenticated) {
@@ -92,7 +84,6 @@ const JoinedSpace = ({ onCreateSpace }) => {
 
   return (
     <div>
-      <Query onCreateSpace={createSpaceHandler} />
       <div className="md:container">
         <div className="py-[1.47rem] flex flex-col ">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-[2.5rem]">

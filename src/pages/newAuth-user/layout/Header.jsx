@@ -51,7 +51,7 @@ const Header = () => {
   let butons = (
     <button
       onClick={openLoginModal}
-      className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-[#FEFEFF] text-[16px] border-[0.75px] border-[#79C4EC] shadow shadow-[#181E24] opacity-70"
+      className="whitespace-nowrap lg:inline-block px-[1rem] xl:px-[2rem] py-[0.2rem] xl:py-[0.5rem] rounded-[4px] text-black text-[16px] border-[0.75px] border-[#79C4EC] bg-[#79C4EC]  shadow shadow-[#181E24] opacity-70"
     >
       Log In
     </button>
@@ -94,20 +94,20 @@ const Header = () => {
     );
   }
   return (
-    <div className="relative max-w-[1618px]">
-      <div className="fixed top-0 left-0 right-0 z-[2]">
-        <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem] bg-[#060B12] border-b border-b-[#18232C]">
-          <div className="flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
-            <div className="hidden xl:block">
+    <div className="relative max-w-[1618px] bg-black">
+      <div className="fixed top-0 left-0 right-0 z-[2] bg-black">
+        <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem]  border-b bg-black border-b-[#18232C]">
+          <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
+            {/* <div className="hidden xl:block">
               <Link to={"/"}>
                 <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
               </Link>
-            </div>
-            <div className="block xl:hidden">
+            </div> */}
+            {/* <div className="block xl:hidden">
               <Link to={"/"}>
                 <LogoMd />
               </Link>
-            </div>
+            </div> */}
             <div
               className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
               style={{ fontStyle: "normal" }}
@@ -128,7 +128,7 @@ const Header = () => {
           </div>
         </div>
         {showMenu && isAuthenticated && (
-          <div className="absolute mt-2 right-5 md:right-10 bg-[#060B12]">
+          <div className="absolute mt-2 right-5 md:right-10 bg-black">
             <div
               className="text-[#fff] w-[10rem] border-[#2A3C46] border border-opacity-[80%] bg-ElipseBg bg-no-repeat bg-cover rounded-md"
               style={{
