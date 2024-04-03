@@ -1,9 +1,5 @@
 import { ReactComponent as X } from "../../../assets/svg/dashboardSvg/smX.svg";
 import { ReactComponent as Discord } from "../../../assets/svg/dashboardSvg/smDiscord.svg";
-import { ReactComponent as Defi } from "../../../assets/svg/dashboardSvg/defi.svg";
-import { ReactComponent as Gaming } from "../../../assets/svg/dashboardSvg/gaming.svg";
-import { ReactComponent as Startups } from "../../../assets/svg/dashboardSvg/startups.svg";
-import { ReactComponent as Music } from "../../../assets/svg/dashboardSvg/music.svg";
 import { ReactComponent as Required } from "../../../assets/svg/dashboardSvg/required.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/checked.svg";
 // import useInput, { useImage } from "../../../hooks/useInput";
@@ -105,8 +101,17 @@ const CreateSpace = ({ cancelHandler }) => {
       dispatch(authAction.onOpenTweeterModal(false));
     }
   };
+
+  console.log("selectedCategories", selectedCategories);
   const handleCategoryClick = useCallback(
     (category) => {
+      if (
+        selectedCategories.length >= 4 &&
+        !selectedCategories.includes(category)
+      ) {
+        return;
+      }
+
       if (selectedCategories.includes(category)) {
         setSelectedCategories(selectedCategories.filter((c) => c !== category));
       } else {
