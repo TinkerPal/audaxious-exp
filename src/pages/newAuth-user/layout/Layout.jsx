@@ -37,7 +37,7 @@ const DashboardLayout = () => {
   return (
     <div className=" bg-black">
       <Header />
-      <main className="flex my-[1.25rem] mt-[7rem] ml-[3rem] md:ml-[6rem] lg:ml-[4rem] xl:ml-[15rem] bg-black">
+      <main className="flex my-[1.25rem] mt-[7rem] md:ml-[6rem] lg:ml-[4rem] xl:ml-[15rem] bg-black">
         <Sidebar onOpen={openLogoutModal} />
         <div className="container">
           <div className="container">
