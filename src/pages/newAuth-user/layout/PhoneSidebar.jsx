@@ -41,9 +41,18 @@ const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
           leave="transition-transform duration-200"
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-[calc(100%+40px)]"
-          className="absolute top-0 left-0 z-10 h-screen duration-150 bg-[#060B12] w-80 lg:hidden pb-11"
+          className="absolute top-0 left-0 z-10 h-screen duration-150 bg-[#000] bg-opacity-75 w-screen lg:hidden pb-11"
         >
-          <div className="absolute top-0 left-0 z-10 h-screen p-4 bg-[#060B12] w-80 lg:hidden pb-11">
+          <section
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   if (e.target.tagName.toLowerCase() !== "section") {
+            //     e.stopPropagation();
+            //   }
+            //   navOpenHandler();
+            // }}
+            className="absolute top-0 left-0 z-10 h-screen p-4 bg-[#060B12] w-80 lg:hidden pb-11"
+          >
             <div className="flex flex-col h-full mt-4">
               <NavLink to="/" onClick={navCloseHandler} className="px-[1rem]">
                 <img className="w-auto h-5 z-10" src={Audaxious} alt="" />
@@ -171,7 +180,7 @@ const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
               </div>
 
               <div className="p-2 mt-6 font-medium">
-                <div className="cursor-pointer pl-[2rem] p-[0.5rem] flex gap-10 items-center mt-36 bg-[#323333] rounded-md">
+                <div className="cursor-pointer pl-[2rem] p-[0.5rem] flex gap-10 items-center mt-36 bg-[#323333] rounded-md w-64">
                   <span>
                     <LogoMd fill={"#818282"} />
                   </span>
@@ -186,25 +195,24 @@ const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
             </div>
 
             <button
-              className="absolute top-4 -right-10"
-              onClick={navCloseHandler}
+              className="absolute top-4 -right-20 w-20"
+              // onClick={navCloseHandler}
+              onClick={(e) => {
+                e.preventDefault();
+                if (e.target.tagName.toLowerCase() !== "button") {
+                  e.stopPropagation();
+                }
+                navCloseHandler();
+                // console.log("E WORK", uuid);
+              }}
             >
-              <Cancel />
+              <div className="h-screen">
+                {" "}
+                <Cancel />
+              </div>
             </button>
-          </div>
+          </section>
         </Transition>
-
-        <Transition
-          show={navOpen}
-          enter="transition-opacity duration-75"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity duration-150"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          className="absolute inset-0 h-screen bg-black/20 lg:hidden"
-          onClick={navCloseHandler}
-        ></Transition>
       </div>
     </div>
   );

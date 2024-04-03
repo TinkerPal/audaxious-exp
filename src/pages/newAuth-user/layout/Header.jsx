@@ -179,7 +179,11 @@ const Header = () => {
           >
             <HamburggerMenu />
           </button>
-          <PhoneSidebar navOpen={navOpen} navCloseHandler={navCloseHandler} />
+          <PhoneSidebar
+            navOpen={navOpen}
+            navCloseHandler={navCloseHandler}
+            navOpenHandler={navOpenHandler}
+          />
           <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
             <div
               className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
