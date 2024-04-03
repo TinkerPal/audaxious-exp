@@ -4,7 +4,7 @@ import { ReactComponent as EngagePortalIcon } from "../../../assets/svg/dashboar
 import { ReactComponent as Search } from "../../../assets/svg/dashboardSvg/search.svg";
 import { ReactComponent as Bell } from "../../../assets/svg/dashboardSvg/bell.svg";
 import { ReactComponent as Line } from "../../../assets/svg/dashboardSvg/linebtw.svg";
-import { ReactComponent as LogoMd } from "../../../assets/svg/dashboardSvg/audaxiousmd.svg";
+
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ReactComponent as DashBoardIcon } from "../../../assets/svg/dashboardSvg/dasboardIcon.svg";
 import { ReactComponent as CommunityIcon } from "../../../assets/svg/dashboardSvg/community.svg";
@@ -12,18 +12,31 @@ import { ReactComponent as SettingsIcon } from "../../../assets/svg/dashboardSvg
 import { ReactComponent as ProfileIcon } from "../../../assets/svg/dashboardSvg/profile.svg";
 import { ReactComponent as HelpIcon } from "../../../assets/svg/dashboardSvg/help.svg";
 import { ReactComponent as LogoutIcon } from "../../../assets/svg/dashboardSvg/logout.svg";
+import { ReactComponent as HamburggerMenu } from "../../../assets/svg/dashboardSvg/menus.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { authAction } from "../../../store/authorizationSlice";
+import PhoneSidebar from "./PhoneSidebar";
+
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
 
   const username = useSelector((state) => state.authentication.userName);
+  const [navOpen, setNavOpen] = useState(false);
+  const navOpenHandler = () => {
+    setNavOpen(true);
+    document.body.classList.add("overflow-hidden", "lg:overflow-auto");
+  };
 
+  const navCloseHandler = () => {
+    setNavOpen(false);
+    document.body.classList.remove("overflow-hidden", "lg:overflow-auto");
+  };
   let title = "Dashboard";
   let specificIcon = <DashBoardIcon style={{ fill: "#FFF" }} />;
   const location = useLocation();
@@ -157,6 +170,16 @@ const Header = () => {
     >
       <div className="fixed top-0 left-0 right-0 z-[2] bg-black">
         <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem]  border-b bg-black border-b-[#18232C]">
+          <button
+            type="button"
+            className={`lg:hidden transition-opacity ${
+              navOpen ? "opacity-0" : "opacity-100"
+            }`}
+            onClick={navOpenHandler}
+          >
+            <HamburggerMenu />
+          </button>
+          <PhoneSidebar navOpen={navOpen} navCloseHandler={navCloseHandler} />
           <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
             <div
               className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
