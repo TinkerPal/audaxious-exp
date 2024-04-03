@@ -35,22 +35,12 @@ const Sidebar = () => {
     dispatch(authAction.onOpen());
   };
 
-  // const logoutHandler = () => {
-  //   localStorage.removeItem("audaxiousAccessToken");
-  //   dispatch(authAction.logout());
-  // };
-
   return (
     <div
       className={clsx(
-        "flex flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed pt-[0px] left-0 bottom-0 z-[3] xl:bg-[#07111c]  pr-[0.4rem] md:pr-[1rem] border-[#18232C]/50"
+        "flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed pt-[0px] left-0 bottom-0 z-[3] xl:bg-[#07111c]  pr-[0.4rem] md:pr-[1rem] border-[#18232C]/50 hidden md:flex"
       )}
     >
-      {/* <div className="hidden py-[2rem]  xl:flex w-full justify-center items-center">
-        <Link to={"/"}>
-          <img className="w-auto h-4 z-10" src={AudaxiousLogo} alt="" />
-        </Link>
-      </div> */}
       <NavLink
         to={"/"}
         className={` opacity-0 xl:opacity-100 font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.8rem] px-[1.5rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
