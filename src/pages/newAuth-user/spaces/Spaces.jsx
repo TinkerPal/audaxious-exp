@@ -22,13 +22,37 @@ const Spaces = () => {
     (state) => state.authentication.isLogedIn
   );
   const spaceCreated = useSelector((state) => state.space.spaceCreated);
+  const allSpaceArray = useSelector((state) => state.space.space);
   const [toggle, setToggle] = useState(1);
   const [open, setOpen] = useState(false);
   const [createdSpace, setCreatedSpace] = useState([]);
+  const [search, setSearch] = useState("");
   const toggleHandler = (id) => {
     setToggle(id);
   };
   const dispatch = useDispatch();
+  const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
+  const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+
+  const joinedFilteredSpaces =
+    allSpaceArray &&
+    allSpaceArray.filter((space) => joinedSpaceIds.includes(space.uuid));
+
+  let spaceArray;
+
+  if (toggle === 1) {
+    spaceArray = allSpaceArray;
+  } else if (toggle === 2) {
+    spaceArray = createdSpace;
+  } else {
+    spaceArray = joinedFilteredSpaces;
+  }
+  let filterSpaceArray =
+    spaceArray &&
+    spaceArray.filter((item) => {
+      return item.title.toLowerCase().startsWith(search.toLowerCase());
+    });
+  // console.log("filterSpaceArray", filterSpaceArray);
 
   useEffect(() => {
     const mySpaces = async () => {
@@ -148,15 +172,15 @@ const Spaces = () => {
             </button>
           </div>
           <div className="border border-b-[1px] border-[#07111c] "></div>
-          <SearchSort />
+          <SearchSort onChangeKeyword={setSearch} />
           <div className={clsx(toggle === 1 ? "block" : "hidden")}>
-            <AllSpaces onCreateSpace={setOpen} />
+            <AllSpaces onCreateSpace={setOpen} spaceArray={filterSpaceArray} />
           </div>
           <div className={clsx(toggle === 2 ? "block" : "hidden")}>
-            <MySpace onCreateSpace={setOpen} mySpaces={createdSpace} />
+            <MySpace onCreateSpace={setOpen} mySpaces={filterSpaceArray} />
           </div>
           <div className={clsx(toggle === 3 ? "block" : "hidden")}>
-            <JoinedSpace />
+            <JoinedSpace joinedFilteredSpaces={filterSpaceArray} />
           </div>
         </div>
       </div>
