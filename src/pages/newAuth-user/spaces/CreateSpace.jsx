@@ -102,7 +102,7 @@ const CreateSpace = ({ cancelHandler }) => {
     }
   };
 
-  console.log("selectedCategories", selectedCategories);
+  // console.log("selectedCategories", selectedCategories);
   const handleCategoryClick = useCallback(
     (category) => {
       if (
