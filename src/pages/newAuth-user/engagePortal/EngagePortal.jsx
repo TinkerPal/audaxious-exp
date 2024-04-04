@@ -1,22 +1,22 @@
-import { ReactComponent as Friends } from "../../../assets/svg/dashboardSvg/friends.svg";
-import { ReactComponent as Activities } from "../../../assets/svg/dashboardSvg/activities.svg";
-import { ReactComponent as Hamburger } from "../../../assets/svg/dashboardSvg/hambuger.svg";
-import { ReactComponent as Dropdown } from "../../../assets/svg/dashboardSvg/dropdown.svg";
+// import { ReactComponent as Friends } from "../../../assets/svg/dashboardSvg/friends.svg";
+// import { ReactComponent as Activities } from "../../../assets/svg/dashboardSvg/activities.svg";
+// import { ReactComponent as Hamburger } from "../../../assets/svg/dashboardSvg/hambuger.svg";
+// import { ReactComponent as Dropdown } from "../../../assets/svg/dashboardSvg/dropdown.svg";
 import { useState } from "react";
 import clsx from "clsx";
-import { ReactComponent as Brick2 } from "../../../assets/svg/brickline2.svg";
-import { ReactComponent as Brick1 } from "../../../assets/svg/brick-line.svg";
-import { ReactComponent as SeachIcon } from "../../../assets/svg/dashboardSvg/searchIcon.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Campaigns from "./Campaignss";
-import TopEarners from "./TopEarners";
+// import TopEarners from "./TopEarners";
 import EngageBanner from "./EngageBanner";
 import SearchSort from "./SearchSort";
 
 const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
+  const [search, setSearch] = useState("");
+
+
 
   return (
     <div
@@ -25,7 +25,7 @@ const EngagePortals = () => {
     >
       <div>
         <EngageBanner />
-        <SearchSort />
+        <SearchSort onChangeKeyword={setSearch} />
         {/* <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-1 hidden md:block">
             <Brick1 />
@@ -71,7 +71,7 @@ const EngagePortals = () => {
             {/* twitter post */}
             <div className={clsx(toggle === 1 ? "block" : "hidden")}>
               <div className="">
-                <Campaigns />
+                <Campaigns search={search} />
               </div>
             </div>
 
