@@ -16,8 +16,13 @@ import { createTask } from "../../../store/spaceActions";
 const checkPointValidity = (point) => {
   return point > 0;
 };
+
 // share, post, like, repost, follow, join
 const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
+  const checkWebsiteValidity = (url) => {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlPattern.test(url);
+  };
   const TASKSBAR = [
     {
       title: "Join Space",
@@ -78,41 +83,46 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     onBlurHandler: pointOnBlur,
     valueIsInvalid: pointInvalid,
   } = useInputNumber(checkPointValidity, 50);
-  // const taskss = {
-  //   tasks: tasks,
-  // };
 
-  // console.log(point);
-  // console.log(taskss);
+  console.log("TASKS", tasks);
 
-  // console.log(url);
+  const handleTaskClick = (task) => {
+    // Check if the task is "Join Space"
+    if (task.actions === "join") {
+      const taskExists = selectedTask.some((t) => t.actions === task.actions);
+      if (taskExists) {
+        toast.error("Join Space task already selected");
+        return;
+      }
+      const newTask = {
+        action: "join",
+        media: `audaxious`,
+        url: spaceDetail.uuid,
+      };
+      setTasks([...tasks, newTask]);
+    }
 
-  // const handleInputChange = (index, e) => {
-  //   console.log(e.target.value);
-  //   setUrl(e.target.value);
-  // };
+    setSelectedTask((prev) => [...prev, task]);
+  };
 
-  const handleInputChange = (index, e) => {
+  console.log("url", url);
+
+  const handleInputChange = (e, index) => {
     const newTaskUrls = [...url];
     newTaskUrls[index] = e.target.value;
     setUrl(newTaskUrls);
   };
-  const removeTaskClickHandler = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
-    const updatedSelectedTasks = [...selectedTask];
-    updatedSelectedTasks.splice(index, 1);
-    setSelectedTask(updatedSelectedTasks);
-    setIsTaskAdded((prev) => {
-      const updatedIsTaskAdded = [...prev];
-      updatedIsTaskAdded.splice(index, 1);
-      return updatedIsTaskAdded;
-    });
-  };
 
   const addTaskClickHandler = (task, media, url, index) => {
     // Check if the URL already exists in any of the tasks
+    if (!checkWebsiteValidity(url)) {
+      console.log("url[index]", url);
+      toast.error("Enter a valid url");
+      return;
+    }
+    if (isTaskAdded[index]) {
+      return;
+    }
     const urlExists = tasks.some((task) => task.url === url);
 
     const newTask = {
@@ -127,23 +137,30 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       return updatedIsTaskAdded;
     });
   };
-  // if (!urlExists) {
-  //   const newTask
 
-  // console.log(selectedTask);
-  const handleTaskClick = (task) => {
-    // Check if the task is "Join Space"
-    if (task.actions === "join") {
-      const taskExists = selectedTask.some((t) => t.actions === task.actions);
-      if (taskExists) {
-        toast.error("Join Space task already selected");
-        return;
-      }
-    }
-
-    // If the task is not "Join Space" or it's the first time "Follow Space" is being added, proceed to add it
-    setSelectedTask((prev) => [...prev, task]);
+  const removeTaskClickHandler = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+    const updatedSelectedTasks = [...selectedTask];
+    updatedSelectedTasks.splice(index, 1);
+    const newTaskUrls = [...url];
+    newTaskUrls[index] = "";
+    setUrl(newTaskUrls);
+    // const deleteUrl = [...url];
+    // deleteUrl.splice(index, 1);
+    // setUrl(deleteUrl);
+    setSelectedTask(updatedSelectedTasks);
+    setIsTaskAdded((prev) => {
+      const updatedIsTaskAdded = [...prev];
+      updatedIsTaskAdded.splice(index, 1);
+      return updatedIsTaskAdded;
+    });
+    // const newTaskUrls = [...url];
+    // newTaskUrls[index] = "";
+    // setUrl(newTaskUrls);
   };
+
   const submitTaskHandler = async (e) => {
     e.preventDefault();
     if (selectedTask.length < 1) {
@@ -279,10 +296,10 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                         )
                       }
                       className={clsx(
-                        "cursor-pointer py-[0.56rem] w-[15rem] px-[1rem] rounded-md flex items-center justify-between",
-                        isTaskAdded[index]
-                          ? "border-[2px] border-[#D1E8F4] border-opacity-30 bg-[#09141A]"
-                          : "border-[1px] border-[#295D7C4D] border-opacity-[30%]"
+                        "cursor-pointer py-[0.56rem] w-[15rem] px-[1rem] rounded-md flex items-center justify-between border-[2px] border-[#D1E8F4] border-opacity-30 bg-[#09141A]"
+                        //   isTaskAdded[index]
+                        //     ? "border-[2px] border-[#D1E8F4] border-opacity-30 bg-[#09141A]"
+                        //     : "border-[1px] border-[#295D7C4D] border-opacity-[30%]"
                       )}
                     >
                       <span>
@@ -295,25 +312,36 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                       <p className="text-[0.7rem] md:text-[0.9rem] font-Poppins font-[300] text-[#D3D3D3] whitespace-nowrap">
                         {task.actions}
                       </p>
-                      {!isTaskAdded[index] ? (
+                      {/* {!isTaskAdded[index] ? (
                         <span>
                           <AddIcon />
                         </span>
-                      ) : (
-                        <span>
-                          <Checked />
-                        </span>
-                      )}
+                      ) : ( */}
+                      <span>
+                        <Checked />
+                      </span>
+                      {/* )} */}
                     </div>
                     <div className="relative w-[100%]">
                       <input
-                        required
                         type="text"
-                        name="name"
+                        name={`${spaceDetail.uuid}`}
                         id="name"
-                        defaultValue={`${spaceDetail.uuid}`}
-                        disabled // Disable the input field
+                        value={url[index]}
+                        // defaultValue={spaceDetail.uuid}
+                        // onClick={() =>
+                        //   addTaskClickHandler(
+                        //     task.actions,
+                        //     task.media,
+                        //     url[index],
+                        //     index
+                        //   )
+                        // }
+                        onChange={(e) => handleInputChange(e, index)}
+                        placeholder={spaceDetail.uuid}
+                        disabled
                         className="cursor-not-allowed disabled:bg-[#0A1017] bg-transparent text-[#FFF] outline-none md:pr-[3rem] placeholder:text-[#A5A5A5] w-[100%] font-[275] bg-[#081017] border-[#436C82] border-[0.75px] border-opacity-[80%] rounded-md px-[1rem] py-[0.62rem] text-[0.75rem] font-Poppins"
+                        required
                       />
                       <span
                         onClick={() => removeTaskClickHandler(index)}
@@ -365,16 +393,23 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                     </div>
                     <div className="relative w-[100%]">
                       <input
-                        required
                         type="text"
-                        name="name"
+                        name={`name${index}`}
                         id="name"
-                        onChange={(e) => handleInputChange(index, e)}
-                        //   value={title}
-                        //   onChange={titleOnchange}
-                        //   onBlur={titleOnBlur}
+                        onBlur={() =>
+                          addTaskClickHandler(
+                            task.actions,
+                            task.media,
+                            url[index],
+                            index
+                          )
+                        }
+                        onChange={(e) => handleInputChange(e, index)}
+                        value={task.url}
+                        // defaultValue={""}
                         placeholder="Enter your campaign title"
                         className="bg-[#0A1017] text-[#FFF] outline-none md:pr-[3rem] placeholder:text-[#A5A5A5] w-[100%] font-[275] border-[#436C82] border-[0.75px] border-opacity-[80%] rounded-md px-[1rem] py-[0.62rem] text-[0.75rem] font-Poppins"
+                        required
                       />
                       <span
                         onClick={() => removeTaskClickHandler(index)}
