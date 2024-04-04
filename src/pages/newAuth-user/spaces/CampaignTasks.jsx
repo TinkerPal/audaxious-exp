@@ -142,23 +142,20 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
+
     const updatedSelectedTasks = [...selectedTask];
     updatedSelectedTasks.splice(index, 1);
-    const newTaskUrls = [...url];
-    newTaskUrls[index] = "";
-    setUrl(newTaskUrls);
-    // const deleteUrl = [...url];
-    // deleteUrl.splice(index, 1);
-    // setUrl(deleteUrl);
     setSelectedTask(updatedSelectedTasks);
+
     setIsTaskAdded((prev) => {
       const updatedIsTaskAdded = [...prev];
       updatedIsTaskAdded.splice(index, 1);
       return updatedIsTaskAdded;
     });
-    // const newTaskUrls = [...url];
-    // newTaskUrls[index] = "";
-    // setUrl(newTaskUrls);
+
+    const newUrls = [...url];
+    newUrls.splice(index, 1);
+    setUrl(newUrls);
   };
 
   const submitTaskHandler = async (e) => {
