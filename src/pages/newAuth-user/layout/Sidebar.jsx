@@ -38,7 +38,7 @@ const Sidebar = () => {
   return (
     <div
       className={clsx(
-        "flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen fixed pt-[0px] left-0 bottom-0 z-[3] xl:bg-[#07111c]  pr-[0.4rem] md:pr-[1rem] border-[#18232C]/50 hidden md:flex"
+        "flex-col gap-2 pl-[1rem] md:pl-[2rem] h-screen md:w-24 xl:w-auto fixed pt-[0px] left-0 bottom-0 z-[3] xl:bg-[#07111c]  pr-[0.4rem] xl:pr-[1rem] border-[#18232C]/50 hidden md:flex"
       )}
     >
       <NavLink
