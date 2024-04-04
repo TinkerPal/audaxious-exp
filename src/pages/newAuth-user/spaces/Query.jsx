@@ -1,6 +1,5 @@
 import React from "react";
 import { ReactComponent as All } from "../../../assets/svg/dashboardSvg/all.svg";
-import { ReactComponent as Recent } from "../../../assets/svg/dashboardSvg/recent.svg";
 import { ReactComponent as Defi } from "../../../assets/svg/dashboardSvg/defi.svg";
 import { ReactComponent as Gaming } from "../../../assets/svg/dashboardSvg/gaming.svg";
 import { ReactComponent as Startups } from "../../../assets/svg/dashboardSvg/startups.svg";
