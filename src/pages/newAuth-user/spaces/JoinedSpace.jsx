@@ -7,14 +7,14 @@ import { toast } from "react-toastify";
 import { spaceActions } from "../../../store/spaceSlice";
 import SpaceCard from "./SpaceCard";
 
-const JoinedSpace = () => {
+const JoinedSpace = ({ joinedFilteredSpaces }) => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
-  const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+  // const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
 
-  const spaceArray = useSelector((state) => state.space.space);
+  // const spaceArray = useSelector((state) => state.space.space);
 
   const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
@@ -90,17 +90,14 @@ const JoinedSpace = () => {
       <div className="md:container">
         <div className="py-[1.47rem] flex flex-col ">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-[2.5rem]">
-            {spaceArray &&
-              spaceArray
-                .filter((space) => joinedSpaceIds.includes(space.uuid))
-                .map((space) => (
-                  <SpaceCard
-                    space={space}
-                    joinSpaceHandler={joinSpaceHandler}
-                    selectedId={selectedId}
-                    key={space.uuid}
-                  />
-                ))}
+            {joinedFilteredSpaces.map((space) => (
+              <SpaceCard
+                space={space}
+                joinSpaceHandler={joinSpaceHandler}
+                selectedId={selectedId}
+                key={space.uuid}
+              />
+            ))}
           </div>
         </div>
       </div>
