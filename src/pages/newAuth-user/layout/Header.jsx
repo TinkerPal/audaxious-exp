@@ -182,7 +182,6 @@ const Header = () => {
           <PhoneSidebar
             navOpen={navOpen}
             navCloseHandler={navCloseHandler}
-            navOpenHandler={navOpenHandler}
           />
           <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
             <div
