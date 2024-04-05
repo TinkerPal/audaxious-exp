@@ -50,8 +50,9 @@ const Spaces = () => {
   let filterSpaceArray =
     spaceArray &&
     spaceArray.filter((item) => {
-      return item.title.toLowerCase().startsWith(search.toLowerCase());
+      return item.title.toLowerCase().includes(search.toLowerCase());
     });
+
   // console.log("filterSpaceArray", filterSpaceArray);
 
   useEffect(() => {
