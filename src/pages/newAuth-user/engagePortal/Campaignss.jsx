@@ -6,10 +6,11 @@ import { ReactComponent as NoSpace } from "../../../assets/svg/dashboardSvg/noSp
 
 const Campaigns = ({ search }) => {
   const campaigns = useSelector((state) => state.campaign.campaign);
+
   let filterCampaign =
     campaigns &&
     campaigns.filter((campaign) => {
-      return campaign.title.toLowerCase().startsWith(search.toLowerCase());
+      return campaign.title.toLowerCase().includes(search.toLowerCase());
     });
 
   if (!filterCampaign || filterCampaign.length <= 0) {
