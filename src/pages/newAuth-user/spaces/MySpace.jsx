@@ -65,7 +65,7 @@ const MySpace = ({ mySpaces }) => {
               <Loading />
             </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-[2.5rem]">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 md:gap-[2.5rem] gap-[1rem]">
             {mySpaces &&
               mySpaces.map((space) => (
                 <SpaceCard
