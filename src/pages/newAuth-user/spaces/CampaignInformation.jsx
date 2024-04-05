@@ -63,9 +63,6 @@ const CampaignInformation = ({ setShowCampaignTask, spaceDetail }) => {
     dispatch(spaceActions.setOpenCampaignModal(false));
   };
 
-  console.log("endDate", endDate);
-  console.log("startDate", startDate);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!originalEndDate) {
