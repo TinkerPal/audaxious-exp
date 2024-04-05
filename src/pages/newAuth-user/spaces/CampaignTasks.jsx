@@ -75,7 +75,6 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.space.loading);
   const campaignId = useSelector((state) => state.space.campaignId);
-  // console.log(spaceDetail);
   const {
     onChangeValueHandler: pointOnchange,
     reset: resetPoint,
@@ -83,8 +82,6 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     onBlurHandler: pointOnBlur,
     valueIsInvalid: pointInvalid,
   } = useInputNumber(checkPointValidity, 50);
-
-  console.log("TASKS", tasks);
 
   const handleTaskClick = (task) => {
     // Check if the task is "Join Space"
@@ -105,25 +102,31 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
     setSelectedTask((prev) => [...prev, task]);
   };
 
-  console.log("url", url);
-
   const handleInputChange = (e, index) => {
     const newTaskUrls = [...url];
     newTaskUrls[index] = e.target.value;
     setUrl(newTaskUrls);
+
+    const updatedTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return {
+          ...task,
+          url: e.target.value,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
   };
 
   const addTaskClickHandler = (task, media, url, index) => {
-    // Check if the URL already exists in any of the tasks
     if (!checkWebsiteValidity(url)) {
-      console.log("url[index]", url);
       toast.error("Enter a valid url");
       return;
     }
     if (isTaskAdded[index]) {
       return;
     }
-    const urlExists = tasks.some((task) => task.url === url);
 
     const newTask = {
       action: task,
@@ -173,13 +176,13 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       tasks,
       points: +point,
     };
-    console.log(data);
+
     dispatch(spaceActions.setLoading(true));
 
     // createTask = (campaignId, campaignTask)
     try {
       const result = await dispatch(createTask(campaignId, data));
-      console.log(result);
+
       toast.success(result.message);
       dispatch(spaceActions.setCampaignCreated(result.success));
       dispatch(spaceActions.setLoading(false));
@@ -189,8 +192,6 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       toast.error(error.response.data.error);
       setShowCampaignTask(true);
     }
-
-    // console.log(data);
   };
   return (
     <div className="bg-[#060B12] relative py-[2rem] rounded-md w-[100%] min-w-[15rem] lg:w-[50rem] xl:w-[50rem] 2xl:w-[65rem] px-[1rem] lg:px-[3rem] text-[#E8E8E8]r">
@@ -324,7 +325,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                         type="text"
                         name={`${spaceDetail.uuid}`}
                         id="name"
-                        value={url[index]}
+                        value={spaceDetail.uuid || ""}
                         // defaultValue={spaceDetail.uuid}
                         // onClick={() =>
                         //   addTaskClickHandler(
@@ -402,7 +403,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
                           )
                         }
                         onChange={(e) => handleInputChange(e, index)}
-                        value={task.url}
+                        value={url[index] || ""}
                         // defaultValue={""}
                         placeholder="Enter your campaign title"
                         className="bg-[#0A1017] text-[#FFF] outline-none md:pr-[3rem] placeholder:text-[#A5A5A5] w-[100%] font-[275] border-[#436C82] border-[0.75px] border-opacity-[80%] rounded-md px-[1rem] py-[0.62rem] text-[0.75rem] font-Poppins"
