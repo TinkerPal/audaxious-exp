@@ -8,7 +8,7 @@ import ExpiryDate from "./ExpiryDate";
 const CampaignsCard = ({ post }) => {
   return (
     <Card>
-      <div className="flex justify-between px-[0.94rem] pt-[0.62rem] 0">
+      <div className="flex justify-between px-[0.94rem] pt-[0.62rem] ">
         <div className="flex items-center gap-[0.75rem] overflow-x-auto ">
           <button className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]">
             <span>

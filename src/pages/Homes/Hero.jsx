@@ -18,19 +18,15 @@ const Hero = () => {
               Welcome to the future of engagement
             </h1>
 
-            <p className="mt-5 text-4xl font-bold leading-tight  sm:leading-tight sm:text-4xl lg:text-5xl lg:leading-tight font-pj  bg-gradient-to-b from-[#4D5CDD] to-[#79C4EC] bg-clip-text text-transparent ">
-              {/* Grok Alien is Here to Take Over */}
+            <p className="mt-5 text-4xl font-bold leading-tight  sm:leading-tight sm:text-4xl lg:text-5xl lg:leading-tight font-pj  bg-gradient-to-b from-[#4D5CDD]/80 to-[#79C4EC]/80 bg-clip-text text-transparent ">
               AI Enhanced Decentralized Engagement Protocol
-              <span className="relative inline-flex sm:inline">
-                <span className="bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#4ED5C2] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
-              </span>
             </p>
 
             <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
               <Link
                 to={"/engage-portal"}
                 title="App"
-                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all duration-200 bg-[#79C4EC] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-opacity-75"
+                className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-black transition-all sm:w-auto w-full duration-200 bg-[#79C4EC] font-pj rounded-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-opacity-75"
                 role="button "
               >
                 {" "}
