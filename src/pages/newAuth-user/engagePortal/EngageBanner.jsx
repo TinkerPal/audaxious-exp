@@ -1,15 +1,14 @@
 import bannerIcon from "../../../assets/svg/bannerIcon.png";
-export default function EngageBanner() {
+export default function EngageBanner({ title, description }) {
   return (
     <div className="flex-wrap items-center gap-4 p-4 mt-0 mb-2 md:flex md:flex-nowrap bg-[#07111c] rounded-2xl lg:pl-6">
       <img src={bannerIcon} />
       <div>
         <h3 className="text-[28px] font-bold mt-2 md:mt-0 text-white">
-          ADX Engage to Earn Portal
+          {title}
         </h3>
         <p className="mt-2 text-dark-100">
-          Where members engage with their favorite web3 projects and earn
-          rewards are airdrops for their engagements.
+          {description}
           <a
             className="bg-clip-text bg-gradient-to-r ml-2 text-transparent from-[#4DFFDF] to-[#4DA1FF]"
             href="https://docs.audaxious.com/"
