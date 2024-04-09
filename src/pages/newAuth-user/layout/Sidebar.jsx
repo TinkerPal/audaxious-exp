@@ -122,9 +122,13 @@ const Sidebar = () => {
           className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
             path === "" && "bg-[#79C4EC]/10"
           }`}
-          to={""}
+          to={"/ai-creatives"}
         >
-          <div className={`${path === "/spaces" ? "text-[#79C4EC]" : "none"}`}>
+          <div
+            className={`${
+              path === "/ai-creatives" ? "text-[#79C4EC]" : "none"
+            }`}
+          >
             <PostIcon />
           </div>
           <span
