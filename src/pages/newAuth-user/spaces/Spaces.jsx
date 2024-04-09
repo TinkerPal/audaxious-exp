@@ -106,7 +106,7 @@ const Spaces = () => {
     setOpen(false);
   };
   return (
-    <div className="text-[#FFF] max-w-[1670px] ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem]  mt-5">
+    <div className="text-[#FFF] max-w-[1670px] mt-5">
       <div className="">
         <div className="container">
           <Dialog
