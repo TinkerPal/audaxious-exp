@@ -4,7 +4,7 @@ const authenticationInitialState = {
   isOpen: false,
   logoutModal: false,
   email: "",
-  verifyTweet: false,
+  verifyTweet: null,
   loading: null,
   userName: "",
   tweeterModal: false,
