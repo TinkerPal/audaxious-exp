@@ -6,6 +6,7 @@ import { ReactComponent as Bell } from "../../../assets/svg/dashboardSvg/bell.sv
 import { ReactComponent as Line } from "../../../assets/svg/dashboardSvg/linebtw.svg";
 
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { ReactComponent as PostIcon } from "../../../assets/svg/dashboardSvg/post.svg";
 import { ReactComponent as DashBoardIcon } from "../../../assets/svg/dashboardSvg/dasboardIcon.svg";
 import { ReactComponent as CommunityIcon } from "../../../assets/svg/dashboardSvg/community.svg";
 import { ReactComponent as SettingsIcon } from "../../../assets/svg/dashboardSvg/settings.svg";
@@ -161,10 +162,19 @@ const Header = () => {
         <ProfileIcon />
       </div>
     );
+  } else if (path.startsWith("/ai-creatives")) {
+    title = "Ai Creative";
+    specificIcon = (
+      <div
+        className={`${path === "/ai-creatives" ? "text-[#79C4EC]" : "none"}`}
+      >
+        <PostIcon />
+      </div>
+    );
   }
   return (
     <div
-      className="relative max-w-[1618px] bg-black"
+      className="relative max-w-[1670px] bg-black"
       onMouseLeave={hideMenuHandler}
       onMouseEnter={hideMenuHandler}
     >
@@ -172,18 +182,15 @@ const Header = () => {
         <div className="text-neutral-100 flex items-center justify-between relative py-[1.38rem] px-[1.2rem] md:px-[4.34rem]  border-b bg-black border-b-[#18232C]">
           <button
             type="button"
-            className={`lg:hidden transition-opacity ${
+            className={`md:hidden transition-opacity ${
               navOpen ? "opacity-0" : "opacity-100"
             }`}
             onClick={navOpenHandler}
           >
             <HamburggerMenu />
           </button>
-          <PhoneSidebar
-            navOpen={navOpen}
-            navCloseHandler={navCloseHandler}
-          />
-          <div className=" xl:ml-[250px] flex items-center gap-[0.5rem] md:gap-[2rem] xl:gap-[8.6rem]">
+          <PhoneSidebar navOpen={navOpen} navCloseHandler={navCloseHandler} />
+          <div className="md:ml-[-1.2rem] xl:ml-[200px]">
             <div
               className="text-[0.8rem] md:text-[1.09rem] font-Poppins font-[300] text-[#cccbcb] flex gap-4 items-center"
               style={{ fontStyle: "normal" }}
