@@ -4,15 +4,21 @@ import { ReactComponent as Clock } from "../../../assets/svg/dashboardSvg/timeda
 import { ReactComponent as Dropdowns } from "../../../assets/svg/dashboardSvg/dropdowns.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/polchecked.svg";
 import ScheduleDropdown from "./ScheduleDropdown";
+import { useSelector } from "react-redux";
 
 const ManualPost = () => {
+  const username = useSelector((state) => state.authentication.userName);
   return (
     <div className="flex justify-center flex-col items-center">
-      <main className="border border-[#2A3C46] rounded-md mt-[2.68rem] max-w-[43rem]">
+      <main className="border border-[#2A3C46] border-opacity-25 rounded-md mt-[2.68rem] max-w-[43rem]">
         <TogglePost />
         <div className="px-[0.4rem] md:px-[2rem] xl:px-[4rem] pb-[3rem]">
           <div className="flex gap-[0.62rem]">
-            <div className="w-[2.5rem] h-[2.5rem] border-[#436C82] border rounded-full"></div>
+            <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
+              <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
+                {username ? username.slice(0, 1) : ""}
+              </p>
+            </div>
             <div>
               <PostTextarea />
               <div className="text-[#707171] flex items-center justify-between mt-4 flex-wrap md:nowrap gap-4 md:gap-4">
