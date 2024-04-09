@@ -16,15 +16,17 @@ const EngagePortals = () => {
   const [toggle, setToggle] = useState(1);
   const [search, setSearch] = useState("");
 
-
-
   return (
     <div
-      className="ml-[0.5rem] md:ml-[2rem] xl:ml-[1rem] max-w-[1670px] bg-black h-screen"
+      className="max-w-[1670px] bg-black h-screen"
       // ref={scrollRef}
     >
       <div>
-        <EngageBanner />
+        <EngageBanner
+          title={"ADX Engage to Earn Portal"}
+          description={`Where members engage with their favorite web3 projects and earn
+          rewards are airdrops for their engagements.`}
+        />
         <SearchSort onChangeKeyword={setSearch} />
         {/* <div className="bg-heroCustom bg-no-repeat bg-cover py-[1rem] px-[1rem] rounded-md border-[#314048] flex justify-between border-[0.5px] relative">
           <div className="absolute top-0 left-0 z-1 hidden md:block">
