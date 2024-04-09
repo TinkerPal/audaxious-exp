@@ -6,6 +6,9 @@ import { lazy } from "react";
 // import Landing from "./pages/landing/Landing";
 import Layout from "./layout/Layout";
 import Profile from "./pages/newAuth-user/profile/Profile";
+import TogglePost from "./pages/newAuth-user/aiCreative/TogglePost";
+import RootPost from "./pages/newAuth-user/aiCreative/RootPost";
+// import ManualPost from "./pages/newAuth-user/aiCreative/ManualPost";
 // import SpaceCampaignDetails from "./pages/newAuth-user/spaces/SpaceCampaignDetails";
 // import Home from "./pages/Homes/Home";
 
@@ -31,6 +34,13 @@ const AppProtectedNew = () => {
   const SpaceCampaignDetails = lazy(() =>
     import("./pages/newAuth-user/spaces/SpaceCampaignDetails")
   );
+  const AiCreative = lazy(() =>
+    import("./pages/newAuth-user/aiCreative/AiCreative")
+  );
+  const AiPost = lazy(() => import("./pages/newAuth-user/aiCreative/AiPost"));
+  const ManualPost = lazy(() =>
+    import("./pages/newAuth-user/aiCreative/ManualPost")
+  );
   const SEO = lazy(() => import("./assets/SEO/Meta"));
   return (
     <>
@@ -40,9 +50,6 @@ const AppProtectedNew = () => {
           <Route path="/about" element={<About />} />
           <Route path="/discover" element={<DashboardLayout />}>
             <Route index={true} element={<Dashboard />} />
-            {/* <Route path="/engage-portal" element={<EngagePortals />} />
-            <Route path="spaces" element={<Spaces />} />
-            <Route path="spaces/:spaceId" element={<SpaceDetail />} /> */}
             <Route />
           </Route>
           <Route path="/seo" element={<SEO />} />
@@ -58,6 +65,14 @@ const AppProtectedNew = () => {
               <Route path=":campaignId" element={<SpaceCampaignDetails />} />
             </Route>
             <Route />
+          </Route>
+          <Route path="/ai-creatives" element={<DashboardLayout />}>
+            <Route path="/ai-creatives" element={<AiCreative />}>
+              {/* <Route element={<RootPost />}> */}
+              <Route path="ai" element={<AiPost />} />
+              <Route path="manual" element={<ManualPost />} />
+              {/* </Route> */}
+            </Route>
           </Route>
           <Route path="/profile" element={<DashboardLayout />}>
             <Route index={true} element={<Profile />} />
