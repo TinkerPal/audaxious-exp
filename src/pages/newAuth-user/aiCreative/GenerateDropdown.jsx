@@ -37,7 +37,7 @@ const GenerateDropdown = () => {
                 setOpen(false);
               }}
             >
-              <p>Generate</p> <p>{category}</p>
+              <p>{"Generate"}</p> <p>{category}</p>
             </li>
           );
         })}
