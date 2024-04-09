@@ -11,6 +11,7 @@ import { ReactComponent as DashBoardIcon } from "../../../assets/svg/dashboardSv
 import { ReactComponent as EngagePortalIcon } from "../../../assets/svg/dashboardSvg/portal.svg";
 import { ReactComponent as CommunityIcon } from "../../../assets/svg/dashboardSvg/community.svg";
 import { ReactComponent as PostIcon } from "../../../assets/svg/dashboardSvg/post.svg";
+import { ReactComponent as ProfileIcon } from "../../../assets/svg/dashboardSvg/profile.svg";
 import clsx from "clsx";
 const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
   const isAuthenticated = useSelector(
@@ -131,7 +132,7 @@ const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
                   className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
                     path === "" && "bg-[#79C4EC]/10"
                   }`}
-                  to={""}
+                  to={"/ai-creatives"}
                   onClick={navCloseHandler}
                 >
                   <div
@@ -149,6 +150,28 @@ const PhoneSidebar = ({ navOpen, navCloseHandler }) => {
                     )}
                   >
                     AI Creatives
+                  </span>
+                </NavLink>
+                <NavLink
+                  className={`font-Poppins text-[1rem] font-[300] text-[#818282] flex mt-5 py-[0.4rem] px-[1rem] gap-[1rem] rounded-md  hover:bg-[#79C4EC]/10   items-center   ${
+                    path === "" && "bg-[#79C4EC]/10"
+                  }`}
+                  to={"/profile"}
+                  onClick={navCloseHandler}
+                >
+                  <div
+                    className={`${
+                      path === "/profile" ? "text-[#79C4EC]" : "none"
+                    }`}
+                  >
+                    <ProfileIcon />
+                  </div>
+                  <span
+                    className={clsx(
+                      path === "/profile" ? "text-[#79C4EC]" : "text-[#818282] "
+                    )}
+                  >
+                    Profile
                   </span>
                 </NavLink>
                 {isAuthenticated && (
