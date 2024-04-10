@@ -9,8 +9,8 @@ import { useSelector } from "react-redux";
 const ManualPost = () => {
   const username = useSelector((state) => state.authentication.userName);
   return (
-    <div className="flex justify-center flex-col items-center">
-      <main className="border border-[#2A3C46] border-opacity-25 rounded-md mt-[2.68rem] max-w-[43rem]">
+    <div className="flex justify-center flex-col items-center py-[2.68rem]">
+      <main className="border border-[#2A3C46] border-opacity-25 rounded-md max-w-[43rem]">
         <TogglePost />
         <div className="px-[0.4rem] md:px-[2rem] xl:px-[4rem] pb-[3rem]">
           <div className="flex gap-[0.62rem]">
