@@ -8,7 +8,7 @@ const Postdropdown = () => {
 
   return (
     <div
-      className="font-medium text-[#000]"
+      className="font-medium text-[#000] relative"
       onMouseLeave={() => setOpen(false)}
       onMouseEnter={() => setOpen(false)}
     >
@@ -20,7 +20,7 @@ const Postdropdown = () => {
       </div>
       {open && (
         <ul
-          className={`bg-[#FFF] border-[0.5px] border-[#2A3C46] mt-2 overflow-y-auto rounded`}
+          className={`bg-[#FFF] border-[0.5px] w-[10rem] border-[#2A3C46] mt-2 overflow-y-auto rounded absolute right-0`}
         >
           {categories.map((category, index) => {
             return (
