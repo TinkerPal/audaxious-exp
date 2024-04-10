@@ -366,3 +366,48 @@ export const SPACES = [
     development studio`,
   },
 ];
+
+export const TWITTERPOST = [
+  {
+    description: `🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.`,
+
+    point: 7,
+    task: 10,
+  },
+  {
+    description: `🚀 Bitcoin is undoubtedly the future of finance! With its growing popularity, experts predict that by 2025, this digital currency will revolutionize our economic landscape #holder #Cryptocurrency`,
+    imageUpload: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
+    point: 20,
+    task: 10,
+  },
+  {
+    description: `🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.`,
+
+    point: 7,
+    task: 10,
+  },
+  {
+    description: `🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.`,
+    imageUpload: ["/tweetImages/avatar.svg", "/tweetImages/cycling.svg"],
+    point: 7,
+    task: 10,
+  },
+  {
+    description: `🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.`,
+
+    point: 7,
+    task: 10,
+  },
+  {
+    description: `🚀 AudaXious Engage-to-Earn platform is going live and we will be rewarding early members and adopters of our platform with ADX token. To participate, please complete the listed tasks.`,
+
+    point: 7,
+    task: 10,
+  },
+  {
+    description: `Hello Everyone, I am a fourth-year student of archi  at the Federal University of Technology Owerri. For this semester, we are tasked with a mass housing project with eco-friendliness objectives.`,
+    imageUpload: ["/tweetImages/nft.svg", "/tweetImages/nft2.svg"],
+    point: 10,
+    task: 5,
+  },
+];
