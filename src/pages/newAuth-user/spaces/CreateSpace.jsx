@@ -351,6 +351,7 @@ const CreateSpace = ({ cancelHandler }) => {
                               "border-[#4F6C7B] bg-[#09141A]"
                             }`}
                           >
+                      
                             {selectedCategories.includes(category) ? (
                               <span>
                                 <Checked />
@@ -358,13 +359,6 @@ const CreateSpace = ({ cancelHandler }) => {
                             ) : (
                               ""
                             )}
-                            {/* <span>
-                              {selectedCategories.includes(category) ? (
-                                <Checked />
-                              ) : (
-                                ""
-                              )}
-                            </span> */}
                             <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
                               {category}
                             </span>
