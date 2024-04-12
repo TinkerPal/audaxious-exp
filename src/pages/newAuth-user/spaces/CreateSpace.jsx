@@ -79,8 +79,8 @@ const CreateSpace = ({ cancelHandler }) => {
     "SocialFi",
     "AI",
     "AMM",
-    "ERC-20",
-    "SPL",
+    // "ERC-20",
+    // "SPL",
   ];
   const {
     image: cover,
@@ -164,8 +164,9 @@ const CreateSpace = ({ cancelHandler }) => {
     formData.append("icon", profilePicture);
     formData.append("title", name);
     formData.append("inviteCode", inviteCode);
-    selectedWebsite.forEach((link, index) => {
-      formData.append(`links[${index}]`, link);
+    selectedWebsite.forEach((websiteObj, index) => {
+      formData.append(`links[${index}][type]`, websiteObj.type);
+      formData.append(`links[${index}][url]`, websiteObj.url);
     });
     selectedCategories.forEach((tag, index) => {
       formData.append(`tags[${index}]`, tag);
@@ -345,18 +346,25 @@ const CreateSpace = ({ cancelHandler }) => {
                           <div
                             key={index}
                             onClick={() => handleCategoryClick(category)}
-                            className={`cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
+                            className={`cursor-pointer px-[1rem] py-[0.3rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px] ${
                               selectedCategories.includes(category) &&
                               "border-[#4F6C7B] bg-[#09141A]"
                             }`}
                           >
-                            <span>
+                            {selectedCategories.includes(category) ? (
+                              <span>
+                                <Checked />
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                            {/* <span>
                               {selectedCategories.includes(category) ? (
                                 <Checked />
                               ) : (
                                 ""
                               )}
-                            </span>
+                            </span> */}
                             <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
                               {category}
                             </span>
@@ -429,7 +437,6 @@ const CreateSpace = ({ cancelHandler }) => {
                       className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
                     />
                   </div>
-
                   <div className="md:w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
                     <button
                       type="submit"
