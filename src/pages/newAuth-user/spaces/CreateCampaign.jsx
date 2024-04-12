@@ -3,7 +3,7 @@ import CampaignInformation from "./CampaignInformation";
 import CampaignTasks from "./CampaignTasks";
 
 const CreateCampaign = ({ spaceDetail }) => {
-  const [showCampaignTask, setShowCampaignTask] = useState(false);
+  const [showCampaignTask, setShowCampaignTask] = useState(true);
   return (
     <div>
       {!showCampaignTask && (
