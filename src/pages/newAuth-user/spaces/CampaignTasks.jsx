@@ -20,7 +20,8 @@ const checkPointValidity = (point) => {
 // share, post, like, repost, follow, join
 const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   const checkWebsiteValidity = (url) => {
-    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    // Regular expression pattern to match Twitter URLs or URLs like https://x.com/OnimisiWisdom
+    const urlPattern = /^(https?):\/\/(?:www\.)?(twitter\.com|x\.com)\/.*$/;
     return urlPattern.test(url);
   };
   const TASKSBAR = [
@@ -121,7 +122,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
 
   const addTaskClickHandler = (task, media, url, index) => {
     if (!checkWebsiteValidity(url)) {
-      toast.error("Enter a valid url");
+      toast.error("Enter a valid twitter url");
       return;
     }
     if (isTaskAdded[index]) {
