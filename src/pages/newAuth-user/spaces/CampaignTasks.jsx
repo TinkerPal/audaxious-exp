@@ -20,7 +20,6 @@ const checkPointValidity = (point) => {
 // share, post, like, repost, follow, join
 const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
   const checkWebsiteValidity = (url) => {
-    // Regular expression pattern to match Twitter URLs or URLs like https://x.com/OnimisiWisdom
     const urlPattern = /^(https?):\/\/(?:www\.)?(twitter\.com|x\.com)\/.*$/;
     return urlPattern.test(url);
   };
