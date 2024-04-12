@@ -346,11 +346,11 @@ const SpaceDetail = () => {
                 spaceDetail.tags.map((tag, index) => (
                   <div
                     key={index}
-                    className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center gap-[0.5rem] border-[#19242D] border-[2px] rounded-[40px]"
+                    className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center border-[#19242D] border-[2px] rounded-[40px]"
                   >
-                    <span>
+                    {/* <span>
                       <Defi />
-                    </span>
+                    </span> */}
                     <span className="whitespace-nowrap font-Poppins text-[0.87rem] text-[#D3D3D3] font-normal">
                       {tag}
                     </span>
