@@ -1,7 +1,9 @@
 import { ReactComponent as X } from "../../../assets/svg/dashboardSvg/smX.svg";
 import { ReactComponent as Discord } from "../../../assets/svg/dashboardSvg/smDiscord.svg";
+import { ReactComponent as Telegram } from "../../../assets/svg/dashboardSvg/telegrams.svg";
 import { ReactComponent as Required } from "../../../assets/svg/dashboardSvg/required.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/checked.svg";
+import { ReactComponent as Link } from "../../../assets/svg/dashboardSvg/infinitylink.svg";
 // import useInput, { useImage } from "../../../hooks/useInput";
 import { useCallback, useState } from "react";
 import useInput, { useImage } from "../../../hooks/useInput";
@@ -23,6 +25,9 @@ const checkWebsiteValidity = (url) => {
   return urlPattern.test(url);
 };
 const CreateSpace = ({ cancelHandler }) => {
+  const twitterUsername = useSelector(
+    (state) => state.authentication.verifyTweet
+  );
   const [inviteCode, setInviteCode] = useState("");
 
   const {
@@ -50,7 +55,12 @@ const CreateSpace = ({ cancelHandler }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedCategoriesError, setSelectedCategoriesError] = useState(null);
   const [selectedWebsiteError, setSelectedWebsiteError] = useState(null);
-  const [selectedWebsite, setSelectedWebsite] = useState([]);
+  const [selectedWebsite, setSelectedWebsite] = useState([
+    {
+      type: "twitter",
+      url: `https://twitter.com/${twitterUsername ? twitterUsername : ""}`,
+    },
+  ]);
 
   const categories = [
     "DeFi",
@@ -83,11 +93,20 @@ const CreateSpace = ({ cancelHandler }) => {
     reset: resetProfilePicture,
   } = useImage();
 
-  const selectWebsiteHandler = (website) => {
-    setSelectedWebsite((prev) => {
-      return [...prev, website];
-    });
+  const handleInputChange = (type, url) => {
+    const existingIndex = selectedWebsite.findIndex(
+      (item) => item.type === type
+    );
+    if (existingIndex !== -1) {
+      const newArray = [...selectedWebsite];
+      newArray[existingIndex] = { type, url };
+      setSelectedWebsite(newArray);
+    } else {
+      setSelectedWebsite([...selectedWebsite, { type, url }]);
+    }
   };
+
+  console.log("selectedWebsite", selectedWebsite);
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
@@ -102,7 +121,6 @@ const CreateSpace = ({ cancelHandler }) => {
     }
   };
 
-  // console.log("selectedCategories", selectedCategories);
   const handleCategoryClick = useCallback(
     (category) => {
       if (
@@ -207,8 +225,8 @@ const CreateSpace = ({ cancelHandler }) => {
                     <Loading />
                   </div>
                 )}
-                <div className="flex items-center justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
-                  <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
+                <div className="flex items-center gap-[1.5rem] md:gap-[3rem] flex-col md:flex-row">
+                  <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-[20rem] lg:w-[25rem]">
                     <label
                       htmlFor="name"
                       className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
@@ -233,32 +251,87 @@ const CreateSpace = ({ cancelHandler }) => {
                     )}
                   </div>
                   <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-[20rem] lg:w-[25rem]">
-                    <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                      Link your account
-                    </p>
-                    <div className="flex gap-[1rem] items-center">
-                      <div
-                        onClick={openTweeterModal}
-                        className="cursor-pointer px-[1rem] py-[0.5rem] font-Poppins text-[0.75rem] text-[#E8E8E8] font-[300] border-[#2A3C46] border border-opacity-[80%] flex items-center justify-center gap-[0.62rem] rounded-[2.5rem]"
-                      >
-                        <span className="whitespace-nowrap">
-                          Connect Twitter
-                        </span>
-                        <span>
-                          <X />
-                        </span>
-                      </div>
-                      <div className="cursor-pointer px-[1rem] py-[0.5rem] font-Poppins text-[0.75rem] text-[#E8E8E8] font-[300] border-[#2A3C46] border border-opacity-[80%] flex items-center justify-center gap-[0.62rem] rounded-[2.5rem]">
-                        <span className="whitespace-nowrap">
-                          Connect Discord
-                        </span>
-                        <span>
-                          <Discord />
-                        </span>
-                      </div>
+                    <label htmlFor="website" className="flex gap-[0.4rem]">
+                      <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                        Project website
+                      </p>
+                      <span>
+                        <Required />
+                      </span>
+                    </label>
+                    <div className="relative w-[100%] md:w-auto">
+                      <input
+                        // required
+                        type="text"
+                        // value={website}
+                        onChange={(e) =>
+                          handleInputChange("website", e.target.value)
+                        }
+                        // onBlur={websiteOnBlur}
+                        name="website"
+                        id="website"
+                        placeholder="https://"
+                        className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg pl-[2.5rem] pr-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                      />
+                      <span className="absolute top-[11px] left-4">
+                        <Link />
+                      </span>
+                    </div>
+                    {/* {websiteInvalid && (
+                      <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
+                        Must follow a valid url format
+                      </p>
+                    )} */}
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-start gap-[0.6rem]">
+                  <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                    Social Media
+                  </p>
+                  <div className="flex w-[100%] gap-4 md:gap-[3rem] justify-between md:justify-start flex-wrap md:flex-nowrap">
+                    <div
+                      onClick={openTweeterModal}
+                      className="cursor-pointer w-auto md:w-[12.7rem] p-[0.7rem] font-Poppins text-[0.75rem] text-[#E8E8E8] font-[300] border-[#2A3C46] border border-opacity-[80%] flex items-center justify-center gap-[0.62rem] rounded-md"
+                    >
+                      <span>
+                        <X />
+                      </span>
+                      <span className="whitespace-nowrap">
+                        {twitterUsername ? twitterUsername : "Connect Twitter"}
+                      </span>
+                      <span>{twitterUsername ? <Checked /> : ""}</span>
+                    </div>
+                    <div className="relative">
+                      <input
+                        placeholder="Enter telegram username"
+                        onChange={(e) =>
+                          handleInputChange(
+                            "telegram",
+                            `https://t.me/${e.target.value}`
+                          )
+                        }
+                        className="pr-[1rem] pl-[2rem] py-[0.62rem] font-Poppins text-[0.75rem] text-[#E8E8E8] bg-transparent font-[300] border-[#2A3C46] border border-opacity-[80%] rounded-md"
+                      />
+                      <span className=" absolute left-2 top-3">
+                        <Telegram />
+                      </span>
+                    </div>
+                    <div className="relative">
+                      <input
+                        placeholder="Enter Discord Link"
+                        onChange={(e) =>
+                          handleInputChange("discord", e.target.value)
+                        }
+                        className="pr-[1rem] pl-[1.8rem] py-[0.62rem] font-Poppins text-[0.75rem] text-[#E8E8E8] bg-transparent font-[300] border-[#2A3C46] border border-opacity-[80%] rounded-md"
+                      />
+                      <span className=" absolute left-2 top-3">
+                        <Discord />
+                      </span>
                     </div>
                   </div>
                 </div>
+
                 <div className="flex items-center md:items-start justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
                   <div className="flex flex-col items-start gap-[0.6rem]">
                     <div className="">
@@ -335,82 +408,26 @@ const CreateSpace = ({ cancelHandler }) => {
                         )}
                       </div>
                     </div>
-
-                    <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
-                      <label
-                        htmlFor="name"
-                        className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
-                      >
-                        Invite Code
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        name="invite Code"
-                        id="inviteCode"
-                        value={inviteCode}
-                        onChange={(e) => setInviteCode(e.target.value)}
-                        placeholder="Enter a valid invite code"
-                        className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
-                      />
-                    </div>
                   </div>
                 </div>
                 <div className="flex justify-between 2xl:mt-[-2.5rem] mb-[1rem] gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
-                  <div className="flex flex-col items-start gap-[0.6rem] w-[100%]">
-                    <label htmlFor="website" className="flex gap-[0.4rem]">
-                      <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                        Add website
-                      </p>
-                      <span>
-                        <Required />
-                      </span>
+                  <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
+                    <label
+                      htmlFor="name"
+                      className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+                    >
+                      Invite Code
                     </label>
-                    {selectedWebsite && (
-                      <div className="flex flex-col gap-2 items-start">
-                        {selectedWebsite.map((website, index) => (
-                          <p
-                            key={index}
-                            className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
-                          >
-                            {website}
-                          </p>
-                        ))}
-                      </div>
-                    )}
-                    {selectedWebsiteError && (
-                      <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
-                        Enter your website link
-                      </p>
-                    )}
-
-                    <div className="relative w-[100%] md:w-auto">
-                      <input
-                        // required
-                        type="text"
-                        value={website}
-                        onChange={websiteOnchange}
-                        onBlur={websiteOnBlur}
-                        name="website"
-                        id="website"
-                        placeholder="https://"
-                        className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[20rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
-                      />
-                      <span
-                        onClick={() => {
-                          selectWebsiteHandler(website);
-                          websiteReset();
-                        }}
-                        className="absolute cursor-pointer font-Poppins text-[#060B12] text-[1.5rem] font-normal rounded-md bg-[#EBEDED] top-[0px] right-0 px-[1rem]"
-                      >
-                        +
-                      </span>
-                    </div>
-                    {websiteInvalid && (
-                      <p className="text-[#b40e0e] text-[0.75rem] font-[600] font-Poppins">
-                        Must follow a valid url format
-                      </p>
-                    )}
+                    <input
+                      required
+                      type="text"
+                      name="invite Code"
+                      id="inviteCode"
+                      value={inviteCode}
+                      onChange={(e) => setInviteCode(e.target.value)}
+                      placeholder="Enter a valid invite code"
+                      className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+                    />
                   </div>
 
                   <div className="md:w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
