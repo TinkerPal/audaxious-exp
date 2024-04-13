@@ -5,6 +5,7 @@ import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
+import { Hashtag, People } from "iconsax-react";
 import apeImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 import { useSelector } from "react-redux";
 
@@ -30,8 +31,11 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
     description,
     spaceMembersCount,
     iconUrl,
+    tags,
   } = space;
   // console.log("UUID", uuid);
+
+  console.log("list of spaces", space);
 
   let isMember = joinedSpaceIds.includes(uuid) || memberState;
   let showJoinButton = false;
@@ -129,16 +133,17 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
           <div className="h-[2px]  my-[0.4rem] mx-[0.94rem]"></div>
           <div className="py-[0.62rem]">
             <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
-              {description.length > 35
+              {description.length > 50
                 ? description.slice(0, 50) + " ..."
                 : description}
             </p>
           </div>
           <div className="h-[2px]  my-[0.4rem] mx-[0.94rem]"></div>
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem] border-[#314048] border-opacity-[40%] border-[1px]">
+            <div className="flex items-center gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem]  ">
               <span>
-                <Group />
+                {/* <Group color="#A5D740" /> */}
+                <People size="16" color="#E78370" />
               </span>
               <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
               <span className="text-[0.6rem] font-Poppins font-normal text-[#79C4EC]">
@@ -147,16 +152,19 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
             </div>
             <div className="flex gap-[0.3rem] items-center">
               <span>
-                <World />
+                <Hashtag size="16" color="#A5D740" />{" "}
               </span>
               <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
-              <span>
-                <Retweets />
-              </span>
-              <span className="h-[1rem] w-[1px] bg-[#314048]"></span>
-              <span className="">
-                <Discords />
-              </span>
+              <div className="gap-[6px] flex">
+                {tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-[0.65rem] font-Poppins font-normal text-[#79C4EC]/80"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

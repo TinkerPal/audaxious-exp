@@ -29,6 +29,7 @@
     "ethers": "^6.11.1",
     "formik": "^2.2.9",
     "framer-motion": "^10.10.0",
+    "iconsax-react": "^0.0.8",
     "iron-session": "^8.0.1",
     "react": "^18.2.0",
     "react-calendar": "^4.7.0",
