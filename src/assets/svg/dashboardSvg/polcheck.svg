@@ -1,0 +1,13 @@
+<svg
+  className="absolute w-4 h-4 hidden peer-checked:block pointer-events-none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="#0FC616"
+  stroke="#A5D7F2"
+  strokeWidth="0"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <!-- Changing points to form a circular shape -->
+  <circle cx="12" cy="12" r="8"></circle>
+</svg>
