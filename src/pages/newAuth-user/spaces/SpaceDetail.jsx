@@ -346,7 +346,7 @@ const SpaceDetail = () => {
                 spaceDetail.tags.map((tag, index) => (
                   <div
                     key={index}
-                    className="cursor-pointer px-[1rem] py-[0.5rem] flex items-center border-[#19242D] border-[2px] rounded-[40px]"
+                    className="px-[1rem] py-[0.3rem] flex items-center border-[#19242D] border-[2px] "
                   >
                     {/* <span>
                       <Defi />
