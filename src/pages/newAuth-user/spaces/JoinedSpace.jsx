@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { spaceActions } from "../../../store/spaceSlice";
 import SpaceCard from "./SpaceCard";
 
-const JoinedSpace = ({ joinedFilteredSpaces }) => {
+const JoinedSpace = ({ joinedFilteredSpaces, setToggle }) => {
   const isAuthenticated = useSelector(
     (state) => state.authentication.isLogedIn
   );
@@ -78,7 +78,10 @@ const JoinedSpace = ({ joinedFilteredSpaces }) => {
             join one
           </p>
         </div>
-        <button className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+        <button
+          onClick={() => setToggle(1)}
+          className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+        >
           Join a space
         </button>
       </div>
