@@ -5,7 +5,7 @@ import Loading from "../../Homes/Loading";
 import SpaceCard from "./SpaceCard";
 import { ReactComponent as NoSpace } from "../../../assets/svg/dashboardSvg/noSpace.svg";
 
-const MySpace = ({ mySpaces }) => {
+const MySpace = ({ mySpaces, onCreateSpace }) => {
   const loading = useSelector((state) => state.space.loading);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(
@@ -14,6 +14,15 @@ const MySpace = ({ mySpaces }) => {
 
   const openLoginModal = () => {
     dispatch(authAction.onOpen());
+  };
+
+  const createSpaceHandler = () => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      return;
+    }
+    onCreateSpace(true);
+    // console.log("AllSpace");
   };
 
   if (!isAuthenticated) {
@@ -50,7 +59,10 @@ const MySpace = ({ mySpaces }) => {
             to create one
           </p>
         </div>
-        <button className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+        <button
+          onClick={createSpaceHandler}
+          className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+        >
           Create space
         </button>
       </div>

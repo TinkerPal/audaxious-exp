@@ -120,7 +120,7 @@ const Spaces = () => {
               onClick={cancelHandler}
             />
             <div className="fixed inset-0 z-[4] overflow-y-auto">
-              <div className="flex items-center py-[5rem] md:py-[0rem] justify-center mt-[2rem] text-center sm:items-center sm:p-0">
+              <div className="flex items-center py-[5rem] md:py-[0rem] justify-center my-[2rem] text-center sm:items-center sm:p-0">
                 <Dialog.Panel className="">
                   <CreateSpace cancelHandler={cancelHandler} />
                 </Dialog.Panel>
@@ -181,7 +181,10 @@ const Spaces = () => {
             <MySpace onCreateSpace={setOpen} mySpaces={filterSpaceArray} />
           </div>
           <div className={clsx(toggle === 3 ? "block" : "hidden")}>
-            <JoinedSpace joinedFilteredSpaces={filterSpaceArray} />
+            <JoinedSpace
+              joinedFilteredSpaces={filterSpaceArray}
+              setToggle={setToggle}
+            />
           </div>
         </div>
       </div>

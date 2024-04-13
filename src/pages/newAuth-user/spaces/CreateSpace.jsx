@@ -4,6 +4,7 @@ import { ReactComponent as Telegram } from "../../../assets/svg/dashboardSvg/tel
 import { ReactComponent as Required } from "../../../assets/svg/dashboardSvg/required.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/checked.svg";
 import { ReactComponent as Link } from "../../../assets/svg/dashboardSvg/infinitylink.svg";
+import { ReactComponent as Checkeds } from "../../../assets/svg/dashboardSvg/polcheck.svg";
 // import useInput, { useImage } from "../../../hooks/useInput";
 import { useCallback, useState } from "react";
 import useInput, { useImage } from "../../../hooks/useInput";
@@ -16,6 +17,11 @@ import VerifyTweeter from "../authentication/VerifyTweeter";
 import { authAction } from "../../../store/authorizationSlice";
 import ImageInput from "../../../widget/ImageInput";
 import CoverImageInput from "../../../widget/CoverImageInput";
+import Radio from "../../../widget/Radio";
+import InviteCode from "../../../widget/InviteCode";
+import PaymentNotificationCard from "../../../widget/PaymentNotificationCard";
+import AdxTokenButton from "./AdxTokenButton";
+import UsdPaymentButton from "./UsdPaymentButton";
 
 const checkNameValidity = (name) => name.trim() !== "";
 // const checkcoverImageValidity = (name) => name.trim() !== "";
@@ -62,6 +68,14 @@ const CreateSpace = ({ cancelHandler }) => {
     },
   ]);
 
+  const options = ["Deposit ADX Token", "Payment", "Invite Code"];
+
+  const [spaceCreationOption, setSpaceCreationOption] = useState("Invite Code");
+
+  const spaceCreationOptionChangeHandler = (e) => {
+    setSpaceCreationOption(e.target.value);
+  };
+  console.log("spaceCreationOption", spaceCreationOption);
   const categories = [
     "DeFi",
     "NFT",
@@ -106,7 +120,6 @@ const CreateSpace = ({ cancelHandler }) => {
     }
   };
 
-  console.log("selectedWebsite", selectedWebsite);
   const verifyTweeter = useSelector(
     (state) => state.authentication.verifyTweet
   );
@@ -351,7 +364,6 @@ const CreateSpace = ({ cancelHandler }) => {
                               "border-[#4F6C7B] bg-[#09141A]"
                             }`}
                           >
-                      
                             {selectedCategories.includes(category) ? (
                               <span>
                                 <Checked />
@@ -412,25 +424,58 @@ const CreateSpace = ({ cancelHandler }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-between 2xl:mt-[-2.5rem] mb-[1rem] gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row">
-                  <div className="flex flex-col items-start gap-[0.6rem] w-[100%] md:w-auto">
-                    <label
-                      htmlFor="name"
-                      className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
-                    >
-                      Invite Code
-                    </label>
-                    <input
-                      required
-                      type="text"
-                      name="invite Code"
-                      id="inviteCode"
-                      value={inviteCode}
-                      onChange={(e) => setInviteCode(e.target.value)}
-                      placeholder="Enter a valid invite code"
-                      className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] md:w-[15rem] lg:w-[24rem] font-[275] border-[#2A3C46] border border-opacity-[80%] rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
-                    />
+                <div className="2xl:mt-[-2.5rem]">
+                  <div className="flex gap-[0.4rem]">
+                    <p className="font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
+                      Space Creation Option
+                    </p>
+                    <span>
+                      <Required />
+                    </span>
                   </div>
+                  <div className="flex items-center gap-3 md:gap-10 mt-[0.6rem]">
+                    {options.map((option, index) => {
+                      return (
+                        <Radio
+                          key={index}
+                          option={option}
+                          onChange={spaceCreationOptionChangeHandler}
+                          checked={spaceCreationOption === option}
+                          index={index}
+                        />
+                      );
+                    })}
+                  </div>
+                  {spaceCreationOption === "Deposit ADX Token" && (
+                    <div className="mt-[1rem]">
+                      <PaymentNotificationCard
+                        title={
+                          "AudaXious requires the deposit of 10,000 ADX token."
+                        }
+                        description={`The tokens deposited will be locked in the AudaXious staking protocol and will be returned in full if the Space is deactivated. This measure ensures is put in place to protect the AudaXious community and its users. Please note that cancellation within 2 months of creation is not allowed`}
+                      />
+                    </div>
+                  )}
+                  {spaceCreationOption === "Payment" && (
+                    <div className="mt-[1rem]">
+                      <PaymentNotificationCard
+                        title={"One time payment of 2,000 ADX or 500 USDT."}
+                        description={`With this option, you are required to make a one time payment of a non-refundable space creation fee of 1,500 ADX or 500 USDT tokens. Please note that the fee is not refundable even if the space is deactivated.`}
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="flex justify-between gap-[1.5rem] md:gap-[0rem] flex-col md:flex-row mb-[1.12rem]">
+                  {spaceCreationOption === "Invite Code" && (
+                    <InviteCode
+                      inviteCode={inviteCode}
+                      setInviteCode={setInviteCode}
+                    />
+                  )}
+                  {spaceCreationOption === "Deposit ADX Token" && (
+                    <AdxTokenButton />
+                  )}
+                  {spaceCreationOption === "Payment" && <UsdPaymentButton />}
                   <div className="md:w-[25rem] flex flex-row md:flex-col items-center justify-center md:items-end md:justify-end">
                     <button
                       type="submit"
