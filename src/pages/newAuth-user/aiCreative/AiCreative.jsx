@@ -28,9 +28,12 @@ const AiCreative = () => {
             title={"Create & Schedule post using AudaXious AI"}
             description={`Utilize the power of our AI to schedule and automate your posts OR simply post manually`}
           />
-          <AiCreativTab toggle={toggle} toggleHandler={toggleHandler} />
-          <SearchSort onChangeKeyword={setSearch} />
-        </div>
+          <div className="flex justify-center items-center text-center mt-10 text-gray-400 text-xl">
+            This features is under construction!!!
+          </div>
+          {/* <AiCreativTab toggle={toggle} toggleHandler={toggleHandler} /> */}
+          {/* <SearchSort onChangeKeyword={setSearch} /> */}
+          {/* </div>
         <div>
           <div>
             <Outlet />
@@ -57,7 +60,7 @@ const AiCreative = () => {
             <div className={clsx(toggle === 4 ? "block" : "hidden")}>
               Facebook
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

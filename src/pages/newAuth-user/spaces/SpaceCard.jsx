@@ -5,7 +5,14 @@ import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
-import { Hashtag, People, UserAdd, UserTick, TickCircle } from "iconsax-react";
+import {
+  Hashtag,
+  People,
+  UserAdd,
+  Award,
+  TickCircle,
+  Verify,
+} from "iconsax-react";
 import apeImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 import { useSelector } from "react-redux";
 
@@ -32,6 +39,8 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
     spaceMembersCount,
     iconUrl,
     tags,
+    campaignsCount,
+    isVerified,
   } = space;
   // console.log("UUID", uuid);
 
@@ -76,13 +85,26 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                 </div>
               )}
               {true && (
-                <img
-                  src={iconUrl}
-                  alt={title.slice(0, 7)}
-                  width="100"
-                  height={"100"}
-                  className="w-[3rem] h-[3rem] object-cover rounded-full"
-                />
+                <div className="relative">
+                  <img
+                    src={iconUrl}
+                    alt={title.slice(0, 7)}
+                    width="100"
+                    height="100"
+                    className="w-[3rem] h-[3rem] object-cover rounded-full"
+                  />
+                  {isVerified && (
+                    <div className="  flex justify-center items-center bg-[#060E16] h-[24px] w-[24px] rounded-full absolute -bottom-[6px] -right-[6px]">
+                      {" "}
+                      <Verify
+                        size={24}
+                        color="#1089FF"
+                        variant="Bold"
+                        className=""
+                      />
+                    </div>
+                  )}
+                </div>
               )}
               <span className="text-[1rem] text-[#FFF] font-[400]">
                 {title?.length > 10 ? title.slice(0, 10) + "..." : title}
@@ -144,13 +166,20 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
               </span>
             )} */}
           </div>
-          <div className="h-[2px]  my-[0.4rem] mx-[0.94rem]"></div>
+          <div className="h-[2px]  my-[0.4rem] mx-[0.94rem] "></div>
           <div className="py-[0.62rem]">
-            <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
-              {description.length > 50
-                ? description.slice(0, 50) + " ..."
-                : description}
-            </p>
+            {campaignsCount > 0 ? (
+              <div className=" flex px-4  py-1 gap-8  items-center  rounded-l-full rounded-br-full  bg-[#641da1] text-[#cbc9c5] font-mono">
+                <Award size="32" color="#EEA307" variant="Bold" />
+                {campaignsCount} Active Campaigns
+              </div>
+            ) : (
+              <p className="font-Poppins text-[#A5A5A5] text-[0.75rem] font-[400] leading-[140%]">
+                {description.length > 50
+                  ? description.slice(0, 50) + " ..."
+                  : description}
+              </p>
+            )}
           </div>
           <div className="h-[2px]  my-[0.4rem] mx-[0.94rem]"></div>
           <div className="flex justify-between items-center">
