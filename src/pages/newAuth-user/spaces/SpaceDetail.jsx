@@ -4,6 +4,7 @@ import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { ReactComponent as Defi } from "../../../assets/svg/dashboardSvg/defi.svg";
+import { Verify } from "iconsax-react";
 // import { ReactComponent as Gaming } from "../../../assets/svg/dashboardSvg/gaming.svg";
 // import { ReactComponent as Startups } from "../../../assets/svg/dashboardSvg/startups.svg";
 // import { ReactComponent as Music } from "../../../assets/svg/dashboardSvg/music.svg";
@@ -315,7 +316,7 @@ const SpaceDetail = () => {
 
                 <span>
                   <svg
-                    className="h-7 flex flex-row w-auto "
+                    className="h-6 flex flex-row w-auto "
                     viewBox="0 0 36 36"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

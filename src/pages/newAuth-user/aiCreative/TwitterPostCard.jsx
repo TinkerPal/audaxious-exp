@@ -63,26 +63,6 @@ const TwitterPostCard = ({ post }) => {
               {post.description}
             </p>
           </div>
-          {post.imageUpload && (
-            <div className="flex flex-col items-center">
-              <div className="grid grid-cols-2 gap-2 md:gap-5 lg:gap-10">
-                {post.imageUpload.map((image, idx) => {
-                  return (
-                    <div
-                      key={idx}
-                      className="w-[8rem] md:w-[14rem] lg:w-[17rem] h-[9rem] md:h-[14rem] lg:h-[17rem]"
-                    >
-                      <img
-                        src={image}
-                        alt=""
-                        className="w-[100%] h-[95%] object-cover rounded-lg"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ const PostTextarea = () => {
         // value={description}
         // onChange={descriptionOnchange}
         // onBlur={descriptionOnBlur}
-        className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] lg:w-[30rem] font-[275] border-[#436C82] bg-[#161616] bg-opacity-25 border-2 border-opacity-25 rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+        className="bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] font-[275] border-[#436C82] bg-[#161616] bg-opacity-25 border-2 border-opacity-25 rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
       ></textarea>
       <div className="absolute bottom-4 left-4">
         <div className="flex items-center gap-2 md:gap-5">

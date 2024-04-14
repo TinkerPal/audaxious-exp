@@ -11,14 +11,9 @@ const AiPost = () => {
   return (
     <div className="flex justify-center flex-col items-center py-[2.68rem]">
       <main className="border border-[#2A3C46] border-opacity-25 rounded-md max-w-[43rem]">
-        <TogglePost />
+        {/* <TogglePost /> */}
         <div className="px-[0.4rem] md:px-[2rem] xl:px-[4rem] pb-[3rem]">
           <div className="flex gap-[0.62rem]">
-            <div className="w-[2rem] h-[2rem] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
-              <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
-                {username ? username.slice(0, 1) : ""}
-              </p>
-            </div>
             <div>
               <PostTextarea />
               <div className="flex justify-end gap-[0.8rem]">

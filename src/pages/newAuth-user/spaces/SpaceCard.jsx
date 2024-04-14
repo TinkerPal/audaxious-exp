@@ -5,7 +5,7 @@ import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
-import { Hashtag, People } from "iconsax-react";
+import { Hashtag, People, UserAdd, UserTick, TickCircle } from "iconsax-react";
 import apeImage from "../../../assets/svg/SpaceDefault/apeImage.png";
 import { useSelector } from "react-redux";
 
@@ -97,7 +97,22 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                   </div>
                 )}
                 {selectedId !== uuid && !isMember && (
+                  // <button
+                  //   type="button"
+                  //   onClick={(e) => {
+                  //     e.preventDefault();
+                  //     if (e.target.tagName.toLowerCase() !== "button") {
+                  //       e.stopPropagation();
+                  //     }
+                  //     joinSpaceHandler(uuid);
+                  //     // console.log("E WORK", uuid);
+                  //   }}
+                  //   className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
+                  // >
+                  //   Join
+                  // </button>
                   <button
+                    className="p-2 border rounded-full border-[#EEA307]/20 bg-[#EEA307]/5"
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
@@ -107,15 +122,14 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                       joinSpaceHandler(uuid);
                       // console.log("E WORK", uuid);
                     }}
-                    className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]"
                   >
-                    Join
+                    <UserAdd size="20" color="#EEA307" />
                   </button>
                 )}
                 {isMember && (
-                  <span className="border-[#2A3C46] border border-opacity-[80%] py-[0.4rem] px-[1rem] rounded-md font-Poppins text-[#E8E8E8] text-[0.75rem] font-[300]">
-                    Member
-                  </span>
+                  <div className="p-2 border rounded-full border-[#36A616]/20 bg-[#36A616]/5">
+                    <TickCircle size="20" color="#36A616" />
+                  </div>
                 )}
               </div>
             )}
@@ -140,7 +154,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
           </div>
           <div className="h-[2px]  my-[0.4rem] mx-[0.94rem]"></div>
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem]  ">
+            <div className="flex items-center  gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem]  ">
               <span>
                 {/* <Group color="#A5D740" /> */}
                 <People size="16" color="#E78370" />
