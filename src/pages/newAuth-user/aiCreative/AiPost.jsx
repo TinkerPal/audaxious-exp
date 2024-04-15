@@ -4,19 +4,25 @@ import GeneratedPost from "./GeneratedPost";
 import { ReactComponent as Line } from "../../../assets/svg/dashboardSvg/lines.svg";
 import TogglePost from "./TogglePost";
 import PostTextarea from "../../../widget/PostTextarea";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { PostNewIntent } from "../engagePortal/TweeterIntent";
 import axios from "axios";
+import Loading from "../../Homes/Loading";
+import { aiCreatieActions } from "../../../store/aiCreativeSlice";
 
 const AiPost = () => {
   const username = useSelector((state) => state.authentication.userName);
+  const [loading, setLoading] = useState(null);
+  const dispatch = useDispatch();
 
   const [useAI, setUseAI] = useState(false);
   const [tweetContent, setTweetContent] = useState(
     "#AudaXious is Awesome $ADX #NFT #DeSo #P2E #SocialFi"
   );
-
+  const savePostHandler = () => {
+    dispatch(aiCreatieActions.setSavedPost(tweetContent));
+  };
   const [sentiment, setSentiment] = useState("");
   const [generatedTweet, setGeneratedTweets] = useState([]);
 
@@ -25,14 +31,26 @@ const AiPost = () => {
 
   async function handleGenerate() {
     setGeneratedTweets([]);
-    const response = await axios.post(GENERATE_URL, {
-      number_of_texts: "2",
-      keywords: tweetContent,
-      sentiment: sentiment,
-    });
+    setLoading(true);
+    // const response = await axios.post(GENERATE_URL, {
+    //   number_of_texts: "2",
+    //   keywords: tweetContent,
+    //   sentiment: sentiment,
+    // });
+    try {
+      const response = await axios.post(GENERATE_URL, {
+        number_of_texts: "2",
+        keywords: tweetContent,
+        sentiment: sentiment,
+      });
+      setLoading(false);
+      setGeneratedTweets(response.data);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
 
-    console.log("generated tweets", response);
-    setGeneratedTweets(response.data);
+    // console.log("generated tweets", response);
   }
 
   function handlePost() {
@@ -85,16 +103,26 @@ const AiPost = () => {
                       sentiment={sentiment}
                       setSentiment={setSentiment}
                     />
-                    <button
-                      className="py-1 w-[100px] text-black bg-[#A9F453] rounded-md h-[35px]"
-                      onClick={handleGenerate}
-                    >
-                      Generate
-                    </button>
+                    {!loading && (
+                      <button
+                        className="py-1 w-[100px] text-black bg-[#A9F453] rounded-md h-[35px]"
+                        onClick={handleGenerate}
+                      >
+                        Generate
+                      </button>
+                    )}
+                    {loading && (
+                      <div className="w-[100px]">
+                        <Loading />
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="flex justify-end gap-[0.45rem] opacity-80">
-                    <button className="py-1 w-[115px] border border-[#F5BA22] rounded-md">
+                    <button
+                      onClick={savePostHandler}
+                      className="py-1 w-[115px] border border-[#F5BA22] rounded-md"
+                    >
                       Save
                     </button>
                     <button
