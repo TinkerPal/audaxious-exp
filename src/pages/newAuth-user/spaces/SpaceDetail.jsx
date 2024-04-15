@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ReactComponent as Group } from "../../../assets/svg/dashboardSvg/group.svg";
 import { ReactComponent as World } from "../../../assets/svg/dashboardSvg/world.svg";
 import { ReactComponent as Retweets } from "../../../assets/svg/dashboardSvg/retweets.svg";
+import { ReactComponent as Telegram } from "../../../assets/svg/dashboardSvg/telegramspace.svg";
 import { ReactComponent as Discords } from "../../../assets/svg/dashboardSvg/discords.svg";
 import { ReactComponent as Defi } from "../../../assets/svg/dashboardSvg/defi.svg";
 import { Verify } from "iconsax-react";
@@ -153,6 +154,8 @@ const SpaceDetail = () => {
   if (!spaceDetail) {
     return <Layout />;
   }
+
+  console.log("spaceDetail", spaceDetail);
   return (
     <>
       <Modal open={openCampaignModal} onClose={closeCreateCampaignModal}>
@@ -210,7 +213,27 @@ const SpaceDetail = () => {
                   </span>
                 </div>
                 <div className="flex gap-[0.5rem] items-center">
-                  <a
+                  {spaceDetail.links?.map((link, index) => {
+                    const svgFiles = {
+                      website: <World />,
+                      twitter: <Retweets />,
+                      telegram: <Telegram />,
+                    };
+                    return (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        title={link.type}
+                        className="inline-flex items-center justify-center w-10 h-10 text-gray-900 transition-all duration-200 rounded-full bg-black  "
+                        rel="noopener noreferrer"
+                      >
+                        {" "}
+                        <span>{svgFiles[link.type]}</span>
+                      </a>
+                    );
+                  })}
+                  {/* <a
                     href="https://audaxious.com"
                     target="_blank"
                     title="twitter"
@@ -268,7 +291,7 @@ const SpaceDetail = () => {
                         </clipPath>
                       </defs>
                     </svg>
-                  </a>
+                  </a> */}
                 </div>
               </div>
               {!showJoinButton && (
