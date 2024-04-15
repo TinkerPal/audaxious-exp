@@ -107,15 +107,37 @@ const CreateSpace = ({ cancelHandler }) => {
     reset: resetProfilePicture,
   } = useImage();
 
+  // const handleInputChange = (type, url) => {
+  //   const existingIndex = selectedWebsite.findIndex(
+  //     (item) => item.type === type
+  //   );
+  //   if (existingIndex !== -1) {
+  //     const newArray = [...selectedWebsite];
+  //     newArray[existingIndex] = { type, url };
+  //     setSelectedWebsite(newArray);
+  //   } else {
+  //     setSelectedWebsite([...selectedWebsite, { type, url }]);
+  //   }
+  // };
+
+  console.log("selectedWebsite", selectedWebsite);
   const handleInputChange = (type, url) => {
+    if (url.trim() === "") {
+      // If URL is empty, remove it from selectedWebsite if it exists
+      setSelectedWebsite(selectedWebsite.filter((item) => item.type !== type));
+      return;
+    }
+
     const existingIndex = selectedWebsite.findIndex(
       (item) => item.type === type
     );
     if (existingIndex !== -1) {
+      // Update existing URL
       const newArray = [...selectedWebsite];
       newArray[existingIndex] = { type, url };
       setSelectedWebsite(newArray);
     } else {
+      // Add new URL
       setSelectedWebsite([...selectedWebsite, { type, url }]);
     }
   };
@@ -333,11 +355,12 @@ const CreateSpace = ({ cancelHandler }) => {
                     </div>
                     <div className="relative">
                       <input
+                        disabled
                         placeholder="Enter Discord Link"
                         onChange={(e) =>
                           handleInputChange("discord", e.target.value)
                         }
-                        className="pr-[1rem] pl-[1.8rem] py-[0.62rem] font-Poppins text-[0.75rem] text-[#E8E8E8] bg-transparent font-[300] border-[#2A3C46] border border-opacity-[80%] rounded-md"
+                        className=" cursor-not-allowed pr-[1rem] pl-[1.8rem] py-[0.62rem] font-Poppins text-[0.75rem] text-[#E8E8E8] bg-transparent font-[300] border-[#2A3C46] border border-opacity-[80%] rounded-md"
                       />
                       <span className=" absolute left-2 top-3">
                         <Discord />
