@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const aiInitialState = {
   openCreatePostModal: false,
+  savedPost: [],
 };
 
 const aiCreateSlice = createSlice({
@@ -10,6 +11,9 @@ const aiCreateSlice = createSlice({
   reducers: {
     setCreatePostModal(state, actions) {
       state.openCreatePostModal = actions.payload;
+    },
+    setSavedPost(state, actions) {
+      state.savedPost = [actions.payload, ...state.savedPost];
     },
   },
 });
