@@ -9,9 +9,12 @@ import { ReactComponent as EdithIcon } from "../../../assets/svg/edit-tweet-img.
 import { ReactComponent as SaveIcon } from "../../../assets/svg/save-tweet-img.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/polchecked.svg";
 import { PostNewIntent } from "../engagePortal/TweeterIntent";
+import { aiCreatieActions } from "../../../store/aiCreativeSlice";
+import { useDispatch } from "react-redux";
 
 const GeneratedPostCard = ({ generatedTweet }) => {
   const [editGeneratedTweet, setEditGeneratedTweet] = useState([]);
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(
     Array(generatedTweet.length).fill(false)
   );
@@ -19,6 +22,9 @@ const GeneratedPostCard = ({ generatedTweet }) => {
   function handlePost(params) {
     PostNewIntent(params, "");
   }
+  const savePostHandler = (tweetContent) => {
+    dispatch(aiCreatieActions.setSavedPost(tweetContent));
+  };
   const handleInputChange = (index, value) => {
     const updatedGeneratedTweets = [...editGeneratedTweet];
     updatedGeneratedTweets[index] = value;
@@ -106,7 +112,16 @@ const GeneratedPostCard = ({ generatedTweet }) => {
         </div> */}
           <div>
             <div className="flex justify-end gap-[0.45rem] opacity-80">
-              <button className="py-1 w-[115px] border text-[#A9F453] border-[#A9F453] hover:bg-[#A9F453] hover:text-black rounded-md">
+              <button
+                onClick={() =>
+                  savePostHandler(
+                    editGeneratedTweet[index]
+                      ? editGeneratedTweet[index]
+                      : tweet
+                  )
+                }
+                className="py-1 w-[115px] border text-[#A9F453] border-[#A9F453] hover:bg-[#A9F453] hover:text-black rounded-md"
+              >
                 Save
               </button>
               <button
