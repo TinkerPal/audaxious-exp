@@ -22,13 +22,7 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
   const memberState = useSelector((state) => state.space.isMember);
 
-  // console.log("USERID", userId);
-  // console.log("CREATORID", space.creator_uuid);
-  // console.log(joinedSpacesArray);
-
   const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
-
-  // console.log("JOINEDSPACEID", joinedSpaceIds);
 
   const {
     creator_uuid,
@@ -42,9 +36,8 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
     campaignsCount,
     isVerified,
   } = space;
-  // console.log("UUID", uuid);
 
-  console.log("list of spaces", space);
+  // console.log("list of spaces", space);
 
   let isMember = joinedSpaceIds.includes(uuid) || memberState;
   let showJoinButton = false;
@@ -142,7 +135,6 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
                         e.stopPropagation();
                       }
                       joinSpaceHandler(uuid);
-                      // console.log("E WORK", uuid);
                     }}
                   >
                     <UserAdd size="20" color="#EEA307" />
@@ -185,7 +177,6 @@ const SpaceCard = ({ space, selectedId, joinSpaceHandler }) => {
           <div className="flex justify-between items-center">
             <div className="flex items-center  gap-[0.3rem] px-[0.5rem] rounded-[40px] py-[0.4rem]  ">
               <span>
-                {/* <Group color="#A5D740" /> */}
                 <People size="16" color="#E78370" />
               </span>
               <span className="h-[1rem] w-[1px] bg-[#314048]"></span>

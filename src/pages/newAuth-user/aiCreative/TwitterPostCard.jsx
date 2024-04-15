@@ -6,13 +6,13 @@ const TwitterPostCard = ({ post }) => {
   const tweetername = useSelector((state) => state.authentication.verifyTweet);
   return (
     <div
-      className="w-[100%] md:w-[35rem] lg:w-[43rem] border-[2px] border-[#07111c] py-[1.2rem] rounded-md"
+      className="w-full border-[2px] border-[#07111c] py-[0.5rem] rounded-md "
       //   key={index}
     >
       <div className="flex justify-between items-center px-[0.7rem]">
         <div className="flex gap-2">
           {" "}
-          <button
+          {/* <button
             type="button"
             className="bg-[#13161E] flex items-center gap-1 border-[1px] border-[#2A3C46] border-opacity-[80%] px-[9px] py-[6px] font-Poppins font-[300] text-[0.8rem] text-[#87cece] rounded-[26px]"
           >
@@ -32,19 +32,14 @@ const TwitterPostCard = ({ post }) => {
             <span className="whitespace-nowrap flex">
               Earn | {post.point} Point
             </span>
-          </button>
+          </button> */}
         </div>
-        <Postdropdown />
+        {/* <Postdropdown /> */}
       </div>
-      <div className="border border-b-[1px] border-[#07111c] my-[1.25rem]"></div>
-      <div className="flex gap-3 px-[0.7rem] items-start">
-        <div className="w-[2rem] h-[2rem] md:w-[80px] md:h-[40px] px-[0.4rem] py-[0.4rem] bg-[#EBBEF3] rounded-full flex items-center justify-center">
-          <p className="text-[1.25rem] font-Poppins font-[600] text-neutral-950">
-            {tweetername ? tweetername.slice(0, 1) : ""}
-          </p>
-        </div>
-        <div className="flex flex-col gap-[1.4rem]">
-          <div className="flex items-baseline gap-2">
+      {/* <div className="border border-b-[1px] border-[#07111c] my-[0.5rem]"></div> */}
+      <div className="flex gap-3 px-[0.7rem] items-start ">
+        <div className="flex flex-col gap-[1rem]">
+          <div className="flex items-baseline gap-2 ">
             <p
               className=" font-Poppins text-[1.125rem] font-normal whitespace-nowrap text-[#E8E8E8]"
               style={{ wordBreak: "break-all" }}

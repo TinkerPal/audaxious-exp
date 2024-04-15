@@ -72,11 +72,11 @@ const MySpace = ({ mySpaces, onCreateSpace }) => {
     <div>
       <div className="md:container">
         <div className="py-[1.47rem] flex flex-col ">
-          {/* {loading && (
+          {loading && (
             <div className="">
               <Loading />
             </div>
-          )} */}
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 md:gap-[2.5rem] gap-[1rem]">
             {mySpaces &&
               mySpaces.map((space) => (

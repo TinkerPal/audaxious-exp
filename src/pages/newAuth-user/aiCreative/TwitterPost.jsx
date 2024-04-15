@@ -6,6 +6,8 @@ import { TWITTERPOST } from "../../../utils/postApi";
 import TwitterPostCard from "./TwitterPostCard";
 import Pagination from "../../../widget/Pagination";
 import AiPost from "./AiPost";
+
+import SearchAI from "./SearchAI";
 const TwitterPost = () => {
   const dispatch = useDispatch();
   const openModal = () => {
@@ -13,7 +15,7 @@ const TwitterPost = () => {
   };
   if (TWITTERPOST.length <= 0) {
     return (
-      <div className="flex flex-col justify-center mt-[5rem] items-center gap-[1rem] text-[#707171] ">
+      <div className="flex flex-col justify-center mt-[5rem] items-center gap-[1rem] text-[#707171]   ">
         <span>
           <NoPost />
         </span>
@@ -30,46 +32,46 @@ const TwitterPost = () => {
     );
   }
   return (
-    <div className="grid grid-cols-2 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 items-start pb-5 ">
       <AiPost />
 
-      <div className=" flex flex-col  col-span-1 items-center gap-6 py-[2.25rem]">
-        {TWITTERPOST &&
-          TWITTERPOST.map((post, index) => {
+      <div className="flex flex-col h-full justify-between">
+        <div className=" flex flex-col  col-span-1 items-center gap-5 py-[2.25rem] mx-2  max-w-[700px] ">
+          <SearchAI onChangeKeyword={() => {}} />
+          {/* {TWITTERPOST &&
+          TWITTERPOST.filter((post, index) => index < 5).map((post, index) => {
             return <TwitterPostCard post={post} key={index} />;
-          })}
-        {/* <div>
-    <div className="flex justify-between items-center gap-5">
-      <div className="flex items-center gap-2 font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] rounded-md hover:bg-[#D5EDF91A] cursor-pointer">
-        <span>{"<<"}</span>
-        <p className="">Previous</p>
-      </div>
-      <div className="flex items-center">
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">1</p>
+          })} */}
+          <div className="flex flex-col  justify-between border-white/20 border-[#07111c] bg-[#060e16] hover:border-white/70 p-4 rounded-md   hover:border-[#14435c]  text-white/70 border border-opacity-[80%]   cursor-pointer  ">
+            🚀 AudaXious Engage-to-Earn platform is going live and we will be
+            rewarding early members and adopters of our platform with ADX token.
+            To participate, please complete the listed tasks.
+          </div>
+
+          <div className="flex flex-col  justify-between border-white/20 border-[#07111c] bg-[#060e16] hover:border-white/70 p-4 rounded-md   hover:border-[#14435c]  border border-opacity-[80%]  text-white/70  cursor-pointer ">
+            🚀 AudaXious Engage-to-Earn platform is going live and we will be
+            rewarding early members and adopters of our platform with ADX token.
+            To participate, please complete the listed tasks. AudaXious
+            Engage-to-Earn platform is going live and we will be rewarding early
+            members and adopters of our platform with ADX token. To participate,
+            please complete the listed tasks.
+          </div>
+
+          <div className="flex flex-col  justify-between border-white/20 border-[#07111c] bg-[#060e16] hover:border-white/70 p-4 rounded-md   hover:border-[#14435c]  border border-opacity-[80%] text-white/70   cursor-pointer ">
+            🚀 AudaXious Engage-to-Earn platform is going live and we will be
+            rewarding early members and adopters of our platform with ADX token.
+            To participate, please complete the listed tasks. AudaXious
+            Engage-to-Earn platform is going live and we will be rewarding early
+            members and
+          </div>
+
+          <div className="flex flex-col  justify-between border-white/20 border-[#07111c] text-white/70  bg-[#060e16] hover:border-white/70 p-4 rounded-md   hover:border-[#14435c]  border border-opacity-[80%]   cursor-pointer ">
+            🚀 AudaXious Engage-to-Earn platform is going live and we will be
+            rewarding early members and adopters of our platform with ADX token.
+            To participate, please complete the listed tasks. AudaXious
+            Engage-to-Earn platform is going live and we will be rewarding early
+          </div>
         </div>
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">2</p>
-        </div>
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">3</p>
-        </div>
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">...</p>
-        </div>
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">9</p>
-        </div>
-        <div className="font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] hover:bg-[#D5EDF91A] cursor-pointer">
-          <p className="">10</p>
-        </div>
-      </div>
-      <div className="flex items-center gap-2 font-Poppins text-[0.75rem] font-[400] text-[#E8E8E8] py-[0.5rem] px-[1rem] border border-[#2A3C4680] rounded-md hover:bg-[#D5EDF91A] cursor-pointer">
-        <span>{">>"}</span>
-        <p className="">Next</p>
-      </div>
-    </div>
-  </div> */}
         <Pagination />
       </div>
     </div>

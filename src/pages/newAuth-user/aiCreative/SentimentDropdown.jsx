@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { ReactComponent as Dropdowns } from "../../../assets/svg/dashboardSvg/dropdowns.svg";
-const SentimentDropdown = () => {
+const SentimentDropdown = ({ sentiment, setSentiment }) => {
   // const [categories, setCate]
   const categories = ["Positive", "Negative", "Neutral"];
 
-  const [searchInput, setSearchInput] = useState("");
   const [open, setOpen] = useState(false);
 
   return (
     <div
-      className="w-[9rem] font-medium text-[#707171]"
+      className="w-[6rem] font-medium text-[#707171]"
       onMouseLeave={() => setOpen(false)}
       onMouseEnter={() => setOpen(false)}
     >
       <div
-        className="w-full bg-transparent p-2 flex text-[0.8rem] border-[0.5px] border-[#2A3C46] font-Poppins items-center text-[#707171] justify-between rounded cursor-pointer"
+        className="w-[115px] bg-transparent px-2 py-1   flex  border border-[#A9F453]  items-center text-[#A9F453] justify-between rounded-md cursor-pointer"
         // onClick={() => {
         //   setOpen((prev) => !prev);
         // }}
         onMouseEnter={() => setOpen(true)}
       >
-        {searchInput ? searchInput : "Select a category"}
+        {sentiment ? sentiment : "Sentiment"}
         <Dropdowns />
       </div>
       <ul
@@ -33,10 +32,10 @@ const SentimentDropdown = () => {
             <li
               key={index}
               className={`p-2 text-sm hover:bg-[#79C4EC] hover:text-white cursor-pointer ${
-                category === searchInput ? "bg-sky-500" : ""
+                category === sentiment ? "bg-sky-500" : ""
               }`}
               onClick={() => {
-                setSearchInput(category);
+                setSentiment(category);
                 setOpen(false);
               }}
             >

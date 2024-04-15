@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import CampaignsCard from "./CampaignCard";
 import { ReactComponent as NoSpace } from "../../../assets/svg/dashboardSvg/noSpace.svg";
+import { getAllCompletedTask } from "../../../store/campaignActions";
 
 const Campaigns = ({ search }) => {
   const campaigns = useSelector((state) => state.campaign.campaign);
@@ -36,7 +37,7 @@ const Campaigns = ({ search }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4  gap-x-4 2xl:gap-x-[2.4rem]  md:gap-y-[2.5rem] gap-y-[1rem]  pt-[0rem] pl-[0rem] ">
         {filterCampaign.map((post) => (
           <NavLink key={post.uuid} to={`/engage-portal/${post.uuid}`}>
-            <CampaignsCard post={post} />
+            <CampaignsCard post={post} campaignId={post.uuid} />
           </NavLink>
         ))}
       </div>

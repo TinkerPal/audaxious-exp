@@ -15,11 +15,6 @@ function OpenWindow(intentUrl) {
 }
 
 export function PostNewIntent(tweetText, tweetUrl) {
-  // const tweetText = encodeURIComponent(
-  //   "Verifying my Twitter account for my #GalxeID gid:drJ3TLiGGBSefaRsMQj8dg @Galxe"
-  // );
-  // const tweetUrl = encodeURIComponent("https://galxe.com/id");
-
   const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweetText
   )}&url=${encodeURIComponent(tweetUrl)}`;
@@ -27,11 +22,6 @@ export function PostNewIntent(tweetText, tweetUrl) {
 }
 
 export function VerifyIntent(tweetText, tweetUrl) {
-  // const tweetText = encodeURIComponent(
-  //   "Verifying my Twitter account for my #GalxeID gid:drJ3TLiGGBSefaRsMQj8dg @Galxe"
-  // );
-  // const tweetUrl = encodeURIComponent("https://galxe.com/id");
-
   const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweetText
   )}&url=${encodeURIComponent(tweetUrl)}`;

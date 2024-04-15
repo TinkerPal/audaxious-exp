@@ -30,7 +30,7 @@ const SpaceCampaigns = ({ spaceId }) => {
         {campaigns &&
           campaigns.map((post) => (
             <NavLink key={post.uuid} to={`/spaces/${spaceId}/${post.uuid}`}>
-              <CampaignsCard post={post} />
+              <CampaignsCard post={post} campaignId={post.uuid} />
             </NavLink>
           ))}
       </div>

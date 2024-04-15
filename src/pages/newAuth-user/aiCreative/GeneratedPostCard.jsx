@@ -9,26 +9,14 @@ import { ReactComponent as EdithIcon } from "../../../assets/svg/edit-tweet-img.
 import { ReactComponent as SaveIcon } from "../../../assets/svg/save-tweet-img.svg";
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/polchecked.svg";
 
-const GeneratedPostCard = () => {
+const GeneratedPostCard = ({ generatedTweet }) => {
   const [isEditing, setIsEditing] = useState(false);
-  return (
-    <div className="border border-[#2A3C46] border-opacity-25 rounded-md mt-[2.68rem] max-w-[43rem] px-[0.5rem] md:px-[4rem] py-[1.5rem]">
-      <div className="flex gap-2 mb-3 items-center">
-        <input
-          type="checkbox"
-          id="some_id"
-          // checked={tweet.selected}
-          // onChange={(e) => onChange("selected", e.target.checked)}
-          className="relative peer shrink-0 appearance-none w-4 h-4 border-2 border-[#2A3C46] border-opacity-45 rounded-sm mt-1 cursor-pointer"
-        />
-        <label
-          htmlFor="some_id"
-          className="text-[#EBEDED] font-Poppins text-[0.8rem] font-[300]"
-        >
-          Select
-        </label>
-        <Checked />
-      </div>
+  const generatedTweetArray = Object.values(generatedTweet);
+  return generatedTweetArray?.map((tweet, index) => (
+    <div
+      key={index}
+      className="border border-[#2A3C46] border-opacity-25 rounded-md mt-[1rem] max-w-[43rem] px-[0.5rem] md:px-[4rem] pt-[1rem] "
+    >
       <div>
         <div className="w-[100%] md:w-auto relative">
           <textarea
@@ -39,10 +27,10 @@ const GeneratedPostCard = () => {
             rows="7"
             placeholder="Type something..."
             disabled={!isEditing}
-            // value={description}
+            value={tweet}
             // onChange={descriptionOnchange}
             // onBlur={descriptionOnBlur}
-            className=" disabled:cursor-not-allowed bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%] lg:w-[30rem] font-[275] border-[#436C82] bg-[#161616] bg-opacity-25 border-2 border-dashed border-opacity-25 rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
+            className=" disabled:cursor-not-allowed bg-transparent outline-none placeholder:text-[#A5A5A5] w-[100%]  font-[275] border-[#A9F453] bg-[#161616] bg-opacity-25 border-2 border-dashed border-opacity-80 rounded-lg px-[1rem] py-[0.5rem] text-[0.75rem] font-Poppins"
           ></textarea>
           <div className="absolute bottom-4 left-4">
             <div className="flex items-center gap-2 md:gap-5">
@@ -113,7 +101,7 @@ const GeneratedPostCard = () => {
         </div>
       </div>
     </div>
-  );
+  ));
 };
 
 export default GeneratedPostCard;

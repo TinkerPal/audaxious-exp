@@ -1,7 +1,7 @@
 const SearchBar = ({ onChangeKeyword }) => {
   return (
-    <div className="relative ">
-      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
+    <div className="relative w-[180px]  ">
+      <span className="absolute inset-y-0 left-0 flex items-center pl-3  text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -19,8 +19,8 @@ const SearchBar = ({ onChangeKeyword }) => {
       </span>
       <input
         type="text"
-        placeholder="Search spaces..."
-        className="block w-full pl-10 pr-[15px] py-[15px] bg-[#07111c] rounded-[10rem] text-gray-300 border border-[#07111c] focus:border-[#171720] focus:ring focus:ring-[#171720] focus:ring-opacity-50"
+        placeholder="Search ..."
+        className="block w-full pl-10 pr-[10px] py-[10px] bg-[#07111c] rounded-[10rem] text-gray-300 border border-[#07111c] focus:border-[#171720] focus:ring focus:ring-[#171720] focus:ring-opacity-50"
         onChange={(e) => onChangeKeyword(e.target.value)}
       />
     </div>

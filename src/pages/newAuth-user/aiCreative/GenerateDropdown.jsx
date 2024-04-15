@@ -9,7 +9,7 @@ const GenerateDropdown = () => {
 
   return (
     <div
-      className="w-[9rem] font-medium text-[#000]"
+      className="w-[6rem] font-medium text-[#000]"
       onMouseLeave={() => setOpen(false)}
       onMouseEnter={() => setOpen(false)}
     >

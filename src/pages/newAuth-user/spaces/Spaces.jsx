@@ -33,6 +33,11 @@ const Spaces = () => {
   const dispatch = useDispatch();
   const joinedSpacesArray = useSelector((state) => state.space.joinedSpace);
   const joinedSpaceIds = joinedSpacesArray.map((space) => space.space_uuid);
+  const createdSpaceIds = createdSpace.map((space) => space.uuid);
+  // console.log("created spaces are", createdSpaceIds);
+  const createdFilteredSpaces =
+    allSpaceArray &&
+    allSpaceArray.filter((space) => createdSpaceIds.includes(space.uuid));
 
   const joinedFilteredSpaces =
     allSpaceArray &&
@@ -43,7 +48,8 @@ const Spaces = () => {
   if (toggle === 1) {
     spaceArray = allSpaceArray;
   } else if (toggle === 2) {
-    spaceArray = createdSpace;
+    // spaceArray = createdSpace;
+    spaceArray = createdFilteredSpaces;
   } else {
     spaceArray = joinedFilteredSpaces;
   }
