@@ -17,9 +17,7 @@ const AiPost = () => {
   const dispatch = useDispatch();
 
   const [useAI, setUseAI] = useState(false);
-  const [tweetContent, setTweetContent] = useState(
-    "#AudaXious is Awesome $ADX #NFT #DeSo #P2E #SocialFi"
-  );
+  const [tweetContent, setTweetContent] = useState("");
   const savePostHandler = () => {
     dispatch(aiCreatieActions.setSavedPost(tweetContent));
   };
@@ -30,6 +28,7 @@ const AiPost = () => {
     "https://audaxious-130e2398fbd3.herokuapp.com/generate_tweet/";
 
   async function handleGenerate() {
+    if (tweetContent === "") return;
     setGeneratedTweets([]);
     setLoading(true);
     // const response = await axios.post(GENERATE_URL, {
@@ -66,8 +65,8 @@ const AiPost = () => {
         {/* <TogglePost /> */}
         <div className="px-[0.4rem] md:px-[2rem] xl:px-[4rem] pb-[2rem]">
           <div className="mt-2 mb-6">
-            <div className="bg-[#641da1] py-2 rounded-tl-3xl rounded-br-3xl text-lg px-2 flex items-center justify-center text-center opacity-75">
-              <div className="text-white font-bold">
+            <div className="bg-[#641da1] py-2 rounded-tl-3xl rounded-br-3xl  px-2 flex items-center justify-center text-center ">
+              <div className="text-white font-medium">
                 Type in your ideas and generate compelling content using AI
                 creative.
               </div>

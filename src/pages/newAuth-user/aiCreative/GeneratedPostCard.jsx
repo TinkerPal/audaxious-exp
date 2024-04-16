@@ -11,6 +11,7 @@ import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/polc
 import { PostNewIntent } from "../engagePortal/TweeterIntent";
 import { aiCreatieActions } from "../../../store/aiCreativeSlice";
 import { useDispatch } from "react-redux";
+import { Edit } from "iconsax-react";
 
 const GeneratedPostCard = ({ generatedTweet }) => {
   const [editGeneratedTweet, setEditGeneratedTweet] = useState([]);
@@ -18,7 +19,11 @@ const GeneratedPostCard = ({ generatedTweet }) => {
   const [isEditing, setIsEditing] = useState(
     Array(generatedTweet.length).fill(false)
   );
-  const generatedTweetArray = Object.values(generatedTweet);
+  // const generatedTweetArray = Object.values(generatedTweet);
+  const generatedTweetArray = Object.values(generatedTweet).map((tweet) =>
+    tweet[0] === "1" || tweet[0] === "2" ? tweet.slice(3) : tweet
+  );
+
   function handlePost(params) {
     PostNewIntent(params, "");
   }
@@ -48,7 +53,7 @@ const GeneratedPostCard = ({ generatedTweet }) => {
               name="spaceDescription"
               id="spaceDescription"
               cols="100"
-              rows="7"
+              rows="6"
               placeholder="Type something..."
               disabled={!isEditing[index]}
               // value={tweet}
@@ -82,7 +87,7 @@ const GeneratedPostCard = ({ generatedTweet }) => {
             </div>
           </div>
         </div>
-        <div className="text-[#707171] flex items-center justify-end mt-4 flex-wrap md:nowrap">
+        <div className="text-[#707171] flex items-center justify-end mt-1 flex-wrap md:nowrap">
           {/* <div className="flex items-center gap-1">
           <span>
             <Clock />
@@ -124,6 +129,19 @@ const GeneratedPostCard = ({ generatedTweet }) => {
               >
                 Save
               </button>
+
+              <button
+                className="rounded-md text-[#A9F453] border border-[#A9F453] hover:bg-[#A9F453] hover:text-black flex items-center justify-center py-[0.5rem] px-[1rem] w-[7.8rem] font-Poppins text-[0.7rem] font-normal "
+                onClick={() => {
+                  const updatedEditing = [...isEditing];
+                  updatedEditing[index] = !updatedEditing[index];
+                  setIsEditing(updatedEditing);
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <EdithIcon /> Edit Post
+                </div>
+              </button>
               <button
                 className="py-1 w-[100px] text-[#A9F453] border border-[#A9F453] hover:bg-[#A9F453] hover:text-black rounded-md"
                 onClick={() =>
@@ -136,18 +154,7 @@ const GeneratedPostCard = ({ generatedTweet }) => {
               >
                 Post
               </button>
-              <button
-                className="rounded-md text-[#A9F453] border border-[#A9F453] hover:bg-[#A9F453] hover:text-black flex items-center justify-center py-[0.5rem] px-[1rem] w-[7.8rem] font-Poppins text-[0.7rem] font-normal"
-                onClick={() => {
-                  const updatedEditing = [...isEditing];
-                  updatedEditing[index] = !updatedEditing[index];
-                  setIsEditing(updatedEditing);
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <EdithIcon /> Edit Post
-                </div>
-              </button>
+              {/* <Edit size="24" color="#A9F453" className="hover:opacity-75" /> */}
             </div>
           </div>
         </div>

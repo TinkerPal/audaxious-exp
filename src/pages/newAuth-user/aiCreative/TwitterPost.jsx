@@ -68,7 +68,7 @@ const TwitterPost = () => {
             Engage-to-Earn platform is going live and we will be rewarding early
           </div> */}
         </div>
-        <Pagination />
+        {savedPost.length > 4 && <Pagination />}
       </div>
     </div>
   );
