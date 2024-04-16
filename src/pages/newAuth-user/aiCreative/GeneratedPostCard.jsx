@@ -10,8 +10,9 @@ import { ReactComponent as SaveIcon } from "../../../assets/svg/save-tweet-img.s
 import { ReactComponent as Checked } from "../../../assets/svg/dashboardSvg/polchecked.svg";
 import { PostNewIntent } from "../engagePortal/TweeterIntent";
 import { aiCreatieActions } from "../../../store/aiCreativeSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Edit } from "iconsax-react";
+import { authAction } from "../../../store/authorizationSlice";
 
 const GeneratedPostCard = ({ generatedTweet }) => {
   const [editGeneratedTweet, setEditGeneratedTweet] = useState([]);
@@ -19,15 +20,48 @@ const GeneratedPostCard = ({ generatedTweet }) => {
   const [isEditing, setIsEditing] = useState(
     Array(generatedTweet.length).fill(false)
   );
+  const isAuthenticated = useSelector(
+    (state) => state.authentication.isLogedIn
+  );
+  const verifyTweeter = useSelector(
+    (state) => state.authentication.verifyTweet
+  );
+
   // const generatedTweetArray = Object.values(generatedTweet);
   const generatedTweetArray = Object.values(generatedTweet).map((tweet) =>
     tweet[0] === "1" || tweet[0] === "2" ? tweet.slice(3) : tweet
   );
 
-  function handlePost(params) {
-    PostNewIntent(params, "");
+  function handlePost(tweetContent) {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
+    if (!verifyTweeter) {
+      dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
+      return;
+    }
+    if (tweetContent.length <= 0) {
+      return;
+    }
+    PostNewIntent(tweetContent, "");
   }
   const savePostHandler = (tweetContent) => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
+    if (!verifyTweeter) {
+      dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
+      return;
+    }
+    if (tweetContent.length <= 0) {
+      return;
+    }
     dispatch(aiCreatieActions.setSavedPost(tweetContent));
   };
   const handleInputChange = (index, value) => {
@@ -35,12 +69,8 @@ const GeneratedPostCard = ({ generatedTweet }) => {
     updatedGeneratedTweets[index] = value;
     setEditGeneratedTweet(updatedGeneratedTweets);
   };
-  console.log("editGeneratedTweet", editGeneratedTweet);
 
   return generatedTweetArray?.map((tweet, index) => {
-    {
-      console.log("single", tweet);
-    }
     return (
       <div
         key={index}
