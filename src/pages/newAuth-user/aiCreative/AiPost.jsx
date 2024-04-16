@@ -10,15 +10,36 @@ import { PostNewIntent } from "../engagePortal/TweeterIntent";
 import axios from "axios";
 import Loading from "../../Homes/Loading";
 import { aiCreatieActions } from "../../../store/aiCreativeSlice";
+import { authAction } from "../../../store/authorizationSlice";
 
 const AiPost = () => {
   const username = useSelector((state) => state.authentication.userName);
+  const isAuthenticated = useSelector(
+    (state) => state.authentication.isLogedIn
+  );
+  const verifyTweeter = useSelector(
+    (state) => state.authentication.verifyTweet
+  );
+
   const [loading, setLoading] = useState(null);
   const dispatch = useDispatch();
 
   const [useAI, setUseAI] = useState(false);
   const [tweetContent, setTweetContent] = useState("");
   const savePostHandler = () => {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
+    if (!verifyTweeter) {
+      dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
+      return;
+    }
+    if (tweetContent.length <= 0) {
+      return;
+    }
     dispatch(aiCreatieActions.setSavedPost(tweetContent));
   };
   const [sentiment, setSentiment] = useState("");
@@ -53,6 +74,19 @@ const AiPost = () => {
   }
 
   function handlePost() {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
+    if (!verifyTweeter) {
+      dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
+      return;
+    }
+    if (tweetContent.length <= 0) {
+      return;
+    }
     PostNewIntent(tweetContent, "");
   }
   function handleRadioClick() {
