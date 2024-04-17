@@ -11,6 +11,7 @@ import axios from "axios";
 import Loading from "../../Homes/Loading";
 import { aiCreatieActions } from "../../../store/aiCreativeSlice";
 import { authAction } from "../../../store/authorizationSlice";
+import VerifyTweeter from "../authentication/VerifyTweeter";
 
 const AiPost = () => {
   const username = useSelector((state) => state.authentication.userName);
@@ -94,7 +95,8 @@ const AiPost = () => {
   }
 
   return (
-    <div className="flex justify-center flex-col items-center pt-[2.68rem]   ">
+    <div className="flex justify-center flex-col items-center pt-[2.68rem]">
+      <VerifyTweeter />
       <main className="border border-[#2A3C46] border-opacity-25 rounded-md max-w-[43rem]">
         {/* <TogglePost /> */}
         <div className="px-[0.4rem] md:px-[2rem] xl:px-[4rem] pb-[2rem]">
