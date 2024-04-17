@@ -19,7 +19,6 @@ export default function SingleAction({
   selectedIndex,
   taskCompleted,
 }) {
-  console.log("taskStatus", taskStatus);
   return (
     <>
       <div
