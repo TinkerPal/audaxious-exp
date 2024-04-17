@@ -42,6 +42,7 @@ import SingleAction from "../engagePortal/SingleAction";
 import { toast } from "react-toastify";
 import { getAllJoinedSpaces, joinSpace } from "../../../store/spaceActions";
 import ExpiryDate from "../engagePortal/ExpiryDate";
+import GenerateTweet from "./GenerateTweet";
 
 const ReusasbleCampaignDetails = ({
   closeIntentModalHandler,
@@ -49,6 +50,8 @@ const ReusasbleCampaignDetails = ({
   setPost,
   campaignId,
 }) => {
+  const [postOpen, setPostOpen] = useState(false);
+  const [taskIndex, setTaskIndex] = useState({});
   const [toggle, setToggle] = useState(1);
   const [taskStatus, setTaskStatus] = useState([]);
   const [processingStates, setProcessingStates] = useState([]); //for animation
@@ -432,27 +435,65 @@ const ReusasbleCampaignDetails = ({
     }
   };
 
-  const handleComment = (taskId) => {
+  const handleComment = (task, index) => {
     if (!isAuthenticated) {
       dispatch(authAction.onOpen());
       document.activeElement.blur();
       return;
     }
     if (!verifyTweeter) {
-      document.activeElement.blur();
       dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
       return;
     }
-    if (!post.comment) {
-      CommentIntent(
-        "1763151012615925766",
-        "AUDIAXIOUS CHANGING THE WORLD FOR GOOD"
-      );
-      const updatedPost = { ...post, comment: true };
-      setPost(updatedPost);
-      // setCount((prev) => prev + 1);
-    }
+    setTaskIndex({ task, index });
+    setPostOpen(true);
   };
+
+  // const handleComment = (task, index) => {
+  //   setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
+
+  //   if (!isAuthenticated) {
+  //     dispatch(authAction.onOpen());
+  //     document.activeElement.blur();
+  //     return;
+  //   }
+  //   if (!verifyTweeter) {
+  //     dispatch(authAction.onOpenTweeterModal(true));
+  //     document.activeElement.blur();
+  //     return;
+  //   }
+  //   //   const isTaskUuidInArray = (taskUuid, array) => {
+  //   //   return array.some(item => item.uuid === taskUuid);
+  //   // };
+  //   if (!isTaskUuidInArray(task.uuid, completedTask)) {
+  //     setProcessingStates((prevStates) => {
+  //       const updatedStates = [...prevStates];
+  //       updatedStates[index] = true;
+  //       return updatedStates;
+  //     });
+  //     const newTask = { uuid: task.uuid };
+
+  //     const tweetId = extractHandle(task.url);
+  //     // LikeIntent(tweetId);
+  //     CommentIntent(tweetId, "AUDIAXIOUS CHANGING");
+  //     const updatedPost = { ...post, like: true };
+  //     setTimeout(() => {
+  //       setCompletedTask((prev) => [...prev, newTask]);
+  //       setProcessingStates((prevStates) => {
+  //         const updatedStates = [...prevStates];
+  //         updatedStates[index] = false;
+  //         return updatedStates;
+  //       });
+  //       setPost(updatedPost);
+  //       setTaskStatus((prevTaskStatus) => {
+  //         const updatedTaskStatus = [...prevTaskStatus];
+  //         updatedTaskStatus[index] = "complete";
+  //         return updatedTaskStatus;
+  //       });
+  //     }, 10000); // 60 seconds in milliseconds
+  //   }
+  // };
 
   // `join follow like repost share post`;
 
@@ -508,12 +549,27 @@ const ReusasbleCampaignDetails = ({
     }
   };
 
-  const todayDate = new Date();
+  const cancelHandler = () => {
+    setPostOpen(false);
+  };
 
   return (
     <>
       <VerifyTweeter />
-
+      <GenerateTweet
+        open={postOpen}
+        cancelHandler={cancelHandler}
+        completedTask={completedTask}
+        setSelectedIndex={setSelectedIndex}
+        isTaskUuidInArray={isTaskUuidInArray}
+        setProcessingStates={setProcessingStates}
+        extractHandle={extractHandle}
+        post={post}
+        setPost={setPost}
+        setCompletedTask={setCompletedTask}
+        setTaskStatus={setTaskStatus}
+        taskIndex={taskIndex}
+      />
       <Modal onClose={() => {}} open={true}>
         <form onSubmit={submitHandler}>
           <section className="bg-[#060B12] relative pt-[5rem] pb-[1rem] rounded-md max-w-[1300px] px-[1rem]">
