@@ -56,7 +56,6 @@ const GeneratedPostCard = ({ generatedTweet }) => {
     }
     if (!verifyTweeter) {
       dispatch(authAction.onOpenTweeterModal(true));
-      document.activeElement.blur();
       return;
     }
     if (tweetContent.length <= 0) {
