@@ -19,6 +19,7 @@ export default function SingleAction({
   selectedIndex,
   taskCompleted,
 }) {
+  console.log("taskStatus", taskStatus);
   return (
     <>
       <div
@@ -31,6 +32,7 @@ export default function SingleAction({
             {task.action === "like" && <Love />}
             {task.action === "repost" && <Retweet />}
             {task.action === "join" && <Retweet />}
+            {task.action === "post" && <Retweet />}
           </span>
           <span className="whitespace-nowrap font-[300] md:text-[0.65rem] lg:text-[1rem] xl:[1.25rem] normal-case text-[#E8E8E8]">
             {children}
