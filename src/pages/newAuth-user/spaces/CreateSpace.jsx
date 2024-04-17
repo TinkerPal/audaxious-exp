@@ -120,7 +120,7 @@ const CreateSpace = ({ cancelHandler }) => {
   //   }
   // };
 
-  console.log("selectedWebsite", selectedWebsite);
+  // console.log("selectedWebsite", selectedWebsite);
   const handleInputChange = (type, url) => {
     if (url.trim() === "") {
       // If URL is empty, remove it from selectedWebsite if it exists
