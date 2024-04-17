@@ -55,7 +55,7 @@ const CampaignTasks = ({ spaceDetail, setShowCampaignTask }) => {
       image: "/tweetImages/tweeter.svg",
     },
     {
-      title: "Like tweet",
+      title: "comment tweet",
       actions: "post",
       media: "twitter",
       image: "/tweetImages/tweeter.svg",
