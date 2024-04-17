@@ -50,6 +50,16 @@ const AiPost = () => {
     "https://audaxious-130e2398fbd3.herokuapp.com/generate_tweet/";
 
   async function handleGenerate() {
+    if (!isAuthenticated) {
+      dispatch(authAction.onOpen());
+      document.activeElement.blur();
+      return;
+    }
+    if (!verifyTweeter) {
+      dispatch(authAction.onOpenTweeterModal(true));
+      document.activeElement.blur();
+      return;
+    }
     if (tweetContent === "") return;
     setGeneratedTweets([]);
     setLoading(true);
