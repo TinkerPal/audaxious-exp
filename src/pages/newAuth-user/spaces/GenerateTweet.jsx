@@ -60,7 +60,7 @@ const GenerateTweet = ({
   }
   const handlePost = () => {
     const { task, index } = taskIndex;
-    console.log(task, index);
+
     setSelectedIndex((prevSelectedIndex) => [...prevSelectedIndex, index]);
 
     //   const isTaskUuidInArray = (taskUuid, array) => {
@@ -120,7 +120,7 @@ const GenerateTweet = ({
           onClick={cancelHandler}
         />
         <div className="fixed inset-0 z-[6] overflow-y-auto">
-          <div className="flex items-center py-[5rem] md:py-[0rem] justify-center my-[2rem] text-center sm:items-center sm:p-0">
+          <div className="flex items-center py-[5rem] md:py-[0rem] justify-center my-[10rem] text-center sm:items-center sm:p-0">
             <Dialog.Panel className=" bg-slate-900">
               {/* <CreateSpace cancelHandler={cancelHandler} /> */}
               <div className="flex justify-center flex-col items-center pt-[2.68rem]">
