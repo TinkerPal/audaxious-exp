@@ -2,7 +2,9 @@
 
 // import AppProtected from "./AppProtected";
 // import AppPublic from "./AppPublic";
-import Wagmi from "./config/wagmi/Wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider } from "wagmi";
+import { config } from "./config/wagmi/Wagmi";
 import AppProtectedNew from "./AppProtectedNew";
 import { useEffect } from "react";
 import { getToken } from "./utils/accesstoken";
@@ -13,6 +15,9 @@ import { getAllSpaces } from "./store/spaceActions";
 import { spaceActions } from "./store/spaceSlice";
 import { getAllCampaigns } from "./store/campaignActions";
 import { campaignActions } from "./store/campaignSlice";
+import BuyCard from "./pages/Buy/BuyCard";
+
+const queryClient = new QueryClient();
 
 function App() {
   // let authUser = useAuthUser();
@@ -89,9 +94,12 @@ function App() {
 
   // return <Wagmi>{authUser?.token ? <AppProtected /> : <AppPublic />}</Wagmi>;
   return (
-    <Wagmi>
-      <AppProtectedNew />
-    </Wagmi>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        {/* <AppProtectedNew /> */}
+        <BuyCard />
+      </QueryClientProvider>
+    </WagmiProvider>
   );
   // return <AppProtectedNew />;
 }

@@ -1,5 +1,8 @@
-import { WagmiConfig, createConfig, configureChains, mainnet } from "wagmi";
+import { createConfig, http } from "wagmi";
+
 import {
+  mainnet,
+  sepolia,
   bsc,
   base,
   avalanche,
@@ -9,42 +12,28 @@ import {
   kava,
 } from "wagmi/chains";
 
-import { publicProvider } from "wagmi/providers/public";
+import { injected, safe, walletConnect } from "wagmi/connectors";
 
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+const addedChains = [
+  mainnet,
+  sepolia,
+  bsc,
+  base,
+  avalanche,
+  arbitrum,
+  polygon,
+  fantom,
+  kava,
+];
 
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-
-//Configure chains
-
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, bsc, base, avalanche, arbitrum, polygon, fantom, kava],
-  [
-    alchemyProvider({ apiKey: "Pa_6cPHfAq-ZVUwYsxX1W938lX9GgEVZ" }),
-    publicProvider(),
-  ]
-);
-
-//Setup wagmi config
-
-const config = createConfig({
-  autoConnect: true,
+export const config = createConfig({
+  chains: [sepolia],
   connectors: [
-    new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({ chains, options: { appName: "AudaXious" } }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: "35c6df36716ecbd04dcc4cedba364876",
-      },
-    }),
+    walletConnect({ projectId: "35c6df36716ecbd04dcc4cedba364876" }),
+    injected(),
+    safe(),
   ],
-  publicClient,
-  webSocketPublicClient,
+  transports: {
+    [sepolia.id]: http(),
+  },
 });
-
-export default function Wagmi({ children }) {
-  return <WagmiConfig config={config}>{children}</WagmiConfig>;
-}
